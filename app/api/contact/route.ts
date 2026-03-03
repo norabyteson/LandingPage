@@ -30,20 +30,33 @@ export async function POST(request: NextRequest) {
 
     const { name, email, company, service, message } = parsed.data;
 
+    const smtpHost = process.env.SMTP_HOST || "smtp.gmail.com";
+    const smtpPort = Number(process.env.SMTP_PORT) || 587;
+    const smtpUser = process.env.SMTP_USER;
+    const smtpPass = process.env.SMTP_PASS;
+
+    if (!smtpUser || !smtpPass) {
+      console.error("[Contact API Error] Faltan credenciales SMTP (SMTP_USER o SMTP_PASS)");
+      return NextResponse.json(
+        { error: "Error de configuración del servidor de correo" },
+        { status: 500 }
+      );
+    }
+
     // Configurar transporter de nodemailer
-    // Para producción, usa las variables de entorno SMTP_HOST, SMTP_PORT, etc.
     const transporter = nodemailer.createTransport({
-      host: process.env.SMTP_HOST ?? "smtp.gmail.com",
-      port: Number(process.env.SMTP_PORT ?? 587),
-      secure: process.env.SMTP_SECURE === "true",
+      host: smtpHost,
+      port: smtpPort,
+      secure: smtpPort === 465 || process.env.SMTP_SECURE === "true",
       auth: {
-        user: process.env.SMTP_USER,
-        pass: process.env.SMTP_PASS,
+        user: smtpUser,
+        pass: smtpPass,
       },
+      connectionTimeout: 10000,
     });
 
-    const recipientEmail = process.env.CONTACT_EMAIL ?? "contacto@norabyte.com";
-    const fromEmail = process.env.SMTP_USER ?? "noreply@norabyte.com";
+    const recipientEmail = process.env.CONTACT_EMAIL || "contacto@norabyte.com";
+    const fromEmail = smtpUser;
 
     // Email al equipo de NORABYTE
     await transporter.sendMail({
@@ -172,10 +185,16 @@ export async function POST(request: NextRequest) {
     });
 
     return NextResponse.json({ success: true }, { status: 200 });
-  } catch (error) {
-    console.error("[Contact API Error]", error);
+  } catch (error: any) {
+    console.error("[Contact API Critical Error]:", error?.message || error);
+
+    // Verificamos si es un timeout o error de conexión específicamente
+    if (error?.code === 'ETIMEDOUT' || error?.code === 'ESOCKETTIMEDOUT') {
+      console.error("-> El servidor SMTP tardó demasiado en responder.");
+    }
+
     return NextResponse.json(
-      { error: "Error interno al procesar la solicitud" },
+      { error: "Error interno al procesar la solicitud. Revisa los logs de Vercel para más info." },
       { status: 500 }
     );
   }

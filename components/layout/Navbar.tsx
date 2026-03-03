@@ -213,14 +213,10 @@ export default function Navbar({ dict, lang }: NavbarProps) {
                 className="flex items-center gap-2 px-3 py-1.5 text-xs font-semibold rounded-full border border-[var(--nb-light)]/15 text-[var(--nb-light)]/70 hover:text-[var(--nb-light)] hover:border-[var(--nb-light)]/30 hover:bg-[var(--nb-light)]/5 transition-all duration-200 cursor-pointer"
                 aria-label={`Idioma actual: ${lang.toUpperCase()}`}
               >
-                <Image 
-                  src={lang === "es" ? "https://flagcdn.com/w20/mx.png" : "https://flagcdn.com/w20/us.png"}
-                  width={16}
-                  height={12}
-                  style={{ width: "auto", height: "auto" }}
-                  alt={lang === "es" ? "Bandera MX" : "US Flag"}
-                  className="rounded-[2px] object-cover"
-                />
+                <span className={cn(
+                  "fi text-base rounded-[2px]", 
+                  lang === "es" ? "fi-mx" : "fi-us"
+                )} />
                 <span className="tracking-widest">{lang.toUpperCase()}</span>
               </button>
               
@@ -231,14 +227,10 @@ export default function Navbar({ dict, lang }: NavbarProps) {
                   onClick={handleLangSwitch}
                   className="flex items-center gap-3 px-4 py-3 text-sm text-[var(--nb-light)]/70 hover:text-[var(--nb-light)] hover:bg-[var(--nb-primary)]/10 transition-colors w-full text-left"
                 >
-                  <Image 
-                    src={otherLang === "es" ? "https://flagcdn.com/w20/mx.png" : "https://flagcdn.com/w20/us.png"}
-                    width={18}
-                    height={13}
-                    style={{ width: "auto", height: "auto" }}
-                    alt={otherLang === "es" ? "Bandera MX" : "US Flag"}
-                    className="rounded-[2px] object-cover"
-                  />
+                  <span className={cn(
+                    "fi text-lg rounded-[2px]", 
+                    otherLang === "es" ? "fi-mx" : "fi-us"
+                  )} />
                   <span className="font-medium">{dict.language.switch}</span>
                 </a>
               </div>
@@ -364,14 +356,10 @@ export default function Navbar({ dict, lang }: NavbarProps) {
                     onClick={handleLangSwitch}
                     className="flex-1 flex items-center justify-center gap-3 px-4 py-2.5 rounded-xl border border-[var(--nb-light)]/15 hover:border-[var(--nb-light)]/30 hover:bg-[var(--nb-light)]/5 transition-all duration-200 cursor-pointer"
                   >
-                    <Image 
-                      src={otherLang === "es" ? "https://flagcdn.com/w20/mx.png" : "https://flagcdn.com/w20/us.png"}
-                      width={18}
-                      height={13}
-                      style={{ width: "auto", height: "auto" }}
-                      alt={otherLang === "es" ? "Bandera MX" : "US Flag"}
-                      className="rounded-[2px] object-cover"
-                    />
+                    <span className={cn(
+                      "fi text-lg rounded-[2px]", 
+                      otherLang === "es" ? "fi-mx" : "fi-us"
+                    )} />
                     <span className="text-sm font-semibold text-[var(--nb-light)]/80 uppercase tracking-widest">{dict.language.switch}</span>
                   </a>
                   <button
