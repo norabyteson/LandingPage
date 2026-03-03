@@ -1,0 +1,254 @@
+{
+  "meta": {
+    "title": "NORABYTE — Custom Software Development",
+    "description": "We transform your ideas into high-impact digital solutions. Websites, business systems, online stores and more, designed to grow your business.",
+    "ogTitle": "NORABYTE — Software that drives your business",
+    "ogDescription": "We create custom systems and applications for businesses. From your first website to a complete business management system.",
+    "keywords": "software development, business systems, websites, online stores, point of sale, custom applications, Mexico"
+  },
+  "nav": {
+    "services": "Services",
+    "about": "About",
+    "contact": "Contact",
+    "cta": "Get a Quote"
+  },
+  "hero": {
+    "badge": "Your business, digitized",
+    "headline": "We build your company's digital future",
+    "subheadline": "We turn your ideas and processes into digital systems that work, look amazing, and grow your business.",
+    "ctaPrimary": "Get a Quote",
+    "ctaSecondary": "View Services",
+    "stats": {
+      "projects": "Projects",
+      "clients": "Clients",
+      "years": "Years of experience",
+      "satisfaction": "Satisfaction"
+    }
+  },
+  "services": {
+    "badge": "What we do",
+    "title": "What can we do for your business?",
+    "subtitle": "We develop all kinds of digital systems tailored exactly to what you need, without any technical complexity on your part.",
+    "items": [
+      {
+        "id": "landing",
+        "title": "Websites & Landing Pages",
+        "description": "Your first impression online. We create professional websites that showcase your business, attract customers, and generate sales — 24/7.",
+        "features": ["Professional design", "Mobile-friendly", "Ultra-fast loading", "Google optimized"]
+      },
+      {
+        "id": "ecommerce",
+        "title": "Online Stores",
+        "description": "Sell your products or services online. Shopping cart, secure payments, inventory control, and an admin panel to manage everything from your computer.",
+        "features": ["Product catalog", "Secure online payments", "Inventory control", "Sales reports"]
+      },
+      {
+        "id": "enterprise",
+        "title": "Business Management Systems",
+        "description": "Is your business still running on paper or spreadsheets? We build a custom digital system for you: payroll, inventory, customers, reports, and everything you need.",
+        "features": ["Staff management", "Inventory control", "Automated reports", "Access from anywhere"]
+      },
+      {
+        "id": "pos",
+        "title": "Point of Sale",
+        "description": "Cash register system for stores, restaurants, and businesses. Record sales, control inventory, print tickets and daily reports.",
+        "features": ["Sales recording", "Product control", "Ticket printing", "Daily reports"]
+      },
+      {
+        "id": "desktop",
+        "title": "Desktop Applications",
+        "description": "Software installed on your computer for specific tasks: employee attendance tracking, monitoring systems, access control, and more.",
+        "features": ["Staff attendance", "Access control", "Real-time monitoring", "Works offline"]
+      },
+      {
+        "id": "custom",
+        "title": "Custom Systems",
+        "description": "Have a very specific need? We'll build it. From internal portals and unique management systems to automating repetitive processes.",
+        "features": ["100% customized", "Integration with your systems", "Support & maintenance", "Scalable for the future"]
+      }
+    ]
+  },
+  "process": {
+    "badge": "How we work",
+    "title": "Our Process",
+    "subtitle": "A clear process with no surprises, where you always know what stage your project is at.",
+    "steps": [
+      {
+        "number": "01",
+        "title": "Analysis",
+        "description": "You tell us what you need and what your goals are. No commitment, no cost. We just listen and understand your business.",
+        "short": "Full discovery"
+      },
+      {
+        "number": "02",
+        "title": "UX/UI Design",
+        "description": "We show you what your system will look like and how it will work before we start building it. You approve every detail.",
+        "short": "Zero guesswork"
+      },
+      {
+        "number": "03",
+        "title": "Development",
+        "description": "We build your system in short stages, showing you progress constantly so you're always up to date.",
+        "short": "Scalable code"
+      },
+      {
+        "number": "04",
+        "title": "QA Testing",
+        "description": "We test everything thoroughly before delivery: making sure it works perfectly, is easy to use, and has no errors.",
+        "short": "Guaranteed quality"
+      },
+      {
+        "number": "05",
+        "title": "Deployment",
+        "description": "We deliver your system working 100% and teach you how to use it. Your employees will operate everything without a problem.",
+        "short": "Flawless launch"
+      },
+      {
+        "number": "06",
+        "title": "Evolution",
+        "description": "We don't leave you alone. After delivery we remain available for adjustments, improvements, and any questions you have.",
+        "short": "Ongoing support"
+      }
+    ]
+  },
+  "portfolio": {
+    "badge": "Success stories",
+    "title": "Projects that speak for themselves",
+    "subtitle": "Real businesses that trusted us and transformed their operations.",
+    "viewProject": "View Project",
+    "items": [
+      {
+        "id": "ecommerce",
+        "title": "Online Store — RetailMex",
+        "category": "E-Commerce",
+        "description": "Online store with 500+ products, integration with national and international payments, real-time inventory control, and a complete admin panel.",
+        "tags": ["Online store", "Online payments", "Inventory", "Admin panel"]
+      },
+      {
+        "id": "logistics",
+        "title": "Logistics System — LogisTech",
+        "category": "Business System",
+        "description": "Fleet management system with real-time tracking, driver management, automatic route reports, and an executive dashboard for decision-making.",
+        "tags": ["Fleet control", "GPS tracking", "Reports", "Executive panel"]
+      },
+      {
+        "id": "fintech",
+        "title": "Financial Control System",
+        "category": "Business Application",
+        "description": "Expense and income tracking platform for businesses with automatic reports, trend analysis, and smart alerts.",
+        "tags": ["Financial control", "Reports", "Analysis", "Alerts"]
+      }
+    ]
+  },
+  "about": {
+    "badge": "Who we are",
+    "title": "Professional development from start to finish",
+    "description": "We are a team dedicated to creating digital systems that truly solve problems. We work hand-in-hand with you to deeply understand your business and build the exact solution you need, applying the highest standards of quality and performance.",
+    "values": [
+      {
+        "title": "Clarity above all",
+        "description": "We explain everything in simple terms. You'll always know what's being built and why."
+      },
+      {
+        "title": "Real commitments",
+        "description": "If we say a date and a price, we keep them. No surprises halfway through the project."
+      },
+      {
+        "title": "Results that show",
+        "description": "We don't just deliver code, we deliver systems that genuinely improve your operations."
+      },
+      {
+        "title": "With you long-term",
+        "description": "The launch is just the beginning. We support you with maintenance, improvements, and support whenever you need it."
+      }
+    ]
+  },
+  "testimonials": {
+    "badge": "Testimonials",
+    "title": "What our clients say",
+    "items": [
+      {
+        "name": "Commercial Director",
+        "role": "Retail Sector",
+        "content": "Attention to detail and constant communication were key. They delivered a sales platform that not only works perfectly, but is incredibly easy to use for our entire team."
+      },
+      {
+        "name": "Operations Manager",
+        "role": "Logistics & Transport",
+        "content": "They understood our internal processes almost immediately. The custom system they developed automated tasks that took us entire days. A massive leap in our productivity."
+      },
+      {
+        "name": "Founder",
+        "role": "Tech Startup",
+        "content": "What stands out the most is their technical capability to solve complex problems straightforwardly. They built our scalable infrastructure cleanly and delivered exactly on every agreed deadline."
+      }
+    ]
+  },
+  "contact": {
+    "badge": "Let's talk",
+    "title": "Ready to start your project?",
+    "subtitle": "Tell us briefly what you need and we'll get back to you within 24 hours with a clear, no-obligation proposal.",
+    "form": {
+      "name": "Your name",
+      "namePlaceholder": "What's your name?",
+      "email": "Email address",
+      "emailPlaceholder": "you@company.com",
+      "company": "Company (optional)",
+      "companyPlaceholder": "Your company name",
+      "service": "What do you need?",
+      "servicePlaceholder": "Select a project type",
+      "message": "Tell us about your project",
+      "messagePlaceholder": "Briefly describe what you want to build, what it's for, and any details that help us understand you better...",
+      "submit": "Send Request",
+      "submitting": "Sending...",
+      "successTitle": "Got it, message received!",
+      "successMessage": "We'll review your request and get back to you within 24 hours with a proposal.",
+      "errorTitle": "Something went wrong",
+      "errorMessage": "We couldn't send your message. Please try again or write to us directly.",
+      "services": [
+        "Website or Landing Page",
+        "Online Store",
+        "Business System",
+        "Point of Sale",
+        "Desktop Application",
+        "Custom System",
+        "Not sure yet, I want advice"
+      ]
+    },
+    "info": {
+      "email": "contacto@norabyte.com",
+      "phone": "+52 (55) 0000-0000",
+      "location": "Hermosillo, Sonora, Mexico",
+      "availability": "Dedicated to turning your ideas into reality."
+    }
+  },
+  "footer": {
+    "tagline": "Building your company's digital future.",
+    "services": "Services",
+    "company": "Company",
+    "legal": "Legal",
+    "links": {
+      "services": [
+        { "label": "Websites", "href": "#services" },
+        { "label": "Online Stores", "href": "#services" },
+        { "label": "Business Systems", "href": "#services" },
+        { "label": "Point of Sale", "href": "#services" },
+        { "label": "Desktop Apps", "href": "#services" }
+      ],
+      "company": [
+        { "label": "About", "href": "#about" },
+        { "label": "Testimonials", "href": "#testimonials" },
+        { "label": "Process", "href": "#process" }
+      ],
+      "legal": [
+        { "label": "Privacy", "href": "/privacy" },
+        { "label": "Terms of Use", "href": "/terms" }
+      ]
+    },
+    "copyright": "© 2026 NORABYTE. All rights reserved."
+  },
+  "language": {
+    "switch": "ES",
+    "current": "EN"
+  }
+}

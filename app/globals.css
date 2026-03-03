@@ -1,26 +1,633 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+/* =========================================================
+   NORABYTE — Sistema de Variables CSS
+   Modifica config/theme.ts para cambiar la paleta de colores.
+   Estas variables son consumidas globalmente por Tailwind y
+   los componentes de la aplicación.
+   ========================================================= */
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  /* Paleta principal */
+  --color-dark: #191716;
+  --color-primary: #266dd3;
+  --color-primary-light: #4a8fe8;
+  --color-primary-dark: #1a4f9a;
+  --color-light: #f0f0f0;
+  --color-dark-muted: #2a2826;
+  --color-dark-surface: #232120;
+
+  /* Alias semánticos */
+  --color-background: var(--color-dark);
+  --color-foreground: var(--color-light);
+  --color-accent: var(--color-primary);
+
+  /* Fuentes */
+  --font-sans: var(--font-geist-sans), "Inter", system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), "JetBrains Mono", monospace;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* =========================================================
+   VARIABLES DE DISEÑO GLOBAL
+   ========================================================= */
+:root {
+  /* Colores base */
+  --nb-dark: #191716;
+  --nb-primary: #266dd3;
+  --nb-primary-light: #4a8fe8;
+  --nb-primary-dark: #1a4f9a;
+  --nb-light: #f0f0f0;
+  --nb-dark-muted: #2a2826;
+  --nb-dark-surface: #232120;
+
+  /* Colores de sección diferenciados — modo oscuro */
+  --nb-section-navy: #0e1628; /* Azul naval profundo */
+  --nb-section-deep: #0b0b10; /* Negro azulado casi puro */
+  --nb-section-warm: #1e1c1a; /* Oscuro cálido */
+  --nb-section-mid: #141414; /* Gris neutro oscuro */
+  --nb-section-contact: #0a0c12; /* Contacto: más profundo, CTA */
+
+  /* Liquid Glass */
+  --glass-blur: 16px;
+  --glass-opacity: 0.08;
+  --glass-border: rgba(240, 240, 240, 0.1);
+  --glass-bg: rgba(25, 23, 22, 0.55);
+  --glass-shadow-color: rgba(38, 109, 211, 0.2);
+  --glass-shadow:
+    0 8px 36px var(--glass-shadow-color),
+    0 1px 0 rgba(255, 255, 255, 0.06) inset;
+
+  /* Transiciones — sincronizadas con config/theme.ts animation.* */
+  --transition-fast: 100ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-normal: 180ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-slow: 300ms cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* Espaciado base de secciones */
+  --section-padding-y: clamp(5rem, 10vw, 8rem);
+}
+
+/* =========================================================
+   MODO CLARO — fallback CSS (ThemeVarsInjector lo sobreescribe en cliente)
+   Paleta: #191716 (oscuro) · #266DD3 (primario) · #F0F0F0 (claro)
+   ========================================================= */
+html.light {
+  /* Fondo y texto */
+  --nb-dark: #f0f0f0;
+  --nb-dark-surface: #ffffff;
+  --nb-dark-muted: #e0e0e0;
+  --nb-light: #191716;
+
+  /* Primario — igual en ambos modos */
+  --nb-primary: #266dd3;
+  --nb-primary-light: #3b7be0;
+  --nb-primary-dark: #1d5bb5;
+
+  /* Liquid Glass — más opaco y con bordes más visibles */
+  --glass-bg: rgba(240, 240, 240, 0.9);
+  --glass-border: rgba(25, 23, 22, 0.15);
+  --glass-shadow-color: rgba(38, 109, 211, 0.2);
+  --glass-shadow:
+    0 8px 32px var(--glass-shadow-color), 0 1px 0 rgba(255, 255, 255, 0.8) inset;
+
+  /* Secciones — Tonos estables basados en la paleta sin grises raros */
+  --nb-section-navy: #f0f0f0;
+  --nb-section-deep: #e5e5e5;
+  --nb-section-warm: #f0f0f0;
+  --nb-section-mid: #f0f0f0;
+  --nb-section-contact: #266dd3;
+}
+
+html.light body {
+  background-color: var(--nb-dark);
+  color: var(--nb-light);
+}
+
+/* Cards — bg y border vienen de var(--glass-bg/border); solo sobreescribir box-shadow */
+html.light .glass-card {
+  box-shadow:
+    0 3px 16px rgba(25, 23, 22, 0.09),
+    0 1px 0 rgba(255, 255, 255, 0.95) inset;
+}
+
+html.light .glass-card:hover {
+  border-color: rgba(38, 109, 211, 0.32);
+  box-shadow:
+    0 6px 28px rgba(38, 109, 211, 0.15),
+    0 1px 0 rgba(255, 255, 255, 0.95) inset;
+  /* Sin translateY — evita el salto */
+}
+
+/* Highlight glassmorphism */
+html.light .glass-highlight::before {
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.92) 0%,
+    rgba(38, 109, 211, 0.1) 50%,
+    rgba(240, 240, 240, 0.55) 100%
+  );
+}
+
+/* Grid y dots con color oscuro sutil */
+html.light .bg-grid {
+  background-image:
+    linear-gradient(rgba(25, 23, 22, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(25, 23, 22, 0.04) 1px, transparent 1px);
+}
+
+html.light .bg-dots {
+  background-image: radial-gradient(
+    circle,
+    rgba(25, 23, 22, 0.08) 1px,
+    transparent 1px
+  );
+}
+
+/* Texto con gradiente: oscuro → azul (usa variables del tema) */
+html.light .gradient-text {
+  background: linear-gradient(
+    135deg,
+    var(--nb-light) 0%,
+    var(--nb-primary-dark) 55%,
+    var(--nb-primary) 100%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Glow azul más pronunciado en modo claro */
+html.light .gradient-glow {
+  background: radial-gradient(
+    ellipse 80% 50% at 50% -20%,
+    rgba(38, 109, 211, 0.13) 0%,
+    transparent 70%
+  );
+}
+
+/* Botón ghost adaptado al fondo claro */
+html.light .btn-ghost {
+  color: var(--nb-light);
+  border-color: rgba(25, 23, 22, 0.2);
+  background: transparent;
+}
+
+html.light .btn-ghost:hover {
+  background: rgba(25, 23, 22, 0.06);
+  border-color: rgba(25, 23, 22, 0.36);
+  color: var(--nb-light);
+}
+
+/* Scrollbar en modo claro */
+html.light ::-webkit-scrollbar-track {
+  background: var(--nb-dark-surface);
+}
+
+html.light ::-webkit-scrollbar-thumb {
+  background: rgba(38, 109, 211, 0.4);
+}
+
+html.light ::-webkit-scrollbar-thumb:hover {
+  background: var(--nb-primary);
+}
+
+/* Selection en modo claro */
+html.light ::selection {
+  background: rgba(38, 109, 211, 0.22);
+  color: var(--nb-light);
+}
+
+/* =========================================================
+   FORMULARIO — inputs responsivos al tema
+   ========================================================= */
+
+.form-input {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border-radius: 0.75rem;
+  font-size: 0.875rem;
+  color: var(--nb-light);
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(240, 240, 240, 0.1);
+  transition:
+    border-color var(--transition-normal),
+    background var(--transition-normal),
+    box-shadow var(--transition-normal);
+  outline: none;
+}
+
+.form-input::placeholder {
+  color: rgba(240, 240, 240, 0.25);
+}
+
+.form-input:focus {
+  border-color: rgba(38, 109, 211, 0.55);
+  background: rgba(255, 255, 255, 0.06);
+  box-shadow: 0 0 0 3px rgba(38, 109, 211, 0.12);
+}
+
+.form-input.error {
+  border-color: rgba(248, 113, 113, 0.5);
+}
+
+.form-input.error:focus {
+  box-shadow: 0 0 0 3px rgba(248, 113, 113, 0.12);
+}
+
+/* Modo claro */
+html.light .form-input {
+  color: var(--nb-light);
+  background: rgba(255, 255, 255, 0.85);
+  border-color: rgba(25, 23, 22, 0.14);
+  box-shadow: 0 1px 4px rgba(25, 23, 22, 0.06);
+}
+
+html.light .form-input::placeholder {
+  color: rgba(25, 23, 22, 0.35);
+}
+
+html.light .form-input:focus {
+  border-color: var(--nb-primary);
+  background: rgba(255, 255, 255, 0.98);
+  box-shadow:
+    0 0 0 3px rgba(38, 109, 211, 0.12),
+    0 1px 4px rgba(25, 23, 22, 0.06);
+}
+
+/* =========================================================
+   RESET Y BASE
+   ========================================================= */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 6rem;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--nb-dark);
+  color: var(--nb-light);
+  font-family: var(--font-sans);
+  min-height: 100vh;
+  overflow-x: hidden;
+  line-height: 1.6;
+}
+
+/* Scrollbar personalizado */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--nb-dark);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--nb-primary-dark);
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--nb-primary);
+}
+
+/* =========================================================
+   LIQUID GLASS — Utilidades de Vidrio
+   ========================================================= */
+
+/* Clase base para efecto liquid glass */
+.glass {
+  background: var(--glass-bg);
+  backdrop-filter: blur(var(--glass-blur));
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--glass-shadow);
+  transition:
+    border-color var(--transition-normal),
+    box-shadow var(--transition-normal);
+}
+
+/* Variante más sutil para cards */
+.glass-card {
+  background: var(--glass-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--glass-border);
+  box-shadow:
+    0 4px 24px rgba(0, 0, 0, 0.25),
+    0 1px 0 rgba(255, 255, 255, 0.04) inset;
+  transition:
+    box-shadow var(--transition-normal),
+    border-color var(--transition-normal);
+}
+
+.glass-card:hover {
+  border-color: rgba(38, 109, 211, 0.35);
+  box-shadow:
+    0 8px 40px rgba(38, 109, 211, 0.18),
+    0 1px 0 rgba(255, 255, 255, 0.06) inset;
+  /* Sin translateY — evita saltos que distraigan */
+}
+
+/* Highlight de borde con gradiente (liquid glass signature) */
+.glass-highlight {
+  position: relative;
+}
+.glass-highlight::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.15) 0%,
+    rgba(38, 109, 211, 0.2) 50%,
+    rgba(255, 255, 255, 0.05) 100%
+  );
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+/* =========================================================
+   GRADIENTES DE MARCA
+   ========================================================= */
+
+.gradient-brand {
+  background: linear-gradient(
+    135deg,
+    var(--nb-primary) 0%,
+    var(--nb-primary-light) 100%
+  );
+}
+
+.gradient-text {
+  background: linear-gradient(
+    135deg,
+    #fff 0%,
+    var(--nb-primary-light) 60%,
+    var(--nb-primary) 100%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.gradient-glow {
+  background: radial-gradient(
+    ellipse 80% 50% at 50% -20%,
+    rgba(38, 109, 211, 0.25) 0%,
+    transparent 70%
+  );
+}
+
+/* =========================================================
+   FONDO DE CUADRÍCULA / GRID PATTERN
+   ========================================================= */
+
+.bg-grid {
+  background-image:
+    linear-gradient(rgba(240, 240, 240, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(240, 240, 240, 0.03) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+
+.bg-dots {
+  background-image: radial-gradient(
+    circle,
+    rgba(240, 240, 240, 0.07) 1px,
+    transparent 1px
+  );
+  background-size: 24px 24px;
+}
+
+/* =========================================================
+   TIPOGRAFÍA UTILITARIA
+   ========================================================= */
+
+.heading-xl {
+  font-size: clamp(2.5rem, 6vw, 5rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.05;
+}
+
+.heading-lg {
+  font-size: clamp(1.8rem, 4vw, 3rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+}
+
+.heading-md {
+  font-size: clamp(1.25rem, 2.5vw, 1.875rem);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  line-height: 1.3;
+}
+
+/* =========================================================
+   BOTONES BASE
+   ========================================================= */
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem 2rem;
+  border-radius: 9999px;
+  font-weight: 600;
+  font-size: 0.9375rem;
+  background: linear-gradient(
+    135deg,
+    var(--nb-primary) 0%,
+    var(--nb-primary-light) 100%
+  );
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  transition: all var(--transition-normal);
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-primary::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.15) 0%,
+    transparent 100%
+  );
+  opacity: 0;
+  transition: opacity var(--transition-fast);
+}
+
+.btn-primary:hover::before {
+  opacity: 1;
+}
+
+.btn-primary:hover {
+  box-shadow: 0 6px 22px rgba(38, 109, 211, 0.48);
+}
+
+.btn-primary:active {
+  transform: translateY(0);
+}
+
+.btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem 2rem;
+  border-radius: 9999px;
+  font-weight: 600;
+  font-size: 0.9375rem;
+  background: transparent;
+  color: var(--nb-light);
+  border: 1px solid rgba(240, 240, 240, 0.2);
+  cursor: pointer;
+  transition: all var(--transition-normal);
+}
+
+.btn-ghost:hover {
+  background: rgba(240, 240, 240, 0.08);
+  border-color: rgba(240, 240, 240, 0.42);
+}
+
+/* =========================================================
+   SECCIONES
+   ========================================================= */
+
+.section-padding {
+  padding-top: var(--section-padding-y);
+  padding-bottom: var(--section-padding-y);
+}
+
+/* =========================================================
+   FOCUS ACCESIBLE
+   ========================================================= */
+
+:focus-visible {
+  outline: 2px solid var(--nb-primary);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* =========================================================
+   SELECTION
+   ========================================================= */
+::selection {
+  background: rgba(38, 109, 211, 0.35);
+  color: #fff;
+}
+
+/* =========================================================
+   ANIMACIONES CSS AUXILIARES
+   ========================================================= */
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes pulse-glow {
+  0%,
+  100% {
+    box-shadow: 0 0 20px rgba(38, 109, 211, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 40px rgba(38, 109, 211, 0.6);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% center;
+  }
+  100% {
+    background-position: 200% center;
+  }
+}
+
+.animate-float {
+  animation: float 4s ease-in-out infinite;
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 3s ease-in-out infinite;
+}
+
+/* =========================================================
+   SECCIONES — Fondos especiales
+   ========================================================= */
+
+/* Testimonios: tono navy/deep (sólido) */
+.section-testimonials-bg {
+  background-color: var(--nb-section-deep);
+}
+
+/* Contacto / Hablemos: fondo sólido */
+.section-contact-bg {
+  background-color: var(--nb-section-contact);
+}
+
+/* Línea decorativa izquierda para sección de proceso */
+.section-process-accent::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 10%;
+  bottom: 10%;
+  width: 2px;
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    var(--nb-primary) 30%,
+    var(--nb-primary-light) 70%,
+    transparent 100%
+  );
+  opacity: 0.3;
+}
+
+/* Page transition — suaviza el cambio de ruta */
+@keyframes pageEnter {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.page-enter {
+  animation: pageEnter 0.35s ease-out both;
 }

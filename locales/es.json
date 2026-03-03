@@ -1,0 +1,254 @@
+{
+  "meta": {
+    "title": "NORABYTE — Desarrollo de Software a Medida",
+    "description": "Transformamos tus ideas en soluciones digitales de alto impacto. Sitios web, sistemas empresariales, tiendas en línea y más, diseñados para hacer crecer tu negocio.",
+    "ogTitle": "NORABYTE — Software que impulsa tu negocio",
+    "ogDescription": "Creamos sistemas y aplicaciones a medida para empresas. Desde tu primera página web hasta un sistema completo de gestión empresarial.",
+    "keywords": "desarrollo de software, sistemas empresariales, páginas web, tiendas en línea, punto de venta, aplicaciones a medida, México"
+  },
+  "nav": {
+    "services": "Servicios",
+    "about": "Nosotros",
+    "contact": "Contacto",
+    "cta": "Cotizar Proyecto"
+  },
+  "hero": {
+    "badge": "Desarrollo a la medida",
+    "headline": "Sistemas robustos para la operación de tu empresa",
+    "subheadline": "Diseñamos y desarrollamos plataformas de alto rendimiento, seguras y escalables que resuelven los problemas reales de tu negocio.",
+    "ctaPrimary": "Cotizar Proyecto",
+    "ctaSecondary": "Ver Servicios",
+    "stats": {
+      "projects": "Proyectos",
+      "clients": "Clientes",
+      "years": "Años de experiencia",
+      "satisfaction": "Satisfacción"
+    }
+  },
+  "services": {
+    "badge": "Lo que hacemos",
+    "title": "¿Qué podemos hacer por tu empresa?",
+    "subtitle": "Desarrollamos todo tipo de sistemas digitales adaptados exactamente a lo que necesitas, sin complicaciones técnicas de tu parte.",
+    "items": [
+      {
+        "id": "landing",
+        "title": "Sitios Web y Landing Pages",
+        "description": "Tu primera impresión en internet. Creamos páginas web profesionales que presentan tu negocio, atraen clientes y generan ventas, 24/7.",
+        "features": ["Diseño profesional", "Adaptable a celular y tablet", "Carga ultra rápida", "Optimizado para Google"]
+      },
+      {
+        "id": "ecommerce",
+        "title": "Tiendas en Línea",
+        "description": "Vende tus productos o servicios por internet. Carrito de compras, pagos seguros, control de inventario y panel para administrar todo desde tu computadora.",
+        "features": ["Catálogo de productos", "Pagos en línea seguros", "Control de inventario", "Reportes de ventas"]
+      },
+      {
+        "id": "enterprise",
+        "title": "Sistemas Empresariales",
+        "description": "¿Tu empresa lleva procesos en papel o en Excel? Te creamos un sistema digital a la medida: nóminas, inventarios, clientes, reportes y todo lo que necesites.",
+        "features": ["Gestión de personal", "Control de inventario", "Reportes automáticos", "Acceso desde cualquier lugar"]
+      },
+      {
+        "id": "pos",
+        "title": "Punto de Venta",
+        "description": "Sistema de caja para tiendas, restaurantes y negocios. Registra ventas, controla tu inventario, genera tickets e imprime reportes del día.",
+        "features": ["Registro de ventas", "Control de productos", "Tickets e impresión", "Reportes diarios"]
+      },
+      {
+        "id": "desktop",
+        "title": "Aplicaciones de Escritorio",
+        "description": "Software instalado en tu computadora para tareas específicas: checadores de asistencia, sistemas de monitoreo, control de accesos y más.",
+        "features": ["Checador de personal", "Control de accesos", "Monitoreo en tiempo real", "Sin conexión a internet"]
+      },
+      {
+        "id": "custom",
+        "title": "Sistemas a la Medida",
+        "description": "¿Tienes una necesidad muy específica? Lo construimos. Desde portales internos, sistemas de gestión únicos, hasta automatización de procesos repetitivos.",
+        "features": ["100% personalizado", "Integración con tus sistemas", "Soporte y mantenimiento", "Escalable a futuro"]
+      }
+    ]
+  },
+  "process": {
+    "badge": "Cómo trabajamos",
+    "title": "Nuestro Proceso",
+    "subtitle": "Un proceso claro, sin sorpresas, donde tú siempre sabes en qué etapa está tu proyecto.",
+    "steps": [
+      {
+        "number": "01",
+        "title": "Análisis",
+        "description": "Nos cuentas qué necesitas y cuáles son tus objetivos. Sin compromisos, sin costos. Solo escuchamos y entendemos tu negocio.",
+        "short": "Discovery completo"
+      },
+      {
+        "number": "02",
+        "title": "Diseño UX/UI",
+        "description": "Te presentamos cómo se va a ver y funcionar tu sistema antes de empezar a construirlo. Tú apruebas cada detalle.",
+        "short": "Cero suposiciones"
+      },
+      {
+        "number": "03",
+        "title": "Desarrollo",
+        "description": "Construimos tu sistema en etapas cortas, mostrándote avances constantemente para que siempre estés al tanto del progreso.",
+        "short": "Código escalable"
+      },
+      {
+        "number": "04",
+        "title": "QA Testing",
+        "description": "Probamos todo a detalle antes de entregarlo: que funcione perfectamente, que sea fácil de usar y que no haya errores.",
+        "short": "Calidad asegurada"
+      },
+      {
+        "number": "05",
+        "title": "Despliegue",
+        "description": "Te entregamos el sistema funcionando al 100% y te enseñamos cómo usarlo. Tus empleados podrán operar todo sin problema.",
+        "short": "Lanzamiento impecable"
+      },
+      {
+        "number": "06",
+        "title": "Evolución",
+        "description": "No te dejamos solo. Después de la entrega seguimos disponibles para ajustes, mejoras y cualquier duda que tengas.",
+        "short": "Respaldo continuo"
+      }
+    ]
+  },
+  "portfolio": {
+    "badge": "Casos de éxito",
+    "title": "Proyectos que hablan por sí solos",
+    "subtitle": "Empresas reales que confiaron en nosotros y transformaron su operación.",
+    "viewProject": "Ver Proyecto",
+    "items": [
+      {
+        "id": "ecommerce",
+        "title": "Tienda en Línea — RetailMex",
+        "category": "E-Commerce",
+        "description": "Tienda en línea con más de 500 productos, integración con pagos nacionales e internacionales, control de inventario en tiempo real y panel de administración completo.",
+        "tags": ["Tienda en línea", "Pagos en línea", "Inventario", "Panel admin"]
+      },
+      {
+        "id": "logistics",
+        "title": "Sistema de Logística — LogisTech",
+        "category": "Sistema Empresarial",
+        "description": "Sistema de control de flotilla con rastreo en tiempo real, gestión de conductores, reportes automáticos de rutas y panel ejecutivo para toma de decisiones.",
+        "tags": ["Control de flotilla", "Rastreo GPS", "Reportes", "Panel ejecutivo"]
+      },
+      {
+        "id": "fintech",
+        "title": "Sistema de Control Financiero",
+        "category": "Aplicación Empresarial",
+        "description": "Plataforma de seguimiento de gastos e ingresos para empresas con reportes automáticos, análisis de tendencias y alertas inteligentes.",
+        "tags": ["Control financiero", "Reportes", "Análisis", "Alertas"]
+      }
+    ]
+  },
+  "about": {
+    "badge": "Quiénes somos",
+    "title": "Desarrollo profesional de principio a fin",
+    "description": "Somos un equipo dedicado a crear sistemas digitales que realmente resuelven problemas. Trabajamos de la mano contigo para entender a fondo tu negocio y construir la solución exacta que necesitas, todo con los más altos estándares de calidad y rendimiento.",
+    "values": [
+      {
+        "title": "Claridad ante todo",
+        "description": "Te explicamos todo en términos simples. Siempre sabrás qué se está construyendo y por qué."
+      },
+      {
+        "title": "Compromisos reales",
+        "description": "Si decimos una fecha y un precio, los cumplimos. Sin sorpresas a la mitad del proyecto."
+      },
+      {
+        "title": "Resultados que se notan",
+        "description": "No entregamos solo código, entregamos sistemas que realmente mejoran tu operación."
+      },
+      {
+        "title": "Contigo a largo plazo",
+        "description": "El lanzamiento es solo el inicio. Te apoyamos con mantenimiento, mejoras y soporte cuando lo necesites."
+      }
+    ]
+  },
+  "testimonials": {
+    "badge": "Testimonios",
+    "title": "Lo que dicen nuestros clientes",
+    "items": [
+      {
+        "name": "Dirección Comercial",
+        "role": "Sector Retail",
+        "content": "La atención al detalle y la comunicación constante fueron clave. Nos entregaron una plataforma de ventas que no solo funciona a la perfección, sino que es increíblemente fácil de usar para todo nuestro equipo."
+      },
+      {
+        "name": "Gerencia Operativa",
+        "role": "Logística y Transporte",
+        "content": "Entendieron nuestros procesos internos casi de inmediato. El sistema a medida que nos desarrollaron automatizó tareas que nos tomaban días enteros, un gran salto para nuestra productividad."
+      },
+      {
+        "name": "Fundador",
+        "role": "Startup Tecnológica",
+        "content": "Lo que más destaco es su capacidad técnica para resolver problemas complejos sin rodeos. Desarrollaron nuestra infraestructura escalar de manera limpia y cumpliendo con todas las fechas de entrega acordadas."
+      }
+    ]
+  },
+  "contact": {
+    "badge": "Hablemos",
+    "title": "¿Listo para iniciar tu proyecto?",
+    "subtitle": "Cuéntanos brevemente qué necesitas y te respondemos en menos de 24 horas con una propuesta clara y sin compromisos.",
+    "form": {
+      "name": "Tu nombre",
+      "namePlaceholder": "¿Cómo te llamas?",
+      "email": "Correo electrónico",
+      "emailPlaceholder": "tu@empresa.com",
+      "company": "Empresa (opcional)",
+      "companyPlaceholder": "Nombre de tu empresa",
+      "service": "¿Qué necesitas?",
+      "servicePlaceholder": "Selecciona un tipo de proyecto",
+      "message": "Cuéntanos tu proyecto",
+      "messagePlaceholder": "Describe brevemente qué quieres hacer, para qué sirve y cualquier detalle que nos ayude a entenderte mejor...",
+      "submit": "Enviar Solicitud",
+      "submitting": "Enviando...",
+      "successTitle": "¡Listo, recibimos tu mensaje!",
+      "successMessage": "Revisaremos tu solicitud y te contactaremos en menos de 24 horas para darte una propuesta.",
+      "errorTitle": "Algo salió mal",
+      "errorMessage": "No pudimos enviar tu mensaje. Por favor intenta de nuevo o escríbenos directamente.",
+      "services": [
+        "Sitio web o Landing Page",
+        "Tienda en línea",
+        "Sistema empresarial",
+        "Punto de venta",
+        "Aplicación de escritorio",
+        "Sistema a la medida",
+        "No sé aún, quiero asesoría"
+      ]
+    },
+    "info": {
+      "email": "contacto@norabyte.com",
+      "phone": "+52 (55) 0000-0000",
+      "location": "Hermosillo, Sonora, México",
+      "availability": "Dedicados a transformar tus ideas en realidad."
+    }
+  },
+  "footer": {
+    "tagline": "Construimos el futuro digital de tu empresa.",
+    "services": "Servicios",
+    "company": "Empresa",
+    "legal": "Legal",
+    "links": {
+      "services": [
+        { "label": "Sitios Web", "href": "#services" },
+        { "label": "Tiendas en Línea", "href": "#services" },
+        { "label": "Sistemas Empresariales", "href": "#services" },
+        { "label": "Punto de Venta", "href": "#services" },
+        { "label": "Apps de Escritorio", "href": "#services" }
+      ],
+      "company": [
+        { "label": "Nosotros", "href": "#about" },
+        { "label": "Testimonios", "href": "#testimonials" },
+        { "label": "Proceso", "href": "#process" }
+      ],
+      "legal": [
+        { "label": "Privacidad", "href": "/privacy" },
+        { "label": "Términos de Uso", "href": "/terms" }
+      ]
+    },
+    "copyright": "© 2026 NORABYTE. Todos los derechos reservados."
+  },
+  "language": {
+    "switch": "EN",
+    "current": "ES"
+  }
+}
