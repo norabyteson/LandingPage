@@ -95,7 +95,7 @@ export default async function LangLayout({ children, params }: LangLayoutProps) 
     "@type": "Organization",
     name: "NORABYTE",
     url: baseUrl,
-    logo: `${baseUrl}/logo.png`,
+    logo: `${baseUrl}/Logo-Norabyte.png`,
     description: dict.meta.description,
     address: {
       "@type": "PostalAddress",

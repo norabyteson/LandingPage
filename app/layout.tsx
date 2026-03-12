@@ -20,6 +20,10 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "NORABYTE — Desarrollo de Software a Medida",
   description: "Transformamos tus ideas en soluciones digitales de alto impacto.",
+  icons: {
+    icon: "/Logo-Norabyte.png",
+    apple: "/Logo-Norabyte.png",
+  },
 };
 
 export const viewport: Viewport = {
