@@ -144,18 +144,20 @@ export default function Navbar({ dict, lang }: NavbarProps) {
           <Link
             href={`/${lang}`}
             onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-            className="flex items-center gap-2 group"
+            className="flex items-center group"
             aria-label="NORABYTE - Inicio"
           >
-            <div className="relative w-8 h-8">
-              <div className="absolute inset-0 rounded-lg bg-[var(--nb-primary)] opacity-80 group-hover:opacity-100 transition-opacity duration-300" />
-              <div className="absolute inset-0.5 rounded-md bg-[var(--nb-dark)] flex items-center justify-center">
-                <span className="text-[var(--nb-primary)] font-bold text-xs tracking-tighter">NB</span>
-              </div>
-            </div>
-            <span className="font-extrabold text-xl tracking-tight text-[var(--nb-light)]">
+            {/* <span className="font-extrabold text-xl tracking-tight text-[var(--nb-light)] transition-opacity duration-300 group-hover:opacity-85">
               NORA<span className="text-[var(--nb-primary)]">BYTE</span>
-            </span>
+            </span> */}
+            <Image
+              src="/norabyte_logo_transparente.png"
+              alt="NORABYTE"
+              width={160}
+              height={40}
+              className="h-12 w-auto object-contain transition-opacity duration-300 group-hover:opacity-85"
+              priority
+            />
           </Link>
 
           {/* Nav links — Desktop */}
@@ -312,9 +314,13 @@ export default function Navbar({ dict, lang }: NavbarProps) {
             >
               {/* Header del panel */}
               <div className="flex items-center justify-between p-6 pb-5">
-                <span className="font-extrabold text-lg text-[var(--nb-light)]">
-                  NORA<span className="text-[var(--nb-primary)]">BYTE</span>
-                </span>
+                <Image
+                  src="/norabyte_logo_transparente.png"
+                  alt="NORABYTE"
+                  width={160}
+                  height={40}
+                  className="h-8 w-auto object-contain"
+                />
                 <button
                   onClick={() => setIsMenuOpen(false)}
                   className="w-8 h-8 flex items-center justify-center rounded-lg hover:bg-[var(--nb-light)]/10 text-[var(--nb-light)]/70 hover:text-[var(--nb-light)] transition-colors"

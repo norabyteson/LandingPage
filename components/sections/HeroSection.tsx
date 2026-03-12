@@ -3,9 +3,9 @@
 import { useRef, useEffect, useState } from "react";
 import { motion, useScroll, useTransform, useSpring } from "framer-motion";
 import { ArrowRight, ChevronDown } from "lucide-react";
-import Image from "next/image";
 import type { Locale } from "@/types/i18n";
 import SectionBadge from "@/components/ui/SectionBadge";
+import DashboardMockup from "@/components/ui/DashboardMockup";
 
 interface HeroSectionProps {
   dict: {
@@ -138,16 +138,8 @@ export default function HeroSection({ dict, lang }: HeroSectionProps) {
                     <span className="text-[10px] text-[var(--nb-light)]/40 tracking-widest font-mono font-bold">NORABYTE SYSTEM</span>
                   </div>
                 </div>
-                <div className="relative w-full aspect-[16/10]">
-                  <Image
-                    src="https://placehold.co/1200x750/191716/266DD3?text=NORABYTE+Dashboard&font=raleway"
-                    alt="Dashboard profesional de NORABYTE"
-                    fill
-                    className="object-cover"
-                    sizes="(max-width: 768px) 100vw, 60vw"
-                    priority
-                    unoptimized
-                  />
+                <div className="w-full aspect-[16/10] overflow-hidden">
+                  <DashboardMockup />
                 </div>
               </div>
             </motion.div>

@@ -46,12 +46,6 @@ export default function Footer({ dict, lang }: FooterProps) {
               className="inline-flex items-center gap-2 mb-4 group"
               aria-label="NORABYTE - Inicio"
             >
-              <div className="relative w-8 h-8">
-                <div className="absolute inset-0 rounded-lg bg-[var(--nb-primary)] opacity-80 group-hover:opacity-100 transition-opacity" />
-                <div className="absolute inset-0.5 rounded-md bg-[var(--nb-dark)] flex items-center justify-center">
-                  <span className="text-[var(--nb-primary)] font-bold text-xs tracking-tighter">NB</span>
-                </div>
-              </div>
               <span className="font-extrabold text-xl tracking-tight text-[var(--nb-light)]">
                 NORA<span className="text-[var(--nb-primary)]">BYTE</span>
               </span>
@@ -63,9 +57,9 @@ export default function Footer({ dict, lang }: FooterProps) {
             {/* Redes sociales */}
             <div className="flex items-center gap-3 mt-6">
               {[
-                { icon: Github, label: "GitHub", href: "#" },
-                { icon: Linkedin, label: "LinkedIn", href: "#" },
-                { icon: Twitter, label: "Twitter / X", href: "#" },
+                { icon: Github, label: "GitHub", href: "https://github.com/norabyte" },
+                { icon: Linkedin, label: "LinkedIn", href: "https://www.linkedin.com/company/norabyte" },
+                { icon: Twitter, label: "Twitter / X", href: "https://x.com/norabyte" },
               ].map(({ icon: Icon, label, href }) => (
                 <a
                   key={label}
