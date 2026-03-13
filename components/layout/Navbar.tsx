@@ -151,7 +151,11 @@ export default function Navbar({ dict, lang }: NavbarProps) {
               NORA<span className="text-[var(--nb-primary)]">BYTE</span>
             </span> */}
             <Image
-              src="/norabyte_logo_transparente.png"
+              src={
+                theme === "dark"
+                  ? "/norabyte_logo_transparente_blanco.webp"
+                  : "/norabyte_logo_transparente.png"
+              }
               alt="NORABYTE"
               width={160}
               height={40}
@@ -315,7 +319,11 @@ export default function Navbar({ dict, lang }: NavbarProps) {
               {/* Header del panel */}
               <div className="flex items-center justify-between p-6 pb-5">
                 <Image
-                  src="/norabyte_logo_transparente.png"
+                  src={
+                    theme === "dark"
+                      ? "/norabyte_logo_transparente_blanco.webp"
+                      : "/norabyte_logo_transparente.png"
+                  }
                   alt="NORABYTE"
                   width={160}
                   height={40}
