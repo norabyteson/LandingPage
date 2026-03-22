@@ -1,0 +1,620 @@
+<!doctype html>
+
+<html class="dark" lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>ArquitectOS — Gestión de Personal | Desarrollado por NORABYTE</title>
+    <meta name="description" content="ArquitectOS es un sistema de gestión de personal para firmas de arquitectura, desarrollado por NORABYTE. Administra tu equipo, proyectos, horarios y reportes en un solo lugar." />
+    <meta name="keywords" content="gestión de personal, recursos humanos, firma de arquitectos, directorio de empleados, NORABYTE, Hermosillo, Sonora, software a medida" />
+    <meta name="author" content="NORABYTE" />
+    <meta property="og:title" content="ArquitectOS — Gestión de Personal | Desarrollado por NORABYTE" />
+    <meta property="og:description" content="Sistema de gestión de personal para firmas de arquitectura desarrollado por NORABYTE. Control total de tu equipo desde un panel moderno y oscuro." />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="es_MX" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@700;800&amp;family=Inter:wght@400;500;600&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              outline: "#8d90a2",
+              tertiary: "#adc6ff",
+              "surface-container-lowest": "#090e1c",
+              "surface-container": "#1a1f2e",
+              secondary: "#4edea3",
+              "surface-tint": "#b7c4ff",
+              "on-tertiary-fixed": "#001a42",
+              "on-error-container": "#ffdad6",
+              "error-container": "#93000a",
+              surface: "#0e1321",
+              "on-tertiary": "#002e6a",
+              primary: "#b7c4ff",
+              "tertiary-fixed": "#d8e2ff",
+              "on-primary-fixed-variant": "#0038b6",
+              "surface-container-highest": "#303444",
+              "on-secondary-fixed": "#002113",
+              background: "#0e1321",
+              error: "#ffb4ab",
+              "inverse-primary": "#004ced",
+              "surface-bright": "#343948",
+              "on-primary-container": "#dfe3ff",
+              "on-primary": "#002682",
+              "surface-container-high": "#252a39",
+              "on-error": "#690005",
+              "tertiary-container": "#0062d2",
+              "surface-container-low": "#161b2a",
+              "on-secondary-container": "#00311f",
+              "on-background": "#dee2f6",
+              "inverse-surface": "#dee2f6",
+              "on-surface-variant": "#c3c5d9",
+              "on-primary-fixed": "#001452",
+              "secondary-fixed": "#6ffbbe",
+              "outline-variant": "#434656",
+              "primary-fixed-dim": "#b7c4ff",
+              "inverse-on-surface": "#2b303f",
+              "secondary-container": "#00a572",
+              "primary-container": "#0052ff",
+              "on-secondary": "#003824",
+              "on-surface": "#dee2f6",
+              "on-tertiary-container": "#dce5ff",
+              "tertiary-fixed-dim": "#adc6ff",
+              "surface-dim": "#0e1321",
+              "primary-fixed": "#dde1ff",
+              "secondary-fixed-dim": "#4edea3",
+              "on-tertiary-fixed-variant": "#004395",
+              "surface-variant": "#303444",
+              "on-secondary-fixed-variant": "#005236",
+            },
+            fontFamily: {
+              headline: ["Plus Jakarta Sans"],
+              body: ["Inter"],
+              label: ["Inter"],
+            },
+            borderRadius: {
+              DEFAULT: "0.25rem",
+              lg: "0.5rem",
+              xl: "0.75rem",
+              "2xl": "1.5rem",
+              full: "9999px",
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      body {
+        font-family: "Inter", sans-serif;
+        background-color: #0e1321;
+        color: #dee2f6;
+      }
+      .material-symbols-outlined {
+        font-variation-settings:
+          "FILL" 0,
+          "wght" 400,
+          "GRAD" 0,
+          "opsz" 24;
+      }
+      .glass-card {
+        backdrop-filter: blur(20px);
+        background: rgba(26, 31, 46, 0.7);
+        border: 1px solid rgba(67, 70, 86, 0.15);
+      }
+      .sidebar-gradient {
+        background: linear-gradient(to right, #b7c4ff, #0052ff);
+      }
+      .success-glow {
+        box-shadow: 0 0 12px rgba(78, 222, 163, 0.2);
+      }
+      .error-glow {
+        box-shadow: 0 0 12px rgba(255, 180, 171, 0.2);
+      }
+      .custom-scrollbar::-webkit-scrollbar {
+        width: 4px;
+      }
+      .custom-scrollbar::-webkit-scrollbar-track {
+        background: transparent;
+      }
+      .custom-scrollbar::-webkit-scrollbar-thumb {
+        background: #303444;
+        border-radius: 10px;
+      }
+    </style>
+  </head>
+  <body
+    class="bg-background text-on-background min-h-screen overflow-hidden flex flex-col"
+  >
+    <header
+      class="fixed top-0 z-50 w-full flex justify-between items-center px-6 py-3 bg-[#0e1321]/80 backdrop-blur-xl shadow-2xl shadow-black/40"
+    >
+      <div class="flex items-center gap-8">
+        <span class="text-xl font-extrabold tracking-tighter text-[#b7c4ff]"
+          >ArquitectOS</span
+        >
+        <nav class="hidden md:flex items-center gap-6">
+          <a
+            class="font-plus-jakarta-sans font-bold text-sm tracking-tight text-[#b7c4ff] border-b-2 border-[#0052ff] pb-1"
+            href="#"
+            >Panel</a
+          >
+          <a
+            class="font-plus-jakarta-sans font-bold text-sm tracking-tight text-[#c3c5d9] hover:text-white transition-colors duration-200"
+            href="#"
+            >Analíticos</a
+          >
+          <a
+            class="font-plus-jakarta-sans font-bold text-sm tracking-tight text-[#c3c5d9] hover:text-white transition-colors duration-200"
+            href="#"
+            >Reportes</a
+          >
+          <a
+            class="font-plus-jakarta-sans font-bold text-sm tracking-tight text-[#c3c5d9] hover:text-white transition-colors duration-200"
+            href="#"
+            >Configuración</a
+          >
+        </nav>
+      </div>
+      <div class="flex items-center gap-4">
+        <div class="relative hidden sm:block">
+          <input
+            class="bg-surface-container-lowest text-xs rounded-full py-2 px-4 w-64 border-none focus:ring-1 focus:ring-secondary/30 text-on-surface-variant"
+            placeholder="Buscar personal o recursos..."
+            type="text"
+          />
+        </div>
+        <div class="flex items-center gap-3">
+          <span
+            class="material-symbols-outlined text-on-surface-variant cursor-pointer hover:text-primary transition-colors"
+            >notifications</span
+          >
+          <span
+            class="material-symbols-outlined text-on-surface-variant cursor-pointer hover:text-primary transition-colors"
+            >help</span
+          >
+          <span class="material-symbols-outlined text-primary cursor-pointer"
+            >account_circle</span
+          >
+        </div>
+      </div>
+    </header>
+    <div class="flex flex-1 pt-20 pb-12 px-4 gap-4 overflow-hidden">
+      <aside
+        class="hidden md:flex flex-col p-4 gap-2 bg-[#161b2a] w-64 rounded-2xl shadow-xl fixed left-4 top-20 bottom-12"
+      >
+        <div class="flex items-center gap-3 mb-4 px-2">
+          <img src="/Logo-Norabyte-white.png" alt="NORABYTE" class="h-6 w-auto opacity-80" />
+        </div>
+        <div class="flex items-center gap-3 mb-4 px-2">
+          <div
+            class="w-8 h-8 rounded-lg bg-primary-container flex items-center justify-center"
+          >
+            <span
+              class="material-symbols-outlined text-white text-sm"
+              style="font-variation-settings: &quot;FILL&quot; 1"
+              >architecture</span
+            >
+          </div>
+          <div>
+            <h2 class="text-white font-bold text-sm">Empresa Global</h2>
+            <p class="text-[10px] text-primary/70 uppercase tracking-widest">
+              Plan Premium
+            </p>
+          </div>
+        </div>
+        <nav class="flex-1 flex flex-col gap-1">
+          <a
+            class="flex items-center gap-3 px-3 py-2 text-[#c3c5d9] hover:bg-[#1a1f2e] rounded-xl hover:translate-x-1 transition-transform duration-200 font-plus-jakarta-sans font-medium text-[13px]"
+            href="#"
+          >
+            <span class="material-symbols-outlined text-lg">dashboard</span>
+            <span>Resumen</span>
+          </a>
+          <a
+            class="flex items-center gap-3 px-3 py-2 bg-gradient-to-r from-[#b7c4ff] to-[#0052ff] text-white rounded-xl shadow-lg shadow-blue-900/20 font-plus-jakarta-sans font-medium text-[13px]"
+            href="#"
+          >
+            <span class="material-symbols-outlined text-lg">group</span>
+            <span>Equipo</span>
+          </a>
+          <a
+            class="flex items-center gap-3 px-3 py-2 text-[#c3c5d9] hover:bg-[#1a1f2e] rounded-xl hover:translate-x-1 transition-transform duration-200 font-plus-jakarta-sans font-medium text-[13px]"
+            href="#"
+          >
+            <span class="material-symbols-outlined text-lg">account_tree</span>
+            <span>Proyectos</span>
+          </a>
+          <a
+            class="flex items-center gap-3 px-3 py-2 text-[#c3c5d9] hover:bg-[#1a1f2e] rounded-xl hover:translate-x-1 transition-transform duration-200 font-plus-jakarta-sans font-medium text-[13px]"
+            href="#"
+          >
+            <span class="material-symbols-outlined text-lg">payments</span>
+            <span>Finanzas</span>
+          </a>
+          <a
+            class="flex items-center gap-3 px-3 py-2 text-[#c3c5d9] hover:bg-[#1a1f2e] rounded-xl hover:translate-x-1 transition-transform duration-200 font-plus-jakarta-sans font-medium text-[13px]"
+            href="#"
+          >
+            <span class="material-symbols-outlined text-lg">inventory_2</span>
+            <span>Recursos</span>
+          </a>
+          <a
+            class="flex items-center gap-3 px-3 py-2 text-[#c3c5d9] hover:bg-[#1a1f2e] rounded-xl hover:translate-x-1 transition-transform duration-200 font-plus-jakarta-sans font-medium text-[13px]"
+            href="#"
+          >
+            <span class="material-symbols-outlined text-lg">verified_user</span>
+            <span>Auditoría</span>
+          </a>
+        </nav>
+        <button
+          class="mt-4 w-full py-2.5 rounded-xl bg-primary-container text-white font-bold text-xs shadow-lg shadow-primary-container/20 hover:scale-105 transition-transform"
+        >
+          Nuevo Proyecto
+        </button>
+        <div
+          class="mt-6 pt-6 border-t border-outline-variant/10 flex flex-col gap-1"
+        >
+          <a
+            class="flex items-center gap-3 px-3 py-2 text-[#c3c5d9] hover:bg-[#1a1f2e] rounded-xl hover:translate-x-1 transition-transform duration-200 font-plus-jakarta-sans font-medium text-[13px]"
+            href="#"
+          >
+            <span class="material-symbols-outlined text-lg">support_agent</span>
+            <span>Soporte</span>
+          </a>
+          <a
+            class="flex items-center gap-3 px-3 py-2 text-error/70 hover:bg-error/5 rounded-xl hover:translate-x-1 transition-transform duration-200 font-plus-jakarta-sans font-medium text-[13px]"
+            href="#"
+          >
+            <span class="material-symbols-outlined text-lg">logout</span>
+            <span>Cerrar Sesión</span>
+          </a>
+        </div>
+      </aside>
+      <main
+        class="flex-1 ml-0 md:ml-72 mr-0 lg:mr-[340px] flex flex-col gap-6 overflow-hidden"
+      >
+        <section
+          class="flex flex-col sm:flex-row sm:items-end justify-between gap-4"
+        >
+          <div class="space-y-1">
+            <h1
+              class="text-3xl font-headline font-extrabold tracking-tight text-on-surface"
+            >
+              Directorio de Empleados
+            </h1>
+            <p class="text-on-surface-variant font-body text-sm">
+              Administrando 1,284 miembros del equipo en 12 regiones globales.
+            </p>
+          </div>
+          <div class="flex gap-3">
+            <button
+              class="px-4 py-2 bg-surface-container-high text-on-surface font-semibold text-xs rounded-xl border border-outline-variant/10 hover:bg-surface-container-highest transition-colors flex items-center gap-2"
+            >
+              <span class="material-symbols-outlined text-sm">filter_list</span>
+              Filtrar
+            </button>
+            <button
+              class="px-6 py-2 bg-gradient-to-br from-primary to-primary-container text-on-primary font-bold text-xs rounded-xl shadow-xl shadow-primary/10 hover:scale-[1.02] transition-transform"
+            >
+              Agregar Empleado
+            </button>
+          </div>
+        </section>
+        <div
+          class="bg-surface-container-low rounded-2xl overflow-hidden flex flex-col flex-1 border border-outline-variant/5"
+        >
+          <div class="overflow-x-auto custom-scrollbar">
+            <table
+              class="w-full text-left border-separate border-spacing-y-2 px-4"
+            >
+              <thead class="sticky top-0 bg-surface-container-low z-10">
+                <tr
+                  class="text-[10px] uppercase tracking-widest text-on-surface-variant/60 font-bold"
+                >
+                  <th class="py-4 pl-4">Empleado</th>
+                  <th class="py-4">ID</th>
+                  <th class="py-4">Departamento</th>
+                  <th class="py-4">Puesto</th>
+                  <th class="py-4">Estado</th>
+                  <th class="py-4 text-right pr-4">Ingresó</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr
+                  class="group cursor-pointer hover:bg-surface-container transition-colors rounded-xl"
+                >
+                  <td class="py-3 pl-4 rounded-l-xl">
+                    <div class="flex items-center gap-3">
+                      <img
+                        class="w-9 h-9 rounded-full object-cover"
+                        alt="Foto de perfil de empleado"
+                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuDRsSOrkdF_R2-vcmWOFgyVwrXYOQLE5MkJ3Z-tpsU7U_oBqDt8r0xtoSwgXQx0-mikl2gtVZo61GcTwJ_tLTkaSmSqo5YQ8HYsRSFbmdMYFbIqF1WgUl1JZ_Ggodvhp3QM6eeP80lo2A3kHUcxNEjs63SiE-G6Ut901NCxfFjTVWF2DWtoKTeIa9UghC__daUc5TEYcG_-yfoadOazhFxqGo5HuWG5A3W0R4T4C_rTnKPTe6w4hg4XmkVw7FsyYwoKDX2nO3uGXjYB"
+                      />
+                      <div>
+                        <p class="text-sm font-semibold text-on-surface">
+                          Julián Vargas
+                        </p>
+                        <p class="text-[10px] text-on-surface-variant">
+                          julian.v@arquitectos.mx
+                        </p>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="py-3 text-xs font-mono text-primary/70">
+                    EMP-9021
+                  </td>
+                  <td class="py-3 text-xs text-on-surface">
+                    Diseño Estructural
+                  </td>
+                  <td class="py-3 text-xs text-on-surface-variant">
+                    Arquitecto Principal
+                  </td>
+                  <td class="py-3">
+                    <span
+                      class="px-2.5 py-1 rounded-full text-[10px] font-bold bg-secondary/10 text-secondary border border-secondary/20 success-glow"
+                      >ACTIVO</span
+                    >
+                  </td>
+                  <td
+                    class="py-3 text-xs text-on-surface-variant text-right pr-4 rounded-r-xl"
+                  >
+                    12 Oct, 2021
+                  </td>
+                </tr>
+                <tr
+                  class="group cursor-pointer hover:bg-surface-container transition-colors rounded-xl bg-surface-container/30"
+                >
+                  <td class="py-3 pl-4 rounded-l-xl">
+                    <div class="flex items-center gap-3">
+                      <img
+                        class="w-9 h-9 rounded-full object-cover"
+                        alt="Foto de perfil de empleada"
+                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuBEAXZXgkvvIi_hAgm7la-bSx16LEXAtJ9sN6iHlpcoNiwLPpoE0niy7Iz5NKm9qEbhq_hEUpi0YyX5cZMdovQlRUOSzXLp1sB8EPyDu1jDRAZ67--nYqsxpBWol-UcjBOKBHX0r-h2HYgmSGr2q98JaRu1TkZlH3qufs7o8XptGkaxd0v3ozS4eovU20BB2c6dAM0QkdeQpOfZU-4dcJ-rpnrN8luOshiudKvYNoAwfGdPoVBaFXRb4Rxd1NUfSlVzxdMM8RoLWhF-"
+                      />
+                      <div>
+                        <p class="text-sm font-semibold text-on-surface">
+                          Sara Domínguez
+                        </p>
+                        <p class="text-[10px] text-on-surface-variant">
+                          sara.d@arquitectos.mx
+                        </p>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="py-3 text-xs font-mono text-primary/70">
+                    EMP-4482
+                  </td>
+                  <td class="py-3 text-xs text-on-surface">
+                    Diseño de Interiores
+                  </td>
+                  <td class="py-3 text-xs text-on-surface-variant">
+                    Líder de Diseño
+                  </td>
+                  <td class="py-3">
+                    <span
+                      class="px-2.5 py-1 rounded-full text-[10px] font-bold bg-secondary/10 text-secondary border border-secondary/20 success-glow"
+                      >ACTIVO</span
+                    >
+                  </td>
+                  <td
+                    class="py-3 text-xs text-on-surface-variant text-right pr-4 rounded-r-xl"
+                  >
+                    04 Mar, 2023
+                  </td>
+                </tr>
+                <tr
+                  class="group cursor-pointer hover:bg-surface-container transition-colors rounded-xl"
+                >
+                  <td class="py-3 pl-4 rounded-l-xl">
+                    <div class="flex items-center gap-3">
+                      <img
+                        class="w-9 h-9 rounded-full object-cover"
+                        alt="Foto de perfil de empleado"
+                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuCHDMXEg6UV13vEWRvxEBbAqGrI7TOQXuPClNXW2mE_Yv9YX4SsuyTGPlB9m1SiQ_7az0oV4w2v2PB4hIldGMbhjQKaYyLCX4E2d0iLHmntqa-TGCj4JH9vufKu6yOJVVCQqOm3MBabc-mDUgmKSvfJqDKonGE17RlIikMQwPDD5EOkJ6ik93Dhbsb1903tHa6JYUN9HVDcmuklJpj4fvISI4qO-SBbeUUhMBbFVUDYZxtWsoi9MQnp_W_hN32GNqHBOMiiP8hOXQWZ"
+                      />
+                      <div>
+                        <p class="text-sm font-semibold text-on-surface">
+                          Marcos Torres
+                        </p>
+                        <p class="text-[10px] text-on-surface-variant">
+                          marcos.t@arquitectos.mx
+                        </p>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="py-3 text-xs font-mono text-primary/70">
+                    EMP-1129
+                  </td>
+                  <td class="py-3 text-xs text-on-surface">Gestión de Obras</td>
+                  <td class="py-3 text-xs text-on-surface-variant">
+                    Ingeniero de Proyectos
+                  </td>
+                  <td class="py-3">
+                    <span
+                      class="px-2.5 py-1 rounded-full text-[10px] font-bold bg-error/10 text-error border border-error/20 error-glow"
+                      >INACTIVO</span
+                    >
+                  </td>
+                  <td
+                    class="py-3 text-xs text-on-surface-variant text-right pr-4 rounded-r-xl"
+                  >
+                    18 Ene, 2022
+                  </td>
+                </tr>
+                <tr
+                  class="group cursor-pointer hover:bg-surface-container transition-colors rounded-xl"
+                >
+                  <td class="py-3 pl-4 rounded-l-xl">
+                    <div class="flex items-center gap-3">
+                      <img
+                        class="w-9 h-9 rounded-full object-cover"
+                        alt="Foto de perfil de empleada"
+                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuBYvT0fcOVlgvue7z-kpJG2lLkTQGfzmQ9_Xcrw3E9gIAvVT2WMO-YeL3RizhVMwEoRfJ9GLCzvEILBok_-JPxDOISDo5kTePvnbsu-55-2K7OejIpMFxHEzgdKEeXXSmqYOlwCK11hTQRbD0q9mowPwkkBYuX1ALSAIBddOLuwdCuKMWOpSE7YrhKA9rWJ9Jh3x5C7ll1pNO3cRnCE0_MBjMfjeWjfqQigsBUtlz9IOQcGZj4vqGk8VOQCPRQwUD9KBKRDkpreYn3O"
+                      />
+                      <div>
+                        <p class="text-sm font-semibold text-on-surface">
+                          Elena Rodríguez
+                        </p>
+                        <p class="text-[10px] text-on-surface-variant">
+                          elena.r@arquitectos.mx
+                        </p>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="py-3 text-xs font-mono text-primary/70">
+                    EMP-3381
+                  </td>
+                  <td class="py-3 text-xs text-on-surface">Operaciones</td>
+                  <td class="py-3 text-xs text-on-surface-variant">
+                    Gerente de Operaciones
+                  </td>
+                  <td class="py-3">
+                    <span
+                      class="px-2.5 py-1 rounded-full text-[10px] font-bold bg-secondary/10 text-secondary border border-secondary/20 success-glow"
+                      >ACTIVO</span
+                    >
+                  </td>
+                  <td
+                    class="py-3 text-xs text-on-surface-variant text-right pr-4 rounded-r-xl"
+                  >
+                    29 Jun, 2023
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </main>
+      <aside
+        class="hidden lg:flex fixed right-4 top-20 bottom-12 w-[320px] glass-card rounded-2xl p-6 flex-col gap-6"
+      >
+        <div class="flex flex-col items-center text-center">
+          <div class="relative mb-4">
+            <img
+              class="w-32 h-32 rounded-2xl object-cover shadow-2xl ring-4 ring-primary/10"
+              alt="Retrato de Julián Vargas"
+              src="https://lh3.googleusercontent.com/aida-public/AB6AXuDrBrIFpVVY1kK0OUDhA0YXchuQWUZi3z-jll0g6Ew870oWQ1aVYtUksK39MCdUvxrOOVDTTm1sIhjT-MHv5SD0dz7C2_SlZM6ut9iHqyiHfxP6pLX8vAGARLckyrGl2XpykZb9BJtIkffxAFEAePov8he4SgoZe3nQavxmmz-Wy6Hz6dvbpKJnwf6hQ7UyzBUiOy-PnV2TnHx4mnNlakDA4Xd_pRM-6m6Msd8WaJIxZb8SHQ-tSG2hgC9mbf1Pzjpepj7uXs4Mgrx_"
+            />
+            <div
+              class="absolute -bottom-2 -right-2 bg-secondary w-6 h-6 rounded-full border-4 border-surface-container flex items-center justify-center"
+            >
+              <span class="w-2 h-2 bg-white rounded-full"></span>
+            </div>
+          </div>
+          <h3 class="text-xl font-headline font-extrabold text-on-surface">
+            Julián Vargas
+          </h3>
+          <p class="text-primary text-xs font-bold tracking-widest uppercase">
+            Arquitecto Principal
+          </p>
+        </div>
+        <div class="grid grid-cols-2 gap-3">
+          <div
+            class="bg-surface-container-lowest p-3 rounded-xl border border-outline-variant/5"
+          >
+            <p
+              class="text-[10px] text-on-surface-variant uppercase font-bold mb-1"
+            >
+              Rendimiento
+            </p>
+            <p class="text-lg font-headline font-extrabold text-secondary">
+              98.4%
+            </p>
+          </div>
+          <div
+            class="bg-surface-container-lowest p-3 rounded-xl border border-outline-variant/5"
+          >
+            <p
+              class="text-[10px] text-on-surface-variant uppercase font-bold mb-1"
+            >
+              Velocidad
+            </p>
+            <p class="text-lg font-headline font-extrabold text-primary">
+              12.8
+            </p>
+          </div>
+        </div>
+        <div class="space-y-4">
+          <div class="flex items-center gap-4 text-sm">
+            <span class="material-symbols-outlined text-on-surface-variant"
+              >badge</span
+            >
+            <div>
+              <p class="text-xs text-on-surface-variant">ID de Empleado</p>
+              <p class="font-medium text-on-surface">EMP-9021-XCA</p>
+            </div>
+          </div>
+          <div class="flex items-center gap-4 text-sm">
+            <span class="material-symbols-outlined text-on-surface-variant"
+              >corporate_fare</span
+            >
+            <div>
+              <p class="text-xs text-on-surface-variant">Departamento</p>
+              <p class="font-medium text-on-surface">Diseño Estructural</p>
+            </div>
+          </div>
+          <div class="flex items-center gap-4 text-sm">
+            <span class="material-symbols-outlined text-on-surface-variant"
+              >alternate_email</span
+            >
+            <div>
+              <p class="text-xs text-on-surface-variant">Correo Laboral</p>
+              <p class="font-medium text-on-surface">julian.v@arquitectos.mx</p>
+            </div>
+          </div>
+          <div class="flex items-center gap-4 text-sm">
+            <span class="material-symbols-outlined text-on-surface-variant"
+              >calendar_today</span
+            >
+            <div>
+              <p class="text-xs text-on-surface-variant">Último Acceso</p>
+              <p class="font-medium text-on-surface">Hace 2 horas</p>
+            </div>
+          </div>
+        </div>
+        <div class="mt-auto space-y-3">
+          <button
+            class="w-full py-3 bg-surface-container-highest text-on-surface font-bold text-xs rounded-xl shadow-lg border border-outline-variant/10 hover:bg-surface-bright transition-colors"
+          >
+            Editar Perfil
+          </button>
+          <div class="flex gap-3">
+            <button
+              class="flex-1 py-3 bg-surface-container-lowest text-on-surface-variant font-bold text-xs rounded-xl border border-outline-variant/10 hover:text-on-surface transition-colors flex items-center justify-center gap-2"
+            >
+              <span class="material-symbols-outlined text-sm">mail</span> Correo
+            </button>
+            <button
+              class="flex-1 py-3 bg-surface-container-lowest text-on-surface-variant font-bold text-xs rounded-xl border border-outline-variant/10 hover:text-on-surface transition-colors flex items-center justify-center gap-2"
+            >
+              <span class="material-symbols-outlined text-sm">more_horiz</span>
+              Acciones
+            </button>
+          </div>
+        </div>
+      </aside>
+    </div>
+    <footer
+      class="fixed bottom-0 right-0 p-4 flex items-center gap-6 text-[#4edea3] font-inter text-[10px] uppercase tracking-widest bg-transparent"
+    >
+      <span class="text-[#c3c5d9]/50">Última Sincronización: hace 2 min</span>
+      <span class="hover:text-[#4edea3] cursor-pointer transition-opacity"
+        >Privacidad</span
+      >
+      <span class="hover:text-[#4edea3] cursor-pointer transition-opacity"
+        >Legal</span
+      >
+      <span class="text-[#c3c5d9]/50"
+        >ArquitectOS v2.4.0 — Desarrollado por NORABYTE</span
+      >
+    </footer>
+  </body>
+</html>

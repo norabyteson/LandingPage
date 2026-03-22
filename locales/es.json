@@ -27,44 +27,26 @@
   },
   "services": {
     "badge": "Lo que hacemos",
-    "title": "¿Qué podemos hacer por tu empresa?",
-    "subtitle": "Desarrollamos todo tipo de sistemas digitales adaptados exactamente a lo que necesitas, sin complicaciones técnicas de tu parte.",
+    "title": "¿Qué podemos construir para ti?",
+    "subtitle": "Sin tecnicismos ni complicaciones. Elige lo que mejor describe lo que necesitas y nosotros nos encargamos del resto.",
     "items": [
       {
-        "id": "landing",
-        "title": "Sitios Web y Landing Pages",
-        "description": "Tu primera impresión en internet. Creamos páginas web profesionales que presentan tu negocio, atraen clientes y generan ventas, 24/7.",
-        "features": ["Diseño profesional", "Adaptable a celular y tablet", "Carga ultra rápida", "Optimizado para Google"]
-      },
-      {
         "id": "ecommerce",
-        "title": "Tiendas en Línea",
-        "description": "Vende tus productos o servicios por internet. Carrito de compras, pagos seguros, control de inventario y panel para administrar todo desde tu computadora.",
-        "features": ["Catálogo de productos", "Pagos en línea seguros", "Control de inventario", "Reportes de ventas"]
+        "title": "Tienda en Línea",
+        "description": "Lleva tu negocio al mundo digital y empieza a vender sin límites. Creamos tu tienda completa con catálogo de productos, pagos seguros, control de inventario y todo lo que necesitas para operar desde el primer día.",
+        "features": ["Catálogo de productos ilimitado", "Pagos en línea seguros", "Control de inventario en tiempo real", "Panel de administración fácil de usar"]
       },
       {
-        "id": "enterprise",
-        "title": "Sistemas Empresariales",
-        "description": "¿Tu empresa lleva procesos en papel o en Excel? Te creamos un sistema digital a la medida: nóminas, inventarios, clientes, reportes y todo lo que necesites.",
-        "features": ["Gestión de personal", "Control de inventario", "Reportes automáticos", "Acceso desde cualquier lugar"]
-      },
-      {
-        "id": "pos",
-        "title": "Punto de Venta",
-        "description": "Sistema de caja para tiendas, restaurantes y negocios. Registra ventas, controla tu inventario, genera tickets e imprime reportes del día.",
-        "features": ["Registro de ventas", "Control de productos", "Tickets e impresión", "Reportes diarios"]
-      },
-      {
-        "id": "desktop",
-        "title": "Aplicaciones de Escritorio",
-        "description": "Software instalado en tu computadora para tareas específicas: checadores de asistencia, sistemas de monitoreo, control de accesos y más.",
-        "features": ["Checador de personal", "Control de accesos", "Monitoreo en tiempo real", "Sin conexión a internet"]
+        "id": "landing",
+        "title": "Sitio Web y Landing Page",
+        "description": "Tu presencia en internet, hecha bien. Diseñamos páginas web profesionales que representan tu marca, atraen clientes y convierten visitas en oportunidades de negocio, las 24 horas del día.",
+        "features": ["Diseño profesional adaptado a tu marca", "Optimizado para celular y tablet", "Carga rápida y rendimiento alto", "Posicionamiento en Google (SEO)"]
       },
       {
         "id": "custom",
-        "title": "Sistemas a la Medida",
-        "description": "¿Tienes una necesidad muy específica? Lo construimos. Desde portales internos, sistemas de gestión únicos, hasta automatización de procesos repetitivos.",
-        "features": ["100% personalizado", "Integración con tus sistemas", "Soporte y mantenimiento", "Escalable a futuro"]
+        "title": "Sistema Personalizado",
+        "description": "¿Tu negocio necesita algo más específico? Lo construimos a tu medida. Sistemas empresariales, puntos de venta, aplicaciones de escritorio y cualquier solución que automatice y ordene cómo opera tu empresa.",
+        "features": ["Sistemas empresariales y de gestión", "Punto de venta (POS) para tu negocio", "Aplicaciones de escritorio sin internet", "100% adaptado a tu operación"]
       }
     ]
   },
@@ -206,12 +188,9 @@
       "errorTitle": "Algo salió mal",
       "errorMessage": "No pudimos enviar tu mensaje. Por favor intenta de nuevo o escríbenos directamente.",
       "services": [
-        "Sitio web o Landing Page",
-        "Tienda en línea",
-        "Sistema empresarial",
-        "Punto de venta",
-        "Aplicación de escritorio",
-        "Sistema a la medida",
+        "Tienda en Línea",
+        "Sitio Web o Landing Page",
+        "Sistema Personalizado",
         "No sé aún, quiero asesoría"
       ]
     },
@@ -229,11 +208,9 @@
     "legal": "Legal",
     "links": {
       "services": [
-        { "label": "Sitios Web", "href": "#services" },
         { "label": "Tiendas en Línea", "href": "#services" },
-        { "label": "Sistemas Empresariales", "href": "#services" },
-        { "label": "Punto de Venta", "href": "#services" },
-        { "label": "Apps de Escritorio", "href": "#services" }
+        { "label": "Sitios Web y Landing Pages", "href": "#services" },
+        { "label": "Sistemas Personalizados", "href": "#services" }
       ],
       "company": [
         { "label": "Nosotros", "href": "#about" },

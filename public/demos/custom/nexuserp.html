@@ -1,0 +1,745 @@
+<!doctype html>
+
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>NexusERP — Sistema ERP Empresarial | Desarrollado por NORABYTE</title>
+    <meta name="description" content="NexusERP es un sistema ERP empresarial desarrollado por NORABYTE. Gestiona inventario, ventas, finanzas, empleados y reportes desde un solo panel de control." />
+    <meta name="keywords" content="ERP empresarial, sistema ERP, gestión empresarial, inventario, ventas, finanzas, NORABYTE, Hermosillo, Sonora, software a medida" />
+    <meta name="author" content="NORABYTE" />
+    <meta property="og:title" content="NexusERP — Sistema ERP Empresarial | Desarrollado por NORABYTE" />
+    <meta property="og:description" content="Sistema ERP empresarial desarrollado por NORABYTE para gestionar todos los procesos de tu empresa desde un solo lugar." />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="es_MX" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              tertiary: "#575f75",
+              "tertiary-container": "#dae2fd",
+              "secondary-dim": "#465468",
+              error: "#9e3f4e",
+              "error-container": "#ff8b9a",
+              "on-tertiary-container": "#4a5167",
+              "surface-container-highest": "#d9e4ec",
+              "primary-container": "#dbe1ff",
+              "on-secondary-fixed": "#324053",
+              "tertiary-fixed": "#dae2fd",
+              "surface-container-lowest": "#ffffff",
+              "primary-fixed": "#dbe1ff",
+              "primary-fixed-dim": "#c7d3ff",
+              "on-surface-variant": "#566168",
+              "tertiary-dim": "#4b5369",
+              "on-tertiary-fixed": "#373f54",
+              "inverse-on-surface": "#9a9da0",
+              "outline-variant": "#a8b3bb",
+              secondary: "#526074",
+              "primary-dim": "#0048c1",
+              primary: "#0053db",
+              "surface-tint": "#0053db",
+              background: "#f7f9fc",
+              "secondary-container": "#d5e3fc",
+              "on-primary-fixed": "#003798",
+              "on-tertiary-fixed-variant": "#535b71",
+              "on-tertiary": "#f9f8ff",
+              "on-background": "#29343a",
+              "on-primary-container": "#0048bf",
+              "surface-container-high": "#e1e9f0",
+              "on-error-container": "#782232",
+              "on-primary": "#f8f7ff",
+              "inverse-surface": "#0b0f11",
+              "on-error": "#fff7f7",
+              "surface-container-low": "#f0f4f8",
+              surface: "#f7f9fc",
+              "on-secondary-container": "#455367",
+              "surface-container": "#e8eff4",
+              "tertiary-fixed-dim": "#ccd4ee",
+              "surface-variant": "#d9e4ec",
+              "on-secondary": "#f8f8ff",
+              "surface-dim": "#cfdce5",
+              "on-surface": "#29343a",
+              "on-primary-fixed-variant": "#0050d4",
+              "secondary-fixed": "#d5e3fc",
+              "surface-bright": "#f7f9fc",
+              "error-dim": "#4f0116",
+              "on-secondary-fixed-variant": "#4e5c71",
+              outline: "#717c84",
+              "secondary-fixed-dim": "#c7d5ed",
+              "inverse-primary": "#618bff",
+            },
+            fontFamily: {
+              headline: ["Manrope"],
+              body: ["Inter"],
+              label: ["Inter"],
+            },
+            borderRadius: {
+              DEFAULT: "0.125rem",
+              lg: "0.25rem",
+              xl: "0.5rem",
+              full: "0.75rem",
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      .material-symbols-outlined {
+        font-variation-settings:
+          "FILL" 0,
+          "wght" 400,
+          "GRAD" 0,
+          "opsz" 24;
+      }
+      .glass-card {
+        background: rgba(255, 255, 255, 0.7);
+        backdrop-filter: blur(12px);
+      }
+      .custom-scrollbar::-webkit-scrollbar {
+        width: 4px;
+      }
+      .custom-scrollbar::-webkit-scrollbar-track {
+        background: transparent;
+      }
+      .custom-scrollbar::-webkit-scrollbar-thumb {
+        background: #cbd5e1;
+        border-radius: 10px;
+      }
+    </style>
+  </head>
+  <body
+    class="bg-surface text-on-surface font-body selection:bg-primary-container selection:text-on-primary-container"
+  >
+    <aside
+      class="h-screen w-64 fixed left-0 top-0 bg-[#1E1E2E] shadow-xl flex flex-col py-6 font-manrope text-sm tracking-wide z-50"
+    >
+      <div class="px-6 mb-3">
+        <img src="/Logo-Norabyte.png" alt="NORABYTE" class="h-6 w-auto" />
+      </div>
+      <div class="text-xl font-bold text-white mb-8 px-6">
+        NexusERP
+      </div>
+      <nav class="flex-1 space-y-1">
+        <a
+          class="bg-white/10 text-white font-semibold rounded-lg mx-2 px-4 py-3 flex items-center gap-3 active:scale-95 duration-200"
+          href="#"
+        >
+          <span class="material-symbols-outlined">dashboard</span>
+          Panel
+        </a>
+        <a
+          class="text-slate-400 hover:text-white hover:bg-white/5 rounded-lg mx-2 px-4 py-3 flex items-center gap-3 transition-all active:scale-95 duration-200"
+          href="#"
+        >
+          <span class="material-symbols-outlined">inventory_2</span>
+          Inventario
+        </a>
+        <a
+          class="text-slate-400 hover:text-white hover:bg-white/5 rounded-lg mx-2 px-4 py-3 flex items-center gap-3 transition-all active:scale-95 duration-200"
+          href="#"
+        >
+          <span class="material-symbols-outlined">payments</span>
+          Ventas
+        </a>
+        <a
+          class="text-slate-400 hover:text-white hover:bg-white/5 rounded-lg mx-2 px-4 py-3 flex items-center gap-3 transition-all active:scale-95 duration-200"
+          href="#"
+        >
+          <span class="material-symbols-outlined">groups</span>
+          Empleados
+        </a>
+        <a
+          class="text-slate-400 hover:text-white hover:bg-white/5 rounded-lg mx-2 px-4 py-3 flex items-center gap-3 transition-all active:scale-95 duration-200"
+          href="#"
+        >
+          <span class="material-symbols-outlined">account_balance</span>
+          Finanzas
+        </a>
+        <a
+          class="text-slate-400 hover:text-white hover:bg-white/5 rounded-lg mx-2 px-4 py-3 flex items-center gap-3 transition-all active:scale-95 duration-200"
+          href="#"
+        >
+          <span class="material-symbols-outlined">assessment</span>
+          Reportes
+        </a>
+        <a
+          class="text-slate-400 hover:text-white hover:bg-white/5 rounded-lg mx-2 px-4 py-3 flex items-center gap-3 transition-all active:scale-95 duration-200"
+          href="#"
+        >
+          <span class="material-symbols-outlined">settings</span>
+          Configuración
+        </a>
+      </nav>
+      <div class="mt-auto px-6 pt-4 border-t border-white/5">
+        <div class="flex items-center gap-3">
+          <div
+            class="w-8 h-8 rounded-full bg-primary flex items-center justify-center text-xs font-bold text-white"
+          >
+            NX
+          </div>
+          <div class="text-xs">
+            <p class="text-white font-semibold">NexusERP</p>
+            <p class="text-slate-500">v2.4.0-pro</p>
+          </div>
+        </div>
+      </div>
+    </aside>
+    <main class="ml-64 min-h-screen bg-surface-container-low">
+      <header
+        class="h-16 sticky top-0 z-40 bg-surface-bright/80 backdrop-blur-md flex justify-between items-center px-8 w-full font-manrope"
+      >
+        <div class="flex items-center gap-8">
+          <h1 class="text-xl font-extrabold text-on-surface tracking-tight">
+            Panel
+          </h1>
+          <div class="relative group">
+            <span
+              class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline"
+              >search</span
+            >
+            <input
+              class="bg-surface-container-highest border-none rounded-xl pl-10 pr-4 py-2 text-sm w-64 focus:ring-2 focus:ring-primary/20 transition-all outline-none"
+              placeholder="Buscar en el sistema..."
+              type="text"
+            />
+          </div>
+        </div>
+        <div class="flex items-center gap-6">
+          <button
+            class="relative p-2 text-on-surface-variant hover:text-primary transition-colors"
+          >
+            <span class="material-symbols-outlined">notifications</span>
+            <span
+              class="absolute top-2 right-2 w-2 h-2 bg-error rounded-full border-2 border-surface"
+            ></span>
+          </button>
+          <div class="flex items-center gap-3 cursor-pointer group">
+            <div class="text-right">
+              <p
+                class="text-sm font-bold text-on-surface group-hover:text-primary transition-colors"
+              >
+                Juan Pérez
+              </p>
+              <p
+                class="text-[10px] text-on-surface-variant uppercase tracking-widest font-semibold"
+              >
+                Administrador
+              </p>
+            </div>
+            <img
+              alt="Avatar de usuario"
+              class="w-10 h-10 rounded-xl object-cover shadow-sm"
+              src="https://lh3.googleusercontent.com/aida-public/AB6AXuAzSs09lOFyZmi13xVEuRq7O170ZKDkacyvp6ecz1JK-r_r1dBM-psUJBUoLbMUPnOP942sYRxeNkUzr5gA3p51hCnvjSdHCUS5uPcNdZce9zBE9DtnuAwgjkLsEPn8DWDrvdxj8lxMjnrLPazZ_6qW6cU3-1tNFHkPNXiqfInvRcyOLwHlN1X_MtPMP75xBB7KyhnsVZ4UZWDmy12_SRaRP_89LahFWGh5r4J3n_ECV0z5VR7PyMnfvD5nb6XbZpIbyQnJVrvxie7Q"
+            />
+          </div>
+        </div>
+      </header>
+      <div class="p-8 space-y-8">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div
+            class="bg-surface-container-lowest p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow group"
+          >
+            <div class="flex justify-between items-start mb-4">
+              <div class="p-2 rounded-lg bg-primary/10 text-primary">
+                <span class="material-symbols-outlined">payments</span>
+              </div>
+              <span
+                class="flex items-center gap-1 text-[11px] font-bold text-emerald-600 bg-emerald-50 px-2 py-1 rounded-full"
+              >
+                <span class="material-symbols-outlined text-[14px]">trending_up</span>
+                12.5%
+              </span>
+            </div>
+            <p class="text-label-md text-on-surface-variant font-medium mb-1">
+              Ingresos Totales
+            </p>
+            <h3 class="text-2xl font-extrabold text-on-surface mb-4">
+              $1,284,500
+            </h3>
+            <div
+              class="h-10 w-full bg-gradient-to-t from-primary/5 to-transparent rounded-lg flex items-end px-1 gap-1"
+            >
+              <div class="bg-primary/20 w-full h-[40%] rounded-t-sm"></div>
+              <div class="bg-primary/20 w-full h-[60%] rounded-t-sm"></div>
+              <div class="bg-primary/20 w-full h-[55%] rounded-t-sm"></div>
+              <div class="bg-primary/20 w-full h-[75%] rounded-t-sm"></div>
+              <div class="bg-primary/20 w-full h-[65%] rounded-t-sm"></div>
+              <div
+                class="bg-primary w-full h-[90%] rounded-t-sm shadow-[0_0_8px_rgba(0,83,219,0.3)]"
+              ></div>
+            </div>
+          </div>
+          <div
+            class="bg-surface-container-lowest p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow"
+          >
+            <div class="flex justify-between items-start mb-4">
+              <div class="p-2 rounded-lg bg-tertiary-container text-tertiary">
+                <span class="material-symbols-outlined">shopping_cart</span>
+              </div>
+              <span
+                class="flex items-center gap-1 text-[11px] font-bold text-emerald-600 bg-emerald-50 px-2 py-1 rounded-full"
+              >
+                <span class="material-symbols-outlined text-[14px]">trending_up</span>
+                8.2%
+              </span>
+            </div>
+            <p class="text-label-md text-on-surface-variant font-medium mb-1">
+              Pedidos Activos
+            </p>
+            <h3 class="text-2xl font-extrabold text-on-surface mb-4">428</h3>
+            <div
+              class="h-10 w-full bg-gradient-to-t from-tertiary/5 to-transparent rounded-lg flex items-end px-1 gap-1"
+            >
+              <div class="bg-tertiary/20 w-full h-[70%] rounded-t-sm"></div>
+              <div class="bg-tertiary/20 w-full h-[50%] rounded-t-sm"></div>
+              <div class="bg-tertiary/20 w-full h-[85%] rounded-t-sm"></div>
+              <div class="bg-tertiary/20 w-full h-[45%] rounded-t-sm"></div>
+              <div class="bg-tertiary/20 w-full h-[95%] rounded-t-sm"></div>
+              <div class="bg-tertiary w-full h-[75%] rounded-t-sm"></div>
+            </div>
+          </div>
+          <div
+            class="bg-surface-container-lowest p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow"
+          >
+            <div class="flex justify-between items-start mb-4">
+              <div class="p-2 rounded-lg bg-secondary-container text-secondary">
+                <span class="material-symbols-outlined">badge</span>
+              </div>
+              <span
+                class="flex items-center gap-1 text-[11px] font-bold text-on-surface-variant bg-surface-container px-2 py-1 rounded-full"
+              >
+                <span class="material-symbols-outlined text-[14px]">horizontal_rule</span>
+                Estable
+              </span>
+            </div>
+            <p class="text-label-md text-on-surface-variant font-medium mb-1">
+              Empleados en Sitio
+            </p>
+            <h3 class="text-2xl font-extrabold text-on-surface mb-4">1,102</h3>
+            <div
+              class="h-10 w-full bg-gradient-to-t from-secondary/5 to-transparent rounded-lg flex items-end px-1 gap-1"
+            >
+              <div class="bg-secondary/20 w-full h-[60%] rounded-t-sm"></div>
+              <div class="bg-secondary/20 w-full h-[62%] rounded-t-sm"></div>
+              <div class="bg-secondary/20 w-full h-[61%] rounded-t-sm"></div>
+              <div class="bg-secondary/20 w-full h-[59%] rounded-t-sm"></div>
+              <div class="bg-secondary/20 w-full h-[60%] rounded-t-sm"></div>
+              <div class="bg-secondary w-full h-[61%] rounded-t-sm"></div>
+            </div>
+          </div>
+          <div
+            class="bg-surface-container-lowest p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow"
+          >
+            <div class="flex justify-between items-start mb-4">
+              <div class="p-2 rounded-lg bg-error-container/20 text-error">
+                <span class="material-symbols-outlined">inventory_2</span>
+              </div>
+              <span
+                class="flex items-center gap-1 text-[11px] font-bold text-error bg-error-container/10 px-2 py-1 rounded-full"
+              >
+                <span class="material-symbols-outlined text-[14px]">trending_down</span>
+                14%
+              </span>
+            </div>
+            <p class="text-label-md text-on-surface-variant font-medium mb-1">
+              Productos con Bajo Inventario
+            </p>
+            <h3 class="text-2xl font-extrabold text-on-surface mb-4">24</h3>
+            <div
+              class="h-10 w-full bg-gradient-to-t from-error/5 to-transparent rounded-lg flex items-end px-1 gap-1"
+            >
+              <div class="bg-error/20 w-full h-[30%] rounded-t-sm"></div>
+              <div class="bg-error/20 w-full h-[40%] rounded-t-sm"></div>
+              <div class="bg-error/20 w-full h-[50%] rounded-t-sm"></div>
+              <div class="bg-error/20 w-full h-[70%] rounded-t-sm"></div>
+              <div class="bg-error/20 w-full h-[85%] rounded-t-sm"></div>
+              <div class="bg-error w-full h-[95%] rounded-t-sm"></div>
+            </div>
+          </div>
+        </div>
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          <div
+            class="lg:col-span-2 bg-surface-container-lowest p-8 rounded-xl shadow-sm"
+          >
+            <div class="flex justify-between items-center mb-8">
+              <div>
+                <h2 class="text-lg font-bold text-on-surface">
+                  Ingresos Mensuales
+                </h2>
+                <p class="text-sm text-on-surface-variant">
+                  Resumen de desempeño de los últimos 12 meses
+                </p>
+              </div>
+              <div class="flex gap-2">
+                <button
+                  class="px-3 py-1.5 text-xs font-bold rounded-lg bg-primary text-white"
+                >
+                  Anual
+                </button>
+                <button
+                  class="px-3 py-1.5 text-xs font-bold rounded-lg text-on-surface-variant hover:bg-surface-container transition-colors"
+                >
+                  Trimestral
+                </button>
+              </div>
+            </div>
+            <div class="h-64 flex items-end justify-between gap-4 relative">
+              <div
+                class="absolute inset-0 flex flex-col justify-between pointer-events-none opacity-50"
+              >
+                <div class="border-b border-outline-variant/20 w-full h-px"></div>
+                <div class="border-b border-outline-variant/20 w-full h-px"></div>
+                <div class="border-b border-outline-variant/20 w-full h-px"></div>
+                <div class="border-b border-outline-variant/20 w-full h-px"></div>
+              </div>
+              <div
+                class="flex-1 bg-surface-container rounded-t-lg h-[40%] hover:bg-primary-container transition-colors group relative"
+              >
+                <div
+                  class="absolute -top-8 left-1/2 -translate-x-1/2 bg-on-surface text-white text-[10px] py-1 px-2 rounded hidden group-hover:block"
+                >
+                  $42k
+                </div>
+              </div>
+              <div
+                class="flex-1 bg-surface-container rounded-t-lg h-[45%] hover:bg-primary-container transition-colors group relative"
+              ></div>
+              <div
+                class="flex-1 bg-surface-container rounded-t-lg h-[60%] hover:bg-primary-container transition-colors group relative"
+              ></div>
+              <div
+                class="flex-1 bg-surface-container rounded-t-lg h-[55%] hover:bg-primary-container transition-colors group relative"
+              ></div>
+              <div
+                class="flex-1 bg-surface-container rounded-t-lg h-[75%] hover:bg-primary-container transition-colors group relative"
+              ></div>
+              <div
+                class="flex-1 bg-surface-container rounded-t-lg h-[80%] hover:bg-primary-container transition-colors group relative"
+              ></div>
+              <div
+                class="flex-1 bg-primary/20 border-t-2 border-primary rounded-t-lg h-[85%] hover:bg-primary-container transition-colors group relative"
+              ></div>
+              <div
+                class="flex-1 bg-primary/30 border-t-2 border-primary rounded-t-lg h-[92%] hover:bg-primary-container transition-colors group relative"
+              ></div>
+              <div
+                class="flex-1 bg-primary/40 border-t-2 border-primary rounded-t-lg h-[88%] hover:bg-primary-container transition-colors group relative"
+              ></div>
+              <div
+                class="flex-1 bg-primary/50 border-t-2 border-primary rounded-t-lg h-[95%] hover:bg-primary-container transition-colors group relative"
+              ></div>
+              <div
+                class="flex-1 bg-primary/60 border-t-2 border-primary rounded-t-lg h-[82%] hover:bg-primary-container transition-colors group relative"
+              ></div>
+              <div
+                class="flex-1 bg-primary border-t-2 border-primary-dim rounded-t-lg h-[100%] group relative"
+              >
+                <div
+                  class="absolute -top-8 left-1/2 -translate-x-1/2 bg-on-surface text-white text-[10px] py-1 px-2 rounded"
+                >
+                  $124k
+                </div>
+              </div>
+            </div>
+            <div
+              class="flex justify-between mt-4 text-[10px] font-bold text-on-surface-variant tracking-widest uppercase px-1"
+            >
+              <span>Ene</span><span>Feb</span><span>Mar</span><span>Abr</span
+              ><span>May</span><span>Jun</span><span>Jul</span><span>Ago</span
+              ><span>Sep</span><span>Oct</span><span>Nov</span><span>Dic</span>
+            </div>
+          </div>
+          <div class="bg-surface-container-lowest p-8 rounded-xl shadow-sm">
+            <h2 class="text-lg font-bold text-on-surface mb-2">
+              Ventas por Categoría
+            </h2>
+            <p class="text-sm text-on-surface-variant mb-8">
+              Distribución de ingresos
+            </p>
+            <div class="relative w-48 h-48 mx-auto mb-8">
+              <svg
+                class="w-full h-full transform -rotate-90"
+                viewbox="0 0 100 100"
+              >
+                <circle
+                  class="text-surface-container"
+                  cx="50"
+                  cy="50"
+                  fill="transparent"
+                  r="40"
+                  stroke="currentColor"
+                  stroke-width="12"
+                ></circle>
+                <circle
+                  class="text-primary"
+                  cx="50"
+                  cy="50"
+                  fill="transparent"
+                  r="40"
+                  stroke="currentColor"
+                  stroke-dasharray="251.2"
+                  stroke-dashoffset="62.8"
+                  stroke-linecap="round"
+                  stroke-width="12"
+                ></circle>
+                <circle
+                  class="text-tertiary"
+                  cx="50"
+                  cy="50"
+                  fill="transparent"
+                  r="40"
+                  stroke="currentColor"
+                  stroke-dasharray="251.2"
+                  stroke-dashoffset="188.4"
+                  stroke-linecap="round"
+                  stroke-width="12"
+                ></circle>
+                <circle
+                  class="text-secondary"
+                  cx="50"
+                  cy="50"
+                  fill="transparent"
+                  r="40"
+                  stroke="currentColor"
+                  stroke-dasharray="251.2"
+                  stroke-dashoffset="226"
+                  stroke-linecap="round"
+                  stroke-width="12"
+                ></circle>
+              </svg>
+              <div
+                class="absolute inset-0 flex flex-col items-center justify-center"
+              >
+                <span class="text-2xl font-extrabold text-on-surface">$82k</span>
+                <span
+                  class="text-[10px] font-bold text-on-surface-variant uppercase"
+                  >Ventas Totales</span
+                >
+              </div>
+            </div>
+            <div class="space-y-4">
+              <div class="flex items-center justify-between text-sm">
+                <div class="flex items-center gap-2">
+                  <div class="w-3 h-3 rounded-full bg-primary"></div>
+                  <span class="font-medium">Materias Primas</span>
+                </div>
+                <span class="font-bold">45%</span>
+              </div>
+              <div class="flex items-center justify-between text-sm">
+                <div class="flex items-center gap-2">
+                  <div class="w-3 h-3 rounded-full bg-tertiary"></div>
+                  <span class="font-medium">Productos Terminados</span>
+                </div>
+                <span class="font-bold">35%</span>
+              </div>
+              <div class="flex items-center justify-between text-sm">
+                <div class="flex items-center gap-2">
+                  <div class="w-3 h-3 rounded-full bg-secondary"></div>
+                  <span class="font-medium">Costo de Mano de Obra</span>
+                </div>
+                <span class="font-bold">20%</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="bg-surface-container-lowest rounded-xl shadow-sm overflow-hidden"
+        >
+          <div
+            class="p-8 border-b border-surface-container flex justify-between items-center"
+          >
+            <div>
+              <h2 class="text-lg font-bold text-on-surface">Pedidos Recientes</h2>
+              <p class="text-sm text-on-surface-variant">
+                Gestiona y da seguimiento a tus últimos pedidos
+              </p>
+            </div>
+            <button
+              class="flex items-center gap-2 px-4 py-2 bg-surface-container-low text-on-surface font-bold text-sm rounded-lg hover:bg-surface-container-high transition-colors"
+            >
+              Ver Todos
+              <span class="material-symbols-outlined text-sm">chevron_right</span>
+            </button>
+          </div>
+          <div class="overflow-x-auto">
+            <table class="w-full text-left border-collapse">
+              <thead>
+                <tr
+                  class="bg-surface-container-low/50 text-on-surface-variant text-[10px] font-bold uppercase tracking-widest"
+                >
+                  <th class="px-8 py-4">ID de Pedido</th>
+                  <th class="px-8 py-4">Cliente</th>
+                  <th class="px-8 py-4">Fecha</th>
+                  <th class="px-8 py-4">Monto Total</th>
+                  <th class="px-8 py-4">Estado de Pago</th>
+                  <th class="px-8 py-4">Acción</th>
+                </tr>
+              </thead>
+              <tbody class="text-sm">
+                <tr
+                  class="hover:bg-surface-container-low transition-colors group"
+                >
+                  <td class="px-8 py-5 font-bold text-primary">#PED-28491</td>
+                  <td class="px-8 py-5">
+                    <div class="flex items-center gap-3">
+                      <div
+                        class="w-8 h-8 rounded-full bg-surface-container flex items-center justify-center font-bold text-xs"
+                      >
+                        AS
+                      </div>
+                      <span class="font-semibold text-on-surface">Acero del Norte S.A.</span>
+                    </div>
+                  </td>
+                  <td class="px-8 py-5 text-on-surface-variant">24 Oct, 2023</td>
+                  <td class="px-8 py-5 font-bold text-on-surface">$12,450.00</td>
+                  <td class="px-8 py-5">
+                    <span
+                      class="px-3 py-1 rounded-full bg-emerald-100 text-emerald-700 text-[11px] font-bold"
+                      >Pagado</span
+                    >
+                  </td>
+                  <td class="px-8 py-5">
+                    <button
+                      class="p-2 hover:bg-surface-container rounded-lg text-on-surface-variant transition-colors"
+                    >
+                      <span class="material-symbols-outlined">more_horiz</span>
+                    </button>
+                  </td>
+                </tr>
+                <tr
+                  class="hover:bg-surface-container-low transition-colors group"
+                >
+                  <td class="px-8 py-5 font-bold text-primary">#PED-28488</td>
+                  <td class="px-8 py-5">
+                    <div class="flex items-center gap-3">
+                      <div
+                        class="w-8 h-8 rounded-full bg-surface-container flex items-center justify-center font-bold text-xs"
+                      >
+                        BW
+                      </div>
+                      <span class="font-semibold text-on-surface">Blue Water Logística</span>
+                    </div>
+                  </td>
+                  <td class="px-8 py-5 text-on-surface-variant">23 Oct, 2023</td>
+                  <td class="px-8 py-5 font-bold text-on-surface">$8,920.50</td>
+                  <td class="px-8 py-5">
+                    <span
+                      class="px-3 py-1 rounded-full bg-amber-100 text-amber-700 text-[11px] font-bold"
+                      >Pendiente</span
+                    >
+                  </td>
+                  <td class="px-8 py-5">
+                    <button
+                      class="p-2 hover:bg-surface-container rounded-lg text-on-surface-variant transition-colors"
+                    >
+                      <span class="material-symbols-outlined">more_horiz</span>
+                    </button>
+                  </td>
+                </tr>
+                <tr
+                  class="hover:bg-surface-container-low transition-colors group"
+                >
+                  <td class="px-8 py-5 font-bold text-primary">#PED-28485</td>
+                  <td class="px-8 py-5">
+                    <div class="flex items-center gap-3">
+                      <div
+                        class="w-8 h-8 rounded-full bg-surface-container flex items-center justify-center font-bold text-xs"
+                      >
+                        GR
+                      </div>
+                      <span class="font-semibold text-on-surface">Global Reach S.A. de C.V.</span>
+                    </div>
+                  </td>
+                  <td class="px-8 py-5 text-on-surface-variant">22 Oct, 2023</td>
+                  <td class="px-8 py-5 font-bold text-on-surface">$24,100.00</td>
+                  <td class="px-8 py-5">
+                    <span
+                      class="px-3 py-1 rounded-full bg-error-container/10 text-error text-[11px] font-bold"
+                      >Vencido</span
+                    >
+                  </td>
+                  <td class="px-8 py-5">
+                    <button
+                      class="p-2 hover:bg-surface-container rounded-lg text-on-surface-variant transition-colors"
+                    >
+                      <span class="material-symbols-outlined">more_horiz</span>
+                    </button>
+                  </td>
+                </tr>
+                <tr
+                  class="hover:bg-surface-container-low transition-colors group"
+                >
+                  <td class="px-8 py-5 font-bold text-primary">#PED-28482</td>
+                  <td class="px-8 py-5">
+                    <div class="flex items-center gap-3">
+                      <div
+                        class="w-8 h-8 rounded-full bg-surface-container flex items-center justify-center font-bold text-xs"
+                      >
+                        NV
+                      </div>
+                      <span class="font-semibold text-on-surface">Next Ventures</span>
+                    </div>
+                  </td>
+                  <td class="px-8 py-5 text-on-surface-variant">22 Oct, 2023</td>
+                  <td class="px-8 py-5 font-bold text-on-surface">$1,450.00</td>
+                  <td class="px-8 py-5">
+                    <span
+                      class="px-3 py-1 rounded-full bg-emerald-100 text-emerald-700 text-[11px] font-bold"
+                      >Pagado</span
+                    >
+                  </td>
+                  <td class="px-8 py-5">
+                    <button
+                      class="p-2 hover:bg-surface-container rounded-lg text-on-surface-variant transition-colors"
+                    >
+                      <span class="material-symbols-outlined">more_horiz</span>
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div
+            class="p-6 bg-surface-container-low/30 border-t border-surface-container flex justify-between items-center text-xs font-bold text-on-surface-variant uppercase tracking-widest"
+          >
+            <span>Mostrando 4 de 128 pedidos — NexusERP — Desarrollado por NORABYTE</span>
+            <div class="flex gap-4">
+              <button
+                class="flex items-center gap-1 hover:text-primary transition-colors"
+              >
+                <span class="material-symbols-outlined text-sm">chevron_left</span>
+                Anterior
+              </button>
+              <button
+                class="flex items-center gap-1 hover:text-primary transition-colors"
+              >
+                Siguiente
+                <span class="material-symbols-outlined text-sm">chevron_right</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+    <button
+      class="fixed bottom-8 right-8 w-14 h-14 bg-gradient-to-br from-primary to-primary-dim text-white rounded-full shadow-lg hover:shadow-primary/40 hover:scale-105 active:scale-95 transition-all flex items-center justify-center z-50"
+    >
+      <span
+        class="material-symbols-outlined text-2xl"
+        style="font-variation-settings: &quot;FILL&quot; 1"
+        >add</span
+      >
+    </button>
+  </body>
+</html>

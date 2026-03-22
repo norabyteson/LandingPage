@@ -1,0 +1,772 @@
+<!doctype html>
+
+<html class="light" lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>CasaMarket — Decoración y Hogar | Ejemplo por NORABYTE</title>
+    <meta name="description" content="CasaMarket es tu destino para muebles, iluminación, decoración y textiles de diseño contemporáneo. Encuentra piezas únicas para transformar tu hogar." />
+    <meta name="keywords" content="decoración hogar, muebles modernos, iluminación diseño, textiles hogar, accesorios decorativos, CasaMarket, hogar contemporáneo" />
+    <link rel="canonical" href="https://norabyte.com/demos/ecommerce/casamarket" />
+    <meta property="og:title" content="CasaMarket — Decoración y Hogar | Ejemplo por NORABYTE" />
+    <meta property="og:description" content="Descubre muebles, iluminación y decoración de diseño contemporáneo para transformar cada rincón de tu hogar." />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="es_MX" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "surface-tint": "#1353d8",
+              surface: "#f9f9f9",
+              "surface-bright": "#f9f9f9",
+              outline: "#737686",
+              "on-secondary-container": "#3d4e84",
+              "on-primary-fixed-variant": "#003dab",
+              "on-secondary-fixed-variant": "#334479",
+              "surface-container-highest": "#e2e2e2",
+              background: "#f9f9f9",
+              "surface-container-high": "#e8e8e8",
+              "surface-variant": "#e2e2e2",
+              "primary-fixed": "#dbe1ff",
+              "secondary-fixed-dim": "#b5c4ff",
+              "on-tertiary": "#ffffff",
+              "inverse-surface": "#2f3131",
+              "surface-container-lowest": "#ffffff",
+              "error-container": "#ffdad6",
+              "on-error": "#ffffff",
+              "on-surface": "#1a1c1c",
+              "secondary-fixed": "#dbe1ff",
+              "primary-container": "#1a56db",
+              "on-surface-variant": "#434654",
+              "on-tertiary-fixed": "#380d00",
+              "tertiary-container": "#ad3b00",
+              tertiary: "#852b00",
+              "on-primary-container": "#d4dcff",
+              "outline-variant": "#c3c5d7",
+              "on-error-container": "#93000a",
+              "tertiary-fixed": "#ffdbcf",
+              "on-primary-fixed": "#00174d",
+              "surface-container": "#eeeeee",
+              "primary-fixed-dim": "#b5c4ff",
+              "tertiary-fixed-dim": "#ffb59a",
+              "on-primary": "#ffffff",
+              "surface-dim": "#dadada",
+              primary: "#003fb1",
+              "on-background": "#1a1c1c",
+              "inverse-primary": "#b5c4ff",
+              "on-secondary-fixed": "#01174b",
+              secondary: "#4b5c92",
+              "on-tertiary-container": "#ffd4c5",
+              "on-secondary": "#ffffff",
+              error: "#ba1a1a",
+              "on-tertiary-fixed-variant": "#802a00",
+              "surface-container-low": "#f3f3f3",
+              "inverse-on-surface": "#f1f1f1",
+              "secondary-container": "#b1c2ff",
+            },
+            fontFamily: {
+              headline: ["Manrope"],
+              body: ["Manrope"],
+              label: ["Inter"],
+            },
+            borderRadius: {
+              DEFAULT: "0.125rem",
+              lg: "0.25rem",
+              xl: "0.5rem",
+              full: "0.75rem",
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      .material-symbols-outlined {
+        font-variation-settings:
+          "FILL" 0,
+          "wght" 300,
+          "GRAD" 0,
+          "opsz" 24;
+      }
+      .hide-scrollbar::-webkit-scrollbar {
+        display: none;
+      }
+      .hide-scrollbar {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+      }
+    </style>
+  </head>
+  <body
+    class="bg-surface font-body text-on-surface selection:bg-primary-container selection:text-on-primary-container"
+  >
+    <nav
+      class="fixed top-0 w-full flex justify-between items-center px-8 h-20 bg-white/80 dark:bg-zinc-900/80 backdrop-blur-xl z-50 shadow-sm dark:shadow-none"
+    >
+      <div class="flex items-center gap-12">
+        <a href="#" class="flex items-center gap-3">
+          <img
+            alt="NORABYTE"
+            class="h-7 w-auto"
+            src="/Logo-Norabyte.png"
+          />
+          <span
+            class="text-2xl font-bold tracking-tighter text-zinc-900 dark:text-zinc-50 uppercase"
+            >CASAMARKET</span
+          >
+        </a>
+        <div class="hidden lg:flex gap-8 items-center">
+          <a
+            class="font-manrope tracking-tight text-sm font-medium text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors"
+            href="#"
+            >Muebles</a
+          >
+          <a
+            class="font-manrope tracking-tight text-sm font-medium text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors"
+            href="#"
+            >Iluminación</a
+          >
+          <a
+            class="font-manrope tracking-tight text-sm font-medium text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors"
+            href="#"
+            >Decoración</a
+          >
+          <a
+            class="font-manrope tracking-tight text-sm font-medium text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors"
+            href="#"
+            >Cocina</a
+          >
+          <a
+            class="font-manrope tracking-tight text-sm font-medium text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors"
+            href="#"
+            >Textiles</a
+          >
+        </div>
+      </div>
+      <div class="flex items-center gap-6">
+        <div
+          class="hidden md:flex items-center bg-surface-container-low px-4 py-2 rounded-full"
+        >
+          <span
+            class="material-symbols-outlined text-on-surface-variant text-lg"
+            >search</span
+          >
+          <input
+            class="bg-transparent border-none focus:ring-0 text-sm font-label w-48 ml-2"
+            placeholder="Buscar productos..."
+            type="text"
+          />
+        </div>
+        <button class="hover:opacity-80 transition-opacity">
+          <span
+            class="material-symbols-outlined text-zinc-900 dark:text-zinc-50"
+            >shopping_bag</span
+          >
+        </button>
+        <button class="hover:opacity-80 transition-opacity">
+          <span
+            class="material-symbols-outlined text-zinc-900 dark:text-zinc-50"
+            >person</span
+          >
+        </button>
+      </div>
+    </nav>
+    <main class="pt-32 pb-24 px-8 max-w-[1440px] mx-auto flex gap-12">
+      <aside
+        class="hidden lg:flex flex-col w-64 shrink-0 sticky top-32 h-fit space-y-8"
+      >
+        <div class="space-y-6">
+          <div>
+            <h3
+              class="font-manrope uppercase tracking-widest text-[10px] font-bold text-zinc-400 mb-4"
+            >
+              FILTRAR POR
+            </h3>
+            <p class="text-xs text-on-surface-variant mb-6">
+              Refina tu selección
+            </p>
+          </div>
+          <div class="space-y-3">
+            <h4
+              class="text-xs font-bold uppercase tracking-wider text-on-surface"
+            >
+              Categorías
+            </h4>
+            <div class="space-y-2">
+              <label class="flex items-center gap-3 group cursor-pointer">
+                <input
+                  checked=""
+                  class="w-4 h-4 rounded border-outline-variant text-primary focus:ring-primary"
+                  type="checkbox"
+                />
+                <span
+                  class="text-sm font-label text-on-surface-variant group-hover:text-primary transition-colors"
+                  >Muebles</span
+                >
+              </label>
+              <label class="flex items-center gap-3 group cursor-pointer">
+                <input
+                  class="w-4 h-4 rounded border-outline-variant text-primary focus:ring-primary"
+                  type="checkbox"
+                />
+                <span
+                  class="text-sm font-label text-on-surface-variant group-hover:text-primary transition-colors"
+                  >Iluminación</span
+                >
+              </label>
+              <label class="flex items-center gap-3 group cursor-pointer">
+                <input
+                  class="w-4 h-4 rounded border-outline-variant text-primary focus:ring-primary"
+                  type="checkbox"
+                />
+                <span
+                  class="text-sm font-label text-on-surface-variant group-hover:text-primary transition-colors"
+                  >Decoración</span
+                >
+              </label>
+              <label class="flex items-center gap-3 group cursor-pointer">
+                <input
+                  class="w-4 h-4 rounded border-outline-variant text-primary focus:ring-primary"
+                  type="checkbox"
+                />
+                <span
+                  class="text-sm font-label text-on-surface-variant group-hover:text-primary transition-colors"
+                  >Cocina</span
+                >
+              </label>
+              <label class="flex items-center gap-3 group cursor-pointer">
+                <input
+                  class="w-4 h-4 rounded border-outline-variant text-primary focus:ring-primary"
+                  type="checkbox"
+                />
+                <span
+                  class="text-sm font-label text-on-surface-variant group-hover:text-primary transition-colors"
+                  >Textiles</span
+                >
+              </label>
+            </div>
+          </div>
+          <div class="space-y-4">
+            <h4
+              class="text-xs font-bold uppercase tracking-wider text-on-surface"
+            >
+              Rango de precio
+            </h4>
+            <div class="px-2">
+              <input
+                class="w-full h-1 bg-surface-container-high rounded-lg appearance-none cursor-pointer accent-primary"
+                max="5000"
+                min="0"
+                type="range"
+              />
+              <div class="flex justify-between mt-2">
+                <span
+                  class="text-[10px] font-label font-bold text-on-surface-variant"
+                  >$0</span
+                >
+                <span
+                  class="text-[10px] font-label font-bold text-on-surface-variant"
+                  >$5,000</span
+                >
+              </div>
+            </div>
+          </div>
+          <div class="space-y-3 pt-4">
+            <h4
+              class="text-xs font-bold uppercase tracking-wider text-on-surface"
+            >
+              Marcas destacadas
+            </h4>
+            <div class="space-y-2">
+              <label class="flex items-center gap-3 group cursor-pointer">
+                <input
+                  class="w-4 h-4 rounded border-outline-variant text-primary focus:ring-primary"
+                  type="checkbox"
+                />
+                <span
+                  class="text-sm font-label text-on-surface-variant group-hover:text-primary transition-colors"
+                  >Audo Copenhagen</span
+                >
+              </label>
+              <label class="flex items-center gap-3 group cursor-pointer">
+                <input
+                  class="w-4 h-4 rounded border-outline-variant text-primary focus:ring-primary"
+                  type="checkbox"
+                />
+                <span
+                  class="text-sm font-label text-on-surface-variant group-hover:text-primary transition-colors"
+                  >Muuto</span
+                >
+              </label>
+              <label class="flex items-center gap-3 group cursor-pointer">
+                <input
+                  class="w-4 h-4 rounded border-outline-variant text-primary focus:ring-primary"
+                  type="checkbox"
+                />
+                <span
+                  class="text-sm font-label text-on-surface-variant group-hover:text-primary transition-colors"
+                  >Ferm Living</span
+                >
+              </label>
+            </div>
+          </div>
+          <div class="space-y-3 pt-4">
+            <h4
+              class="text-xs font-bold uppercase tracking-wider text-on-surface"
+            >
+              Calificación promedio
+            </h4>
+            <div class="space-y-2">
+              <button class="flex items-center gap-2 group w-full text-left">
+                <div class="flex text-primary">
+                  <span
+                    class="material-symbols-outlined text-sm"
+                    style="font-variation-settings: &quot;FILL&quot; 1"
+                    >star</span
+                  >
+                  <span
+                    class="material-symbols-outlined text-sm"
+                    style="font-variation-settings: &quot;FILL&quot; 1"
+                    >star</span
+                  >
+                  <span
+                    class="material-symbols-outlined text-sm"
+                    style="font-variation-settings: &quot;FILL&quot; 1"
+                    >star</span
+                  >
+                  <span
+                    class="material-symbols-outlined text-sm"
+                    style="font-variation-settings: &quot;FILL&quot; 1"
+                    >star</span
+                  >
+                  <span
+                    class="material-symbols-outlined text-sm"
+                    style="font-variation-settings: &quot;FILL&quot; 1"
+                    >star</span
+                  >
+                </div>
+                <span class="text-xs font-label text-on-surface-variant"
+                  >5.0</span
+                >
+              </button>
+              <button class="flex items-center gap-2 group w-full text-left">
+                <div class="flex text-primary">
+                  <span
+                    class="material-symbols-outlined text-sm"
+                    style="font-variation-settings: &quot;FILL&quot; 1"
+                    >star</span
+                  >
+                  <span
+                    class="material-symbols-outlined text-sm"
+                    style="font-variation-settings: &quot;FILL&quot; 1"
+                    >star</span
+                  >
+                  <span
+                    class="material-symbols-outlined text-sm"
+                    style="font-variation-settings: &quot;FILL&quot; 1"
+                    >star</span
+                  >
+                  <span
+                    class="material-symbols-outlined text-sm"
+                    style="font-variation-settings: &quot;FILL&quot; 1"
+                    >star</span
+                  >
+                  <span class="material-symbols-outlined text-sm">star</span>
+                </div>
+                <span class="text-xs font-label text-on-surface-variant"
+                  >4.0+</span
+                >
+              </button>
+            </div>
+          </div>
+          <button
+            class="w-full py-3 mt-8 text-[10px] font-bold uppercase tracking-widest text-primary hover:bg-primary/5 transition-colors border border-primary/20 rounded-lg"
+          >
+            Limpiar filtros
+          </button>
+        </div>
+      </aside>
+      <section class="flex-1">
+        <nav
+          class="flex items-center gap-2 text-[10px] uppercase tracking-widest text-on-surface-variant mb-8"
+        >
+          <a class="hover:text-primary transition-colors" href="#">Inicio</a>
+          <span class="material-symbols-outlined text-[10px]"
+            >chevron_right</span
+          >
+          <a class="hover:text-primary transition-colors" href="#">Productos</a>
+          <span class="material-symbols-outlined text-[10px]"
+            >chevron_right</span
+          >
+          <span class="text-on-surface font-bold">Artículos del Hogar</span>
+        </nav>
+        <div
+          class="flex flex-col md:flex-row justify-between items-baseline gap-4 mb-12"
+        >
+          <div>
+            <h1
+              class="text-4xl font-headline font-extrabold tracking-tighter mb-2"
+            >
+              Artículos del Hogar
+            </h1>
+            <p class="text-sm text-on-surface-variant font-label tracking-wide">
+              124 productos encontrados
+            </p>
+          </div>
+          <div
+            class="flex items-center gap-4 bg-surface-container-low px-4 py-2 rounded-xl"
+          >
+            <span class="text-xs font-label text-on-surface-variant"
+              >Ordenar por:</span
+            >
+            <select
+              class="bg-transparent border-none text-sm font-bold font-headline focus:ring-0 cursor-pointer p-0 pr-8"
+            >
+              <option>Más popular</option>
+              <option>Más recientes</option>
+              <option>Precio: menor a mayor</option>
+              <option>Precio: mayor a menor</option>
+            </select>
+          </div>
+        </div>
+        <div
+          class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-x-8 gap-y-16"
+        >
+          <div class="group">
+            <div
+              class="relative aspect-square overflow-hidden bg-surface-container-low rounded-xl mb-6"
+            >
+              <img
+                alt="Sillón de madera maciza minimalista"
+                class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuBR1zwQ_bXXOp_uhJlSAnxtIIlBk-3kPvKLdrfd9V4SDHTDlJcb7GxNaEfBhGJ0WoWn1q1tNRnM7r2a-vfA58iTeBaPrlwmIu0UXQWUpR58LnxbtYYQB8qt11FlmzbpIfKEDG_8SibJ3AHuuDoLfpXNZzk8w0szUdGS3jD0455beBlhrICeK4BmQG0qdV_M_DqW6BcD3qp-Tafr9U4eeP9tgVzoEUL_g4k78DRd1rhl3oUTDjqwmvTrrm1NDmpSmh96s5RSojViUYLq"
+              />
+              <div class="absolute top-4 left-4">
+                <span
+                  class="bg-primary text-white text-[10px] font-bold tracking-widest uppercase px-3 py-1.5 rounded-full"
+                  >Nuevo</span
+                >
+              </div>
+              <button
+                class="absolute bottom-4 right-4 bg-white/90 backdrop-blur-md p-3 rounded-full shadow-lg opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300"
+              >
+                <span
+                  class="material-symbols-outlined text-primary"
+                  style="font-variation-settings: &quot;FILL&quot; 1"
+                  >favorite</span
+                >
+              </button>
+            </div>
+            <div class="space-y-1 px-1">
+              <h3
+                class="text-lg font-headline font-bold text-on-surface tracking-tight"
+              >
+                Sillón de roble escultural
+              </h3>
+              <p
+                class="text-xs text-on-surface-variant font-label line-clamp-1"
+              >
+                Acabado en roble natural con tapizado texturizado.
+              </p>
+              <div class="flex items-center gap-3 pt-2">
+                <span class="text-primary font-bold font-headline"
+                  >$849.00</span
+                >
+                <span class="text-on-surface-variant/40 line-through text-xs"
+                  >$1,100.00</span
+                >
+              </div>
+              <button
+                class="w-full mt-4 py-3 bg-surface-container-highest text-on-surface text-[10px] font-bold uppercase tracking-widest rounded-xl hover:bg-primary-container hover:text-white transition-all duration-300"
+              >
+                Agregar al carrito
+              </button>
+            </div>
+          </div>
+          <div class="group">
+            <div
+              class="relative aspect-square overflow-hidden bg-surface-container-low rounded-xl mb-6"
+            >
+              <img
+                alt="Lámpara de pie de latón moderno"
+                class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuAm3ebfnh3oXG_5xCl4NJSjOww1vXBg6FkyJE2uEDvHuJtDpmO_ytcF3EHlM0R_WC06OGvHjy3Sp_n3I837ADDhkHZDeGwm9xXaURggYeG6joAoPUFdCwV71ElFW5bVG9qww1ha9T6COWKQlwTSxhTW481zVGLphbJbCvP2klCp_XJKyD76UbkqyavVgFu_dXemuSajS6yRtw7YR8vxae0a5uI3rpY63RIxOPBC3bvYAiC1pidx4PYTa8_v-CpQnJxqZfWLelYntQ-d"
+              />
+              <div class="absolute top-4 left-4">
+                <span
+                  class="bg-on-surface text-white text-[10px] font-bold tracking-widest uppercase px-3 py-1.5 rounded-full"
+                  >Oferta</span
+                >
+              </div>
+            </div>
+            <div class="space-y-1 px-1">
+              <h3
+                class="text-lg font-headline font-bold text-on-surface tracking-tight"
+              >
+                Lámpara de pie Apex de latón
+              </h3>
+              <p
+                class="text-xs text-on-surface-variant font-label line-clamp-1"
+              >
+                Latón cepillado con cuello ajustable.
+              </p>
+              <div class="flex items-center gap-3 pt-2">
+                <span class="text-primary font-bold font-headline"
+                  >$320.00</span
+                >
+                <span class="text-on-surface-variant/40 line-through text-xs"
+                  >$450.00</span
+                >
+              </div>
+              <button
+                class="w-full mt-4 py-3 bg-surface-container-highest text-on-surface text-[10px] font-bold uppercase tracking-widest rounded-xl hover:bg-primary-container hover:text-white transition-all duration-300"
+              >
+                Agregar al carrito
+              </button>
+            </div>
+          </div>
+          <div class="group">
+            <div
+              class="relative aspect-square overflow-hidden bg-surface-container-low rounded-xl mb-6"
+            >
+              <img
+                alt="Jarrón de cerámica mate blanca minimalista"
+                class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuCvfe68lY7OHDjUqRS1KSEzXTzi7he9fMI_WjX3-4EYpW-SMMb-osn2CI52nlXAMkhTfthN6v0b2NLwtlDkrnu6qYMpMj2Gm6RkH3MIIgoztcAP_zFnS07hd6S8Uc-RLlXvgob-GorMkWr7pnVf5nmI_luns_XcCWBywXxe4jmJOkwBZj_u94kbjbjLOsuxDfEqwaWdDthBqCd-M_1ONmGJyssLoM9oHx-KXKeL0YjpbPyeqixHXHnNJgoExyCjQOQmLCKmYClxgpBg"
+              />
+            </div>
+            <div class="space-y-1 px-1">
+              <h3
+                class="text-lg font-headline font-bold text-on-surface tracking-tight"
+              >
+                Vasija cerámica Ovo
+              </h3>
+              <p
+                class="text-xs text-on-surface-variant font-label line-clamp-1"
+              >
+                Forma orgánica con acabado mate blanco.
+              </p>
+              <div class="flex items-center gap-3 pt-2">
+                <span class="text-primary font-bold font-headline"
+                  >$145.00</span
+                >
+              </div>
+              <button
+                class="w-full mt-4 py-3 bg-surface-container-highest text-on-surface text-[10px] font-bold uppercase tracking-widest rounded-xl hover:bg-primary-container hover:text-white transition-all duration-300"
+              >
+                Agregar al carrito
+              </button>
+            </div>
+          </div>
+          <div class="group">
+            <div
+              class="relative aspect-square overflow-hidden bg-surface-container-low rounded-xl mb-6"
+            >
+              <img
+                alt="Cojín de lino gris suave"
+                class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuADVyjaA97086AdBXWkVpJ3RkdDb03M2HFobBwQEUKDQg4XUsiFQ_YdPBidQNNLSKPJr2u2coFEURP2BNRMtnxKTWH6B0RpJLHsX6cishDdklmEkaMVapizFdO9FcsejILHS1RRLMsxbndkicPzOuNXjX78-DL05zb_oWuMGe8UKjuIf9ELbl9xgSerQV7rZ1-oLFUhGUjz4T7EuscCe_e6JTb_hE_MzAeAPWWFTZly080Gl0OLY3yvZPSJ3ijrZYcMamB5liWOT9OP"
+              />
+            </div>
+            <div class="space-y-1 px-1">
+              <h3
+                class="text-lg font-headline font-bold text-on-surface tracking-tight"
+              >
+                Cojín de lino belga
+              </h3>
+              <p
+                class="text-xs text-on-surface-variant font-label line-clamp-1"
+              >
+                Lino transpirable en gris ceniza.
+              </p>
+              <div class="flex items-center gap-3 pt-2">
+                <span class="text-primary font-bold font-headline">$85.00</span>
+              </div>
+              <button
+                class="w-full mt-4 py-3 bg-surface-container-highest text-on-surface text-[10px] font-bold uppercase tracking-widest rounded-xl hover:bg-primary-container hover:text-white transition-all duration-300"
+              >
+                Agregar al carrito
+              </button>
+            </div>
+          </div>
+          <div class="group">
+            <div
+              class="relative aspect-square overflow-hidden bg-surface-container-low rounded-xl mb-6"
+            >
+              <img
+                alt="Mesa de centro de nogal con base geométrica"
+                class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuDnVm9t3uf5ioUyifFLvc9o26tKto85uPl90Nl70rQN6dAIVHSyFlpNqQJ1QOrGT8AzcWLv2cUDz3K54DCwmqSYD6lXYcEdO1fX-ChrbHtczpvdy1E3daAVuvoYKrFDElUqUlrF6zdvhC-akvSB1F00ZjrIFKyihpYSYvvBzRcYASLM9V5DJC5XeUMh4gXa5sh4GgRR73QArj0IN32TO3Y1e327GkXPPy53hZ422DADesjiNK8aEM0N0Ju8YsfL0cexoExRKLnVXAvu"
+              />
+            </div>
+            <div class="space-y-1 px-1">
+              <h3
+                class="text-lg font-headline font-bold text-on-surface tracking-tight"
+              >
+                Mesa Vertex de nogal
+              </h3>
+              <p
+                class="text-xs text-on-surface-variant font-label line-clamp-1"
+              >
+                Nogal macizo con base geométrica.
+              </p>
+              <div class="flex items-center gap-3 pt-2">
+                <span class="text-primary font-bold font-headline"
+                  >$1,250.00</span
+                >
+              </div>
+              <button
+                class="w-full mt-4 py-3 bg-surface-container-highest text-on-surface text-[10px] font-bold uppercase tracking-widest rounded-xl hover:bg-primary-container hover:text-white transition-all duration-300"
+              >
+                Agregar al carrito
+              </button>
+            </div>
+          </div>
+          <div class="group">
+            <div
+              class="relative aspect-square overflow-hidden bg-surface-container-low rounded-xl mb-6"
+            >
+              <img
+                alt="Lámpara colgante de acero negro mate"
+                class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuCftn_HUrSYNtglPJewx4nd6-zNhvUrnNUF4HIa1OvCkQ7UDhufUf6AUnIQvM9fCmcE59oIrIW28-CYP1hcDRkmRDj-wccAi2fo9xJrUgeemZTESVMNiZvAAq-UhgzyoqfSSePA2p9HrEK7gM4HS_WucfM-_N9cD_y88HyvFEPHNGZRBn5aqzHNhnazXs17Pi68adLNLhXC0OD9zKP45U2QeG0-IsiCRuo3_s4ZVSyIuUEvKfDnjzody9GjzXGWeCeZuFaIafak0Mfh"
+              />
+              <div class="absolute top-4 left-4">
+                <span
+                  class="bg-primary text-white text-[10px] font-bold tracking-widest uppercase px-3 py-1.5 rounded-full"
+                  >Nuevo</span
+                >
+              </div>
+            </div>
+            <div class="space-y-1 px-1">
+              <h3
+                class="text-lg font-headline font-bold text-on-surface tracking-tight"
+              >
+                Lámpara colgante Void
+              </h3>
+              <p
+                class="text-xs text-on-surface-variant font-label line-clamp-1"
+              >
+                Acero negro mate de estilo industrial.
+              </p>
+              <div class="flex items-center gap-3 pt-2">
+                <span class="text-primary font-bold font-headline"
+                  >$195.00</span
+                >
+              </div>
+              <button
+                class="w-full mt-4 py-3 bg-surface-container-highest text-on-surface text-[10px] font-bold uppercase tracking-widest rounded-xl hover:bg-primary-container hover:text-white transition-all duration-300"
+              >
+                Agregar al carrito
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="mt-24 flex justify-center items-center gap-4">
+          <button
+            class="w-10 h-10 flex items-center justify-center rounded-lg border border-outline-variant text-on-surface-variant hover:border-primary hover:text-primary transition-all"
+          >
+            <span class="material-symbols-outlined text-sm">chevron_left</span>
+          </button>
+          <button
+            class="w-10 h-10 flex items-center justify-center rounded-lg bg-primary text-white text-[10px] font-bold"
+          >
+            1
+          </button>
+          <button
+            class="w-10 h-10 flex items-center justify-center rounded-lg border border-outline-variant text-[10px] font-bold text-on-surface-variant hover:border-primary hover:text-primary transition-all"
+          >
+            2
+          </button>
+          <button
+            class="w-10 h-10 flex items-center justify-center rounded-lg border border-outline-variant text-[10px] font-bold text-on-surface-variant hover:border-primary hover:text-primary transition-all"
+          >
+            3
+          </button>
+          <span class="text-on-surface-variant">...</span>
+          <button
+            class="w-10 h-10 flex items-center justify-center rounded-lg border border-outline-variant text-[10px] font-bold text-on-surface-variant hover:border-primary hover:text-primary transition-all"
+          >
+            10
+          </button>
+          <button
+            class="w-10 h-10 flex items-center justify-center rounded-lg border border-outline-variant text-on-surface-variant hover:border-primary hover:text-primary transition-all"
+          >
+            <span class="material-symbols-outlined text-sm">chevron_right</span>
+          </button>
+        </div>
+      </section>
+    </main>
+    <footer
+      class="w-full flex flex-col md:flex-row justify-between items-center px-8 border-t border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-950 py-16 mt-24"
+    >
+      <div class="flex flex-col gap-4 mb-8 md:mb-0">
+        <div class="flex items-center gap-3">
+          <img
+            alt="NORABYTE"
+            class="h-7 w-auto"
+            src="/Logo-Norabyte.png"
+          />
+          <span
+            class="font-bold text-zinc-900 dark:text-zinc-100 uppercase tracking-tighter text-xl"
+            >CASAMARKET</span
+          >
+        </div>
+        <p
+          class="font-manrope text-xs tracking-normal text-zinc-500 dark:text-zinc-400"
+        >
+          © 2026 CasaMarket. Todos los derechos reservados.
+        </p>
+        <p
+          class="font-manrope text-xs tracking-normal text-zinc-400 dark:text-zinc-500"
+        >
+          Desarrollado por NORABYTE — norabyte.com
+        </p>
+      </div>
+      <div class="flex flex-wrap justify-center gap-8">
+        <a
+          class="font-manrope text-xs tracking-normal text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors"
+          href="#"
+          >Sustentabilidad</a
+        >
+        <a
+          class="font-manrope text-xs tracking-normal text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors"
+          href="#"
+          >Envíos y devoluciones</a
+        >
+        <a
+          class="font-manrope text-xs tracking-normal text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors"
+          href="#"
+          >Contacto</a
+        >
+        <a
+          class="font-manrope text-xs tracking-normal text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors"
+          href="#"
+          >Política de privacidad</a
+        >
+      </div>
+      <div class="flex gap-4 mt-8 md:mt-0">
+        <button
+          class="w-8 h-8 flex items-center justify-center rounded-full bg-surface-container text-on-surface hover:text-primary transition-colors"
+        >
+          <span class="material-symbols-outlined text-sm">share</span>
+        </button>
+        <button
+          class="w-8 h-8 flex items-center justify-center rounded-full bg-surface-container text-on-surface hover:text-primary transition-colors"
+        >
+          <span class="material-symbols-outlined text-sm">language</span>
+        </button>
+      </div>
+    </footer>
+  </body>
+</html>

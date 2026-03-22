@@ -1,0 +1,619 @@
+<!doctype html>
+
+<html class="light" lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>FluxPOS — Sistema Punto de Venta | Desarrollado por NORABYTE</title>
+    <meta name="description" content="FluxPOS es un sistema punto de venta desarrollado por NORABYTE. Gestiona ventas, inventario, clientes y reportes desde una interfaz moderna y eficiente." />
+    <meta name="keywords" content="punto de venta, POS, sistema de ventas, inventario, caja registradora, NORABYTE, Hermosillo, Sonora, software a medida" />
+    <meta name="author" content="NORABYTE" />
+    <meta property="og:title" content="FluxPOS — Sistema Punto de Venta | Desarrollado por NORABYTE" />
+    <meta property="og:description" content="Sistema punto de venta desarrollado por NORABYTE para gestionar ventas, inventario y clientes de manera rápida y profesional." />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="es_MX" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Manrope:wght@400;500;600;700;800&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              error: "#ba1a1a",
+              tertiary: "#7e3000",
+              "on-tertiary": "#ffffff",
+              "on-secondary-fixed": "#0b1c30",
+              "inverse-surface": "#2d3133",
+              "primary-fixed-dim": "#c3c0ff",
+              "surface-bright": "#f7f9fb",
+              "on-error": "#ffffff",
+              "primary-fixed": "#e2dfff",
+              "tertiary-container": "#a44100",
+              "secondary-fixed-dim": "#b7c8e1",
+              "on-primary-fixed": "#0f0069",
+              "on-primary-container": "#dad7ff",
+              "on-primary": "#ffffff",
+              "tertiary-fixed": "#ffdbcc",
+              "inverse-on-surface": "#eff1f3",
+              "surface-container-high": "#e6e8ea",
+              "on-surface": "#191c1e",
+              "secondary-container": "#d0e1fb",
+              "secondary-fixed": "#d3e4fe",
+              "on-primary-fixed-variant": "#3323cc",
+              "on-tertiary-fixed-variant": "#7b2f00",
+              "surface-container-highest": "#e0e3e5",
+              "on-secondary-container": "#54647a",
+              surface: "#f7f9fb",
+              "outline-variant": "#c7c4d8",
+              "on-error-container": "#93000a",
+              "surface-container-lowest": "#ffffff",
+              "tertiary-fixed-dim": "#ffb695",
+              "on-background": "#191c1e",
+              "surface-variant": "#e0e3e5",
+              outline: "#777587",
+              "surface-dim": "#d8dadc",
+              "surface-container-low": "#f2f4f6",
+              "on-tertiary-fixed": "#351000",
+              "primary-container": "#4f46e5",
+              background: "#f7f9fb",
+              primary: "#3525cd",
+              secondary: "#505f76",
+              "on-tertiary-container": "#ffd2be",
+              "on-secondary-fixed-variant": "#38485d",
+              "inverse-primary": "#c3c0ff",
+              "surface-tint": "#4d44e3",
+              "surface-container": "#eceef0",
+              "error-container": "#ffdad6",
+              "on-surface-variant": "#464555",
+              "on-secondary": "#ffffff",
+            },
+            fontFamily: {
+              headline: ["Manrope"],
+              body: ["Manrope"],
+              label: ["Inter"],
+            },
+            borderRadius: {
+              DEFAULT: "0.25rem",
+              lg: "0.5rem",
+              xl: "0.75rem",
+              full: "9999px",
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      .material-symbols-outlined {
+        font-variation-settings:
+          "FILL" 0,
+          "wght" 400,
+          "GRAD" 0,
+          "opsz" 24;
+      }
+      ::-webkit-scrollbar {
+        width: 4px;
+      }
+      ::-webkit-scrollbar-track {
+        background: transparent;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #e0e3e5;
+        border-radius: 10px;
+      }
+      .glass-panel {
+        background: rgba(255, 255, 255, 0.8);
+        backdrop-filter: blur(20px);
+      }
+    </style>
+  </head>
+  <body
+    class="bg-surface font-body text-on-surface flex overflow-hidden h-screen"
+  >
+    <aside
+      class="hidden md:flex flex-col h-full p-4 gap-2 bg-slate-800 dark:bg-slate-950 w-64 border-r border-slate-700 dark:border-slate-800 shrink-0"
+    >
+      <div class="flex items-center gap-3 px-2 py-4 mb-2">
+        <img src="/Logo-Norabyte-white.png" alt="NORABYTE" class="h-6 w-auto" />
+      </div>
+      <div class="flex items-center gap-3 px-2 pb-4 mb-2 border-b border-white/10">
+        <div
+          class="w-10 h-10 bg-primary rounded-lg flex items-center justify-center text-white"
+        >
+          <span class="material-symbols-outlined">point_of_sale</span>
+        </div>
+        <div>
+          <h1
+            class="text-lg font-bold text-white font-headline leading-tight"
+          >
+            FluxPOS
+          </h1>
+          <p
+            class="text-[10px] uppercase tracking-widest text-slate-400 font-label"
+          >
+            Punto de Venta
+          </p>
+        </div>
+      </div>
+      <nav class="flex-1 space-y-1">
+        <a
+          class="flex items-center gap-3 px-4 py-3 bg-white/10 text-white shadow-sm rounded-lg transition-all"
+          href="#"
+        >
+          <span class="material-symbols-outlined">point_of_sale</span>
+          <span class="font-manrope text-sm font-medium">Caja</span>
+        </a>
+        <a
+          class="flex items-center gap-3 px-4 py-3 text-slate-400 hover:bg-white/10 hover:text-white rounded-lg transition-all"
+          href="#"
+        >
+          <span class="material-symbols-outlined">receipt_long</span>
+          <span class="font-manrope text-sm font-medium">Pedidos</span>
+        </a>
+        <a
+          class="flex items-center gap-3 px-4 py-3 text-slate-400 hover:bg-white/10 hover:text-white rounded-lg transition-all"
+          href="#"
+        >
+          <span class="material-symbols-outlined">inventory_2</span>
+          <span class="font-manrope text-sm font-medium">Inventario</span>
+        </a>
+        <a
+          class="flex items-center gap-3 px-4 py-3 text-slate-400 hover:bg-white/10 hover:text-white rounded-lg transition-all"
+          href="#"
+        >
+          <span class="material-symbols-outlined">group</span>
+          <span class="font-manrope text-sm font-medium">Clientes</span>
+        </a>
+        <a
+          class="flex items-center gap-3 px-4 py-3 text-slate-400 hover:bg-white/10 hover:text-white rounded-lg transition-all"
+          href="#"
+        >
+          <span class="material-symbols-outlined">analytics</span>
+          <span class="font-manrope text-sm font-medium">Reportes</span>
+        </a>
+      </nav>
+      <div
+        class="mt-auto pt-4 border-t border-white/10 space-y-1"
+      >
+        <a
+          class="flex items-center gap-3 px-4 py-3 text-slate-400 hover:bg-white/10 hover:text-white rounded-lg transition-all"
+          href="#"
+        >
+          <span class="material-symbols-outlined">settings</span>
+          <span class="font-manrope text-sm font-medium">Configuración</span>
+        </a>
+        <button
+          class="w-full flex items-center gap-3 px-4 py-3 text-red-400 hover:bg-red-500/10 rounded-lg transition-all"
+        >
+          <span class="material-symbols-outlined">logout</span>
+          <span class="font-manrope text-sm font-medium">Cerrar sesión</span>
+        </button>
+        <p class="text-center text-[9px] text-slate-500 pt-2 uppercase tracking-widest">FluxPOS — Desarrollado por NORABYTE</p>
+      </div>
+    </aside>
+    <main class="flex-1 flex flex-col min-w-0">
+      <header
+        class="flex justify-between items-center w-full px-6 py-3 bg-white dark:bg-slate-900 border-b border-slate-100 dark:border-slate-800 shadow-sm shadow-indigo-900/5"
+      >
+        <div class="flex items-center gap-4">
+          <span
+            class="text-xl font-semibold tracking-tighter text-indigo-700 dark:text-indigo-300 font-headline"
+            >Caja</span
+          >
+          <div class="h-4 w-[1px] bg-outline-variant/30"></div>
+          <div
+            class="flex items-center gap-2 text-on-surface-variant font-label text-xs"
+          >
+            <span class="material-symbols-outlined text-sm">schedule</span>
+            <span>10:42 AM • Terminal 04</span>
+          </div>
+        </div>
+        <div class="flex items-center gap-4">
+          <div class="relative hidden sm:block">
+            <input
+              class="bg-surface-container-low border-none rounded-full px-4 py-1.5 text-sm w-64 focus:ring-1 focus:ring-primary/20"
+              placeholder="Buscar en el sistema..."
+              type="text"
+            />
+          </div>
+          <div class="flex items-center gap-2">
+            <button
+              class="p-2 hover:bg-slate-50 rounded-full text-slate-500 transition-colors"
+            >
+              <span class="material-symbols-outlined">notifications</span>
+            </button>
+            <button
+              class="p-2 hover:bg-slate-50 rounded-full text-slate-500 transition-colors"
+            >
+              <span class="material-symbols-outlined">settings</span>
+            </button>
+            <img
+              class="w-8 h-8 rounded-full border-2 border-primary/10 object-cover ml-2"
+              alt="Foto de perfil del operador"
+              src="https://lh3.googleusercontent.com/aida-public/AB6AXuCf9obOGVnNFXc5hGg4AiEwHi6eNMWZwpAOdgv5yrL5_pDLo-VX7j19fWS7kPB-alTe0Ad_GKWZQfLc1tVOq4Oor234bchmtYKwbfTVPN7zrHYCiuuxxYTiwHArKtVfIT_rlNsDv19UWs_xJDc3C2HsBFahx_CpS-wOxNEB1oSqYCAkx9k4DvBw3FnbS_6wYCzqmh0rSQ3Tz8xME-GxE03RPIq4ZVUIi9pU4lnRKLFB5SqBZy7pgKYHD6jwhtww1NhBwlQbehIF-o0"
+            />
+          </div>
+        </div>
+      </header>
+      <div class="flex-1 flex overflow-hidden">
+        <section
+          class="w-3/5 flex flex-col bg-surface p-6 gap-6 overflow-hidden"
+        >
+          <div class="space-y-6">
+            <div class="relative group">
+              <span
+                class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-outline"
+                >search</span
+              >
+              <input
+                class="w-full pl-12 pr-4 py-4 bg-surface-container-lowest border-none rounded-xl shadow-sm font-body text-sm focus:ring-2 focus:ring-primary/10 transition-shadow"
+                placeholder="Buscar productos por nombre, SKU o código..."
+                type="text"
+              />
+            </div>
+            <nav class="flex gap-2 overflow-x-auto pb-2 scrollbar-hide">
+              <button
+                class="px-6 py-2.5 rounded-full bg-primary text-white font-medium text-sm transition-all shadow-md shadow-primary/20 whitespace-nowrap"
+              >
+                Todos
+              </button>
+              <button
+                class="px-6 py-2.5 rounded-full bg-surface-container-lowest text-on-surface-variant hover:bg-white hover:text-primary font-medium text-sm transition-all whitespace-nowrap"
+              >
+                Tops
+              </button>
+              <button
+                class="px-6 py-2.5 rounded-full bg-surface-container-lowest text-on-surface-variant hover:bg-white hover:text-primary font-medium text-sm transition-all whitespace-nowrap"
+              >
+                Pantalones
+              </button>
+              <button
+                class="px-6 py-2.5 rounded-full bg-surface-container-lowest text-on-surface-variant hover:bg-white hover:text-primary font-medium text-sm transition-all whitespace-nowrap"
+              >
+                Accesorios
+              </button>
+              <button
+                class="px-6 py-2.5 rounded-full bg-surface-container-lowest text-on-surface-variant hover:bg-white hover:text-primary font-medium text-sm transition-all whitespace-nowrap"
+              >
+                Calzado
+              </button>
+            </nav>
+          </div>
+          <div class="flex-1 overflow-y-auto pr-2">
+            <div class="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
+              <div
+                class="group bg-surface-container-lowest p-3 rounded-xl transition-all hover:shadow-xl hover:shadow-on-surface/5 cursor-pointer"
+              >
+                <div
+                  class="relative aspect-[4/5] rounded-lg overflow-hidden mb-3 bg-surface-container-low"
+                >
+                  <img
+                    class="w-full h-full object-cover transition-transform group-hover:scale-105"
+                    alt="Camisa Oxford Slim moderna"
+                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuDG4WFRjHmMQ1HhP71KsK-cGiVmEgkv7YX0mn_XPTH88MF-mwEiDUFE3CT9XPv6j9lp7WD0MXhFv-tEyj9ixwD2M23j185GKaKIlQ7I7yoSa2D0r5PQ3OOM5G79Z-kNxa9Jav3rpI4bopCpQM8c6VcMdFBU5dlpG-0g-Q_V2FApJna5LBbYddmT8uMG0TuSPE3xtwQdoMWxu3xFjppt_tweU-6M220Dr1c6WaF8EqwpPsX8Py8197mYNW1Dbdo4yx8anmHp1SiMKn8"
+                  />
+                  <span
+                    class="absolute top-2 right-2 bg-tertiary-container text-on-tertiary-container text-[10px] font-bold px-2 py-0.5 rounded uppercase tracking-wider"
+                    >Nuevo</span
+                  >
+                </div>
+                <h3 class="text-sm font-semibold text-on-surface line-clamp-1">
+                  Camisa Oxford Slim
+                </h3>
+                <p class="text-xs text-on-surface-variant mb-2">
+                  Colección Verano
+                </p>
+                <div class="flex justify-between items-center">
+                  <span class="text-indigo-600 font-bold">$85.00</span>
+                  <button
+                    class="w-8 h-8 rounded-full bg-surface-container-high flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-colors"
+                  >
+                    <span class="material-symbols-outlined text-sm">add</span>
+                  </button>
+                </div>
+              </div>
+              <div
+                class="group bg-surface-container-lowest p-3 rounded-xl transition-all hover:shadow-xl hover:shadow-on-surface/5 cursor-pointer"
+              >
+                <div
+                  class="relative aspect-[4/5] rounded-lg overflow-hidden mb-3 bg-surface-container-low"
+                >
+                  <img
+                    class="w-full h-full object-cover transition-transform group-hover:scale-105"
+                    alt="Pantalón Denim Raw índigo premium"
+                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuDqqPz9UtCDHrfr2zHeNzwn8SPosgmp-WIUqpcX-lZZo_QeOStL5UTX_ZcI-xm1xLnhnCjcheCUbFgez1kELbPQ1clfWZzSJ93uWE3m21lgAYjfopEJsWgjNbHQZX5zQ_ROXqEF8zhke9rEteb2mZlnFvY-XTjiunA2rU3N2-pVJQG_t6JKl4txSQLV50w6zK-kJ84YI1KE2pFzvNX6sMLKaPYmAR9u9083O4zhquuLcGKwH33mbwV17EZG6okqBLZDbEQwSnmqnC0"
+                  />
+                </div>
+                <h3 class="text-sm font-semibold text-on-surface line-clamp-1">
+                  Pantalón Denim Raw
+                </h3>
+                <p class="text-xs text-on-surface-variant mb-2">Esenciales</p>
+                <div class="flex justify-between items-center">
+                  <span class="text-indigo-600 font-bold">$120.00</span>
+                  <button
+                    class="w-8 h-8 rounded-full bg-surface-container-high flex items-center justify-center text-primary transition-colors"
+                  >
+                    <span class="material-symbols-outlined text-sm">add</span>
+                  </button>
+                </div>
+              </div>
+              <div
+                class="group bg-surface-container-lowest p-3 rounded-xl transition-all hover:shadow-xl hover:shadow-on-surface/5 cursor-pointer"
+              >
+                <div
+                  class="relative aspect-[4/5] rounded-lg overflow-hidden mb-3 bg-surface-container-low"
+                >
+                  <img
+                    class="w-full h-full object-cover transition-transform group-hover:scale-105"
+                    alt="T-Shirt Signature clásico negro"
+                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuAxND1op1a-bhsk8cUbtCIWu63su2XGJh8q62Bgo58qZNkQ2HuCmatXEp_coRUFfhnRJjiWfG0z4SY-eQl1Vj12T_holfao9tWG7D50qbE38PBHCWXbhRCNiRfVDoAof2Vt-AXaPpsbvRKuRlUy7FeOj8jJr0Gr0iypZNJfpfRCN0Bqobn-6GvbuxzK2p4-62wXCW8Hx8PVN8KjS-_xE-zPutaX78avy7qQMQXrhhnFqOfEQqbi2-thzZ2B4hYKIdv74q3Reclk3wA"
+                  />
+                  <span
+                    class="absolute top-2 right-2 bg-primary-container text-on-primary-container text-[10px] font-bold px-2 py-0.5 rounded uppercase tracking-wider"
+                    >Limitado</span
+                  >
+                </div>
+                <h3 class="text-sm font-semibold text-on-surface line-clamp-1">
+                  T-Shirt Signature
+                </h3>
+                <p class="text-xs text-on-surface-variant mb-2">
+                  Edición Limitada
+                </p>
+                <div class="flex justify-between items-center">
+                  <span class="text-indigo-600 font-bold">$45.00</span>
+                  <button
+                    class="w-8 h-8 rounded-full bg-surface-container-high flex items-center justify-center text-primary transition-colors"
+                  >
+                    <span class="material-symbols-outlined text-sm">add</span>
+                  </button>
+                </div>
+              </div>
+              <div
+                class="group bg-surface-container-lowest p-3 rounded-xl transition-all hover:shadow-xl hover:shadow-on-surface/5 cursor-pointer"
+              >
+                <div
+                  class="relative aspect-[4/5] rounded-lg overflow-hidden mb-3 bg-surface-container-low"
+                >
+                  <img
+                    class="w-full h-full object-cover transition-transform group-hover:scale-105"
+                    alt="Blazer de lana virgen azul marino"
+                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuDmE71opXLoMDoEHAH8OfBCe4khIT-r9jEGSlBuOb1ETXC-WA6uVrO00p2ILeDD3ZHmgNNKOx9wAWag6m-SUXUfwZw3C7NuFfEC2YCaj6hEZQA5N6x-d91OaAB7l0eDCkhVqvCJn1UF8U_qB9bMrBQdeIgzx4ApaDtfQBZF2T2TCxu8--Ex8CPG-gALOhP6B2xzFVtBZ_R9S_EvrWeXuAu7SIrxutaA5uFEyiopHzlJo-kv0N2Jr-b_-kwUZyX0_aTtWnE5-RVgmIs"
+                  />
+                </div>
+                <h3 class="text-sm font-semibold text-on-surface line-clamp-1">
+                  Blazer Lana Virgen
+                </h3>
+                <p class="text-xs text-on-surface-variant mb-2">Sastrería</p>
+                <div class="flex justify-between items-center">
+                  <span class="text-indigo-600 font-bold">$295.00</span>
+                  <button
+                    class="w-8 h-8 rounded-full bg-surface-container-high flex items-center justify-center text-primary transition-colors"
+                  >
+                    <span class="material-symbols-outlined text-sm">add</span>
+                  </button>
+                </div>
+              </div>
+              <div
+                class="group bg-surface-container-lowest p-3 rounded-xl transition-all hover:shadow-xl hover:shadow-on-surface/5 cursor-pointer"
+              >
+                <div
+                  class="relative aspect-[4/5] rounded-lg overflow-hidden mb-3 bg-surface-container-low"
+                >
+                  <img
+                    class="w-full h-full object-cover transition-transform group-hover:scale-105"
+                    alt="Loafers de cuero artesanales color café"
+                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuBCnuKh91v7WIMZ3dd048CkhxamrjS_l6XhgU2gb2-LO7i95g5DVrHL4T1ldNWMgQwABd6G86sKy2O8x3ciUr63_Xv1ABFbZw22uELqDOc94Iq9zgb-ZxUW_C0IhZjRfXSarA9nVmJhAaF9xUfrZdd1m0I9PfhSQM0P9KC7c1VQjT8jevsHC3yULcvxDknmtjxTu3mN1_8c8lQqvG0QiynwxO5o-TC6ZSNDV91eKy4SI2PSOuyUuEeMIVJIe7Om5PwOI53ucPJfxZ0"
+                  />
+                </div>
+                <h3 class="text-sm font-semibold text-on-surface line-clamp-1">
+                  Loafers Cuero Café
+                </h3>
+                <p class="text-xs text-on-surface-variant mb-2">Accesorios</p>
+                <div class="flex justify-between items-center">
+                  <span class="text-indigo-600 font-bold">$180.00</span>
+                  <button
+                    class="w-8 h-8 rounded-full bg-surface-container-high flex items-center justify-center text-primary transition-colors"
+                  >
+                    <span class="material-symbols-outlined text-sm">add</span>
+                  </button>
+                </div>
+              </div>
+              <div
+                class="group bg-surface-container-lowest p-3 rounded-xl transition-all hover:shadow-xl hover:shadow-on-surface/5 cursor-pointer"
+              >
+                <div
+                  class="relative aspect-[4/5] rounded-lg overflow-hidden mb-3 bg-surface-container-low"
+                >
+                  <img
+                    class="w-full h-full object-cover transition-transform group-hover:scale-105"
+                    alt="Chaqueta biker de cuero clásica"
+                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuCJaeK2yKnmnj5-zG3_TJy60dRRwMhY7t11KhdkBOHKjCpFXQW5rqB3Az-cz_gheEy3xqQwXxx-9mnQscO2UOUxVgfls7O2dqZDsOgBAsd_oobjSUL4Od70v6RgafT2-NqdQshYxFNqwB7EJE7QMHwN8QP0jGxrP5FNbnqxZhp7dVdpbRq9rfFBulU7-2xyfY9w55hbLSVR2dfouAdNhLUZzB8eg2v8nw6pxt4Ek1iIlAs1zhU168Txn_KCsYMmDjHgVOEefEqQqMY"
+                  />
+                </div>
+                <h3 class="text-sm font-semibold text-on-surface line-clamp-1">
+                  Chaqueta Biker
+                </h3>
+                <p class="text-xs text-on-surface-variant mb-2">Outerwear</p>
+                <div class="flex justify-between items-center">
+                  <span class="text-indigo-600 font-bold">$420.00</span>
+                  <button
+                    class="w-8 h-8 rounded-full bg-surface-container-high flex items-center justify-center text-primary transition-colors"
+                  >
+                    <span class="material-symbols-outlined text-sm">add</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section
+          class="w-2/5 bg-surface-container-lowest flex flex-col border-l border-surface-container-highest shadow-2xl shadow-on-surface/10 z-10"
+        >
+          <div class="p-6 border-b border-surface-container-low bg-surface/30">
+            <div class="relative group">
+              <span
+                class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-primary"
+                >person_search</span
+              >
+              <input
+                class="w-full pl-10 pr-4 py-3 bg-white border-b-2 border-primary/20 rounded-t-lg font-headline text-on-surface focus:border-primary transition-all focus:ring-0 text-sm"
+                type="text"
+                value="Julián Casablancas"
+              />
+              <span
+                class="absolute right-3 top-1/2 -translate-y-1/2 text-[10px] bg-secondary-container text-on-secondary-container px-2 py-0.5 rounded-full font-bold"
+                >VIP</span
+              >
+            </div>
+          </div>
+          <div class="flex-1 overflow-y-auto p-6 space-y-4">
+            <div class="flex items-center gap-4">
+              <div
+                class="w-14 h-14 rounded-lg bg-surface-container-low overflow-hidden shrink-0"
+              >
+                <img
+                  class="w-full h-full object-cover"
+                  alt="Miniatura Camisa Oxford"
+                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuC5vAbDXg2zGAsbQ3G-2RNGfKfdfCv2GAqyZVnAwIx9tTEhLoDcDVteIFPZV9y9o0E7OXbHMyyjH8hPcoaI82FWARHUbInrwMmQkkVmlFJq4m2c2f3jGiT-APMnlOwx6yvKSr3GiAne1B9QjuhAWN7QN_k1LDFro5h730wpca1rCHFfWjFGiTtwEPWmrhQyJu8P93C9G8FsPKFV35cPCvioyFW6LdJ_mc-SqNMzkclJmOvwqd99hFIrNKIUMmBMFn1e8JxJ0Foi30c"
+                />
+              </div>
+              <div class="flex-1 min-w-0">
+                <h4 class="text-sm font-semibold text-on-surface">
+                  Camisa Oxford Slim
+                </h4>
+                <p class="text-xs text-on-surface-variant">
+                  Talla: M • SKU: 49202
+                </p>
+              </div>
+              <div class="flex items-center gap-2">
+                <button
+                  class="w-7 h-7 rounded bg-surface-container-low flex items-center justify-center text-on-surface-variant hover:bg-surface-container-high transition-colors"
+                >
+                  <span class="material-symbols-outlined text-xs">remove</span>
+                </button>
+                <span class="text-sm font-bold w-4 text-center">1</span>
+                <button
+                  class="w-7 h-7 rounded bg-surface-container-low flex items-center justify-center text-on-surface-variant hover:bg-surface-container-high transition-colors"
+                >
+                  <span class="material-symbols-outlined text-xs">add</span>
+                </button>
+              </div>
+              <div class="text-sm font-bold text-on-surface">$85.00</div>
+            </div>
+            <div class="flex items-center gap-4">
+              <div
+                class="w-14 h-14 rounded-lg bg-surface-container-low overflow-hidden shrink-0"
+              >
+                <img
+                  class="w-full h-full object-cover"
+                  alt="Miniatura T-Shirt Signature"
+                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuDk8Mmvn9fLTvgaWqZfWxachhbfqLEZ2x1zYI2Q495FKw7GfpzX11PQ3wjezhe1E3csASEznsMTu9CSWcA1v6h-eQ626NEtx7MvAXw_wgjTnmLVQ4bk9H7e-GuUDKN_E6Ih7wEy8ibfiiLLv7bQjNYtUZTOru4mQo4cxrpmuZxXBpdX2GbgTY8aUCYGt1ZbNybX3aoJ4sc21CmeAYRtaBVxiKhmsefsTbsCvpdS-ME1k8Pj0yn8xwoZedKAA9oOYWfHu1cLjRaSq8A"
+                />
+              </div>
+              <div class="flex-1 min-w-0">
+                <h4 class="text-sm font-semibold text-on-surface">
+                  T-Shirt Signature
+                </h4>
+                <p class="text-xs text-on-surface-variant">
+                  Talla: L • SKU: 12044
+                </p>
+              </div>
+              <div class="flex items-center gap-2">
+                <button
+                  class="w-7 h-7 rounded bg-surface-container-low flex items-center justify-center text-on-surface-variant hover:bg-surface-container-high transition-colors"
+                >
+                  <span class="material-symbols-outlined text-xs">remove</span>
+                </button>
+                <span class="text-sm font-bold w-4 text-center">2</span>
+                <button
+                  class="w-7 h-7 rounded bg-surface-container-low flex items-center justify-center text-on-surface-variant hover:bg-surface-container-high transition-colors"
+                >
+                  <span class="material-symbols-outlined text-xs">add</span>
+                </button>
+              </div>
+              <div class="text-sm font-bold text-on-surface">$90.00</div>
+            </div>
+          </div>
+          <div class="p-6 bg-surface-container-low/50 space-y-6">
+            <div class="space-y-2">
+              <div class="flex justify-between text-sm text-on-surface-variant">
+                <span>Subtotal</span>
+                <span>$175.00</span>
+              </div>
+              <div
+                class="flex justify-between text-sm text-tertiary font-medium"
+              >
+                <span>Descuento (VIP 10%)</span>
+                <span>-$17.50</span>
+              </div>
+              <div class="flex justify-between text-sm text-on-surface-variant">
+                <span>Impuestos (16%)</span>
+                <span>$25.20</span>
+              </div>
+              <div class="flex justify-between items-end pt-2">
+                <span class="text-lg font-headline font-bold text-on-surface"
+                  >TOTAL</span
+                >
+                <span
+                  class="text-2xl font-headline font-extrabold text-indigo-700 tracking-tight"
+                  >$182.70</span
+                >
+              </div>
+            </div>
+            <div class="grid grid-cols-3 gap-3">
+              <button
+                class="flex flex-col items-center justify-center gap-2 py-3 rounded-lg border border-emerald-200/30 bg-white hover:bg-emerald-50 transition-colors group"
+              >
+                <span
+                  class="material-symbols-outlined text-emerald-600"
+                  >payments</span
+                >
+                <span
+                  class="text-[10px] font-bold uppercase tracking-wider text-emerald-700"
+                  >Efectivo</span
+                >
+              </button>
+              <button
+                class="flex flex-col items-center justify-center gap-2 py-3 rounded-lg border border-secondary-container/30 bg-white hover:bg-blue-50 transition-colors group"
+              >
+                <span
+                  class="material-symbols-outlined text-blue-600"
+                  >credit_card</span
+                >
+                <span
+                  class="text-[10px] font-bold uppercase tracking-wider text-blue-700"
+                  >Tarjeta</span
+                >
+              </button>
+              <button
+                class="flex flex-col items-center justify-center gap-2 py-3 rounded-lg border border-purple-200 bg-white hover:bg-purple-50 transition-colors group"
+              >
+                <span
+                  class="material-symbols-outlined text-purple-600"
+                  >account_balance_wallet</span
+                >
+                <span
+                  class="text-[10px] font-bold uppercase tracking-wider text-purple-700"
+                  >Billetera</span
+                >
+              </button>
+            </div>
+            <button
+              class="w-full py-4 bg-primary text-white font-headline font-bold rounded-xl shadow-lg shadow-primary/30 active:scale-[0.98] transition-all flex items-center justify-center gap-3"
+            >
+              PROCESAR PAGO
+              <span class="material-symbols-outlined">arrow_forward</span>
+            </button>
+          </div>
+        </section>
+      </div>
+    </main>
+  </body>
+</html>
