@@ -16,7 +16,7 @@ export default function SectionBadge({ children, className }: SectionBadgeProps)
       viewport={{ once: true, margin: "-50px" }}
       transition={{ duration: 0.3, ease: "easeOut" }}
       className={cn(
-        "flex items-center gap-3 text-sm font-bold tracking-[0.2em] uppercase text-[var(--nb-primary)]",
+        "flex items-center gap-3 text-sm font-bold tracking-[0.2em] uppercase text-[var(--nb-primary-light)]",
         className
       )}
     >

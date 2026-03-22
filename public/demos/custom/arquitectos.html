@@ -109,8 +109,8 @@
         background: rgba(26, 31, 46, 0.7);
         border: 1px solid rgba(67, 70, 86, 0.15);
       }
-      .sidebar-gradient {
-        background: linear-gradient(to right, #b7c4ff, #0052ff);
+      .sidebar-active {
+        background: #0052ff;
       }
       .success-glow {
         box-shadow: 0 0 12px rgba(78, 222, 163, 0.2);
@@ -191,9 +191,6 @@
         class="hidden md:flex flex-col p-4 gap-2 bg-[#161b2a] w-64 rounded-2xl shadow-xl fixed left-4 top-20 bottom-12"
       >
         <div class="flex items-center gap-3 mb-4 px-2">
-          <img src="/Logo-Norabyte-white.png" alt="NORABYTE" class="h-6 w-auto opacity-80" />
-        </div>
-        <div class="flex items-center gap-3 mb-4 px-2">
           <div
             class="w-8 h-8 rounded-lg bg-primary-container flex items-center justify-center"
           >
@@ -219,7 +216,7 @@
             <span>Resumen</span>
           </a>
           <a
-            class="flex items-center gap-3 px-3 py-2 bg-gradient-to-r from-[#b7c4ff] to-[#0052ff] text-white rounded-xl shadow-lg shadow-blue-900/20 font-plus-jakarta-sans font-medium text-[13px]"
+            class="flex items-center gap-3 px-3 py-2 bg-[#0052ff] text-white rounded-xl shadow-lg shadow-blue-900/20 font-plus-jakarta-sans font-medium text-[13px]"
             href="#"
           >
             <span class="material-symbols-outlined text-lg">group</span>
@@ -291,7 +288,7 @@
               Directorio de Empleados
             </h1>
             <p class="text-on-surface-variant font-body text-sm">
-              Administrando 1,284 miembros del equipo en 12 regiones globales.
+              1,284 colaboradores activos distribuidos en 12 oficinas.
             </p>
           </div>
           <div class="flex gap-3">
@@ -302,7 +299,7 @@
               Filtrar
             </button>
             <button
-              class="px-6 py-2 bg-gradient-to-br from-primary to-primary-container text-on-primary font-bold text-xs rounded-xl shadow-xl shadow-primary/10 hover:scale-[1.02] transition-transform"
+              class="px-6 py-2 bg-primary-container text-white font-bold text-xs rounded-xl shadow-xl shadow-primary/10 hover:scale-[1.02] transition-transform"
             >
               Agregar Empleado
             </button>

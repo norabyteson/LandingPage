@@ -4,9 +4,6 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import {
-  Globe,
-  ShoppingCart,
-  Settings2,
   CheckCircle,
   ChevronLeft,
   ChevronRight,
@@ -22,12 +19,6 @@ import SectionBadge from "@/components/ui/SectionBadge";
 import AnimatedSection from "@/components/ui/AnimatedSection";
 import DemoViewer from "@/components/ui/DemoViewer";
 import { cn } from "@/lib/utils";
-
-const serviceIcons: Record<string, React.ElementType> = {
-  ecommerce: ShoppingCart,
-  landing:   Globe,
-  custom:    Settings2,
-};
 
 const placeholderImagesSet: Record<string, string[]> = {
   ecommerce: [
@@ -93,14 +84,17 @@ interface ServicesSectionProps {
 
 function InnerCarousel({
   images,
+  fallbacks,
   altPrefix,
   onImageClick,
 }: {
   images: string[];
+  fallbacks: string[];
   altPrefix: string;
   onImageClick: (index: number) => void;
 }) {
   const [[page, direction], setPage] = useState([0, 1]);
+  const [failedIdx, setFailedIdx] = useState<Set<number>>(new Set());
   const activeIndex = ((page % images.length) + images.length) % images.length;
 
   const paginate = (dir: number) =>
@@ -124,13 +118,14 @@ function InnerCarousel({
           className="absolute inset-0 will-change-transform"
         >
           <Image
-            src={images[activeIndex]}
+            src={failedIdx.has(activeIndex) ? fallbacks[activeIndex] : images[activeIndex]}
             alt={`${altPrefix} — Demo ${activeIndex + 1}`}
             fill
             className="object-cover"
             sizes="(max-width: 768px) 100vw, 450px"
             unoptimized
             draggable={false}
+            onError={() => setFailedIdx((prev) => new Set(prev).add(activeIndex))}
           />
         </motion.div>
       </AnimatePresence>
@@ -141,7 +136,7 @@ function InnerCarousel({
         aria-hidden="true"
       >
         <div className="flex flex-col items-center gap-2">
-          <div className="w-12 h-12 rounded-full bg-white/15 backdrop-blur flex items-center justify-center ring-1 ring-white/20">
+          <div className="w-12 h-12 rounded-full bg-white/20 flex items-center justify-center ring-1 ring-white/25">
             <PlayCircle size={22} className="text-white" />
           </div>
           <span className="text-white text-xs font-semibold tracking-wide bg-black/40 px-3 py-1 rounded-full">
@@ -154,14 +149,14 @@ function InnerCarousel({
       <div className="absolute inset-y-0 left-0 right-0 flex items-center justify-between px-2.5 opacity-0 group-hover/carousel:opacity-100 transition-opacity duration-250 z-20 pointer-events-none">
         <button
           onClick={(e) => { e.stopPropagation(); paginate(-1); }}
-          className="w-8 h-8 rounded-full bg-black/55 backdrop-blur flex items-center justify-center text-white border border-white/15 pointer-events-auto hover:bg-black/80 transition-colors cursor-pointer"
+          className="w-8 h-8 rounded-full bg-black/65 flex items-center justify-center text-white border border-white/15 pointer-events-auto hover:bg-black/85 transition-colors cursor-pointer"
           aria-label="Demo anterior"
         >
           <ChevronLeft size={15} />
         </button>
         <button
           onClick={(e) => { e.stopPropagation(); paginate(1); }}
-          className="w-8 h-8 rounded-full bg-black/55 backdrop-blur flex items-center justify-center text-white border border-white/15 pointer-events-auto hover:bg-black/80 transition-colors cursor-pointer"
+          className="w-8 h-8 rounded-full bg-black/65 flex items-center justify-center text-white border border-white/15 pointer-events-auto hover:bg-black/85 transition-colors cursor-pointer"
           aria-label="Demo siguiente"
         >
           <ChevronRight size={15} />
@@ -202,8 +197,8 @@ function ServiceCard({
   index: number;
   onOpenDemo: (serviceId: string, demoIndex: number) => void;
 }) {
-  const Icon = serviceIcons[service.id] ?? Globe;
-  const images = placeholderFallback[service.id] ?? placeholderFallback.ecommerce;
+  const images    = placeholderImagesSet[service.id]  ?? placeholderImagesSet.ecommerce;
+  const fallbacks = placeholderFallback[service.id]   ?? placeholderFallback.ecommerce;
 
   return (
     <motion.article
@@ -215,14 +210,10 @@ function ServiceCard({
     >
       <InnerCarousel
         images={images}
+        fallbacks={fallbacks}
         altPrefix={service.id}
         onImageClick={(i) => onOpenDemo(service.id, i)}
       />
-
-      {/* Floating icon */}
-      <div className="absolute top-4 right-4 z-20 w-10 h-10 rounded-xl bg-[var(--nb-dark)]/80 backdrop-blur-md border border-[var(--nb-light)]/10 flex items-center justify-center opacity-0 translate-y-2 group-hover/card:opacity-100 group-hover/card:translate-y-0 transition-all duration-300 pointer-events-none">
-        <Icon size={18} className="text-[var(--nb-primary-light)]" aria-hidden="true" />
-      </div>
 
       {/* Content */}
       <div className="p-6 md:p-8 flex flex-col gap-5 flex-1 z-10 relative">

@@ -208,7 +208,7 @@ export default function DemoViewer({
                 {demos.map((demo, i) => (
                   <button
                     key={demo.name}
-                    onClick={() => { setIframeLoading(true); setActiveIndex(i); }}
+                    onClick={() => { if (i !== activeIndex) { setIframeLoading(true); setActiveIndex(i); } }}
                     className={cn(
                       "w-full text-left px-3 py-2.5 rounded-xl text-sm transition-all duration-200",
                       i === activeIndex

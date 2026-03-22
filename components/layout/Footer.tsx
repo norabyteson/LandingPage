@@ -85,7 +85,7 @@ export default function Footer({ dict, lang }: FooterProps) {
                 <li key={item.label}>
                   <Link
                     href={`/${lang}${item.href.startsWith('#') ? item.href : item.href}`}
-                    className="text-[var(--nb-light)]/45 hover:text-[var(--nb-primary-light)] text-sm transition-colors duration-200"
+                    className="text-[var(--nb-light)]/60 hover:text-[var(--nb-primary-light)] text-sm transition-colors duration-200"
                   >
                     {item.label}
                   </Link>
@@ -104,7 +104,7 @@ export default function Footer({ dict, lang }: FooterProps) {
                 <li key={item.label}>
                   <Link
                     href={`/${lang}${item.href.startsWith('#') ? item.href : item.href}`}
-                    className="text-[var(--nb-light)]/45 hover:text-[var(--nb-primary-light)] text-sm transition-colors duration-200"
+                    className="text-[var(--nb-light)]/60 hover:text-[var(--nb-primary-light)] text-sm transition-colors duration-200"
                   >
                     {item.label}
                   </Link>
@@ -123,7 +123,7 @@ export default function Footer({ dict, lang }: FooterProps) {
                 <li key={item.label}>
                   <Link
                     href={`/${lang}${item.href.startsWith('#') ? item.href : item.href}`}
-                    className="text-[var(--nb-light)]/45 hover:text-[var(--nb-primary-light)] text-sm transition-colors duration-200"
+                    className="text-[var(--nb-light)]/60 hover:text-[var(--nb-primary-light)] text-sm transition-colors duration-200"
                   >
                     {item.label}
                   </Link>
@@ -134,7 +134,7 @@ export default function Footer({ dict, lang }: FooterProps) {
         </div>
 
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <p className="text-[var(--nb-light)]/30 text-xs">
+          <p className="text-[var(--nb-light)]/50 text-xs">
             {footer.copyright}
           </p>
         </div>
