@@ -1,0 +1,668 @@
+<!doctype html>
+
+<html class="dark" lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>LuxeMode — Tienda de Moda Premium | Ejemplo por NORABYTE</title>
+    <meta name="description" content="LuxeMode es una tienda de moda de lujo con colecciones exclusivas de ropa y accesorios premium. Descubre sastrería de alto nivel y diseños contemporáneos." />
+    <meta name="keywords" content="moda de lujo, ropa premium, colecciones exclusivas, moda femenina, moda masculina, accesorios de lujo, LuxeMode" />
+    <link rel="canonical" href="https://norabyte.com/demos/ecommerce/luxemode" />
+    <meta property="og:title" content="LuxeMode — Tienda de Moda Premium | Ejemplo por NORABYTE" />
+    <meta property="og:description" content="Ropa y accesorios para quienes saben lo que buscan. Colecciones que definen el estándar de elegancia contemporánea." />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="es_MX" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;700&amp;family=Inter:wght@300;400;500;600;700&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "error-container": "#93000a",
+              "on-secondary": "#3d2e13",
+              surface: "#131313",
+              "primary-fixed-dim": "#ecc071",
+              outline: "#9a8f7f",
+              "inverse-on-surface": "#313030",
+              "surface-tint": "#ecc071",
+              primary: "#ecc071",
+              "surface-container-high": "#2a2a2a",
+              "on-secondary-fixed": "#261903",
+              "tertiary-container": "#8ba7da",
+              "surface-variant": "#353534",
+              "surface-container-highest": "#353534",
+              "on-surface": "#e5e2e1",
+              "on-primary-fixed": "#271900",
+              "primary-fixed": "#ffdea8",
+              "on-primary": "#422d00",
+              "surface-container-lowest": "#0e0e0e",
+              "surface-container": "#201f1f",
+              "on-tertiary-fixed": "#001b3d",
+              tertiary: "#abc7fc",
+              "secondary-fixed": "#f8dfb8",
+              "on-primary-fixed-variant": "#5e4200",
+              secondary: "#dbc39e",
+              "on-secondary-container": "#ccb591",
+              "on-tertiary": "#0e305c",
+              "on-error-container": "#ffdad6",
+              "outline-variant": "#4e4638",
+              "surface-container-low": "#1c1b1b",
+              "on-tertiary-fixed-variant": "#2a4774",
+              "inverse-primary": "#7a5913",
+              "secondary-container": "#57472a",
+              "on-error": "#690005",
+              "secondary-fixed-dim": "#dbc39e",
+              "on-background": "#e5e2e1",
+              "on-primary-container": "#503700",
+              "surface-dim": "#131313",
+              "on-tertiary-container": "#1d3c68",
+              "surface-bright": "#393939",
+              "tertiary-fixed": "#d6e3ff",
+              background: "#131313",
+              "tertiary-fixed-dim": "#abc7fc",
+              "primary-container": "#c9a055",
+              error: "#ffb4ab",
+            },
+            fontFamily: {
+              headline: ["Noto Serif"],
+              body: ["Inter"],
+              label: ["Inter"],
+            },
+            borderRadius: {
+              DEFAULT: "0px",
+              lg: "0px",
+              xl: "0px",
+              full: "9999px",
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      .material-symbols-outlined {
+        font-variation-settings:
+          "FILL" 0,
+          "wght" 300,
+          "GRAD" 0,
+          "opsz" 24;
+      }
+      .glass-nav {
+        background: rgba(19, 19, 19, 0.7);
+        backdrop-filter: blur(20px);
+      }
+    </style>
+  </head>
+  <body
+    class="bg-surface text-on-surface font-body selection:bg-primary selection:text-on-primary"
+  >
+    <nav
+      class="fixed top-5 left-1/2 -translate-x-1/2 w-[95%] z-50 rounded-none bg-neutral-950/70 backdrop-blur-xl shadow-[0_4px_40px_rgba(0,0,0,0.4)] flex justify-between items-center px-10 py-4 max-w-screen-2xl mx-auto"
+    >
+      <a class="flex items-center" href="#inicio">
+        <span class="font-headline text-primary text-xl tracking-tight">LuxeMode</span>
+      </a>
+      <div class="hidden md:flex items-center space-x-12">
+        <a
+          class="text-neutral-400 hover:text-white transition-colors text-[10px] uppercase tracking-[0.2em] font-label"
+          href="#colecciones"
+          >MUJER</a
+        >
+        <a
+          class="text-neutral-400 hover:text-white transition-colors text-[10px] uppercase tracking-[0.2em] font-label"
+          href="#colecciones"
+          >HOMBRE</a
+        >
+        <a
+          class="text-[#ecc071] border-b border-[#ecc071] pb-1 text-[10px] uppercase tracking-[0.2em] font-label"
+          href="#novedades"
+          >NOVEDADES</a
+        >
+        <a
+          class="text-neutral-400 hover:text-white transition-colors text-[10px] uppercase tracking-[0.2em] font-label"
+          href="#colecciones"
+          >OFERTAS</a
+        >
+      </div>
+      <div class="flex items-center space-x-6 text-[#ecc071]">
+        <button class="hover:scale-95 duration-200 ease-in-out">
+          <span class="material-symbols-outlined"
+            >search</span
+          >
+        </button>
+        <button class="hover:scale-95 duration-200 ease-in-out">
+          <span class="material-symbols-outlined"
+            >favorite</span
+          >
+        </button>
+        <button class="hover:scale-95 duration-200 ease-in-out relative">
+          <span class="material-symbols-outlined"
+            >shopping_bag</span
+          >
+          <span
+            class="absolute -top-1 -right-1 bg-error text-[8px] text-on-error w-3 h-3 flex items-center justify-center rounded-full font-bold"
+            >2</span
+          >
+        </button>
+      </div>
+    </nav>
+    <section class="relative h-screen w-full overflow-hidden" id="inicio">
+      <div class="absolute inset-0 bg-black/40 z-10"></div>
+      <img
+        alt="Fondo editorial de moda de lujo"
+        class="absolute inset-0 w-full h-full object-cover"
+        src="https://lh3.googleusercontent.com/aida-public/AB6AXuDOF2YBJkraMMWxoBhqHrizfkZIovwoSmOH20Gf2mq4WMLd6Gg6DeZH84HFfJlvKfV3OLjvbTynwFLZ7M16Kv2trKHF0htH7_5mve-7rbhKsf8bEepS9JchgqfICSWvK3qhkiY4RXAijrsHQButr5S-QUmAr_HUHEWp704JtQeOrB723zY3p3FVpABnkkmZHTijpqi5I1De7SYL4pfWsSMS8o-vFguodUTAut8yn5e0xvUAV_jEv9eQvhH0OLkr_Rqe7mr4ywI8njY-"
+      />
+      <div
+        class="relative z-20 h-full flex flex-col items-center justify-center text-center px-6"
+      >
+        <span
+          class="font-label text-primary text-[12px] tracking-[0.4em] uppercase mb-6"
+          >Otoño Invierno 2026</span
+        >
+        <h1
+          class="font-headline text-5xl md:text-8xl font-bold text-white tracking-tight mb-10 max-w-4xl"
+        >
+          Nueva temporada, <br />
+          <span class="italic font-normal">Nuevo estilo</span>
+        </h1>
+        <button
+          class="bg-primary px-12 py-5 text-on-primary font-label text-[11px] tracking-[0.2em] uppercase font-bold hover:opacity-90 transition-all"
+        >
+          Comprar colección
+        </button>
+      </div>
+      <div
+        class="absolute bottom-10 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-4"
+      >
+        <span
+          class="font-label text-[10px] tracking-widest uppercase text-on-surface-variant"
+          >Desliza</span
+        >
+        <div class="w-[1px] h-12 bg-primary/30 relative overflow-hidden">
+          <div class="absolute top-0 left-0 w-full h-1/2 bg-primary"></div>
+        </div>
+      </div>
+    </section>
+    <section
+      class="bg-surface py-32 px-6 md:px-20 max-w-screen-2xl mx-auto"
+      id="colecciones"
+    >
+      <div
+        id="novedades"
+        class="flex flex-col md:flex-row justify-between items-end mb-20 gap-8"
+      >
+        <div class="max-w-xl">
+          <h2 class="font-headline text-4xl md:text-5xl text-white mb-6">
+            Esenciales seleccionados
+          </h2>
+          <p class="text-on-surface-variant leading-relaxed font-light">
+            Ropa y accesorios para quienes saben lo que buscan. Nuestra nueva
+            selección define el estándar de elegancia contemporánea.
+          </p>
+        </div>
+        <a
+          class="font-label text-primary text-[11px] tracking-widest uppercase border-b border-primary/30 pb-2 hover:border-primary transition-all"
+          href="#colecciones"
+          >Ver todos los ingresos</a
+        >
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div class="group cursor-pointer">
+          <div
+            class="relative aspect-[3/4] overflow-hidden bg-surface-container-lowest mb-6"
+          >
+            <img
+              alt="Abrigo de lana esculpido"
+              class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+              src="https://lh3.googleusercontent.com/aida-public/AB6AXuB_aWiLMWWNV7SZ6psxHQh09eunXOAurklYFhn-PPh6--kJUhLEZ_raGBOg-V5uJRxfVt6sk0PzthiXmD8EmHShOk6aBg3k6_NZmc7MpbnBe9TdbvrxSgE80S5rMJ7y4qVYsfoR_XSCqSYetuU5PbNYWA1w1wcp5vWNLqsAx8RdUlAhsKlYkNQYsgl_vslhmMtNEEarm-gPms423puFU15yQsOVzLKGbHrrxfPPwHvg6smAAaLFM5UhG1iBjBj-diGpN1iXphurqXaD"
+            />
+            <div
+              class="absolute inset-0 bg-primary-container/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+            ></div>
+            <button
+              class="absolute bottom-0 left-0 w-full glass-nav py-4 translate-y-full group-hover:translate-y-0 transition-transform duration-300 text-white font-label text-[10px] tracking-widest uppercase"
+            >
+              Agregar rápido
+            </button>
+          </div>
+          <div class="space-y-2">
+            <p
+              class="font-label text-[10px] text-primary tracking-[0.2em] uppercase"
+            >
+              LuxeMode
+            </p>
+            <div class="flex justify-between items-start">
+              <h3 class="font-headline text-lg text-white">
+                Abrigo de lana esculpido
+              </h3>
+              <span class="text-on-surface font-light">$1,250</span>
+            </div>
+            <div class="flex items-center text-primary-fixed-dim">
+              <span
+                class="material-symbols-outlined text-sm"
+                style="font-variation-settings: &quot;FILL&quot; 1"
+                >star</span
+              >
+              <span
+                class="material-symbols-outlined text-sm"
+                style="font-variation-settings: &quot;FILL&quot; 1"
+                >star</span
+              >
+              <span
+                class="material-symbols-outlined text-sm"
+                style="font-variation-settings: &quot;FILL&quot; 1"
+                >star</span
+              >
+              <span
+                class="material-symbols-outlined text-sm"
+                style="font-variation-settings: &quot;FILL&quot; 1"
+                >star</span
+              >
+              <span
+                class="material-symbols-outlined text-sm"
+                style="font-variation-settings: &quot;FILL&quot; 1"
+                >star</span
+              >
+            </div>
+          </div>
+        </div>
+        <div class="group cursor-pointer">
+          <div
+            class="relative aspect-[3/4] overflow-hidden bg-surface-container-lowest mb-6"
+          >
+            <img
+              alt="Vestido de noche de seda"
+              class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+              src="https://lh3.googleusercontent.com/aida-public/AB6AXuDdX0GKuZswHmiHwD9HtF1MUD6hDaos8imEZtVR5bYX_bRKHWfiE-rz7x_OZOvuIchpR4UTU4tR2Cq94JTuhALqISckKykWYJCknZwSyVM3FhaHDJi9PM6IV1We_tP9ouC_UyyqsYLQUUa39mAUhnx1mg6E0UuOGO6wo8RcRLY4sbUOXhkxmj7TkQonTPLoxQuiMlIMIjPwyaYrcfoeAA8rfXs32199dHTLY3qPWwDDiMjh3CENY3yYLUWRfUO9eNDEq7rjWdjrUZ48"
+            />
+            <div
+              class="absolute inset-0 bg-primary-container/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+            ></div>
+            <button
+              class="absolute bottom-0 left-0 w-full glass-nav py-4 translate-y-full group-hover:translate-y-0 transition-transform duration-300 text-white font-label text-[10px] tracking-widest uppercase"
+            >
+              Agregar rápido
+            </button>
+          </div>
+          <div class="space-y-2">
+            <p
+              class="font-label text-[10px] text-primary tracking-[0.2em] uppercase"
+            >
+              LuxeMode
+            </p>
+            <div class="flex justify-between items-start">
+              <h3 class="font-headline text-lg text-white">
+                Vestido de noche de seda
+              </h3>
+              <span class="text-on-surface font-light">$890</span>
+            </div>
+            <div class="flex items-center text-primary-fixed-dim">
+              <span
+                class="material-symbols-outlined text-sm"
+                style="font-variation-settings: &quot;FILL&quot; 1"
+                >star</span
+              >
+              <span
+                class="material-symbols-outlined text-sm"
+                style="font-variation-settings: &quot;FILL&quot; 1"
+                >star</span
+              >
+              <span
+                class="material-symbols-outlined text-sm"
+                style="font-variation-settings: &quot;FILL&quot; 1"
+                >star</span
+              >
+              <span
+                class="material-symbols-outlined text-sm"
+                style="font-variation-settings: &quot;FILL&quot; 1"
+                >star</span
+              >
+              <span class="material-symbols-outlined text-sm">star</span>
+            </div>
+          </div>
+        </div>
+        <div class="group cursor-pointer">
+          <div
+            class="relative aspect-[3/4] overflow-hidden bg-surface-container-lowest mb-6"
+          >
+            <img
+              alt="Tejido de cachemira"
+              class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+              src="https://lh3.googleusercontent.com/aida-public/AB6AXuAU_w8OZbPsQWNxJ8ooaUcgn41NH8H0Eh8xXzpctRzUBFwGqvnnbeSk8jOKeNOhCefKZKiM03AqQB6RT_z935nt_QAP5kHyBwqEtVYurDH7BiTgx4np5s9gTG2quayiqdJbD86ZXMdvuIB6vhUP2ymfoUbYkwUeqWENdexOV-8ZgrhEYD-BgS1rYB37lKiowA99e9X3aeNCAiO4WbsxFQKi-LC0n3Tsl2zm_k2a6FFQnZolPg-U9mgpuIMGAkFRejMFdE1O9E7fI1cO"
+            />
+            <div
+              class="absolute inset-0 bg-primary-container/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+            ></div>
+            <button
+              class="absolute bottom-0 left-0 w-full glass-nav py-4 translate-y-full group-hover:translate-y-0 transition-transform duration-300 text-white font-label text-[10px] tracking-widest uppercase"
+            >
+              Agregar rápido
+            </button>
+          </div>
+          <div class="space-y-2">
+            <p
+              class="font-label text-[10px] text-primary tracking-[0.2em] uppercase"
+            >
+              LuxeMode
+            </p>
+            <div class="flex justify-between items-start">
+              <h3 class="font-headline text-lg text-white">Tejido de cachemira</h3>
+              <span class="text-on-surface font-light">$420</span>
+            </div>
+            <div class="flex items-center text-primary-fixed-dim">
+              <span
+                class="material-symbols-outlined text-sm"
+                style="font-variation-settings: &quot;FILL&quot; 1"
+                >star</span
+              >
+              <span
+                class="material-symbols-outlined text-sm"
+                style="font-variation-settings: &quot;FILL&quot; 1"
+                >star</span
+              >
+              <span
+                class="material-symbols-outlined text-sm"
+                style="font-variation-settings: &quot;FILL&quot; 1"
+                >star</span
+              >
+              <span
+                class="material-symbols-outlined text-sm"
+                style="font-variation-settings: &quot;FILL&quot; 1"
+                >star</span
+              >
+              <span
+                class="material-symbols-outlined text-sm"
+                style="font-variation-settings: &quot;FILL&quot; 1"
+                >star</span
+              >
+            </div>
+          </div>
+        </div>
+        <div class="group cursor-pointer">
+          <div
+            class="relative aspect-[3/4] overflow-hidden bg-surface-container-lowest mb-6"
+          >
+            <img
+              alt="Sandalia de tacón"
+              class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+              src="https://lh3.googleusercontent.com/aida-public/AB6AXuDix_flbwdsCvJrq9z1_nnF-IorrvpvoYswCWphtlZBrN2HBMWCYTC6Lma2OXFEL6TT3VzxX30HiU2ApYNCmpnT07LgkqLfwWRTv1F5NIbffyF_zVFbBJwPisymG6fApiq8t_0n_IJAzEeFVk0VBh_zVh5KU2RSuMno8Ch_tE2SgK0XnE4KlP_6xfAavOYOhavUD8v5EcEthi_3yB5JBclMbES9LZhsVp67ctKQft3aqtBHHS1zJoz9PCwcUvmBmbzlOJH43HTKKtLp"
+            />
+            <div
+              class="absolute inset-0 bg-primary-container/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+            ></div>
+            <button
+              class="absolute bottom-0 left-0 w-full glass-nav py-4 translate-y-full group-hover:translate-y-0 transition-transform duration-300 text-white font-label text-[10px] tracking-widest uppercase"
+            >
+              Agregar rápido
+            </button>
+          </div>
+          <div class="space-y-2">
+            <p
+              class="font-label text-[10px] text-primary tracking-[0.2em] uppercase"
+            >
+              LuxeMode
+            </p>
+            <div class="flex justify-between items-start">
+              <h3 class="font-headline text-lg text-white">
+                Sandalia de cuero con tacón
+              </h3>
+              <span class="text-on-surface font-light">$580</span>
+            </div>
+            <div class="flex items-center text-primary-fixed-dim">
+              <span
+                class="material-symbols-outlined text-sm"
+                style="font-variation-settings: &quot;FILL&quot; 1"
+                >star</span
+              >
+              <span
+                class="material-symbols-outlined text-sm"
+                style="font-variation-settings: &quot;FILL&quot; 1"
+                >star</span
+              >
+              <span
+                class="material-symbols-outlined text-sm"
+                style="font-variation-settings: &quot;FILL&quot; 1"
+                >star</span
+              >
+              <span
+                class="material-symbols-outlined text-sm"
+                style="font-variation-settings: &quot;FILL&quot; 1"
+                >star</span
+              >
+              <span class="material-symbols-outlined text-sm">star_half</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="bg-surface-container-low py-32" id="nosotros">
+      <div
+        class="max-w-screen-2xl mx-auto px-6 md:px-20 grid grid-cols-1 md:grid-cols-12 gap-10 items-stretch"
+      >
+        <div class="md:col-span-7 relative h-[600px] overflow-hidden">
+          <img
+            alt="Sastrería"
+            class="w-full h-full object-cover"
+            src="https://lh3.googleusercontent.com/aida-public/AB6AXuCQrTvTzF6Yb8cQnkEq-BZSDd4jE71a8kixDlcc1Gjl01QSrNkSDV5Ja-Zv0qqL6QWHHwAM2AA3W2krafpprBJ_L7YY5_zfSSEApno5sm8pOS133vn7z21jK8KSAq41DKGwwwEzfRZM_JagRvfkbqNNzelFJbclRN0ChlShpWOdZi9GhZ2HFE3fHgNxoIFJ4ove9etklrfSSVgVCQVx77MHcSG1qPR5crzMuXb87RbGoQxgNatLk4tlMrQR-7sdH7hM3GUFaDp7xOEw"
+          />
+          <div
+            class="absolute inset-0 bg-black/50 flex flex-col justify-end p-12"
+          >
+            <span
+              class="font-label text-primary text-[10px] tracking-[0.3em] uppercase mb-4"
+              >El oficio</span
+            >
+            <h3 class="font-headline text-4xl text-white mb-6">
+              Calidad sin concesiones
+            </h3>
+            <p class="text-on-surface-variant max-w-md font-light">
+              Cada puntada cuenta una historia de herencia y precisión. Descubre
+              nuestro proceso de sastrería a medida.
+            </p>
+          </div>
+        </div>
+        <div class="md:col-span-5 flex flex-col gap-10">
+          <div
+            class="flex-1 bg-surface-container-high p-12 flex flex-col justify-center items-start"
+          >
+            <h4 class="font-headline text-2xl text-white mb-4" id="sostenibilidad">
+              Informe de sostenibilidad
+            </h4>
+            <p
+              class="text-on-surface-variant mb-8 font-light text-sm leading-relaxed"
+            >
+              Nuestro compromiso con el planeta es tan fuerte como nuestro
+              compromiso con el estilo. Conoce nuestras iniciativas 2026.
+            </p>
+            <a
+              class="font-label text-primary text-[10px] tracking-[0.2em] uppercase border-b border-primary/30 pb-1 hover:border-primary transition-all"
+              href="#sostenibilidad"
+              >Leer más</a
+            >
+          </div>
+          <div
+            class="flex-1 bg-surface-container-highest relative overflow-hidden group"
+          >
+            <img
+              alt="Frente de tienda"
+              class="w-full h-full object-cover grayscale opacity-50 group-hover:scale-110 transition-transform duration-1000"
+              src="https://lh3.googleusercontent.com/aida-public/AB6AXuBgaFiINwG44D4CJVoMNwW1zWzr7Zzf7_sfDBxmEILIyiIACKf2Ha0nhXZHgeEK3KVT7qbOoCG-tsP15EoSfklRmG6N8RJ8iQgOJDr3WGbqFKXDqs1PyLiqmNBYscUpXCiKRoV4UUWu-sbT97ZV1AV1EirgG2LJmUP2EHRvS81YoM4DngYxjy9InH589XGGP_2HVYv1uIe6tzcqUWU7tPAtw9iHQHXwnldQ1q6UfDWo9NtjgqZ8Z4Hxcj8bbnBZPtxDnDg90w9jYvVn"
+            />
+            <div
+              class="absolute inset-0 flex flex-col items-center justify-center text-center p-8"
+            >
+              <h4 class="font-headline text-2xl text-white mb-4">
+                Visita el atelier
+              </h4>
+              <p class="text-white/70 text-xs tracking-widest uppercase">
+                Ciudad de México &bull; Madrid &bull; Miami
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <footer class="bg-neutral-900" id="contacto">
+      <div
+        class="flex flex-col md:flex-row justify-between items-start px-10 md:px-20 py-24 w-full max-w-screen-2xl mx-auto gap-16"
+      >
+        <div class="space-y-8">
+          <a class="inline-flex items-center" href="#inicio">
+            <span class="font-headline text-primary text-xl tracking-tight">LuxeMode</span>
+          </a>
+          <p class="text-neutral-500 max-w-xs text-xs leading-loose font-light">
+            Moda contemporánea con sastrería de calidad.
+          </p>
+          <div class="flex space-x-6 text-[#c9a055]">
+            <a class="hover:text-[#ecc071] transition-colors" href="#contacto"
+              ><span class="material-symbols-outlined"
+                >public</span
+              ></a
+            >
+            <a class="hover:text-[#ecc071] transition-colors" href="#contacto"
+              ><span class="material-symbols-outlined"
+                >camera_alt</span
+              ></a
+            >
+            <a class="hover:text-[#ecc071] transition-colors" href="#contacto"
+              ><span class="material-symbols-outlined"
+                >art_track</span
+              ></a
+            >
+          </div>
+        </div>
+        <div class="grid grid-cols-2 md:grid-cols-3 gap-12 w-full md:w-auto">
+          <div class="space-y-6">
+            <h5
+              class="font-label text-[11px] tracking-widest uppercase text-white font-bold"
+            >
+              COLECCIONES
+            </h5>
+            <ul
+              class="space-y-4 text-[11px] tracking-widest uppercase font-label"
+            >
+              <li>
+                <a
+                  class="text-neutral-500 hover:text-[#ecc071] transition-colors"
+                  href="#colecciones"
+                  >Mujer</a
+                >
+              </li>
+              <li>
+                <a
+                  class="text-neutral-500 hover:text-[#ecc071] transition-colors"
+                  href="#colecciones"
+                  >Hombre</a
+                >
+              </li>
+              <li>
+                <a
+                  class="text-neutral-500 hover:text-[#ecc071] transition-colors"
+                  href="#colecciones"
+                  >Accesorios</a
+                >
+              </li>
+              <li>
+                <a
+                  class="text-neutral-500 hover:text-[#ecc071] transition-colors"
+                  href="#colecciones"
+                  >Edición limitada</a
+                >
+              </li>
+            </ul>
+          </div>
+          <div class="space-y-6">
+            <h5
+              class="font-label text-[11px] tracking-widest uppercase text-white font-bold"
+            >
+              AYUDA
+            </h5>
+            <ul
+              class="space-y-4 text-[11px] tracking-widest uppercase font-label"
+            >
+              <li>
+                <a
+                  class="text-neutral-500 hover:text-[#ecc071] transition-colors"
+                  href="#contacto"
+                  >ENVÍOS Y DEVOLUCIONES</a
+                >
+              </li>
+              <li>
+                <a
+                  class="text-neutral-500 hover:text-[#ecc071] transition-colors"
+                  href="#contacto"
+                  >CONTACTO</a
+                >
+              </li>
+              <li>
+                <a
+                  class="text-neutral-500 hover:text-[#ecc071] transition-colors"
+                  href="#contacto"
+                  >PREGUNTAS FRECUENTES</a
+                >
+              </li>
+              <li>
+                <a
+                  class="text-neutral-500 hover:text-[#ecc071] transition-colors"
+                  href="#contacto"
+                  >GUÍA DE TALLAS</a
+                >
+              </li>
+            </ul>
+          </div>
+          <div class="space-y-6 col-span-2 md:col-span-1">
+            <h5
+              class="font-label text-[11px] tracking-widests uppercase text-white font-bold"
+            >
+              BOLETÍN
+            </h5>
+            <div class="relative w-full max-w-xs">
+              <input
+                class="w-full bg-transparent border-b border-neutral-800 py-3 text-[10px] tracking-widest uppercase focus:outline-none focus:border-primary text-white"
+                placeholder="INGRESA TU CORREO"
+                type="email"
+              />
+              <button class="absolute right-0 bottom-3 text-primary">
+                <span class="material-symbols-outlined text-sm"
+                  >arrow_forward</span
+                >
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        class="border-t border-neutral-800 px-10 md:px-20 py-10 flex flex-col md:flex-row justify-between items-center gap-6"
+      >
+        <div
+          class="text-[11px] tracking-widest uppercase font-label text-neutral-500"
+        >
+          © 2026 LuxeMode. Todos los derechos reservados. Desarrollado por NORABYTE — norabyte.com
+        </div>
+        <div
+          class="flex space-x-8 text-[11px] tracking-widest uppercase font-label"
+        >
+          <a
+            class="text-neutral-500 hover:text-[#ecc071] transition-colors"
+            href="#contacto"
+            >POLÍTICA DE PRIVACIDAD</a
+          >
+          <a
+            class="text-neutral-500 hover:text-[#ecc071] transition-colors"
+            href="#contacto"
+            >TÉRMINOS DEL SERVICIO</a
+          >
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

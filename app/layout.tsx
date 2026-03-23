@@ -75,8 +75,6 @@ export default function RootLayout({
         <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
         {/* Script bloqueante — asigna lang según pathname antes del primer paint */}
         <script dangerouslySetInnerHTML={{ __html: langInitScript }} />
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
       </head>
       <body className="antialiased" suppressHydrationWarning>
         <ThemeProvider>

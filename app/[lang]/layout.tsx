@@ -4,6 +4,7 @@ import type { Locale } from "@/types/i18n";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import LangUpdater from "@/components/layout/LangUpdater";
+import SmoothScroll from "@/components/ui/SmoothScroll";
 
 interface LangLayoutProps {
   children: React.ReactNode;
@@ -118,6 +119,7 @@ export default async function LangLayout({ children, params }: LangLayoutProps) 
     <>
       {/* Actualiza el atributo lang del <html> en el cliente */}
       <LangUpdater lang={locale} />
+      <SmoothScroll />
 
       {/* JSON-LD Schema — SEO estructurado */}
       <script

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
@@ -142,6 +142,18 @@ export default function ContactSection({ dict }: ContactSectionProps) {
 
   const selectedService = watch("service");
   const [dropdownOpen, setDropdownOpen] = useState(false);
+
+  useEffect(() => {
+    const handler = (e: Event) => {
+      const service = (e as CustomEvent<{ service: string }>).detail?.service;
+      if (service) {
+        setValue("service", service, { shouldValidate: true });
+        setDropdownOpen(false);
+      }
+    };
+    window.addEventListener("norabyte:prefill-service", handler);
+    return () => window.removeEventListener("norabyte:prefill-service", handler);
+  }, [setValue]);
 
   const onSubmit = async (data: FormValues) => {
     setStatus("submitting");

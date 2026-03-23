@@ -8,6 +8,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, Sun, Moon } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useTheme } from "@/lib/theme";
+import { smoothScrollTo } from "@/lib/smooth-scroll";
 import type { Locale } from "@/types/i18n";
 
 interface NavbarProps {
@@ -55,35 +56,14 @@ export default function Navbar({ dict, lang }: NavbarProps) {
     return () => window.removeEventListener("scroll", handleScroll);
   }, [handleScroll]);
 
-  // Manejador estricto de scroll suave para Links (Evita clicks vacíos mientras se hace scroll)
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, targetId: string, href: string) => {
     e.preventDefault();
     setIsMenuOpen(false);
     const element = document.getElementById(targetId);
     if (element) {
-      // 1. Eliminar momentum scroll inmediatamente
-      document.documentElement.style.scrollBehavior = 'auto';
-      window.scrollTo(window.scrollX, window.scrollY);
-      
-      // 2. Restaurar y hacer scroll suave forzado al elemento
-      setTimeout(() => {
-        document.documentElement.style.scrollBehavior = 'smooth';
-        
-        // Calcular la posición exacta restando el padding de la navbar
-        const headerOffset = 96; // 6rem para cuadrar con globals.css scroll-padding-top
-        const elementPosition = element.getBoundingClientRect().top;
-        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-  
-        window.scrollTo({
-           top: offsetPosition,
-           behavior: "smooth"
-        });
-      }, 10);
-
-      // Actualizar URL sin recargar para mantener compatibilidad
+      smoothScrollTo(element, 370);
       window.history.pushState(null, "", href);
     } else if (pathname !== `/${lang}`) {
-      // Si estamos en otra página que no es el home, forzar navegación normal
       window.location.href = href;
     }
   };
@@ -143,7 +123,11 @@ export default function Navbar({ dict, lang }: NavbarProps) {
           {/* Logo */}
           <Link
             href={`/${lang}`}
-            onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+            onClick={() => {
+              const lenis = (window as typeof window & { __lenis?: { scrollTo(t: number): void } }).__lenis;
+              if (lenis) lenis.scrollTo(0);
+              else window.scrollTo({ top: 0, behavior: "smooth" });
+            }}
             className="flex items-center group"
             aria-label="NORABYTE - Inicio"
           >
