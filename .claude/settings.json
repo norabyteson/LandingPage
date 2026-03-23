@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npx tsc:*)",
+      "Bash(node -e \"import\\(''puppeteer''\\).then\\(m => console.log\\(''ok:'', m.default ? ''default export ok'' : ''no default''\\)\\).catch\\(e => console.error\\(''fail:'', e.message\\)\\)\")",
+      "Bash(npx puppeteer:*)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:3000/demos/ecommerce/luxemode.html)",
+      "Bash(npm run:*)"
+    ]
+  }
+}

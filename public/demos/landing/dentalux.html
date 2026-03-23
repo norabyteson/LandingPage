@@ -1,0 +1,903 @@
+<!doctype html>
+
+<html class="scroll-smooth" lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>DentaLux — Clínica Dental Profesional | Ejemplo por NORABYTE</title>
+    <meta name="description" content="DentaLux, clínica dental de alta gama en Hermosillo, Sonora. Ortodoncia invisible, implantes dentales, blanqueamiento y más. Tecnología de vanguardia para la sonrisa perfecta." />
+    <meta name="keywords" content="clínica dental, dentista, ortodoncia, implantes dentales, blanqueamiento, DentaLux, Hermosillo, Sonora, México" />
+    <meta property="og:title" content="DentaLux — Clínica Dental Profesional | Ejemplo por NORABYTE" />
+    <meta property="og:description" content="Transforma tu sonrisa con tecnología de vanguardia. DentaLux ofrece atención odontológica de alta gama con especialistas certificados." />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="es_MX" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Inter:wght@300;400;500;600&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary-fixed-dim": "#94ccff",
+              "tertiary-container": "#4770be",
+              background: "#f7f9fb",
+              "inverse-primary": "#94ccff",
+              "surface-container-low": "#f2f4f6",
+              "on-primary-fixed": "#001d32",
+              tertiary: "#2b57a4",
+              "inverse-surface": "#2d3133",
+              "on-secondary-fixed-variant": "#004f59",
+              "primary-container": "#0077b6",
+              "surface-container": "#eceef0",
+              "on-primary-fixed-variant": "#004b74",
+              "on-tertiary-fixed": "#001a42",
+              "tertiary-fixed": "#d8e2ff",
+              "surface-container-highest": "#e0e3e5",
+              "error-container": "#ffdad6",
+              "surface-container-high": "#e6e8ea",
+              "on-secondary": "#ffffff",
+              "on-tertiary": "#ffffff",
+              "on-primary": "#ffffff",
+              "on-secondary-container": "#016d7a",
+              error: "#ba1a1a",
+              "secondary-container": "#9cecfb",
+              surface: "#f7f9fb",
+              "on-secondary-fixed": "#001f24",
+              "on-tertiary-fixed-variant": "#0f4490",
+              secondary: "#006875",
+              primary: "#005d90",
+              "outline-variant": "#bfc7d1",
+              "on-tertiary-container": "#f7f7ff",
+              outline: "#707881",
+              "tertiary-fixed-dim": "#aec6ff",
+              "on-surface": "#191c1e",
+              "on-error": "#ffffff",
+              "on-primary-container": "#f3f7ff",
+              "surface-dim": "#d8dadc",
+              "surface-variant": "#e0e3e5",
+              "surface-bright": "#f7f9fb",
+              "on-surface-variant": "#404850",
+              "secondary-fixed-dim": "#83d3e1",
+              "secondary-fixed": "#9feffe",
+              "surface-container-lowest": "#ffffff",
+              "on-error-container": "#93000a",
+              "on-background": "#191c1e",
+              "surface-tint": "#006399",
+              "inverse-on-surface": "#eff1f3",
+              "primary-fixed": "#cde5ff",
+            },
+            fontFamily: {
+              headline: ["Plus Jakarta Sans"],
+              body: ["Inter"],
+              label: ["Inter"],
+            },
+            borderRadius: {
+              DEFAULT: "1rem",
+              lg: "2rem",
+              xl: "3rem",
+              full: "9999px",
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      .material-symbols-outlined {
+        font-variation-settings:
+          "FILL" 0,
+          "wght" 400,
+          "GRAD" 0,
+          "opsz" 24;
+      }
+      .glass-card {
+        background: rgba(255, 255, 255, 0.7);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+      }
+    </style>
+  </head>
+  <body class="bg-surface font-body text-on-surface antialiased">
+    <header
+      class="fixed top-0 w-full z-50 bg-white/70 dark:bg-slate-900/70 backdrop-blur-xl shadow-sm dark:shadow-none"
+    >
+      <nav
+        class="flex justify-between items-center px-6 py-4 max-w-7xl mx-auto font-['Plus_Jakarta_Sans'] tracking-tight"
+      >
+        <div class="text-2xl font-bold text-sky-900 dark:text-white">
+          DentaLux
+        </div>
+        <div class="hidden md:flex space-x-8 items-center">
+          <a
+            class="text-sky-700 dark:text-sky-400 font-semibold border-b-2 border-sky-600"
+            href="#"
+            >Servicios</a
+          >
+          <a
+            class="text-slate-600 dark:text-slate-400 hover:text-sky-600 transition-colors"
+            href="#"
+            >Nuestro Equipo</a
+          >
+          <a
+            class="text-slate-500 dark:text-slate-400 hover:text-sky-600 transition-colors"
+            href="#"
+            >Galería</a
+          >
+          <a
+            class="text-slate-500 dark:text-slate-400 hover:text-sky-600 transition-colors"
+            href="#"
+            >Contacto</a
+          >
+          <button
+            class="bg-primary-container text-on-primary-container px-6 py-2.5 rounded-full font-semibold hover:opacity-90 active:scale-95 transition-all shadow-md"
+          >
+            Agendar Cita
+          </button>
+        </div>
+        <button class="md:hidden text-primary">
+          <span class="material-symbols-outlined text-3xl">menu</span>
+        </button>
+      </nav>
+    </header>
+    <section class="relative pt-32 pb-20 md:pt-48 md:pb-40 overflow-hidden">
+      <div class="absolute inset-0 z-0">
+        <div
+          class="absolute inset-0 bg-surface/60 z-10"
+        ></div>
+        <img
+          alt="Interior moderno de clínica dental con luz natural"
+          class="w-full h-full object-cover"
+          src="https://lh3.googleusercontent.com/aida-public/AB6AXuD4WRHVREZE3hIRuyBw80fZAcn0N6RHQPA1giu4hq2Dzydt9OyTmSnkVxgg3pPuc1iBccRa0TmrKFI_22s8QlE9CLXBncBixbbntMaupLboNfq2nOR8DZagunMph6owhhC8yYkPfNGAWP7PqPxxHx8uyBLZh5axHJuAC9BHLY6dIXOaJItvBl9hbtJt9TXVq9VKwTIR2-KDQcQILwI2D43fNoENBW0VIibvi9S98-oeKqDpIVYaxdId-R82S0j3amaTP7fkR5TqP4I"
+        />
+      </div>
+      <div
+        class="max-w-7xl mx-auto px-6 relative z-20 flex flex-col md:flex-row items-center gap-16"
+      >
+        <div class="w-full md:w-1/2">
+          <h1
+            class="font-headline text-5xl md:text-7xl font-extrabold text-on-surface leading-[1.1] mb-6 tracking-tight"
+          >
+            Tu Sonrisa Merece
+            <span class="text-primary italic">Atención</span> de Verdad
+          </h1>
+          <p
+            class="text-lg text-on-surface-variant mb-10 max-w-lg leading-relaxed"
+          >
+            Atención odontológica completa en un espacio diseñado para que
+            te sientas cómodo desde el primer momento.
+          </p>
+          <div class="flex flex-wrap gap-4">
+            <button
+              class="bg-primary text-on-primary px-8 py-4 rounded-full text-lg font-bold shadow-xl shadow-primary/20 hover:scale-105 transition-transform"
+            >
+              Ver Servicios
+            </button>
+            <button
+              class="bg-white/50 backdrop-blur-md border border-outline-variant/30 text-on-surface px-8 py-4 rounded-full text-lg font-semibold hover:bg-white/80 transition-all"
+            >
+              Saber Más
+            </button>
+          </div>
+        </div>
+        <div class="w-full md:w-1/2">
+          <div
+            class="glass-card p-8 md:p-10 rounded-xl shadow-2xl border border-white/40"
+          >
+            <h3 class="font-headline text-2xl font-bold mb-6 text-primary">
+              Reserva tu Consulta Gratuita
+            </h3>
+            <form class="space-y-4">
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <input
+                  class="w-full px-5 py-3 rounded-md bg-surface-container-high border-none focus:ring-2 focus:ring-primary/20 transition-all"
+                  placeholder="Nombre completo"
+                  type="text"
+                />
+                <input
+                  class="w-full px-5 py-3 rounded-md bg-surface-container-high border-none focus:ring-2 focus:ring-primary/20 transition-all"
+                  placeholder="Correo electrónico"
+                  type="email"
+                />
+              </div>
+              <input
+                class="w-full px-5 py-3 rounded-md bg-surface-container-high border-none focus:ring-2 focus:ring-primary/20 transition-all"
+                placeholder="Teléfono"
+                type="tel"
+              />
+              <select
+                class="w-full px-5 py-3 rounded-md bg-surface-container-high border-none focus:ring-2 focus:ring-primary/20 transition-all text-on-surface-variant"
+              >
+                <option>Servicio Preferido</option>
+                <option>Ortodoncia Invisible</option>
+                <option>Implantes Dentales</option>
+                <option>Blanqueamiento</option>
+              </select>
+              <button
+                class="w-full bg-primary text-on-primary py-4 rounded-md font-bold text-lg hover:brightness-110 active:scale-95 transition-all"
+              >
+                Enviar Solicitud
+              </button>
+              <p class="text-xs text-center text-on-surface-variant mt-4">
+                Un asesor se pondrá en contacto en menos de 24 horas.
+              </p>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="py-24 bg-surface-container-low">
+      <div class="max-w-7xl mx-auto px-6">
+        <div class="text-center mb-20">
+          <span
+            class="text-primary font-bold tracking-[0.2em] text-xs uppercase mb-4 block"
+            >Nuestras Especialidades</span
+          >
+          <h2
+            class="font-headline text-4xl md:text-5xl font-bold text-on-surface"
+          >
+            Cuidado Dental Integral
+          </h2>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div
+            class="bg-surface-container-lowest p-10 rounded-xl hover:shadow-xl transition-all duration-300 group"
+          >
+            <div
+              class="w-14 h-14 bg-secondary-container rounded-full flex items-center justify-center mb-8 group-hover:scale-110 transition-transform"
+            >
+              <span class="material-symbols-outlined text-secondary text-3xl"
+                >clean_hands</span
+              >
+            </div>
+            <h3 class="font-headline text-xl font-bold mb-4">
+              Limpieza Profunda
+            </h3>
+            <p class="text-on-surface-variant leading-relaxed mb-6">
+              Eliminación de sarro y placa con tecnología ultrasónica,
+              sin molestias.
+            </p>
+            <a
+              class="text-primary font-semibold flex items-center gap-2 group-hover:gap-4 transition-all"
+              href="#"
+              >Explorar
+              <span class="material-symbols-outlined">arrow_forward</span></a
+            >
+          </div>
+          <div
+            class="bg-surface-container-lowest p-10 rounded-xl hover:shadow-xl transition-all duration-300 group"
+          >
+            <div
+              class="w-14 h-14 bg-secondary-container rounded-full flex items-center justify-center mb-8 group-hover:scale-110 transition-transform"
+            >
+              <span class="material-symbols-outlined text-secondary text-3xl"
+                >visibility</span
+              >
+            </div>
+            <h3 class="font-headline text-xl font-bold mb-4">
+              Ortodoncia Invisible
+            </h3>
+            <p class="text-on-surface-variant leading-relaxed mb-6">
+              Alineadores transparentes que corrigen tu sonrisa sin que nadie
+              lo note.
+            </p>
+            <a
+              class="text-primary font-semibold flex items-center gap-2 group-hover:gap-4 transition-all"
+              href="#"
+              >Explorar
+              <span class="material-symbols-outlined">arrow_forward</span></a
+            >
+          </div>
+          <div
+            class="bg-surface-container-lowest p-10 rounded-xl hover:shadow-xl transition-all duration-300 group"
+          >
+            <div
+              class="w-14 h-14 bg-secondary-container rounded-full flex items-center justify-center mb-8 group-hover:scale-110 transition-transform"
+            >
+              <span class="material-symbols-outlined text-secondary text-3xl"
+                >add_circle</span
+              >
+            </div>
+            <h3 class="font-headline text-xl font-bold mb-4">
+              Implantes Dentales
+            </h3>
+            <p class="text-on-surface-variant leading-relaxed mb-6">
+              Soluciones permanentes con materiales biocompatibles que se
+              sienten como dientes naturales.
+            </p>
+            <a
+              class="text-primary font-semibold flex items-center gap-2 group-hover:gap-4 transition-all"
+              href="#"
+              >Explorar
+              <span class="material-symbols-outlined">arrow_forward</span></a
+            >
+          </div>
+          <div
+            class="bg-surface-container-lowest p-10 rounded-xl hover:shadow-xl transition-all duration-300 group"
+          >
+            <div
+              class="w-14 h-14 bg-secondary-container rounded-full flex items-center justify-center mb-8 group-hover:scale-110 transition-transform"
+            >
+              <span class="material-symbols-outlined text-secondary text-3xl"
+                >brightness_high</span
+              >
+            </div>
+            <h3 class="font-headline text-xl font-bold mb-4">Blanqueamiento</h3>
+            <p class="text-on-surface-variant leading-relaxed mb-6">
+              Resultados visibles en una sola sesión con tecnología de luz fría.
+            </p>
+            <a
+              class="text-primary font-semibold flex items-center gap-2 group-hover:gap-4 transition-all"
+              href="#"
+              >Explorar
+              <span class="material-symbols-outlined">arrow_forward</span></a
+            >
+          </div>
+          <div
+            class="bg-surface-container-lowest p-10 rounded-xl hover:shadow-xl transition-all duration-300 group"
+          >
+            <div
+              class="w-14 h-14 bg-secondary-container rounded-full flex items-center justify-center mb-8 group-hover:scale-110 transition-transform"
+            >
+              <span class="material-symbols-outlined text-secondary text-3xl"
+                >child_care</span
+              >
+            </div>
+            <h3 class="font-headline text-xl font-bold mb-4">
+              Odontopediatría
+            </h3>
+            <p class="text-on-surface-variant leading-relaxed mb-6">
+              Atención dental para niños en un ambiente que reduce el miedo
+              y genera confianza desde pequeños.
+            </p>
+            <a
+              class="text-primary font-semibold flex items-center gap-2 group-hover:gap-4 transition-all"
+              href="#"
+              >Explorar
+              <span class="material-symbols-outlined">arrow_forward</span></a
+            >
+          </div>
+          <div
+            class="bg-surface-container-lowest p-10 rounded-xl hover:shadow-xl transition-all duration-300 group"
+          >
+            <div
+              class="w-14 h-14 bg-secondary-container rounded-full flex items-center justify-center mb-8 group-hover:scale-110 transition-transform"
+            >
+              <span class="material-symbols-outlined text-secondary text-3xl"
+                >precision_manufacturing</span
+              >
+            </div>
+            <h3 class="font-headline text-xl font-bold mb-4">Cirugía Oral</h3>
+            <p class="text-on-surface-variant leading-relaxed mb-6">
+              Procedimientos quirúrgicos con mínima invasión y recuperación
+              más rápida gracias a equipos de última generación.
+            </p>
+            <a
+              class="text-primary font-semibold flex items-center gap-2 group-hover:gap-4 transition-all"
+              href="#"
+              >Explorar
+              <span class="material-symbols-outlined">arrow_forward</span></a
+            >
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="py-24 bg-surface overflow-hidden">
+      <div class="max-w-7xl mx-auto px-6">
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-stretch">
+          <div class="md:col-span-4 flex flex-col justify-center">
+            <span
+              class="text-primary font-bold tracking-[0.2em] text-xs uppercase mb-4 block"
+              >El Diferencial DentaLux</span
+            >
+            <h2
+              class="font-headline text-4xl md:text-5xl font-bold text-on-surface mb-8 leading-tight"
+            >
+              ¿Por qué confiar en nosotros?
+            </h2>
+            <p class="text-on-surface-variant mb-12">
+              Nos importa que salgas de aquí sintiéndote bien atendido, no
+              solo con el tratamiento listo.
+            </p>
+          </div>
+          <div class="md:col-span-8 grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div
+              class="bg-white p-8 rounded-xl shadow-sm border border-outline-variant/10 flex flex-col items-start"
+            >
+              <div class="bg-primary/10 p-4 rounded-full mb-6">
+                <span class="material-symbols-outlined text-primary text-3xl"
+                  >memory</span
+                >
+              </div>
+              <h4 class="font-headline text-xl font-bold mb-3">
+                Tecnología Avanzada
+              </h4>
+              <p class="text-on-surface-variant text-sm leading-relaxed">
+                Escáneres 3D y láser dental para diagnósticos precisos y
+                tratamientos más rápidos.
+              </p>
+            </div>
+            <div
+              class="bg-white p-8 rounded-xl shadow-sm border border-outline-variant/10 flex flex-col items-start mt-0 md:mt-12"
+            >
+              <div class="bg-primary/10 p-4 rounded-full mb-6">
+                <span class="material-symbols-outlined text-primary text-3xl"
+                  >volunteer_activism</span
+                >
+              </div>
+              <h4 class="font-headline text-xl font-bold mb-3">
+                Cuidado Personalizado
+              </h4>
+              <p class="text-on-surface-variant text-sm leading-relaxed">
+                Cada paciente tiene necesidades distintas. Diseñamos planes
+                adaptados a tu situación y presupuesto.
+              </p>
+            </div>
+            <div
+              class="bg-white p-8 rounded-xl shadow-sm border border-outline-variant/10 flex flex-col items-start md:col-span-2 md:mt-[-3rem]"
+            >
+              <div class="flex flex-col md:flex-row gap-8 items-center">
+                <div class="bg-primary/10 p-4 rounded-full">
+                  <span class="material-symbols-outlined text-primary text-3xl"
+                    >favorite</span
+                  >
+                </div>
+                <div>
+                  <h4 class="font-headline text-xl font-bold mb-3">
+                    Tratamientos Sin Dolor
+                  </h4>
+                  <p class="text-on-surface-variant text-sm leading-relaxed">
+                    Usamos sedación consciente y anestesia computarizada para
+                    que la visita sea lo más tranquila posible.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="py-24 bg-surface-container-low">
+      <div class="max-w-7xl mx-auto px-6 text-center">
+        <h2
+          class="font-headline text-4xl md:text-5xl font-bold text-on-surface mb-16"
+        >
+          Especialistas a su Servicio
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+          <div class="group">
+            <div class="relative overflow-hidden rounded-xl mb-6">
+              <img
+                alt="Retrato profesional de dentista"
+                class="w-full aspect-[4/5] object-cover transition-transform duration-500 group-hover:scale-110"
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuDLcPftMRa7za4olHQWX-Mloi16iyEbW8zHeGgHn8P-h1uIuAf8cdKAufqJC5RPl8kiXWzS2eRriBeYvR2uVg6VWV9R7Ol_kr2cP4qW97i2lN4ueDzvYdxcAnzxw7t8DwYtxoV0l6_eh4VxHyqZ84ZegoAXToAfM8nokxHPZjD5UjXkPzY5qqPWRBk8l6xPzdu0FH4kbNIJh2fCUrIt7a2qq0SuONK9d0EKlAOq8m4w9VDbShnhuCUeNlg7zZkx_K-76pPdkt_6eUU"
+              />
+              <div
+                class="absolute inset-0 bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity"
+              ></div>
+            </div>
+            <h4 class="font-headline text-xl font-bold">Dra. Elena Rivas</h4>
+            <p class="text-primary font-medium">Implantes &amp; Estética</p>
+          </div>
+          <div class="group">
+            <div class="relative overflow-hidden rounded-xl mb-6">
+              <img
+                alt="Retrato profesional de dentista"
+                class="w-full aspect-[4/5] object-cover transition-transform duration-500 group-hover:scale-110"
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuAhoGJILd9K4iVeKKELhU2aqDVPFGywkErEKL7irGOc9L99dV6x2J4eoQfPCh9lNfYBB4pkPdcUkjxPdNoaL3V1P3_By9678K8L8FNAYfrl26vqHh4_ba2C1xGnMh1XYn8D13TtZgycrl03mpRbc1Mmd1Qqsww53-lJ53sM_nBsxH8pzaJWAapVwdNdvR12QiI7OGnXG36nDZ1J2TjghMQ6b6CxNP_t_fM-tYK6tHM5-_nxWwUDuPvhmAxMd0LAFi0XSXLVASh7kLA"
+              />
+              <div
+                class="absolute inset-0 bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity"
+              ></div>
+            </div>
+            <h4 class="font-headline text-xl font-bold">Dr. Marco Salas</h4>
+            <p class="text-primary font-medium">Ortodoncia Avanzada</p>
+          </div>
+          <div class="group">
+            <div class="relative overflow-hidden rounded-xl mb-6">
+              <img
+                alt="Retrato profesional de especialista dental"
+                class="w-full aspect-[4/5] object-cover transition-transform duration-500 group-hover:scale-110"
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuDQzsH6h8gQYLMuCwTDkIv412lg7HfqCcgOvc6sUOXDwyHqAervv9zfBjgzd25VVq6jRdSl0-bVtHye4SKnuyWPbBB8X7IVsMjbD6qQn-f1FN0HwV5R9vFlwmjj3m92FxLBgiB1AsiGOZX_SM9tutedXvQOb0G2hbXli4xX50sNAafc43C5AfGxy0vzdIUopogHKwxNiCe0S9jzhwn9mmYmsqhY1ldJcv7zAWfigLCkFuwtYm9vTqgq1RBBywxVLzhwHgmqvdK480g"
+              />
+              <div
+                class="absolute inset-0 bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity"
+              ></div>
+            </div>
+            <h4 class="font-headline text-xl font-bold">Dra. Ana Beltrán</h4>
+            <p class="text-primary font-medium">Cirugía Oral</p>
+          </div>
+          <div class="group">
+            <div class="relative overflow-hidden rounded-xl mb-6">
+              <img
+                alt="Retrato profesional de odontopediatra"
+                class="w-full aspect-[4/5] object-cover transition-transform duration-500 group-hover:scale-110"
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuDHV61nIonLkfwqrjCgFbswuvAJBaQGqPku9n82EPk0asxV22JnUXnH4oD-lUxSLHWnCgFAnm83U80_9csbkfiizQ1cVmao9yMFrO4cs79uKikJ48Sl-byFDCKOorpBWMpNUXDPnken9GPqnfkwkeSk1uNwR0ks8nAB9tYzIRA9836r31Ez9Nr1HY78ynFqyCcHqYpjKrqVVAefcYkjmbco3Hm7M2Laecor1xqfauEDXV1n5iXzR_yZxududCDR_GGZTw38gJ9uxug"
+              />
+              <div
+                class="absolute inset-0 bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity"
+              ></div>
+            </div>
+            <h4 class="font-headline text-xl font-bold">Dr. Luis Ortiz</h4>
+            <p class="text-primary font-medium">Odontopediatría</p>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="py-24 bg-surface">
+      <div class="max-w-7xl mx-auto px-6">
+        <div
+          class="flex flex-col md:flex-row justify-between items-end mb-16 gap-8"
+        >
+          <div class="md:w-1/2">
+            <h2 class="font-headline text-4xl font-bold mb-4">
+              Lo que nuestros pacientes dicen
+            </h2>
+            <p class="text-on-surface-variant">
+              La confianza de miles de pacientes es nuestro mayor aval.
+            </p>
+          </div>
+          <div class="flex gap-4">
+            <button
+              class="w-12 h-12 rounded-full border border-outline flex items-center justify-center hover:bg-primary hover:text-white transition-all"
+            >
+              <span class="material-symbols-outlined">chevron_left</span>
+            </button>
+            <button
+              class="w-12 h-12 rounded-full bg-primary text-white flex items-center justify-center hover:opacity-90 transition-all"
+            >
+              <span class="material-symbols-outlined">chevron_right</span>
+            </button>
+          </div>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div class="bg-surface-container-low p-8 rounded-xl relative">
+            <span
+              class="material-symbols-outlined text-primary/20 text-6xl absolute top-6 right-6"
+              style="font-variation-settings: &quot;FILL&quot; 1"
+              >format_quote</span
+            >
+            <div class="flex gap-1 mb-6">
+              <span
+                class="material-symbols-outlined text-yellow-500 text-sm"
+                style="font-variation-settings: &quot;FILL&quot; 1"
+                >star</span
+              >
+              <span
+                class="material-symbols-outlined text-yellow-500 text-sm"
+                style="font-variation-settings: &quot;FILL&quot; 1"
+                >star</span
+              >
+              <span
+                class="material-symbols-outlined text-yellow-500 text-sm"
+                style="font-variation-settings: &quot;FILL&quot; 1"
+                >star</span
+              >
+              <span
+                class="material-symbols-outlined text-yellow-500 text-sm"
+                style="font-variation-settings: &quot;FILL&quot; 1"
+                >star</span
+              >
+              <span
+                class="material-symbols-outlined text-yellow-500 text-sm"
+                style="font-variation-settings: &quot;FILL&quot; 1"
+                >star</span
+              >
+            </div>
+            <p class="text-on-surface mb-8 italic">
+              "Me hice la ortodoncia invisible y los resultados superaron lo que
+              esperaba. El trato del personal es muy bueno, se nota que les
+              importa el paciente."
+            </p>
+            <div class="flex items-center gap-4">
+              <div class="w-12 h-12 rounded-full bg-slate-300"></div>
+              <div>
+                <p class="font-bold">Sofía Méndez</p>
+                <p class="text-xs text-on-surface-variant">
+                  Paciente de Ortodoncia
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="bg-surface-container-low p-8 rounded-xl relative">
+            <span
+              class="material-symbols-outlined text-primary/20 text-6xl absolute top-6 right-6"
+              style="font-variation-settings: &quot;FILL&quot; 1"
+              >format_quote</span
+            >
+            <div class="flex gap-1 mb-6">
+              <span
+                class="material-symbols-outlined text-yellow-500 text-sm"
+                style="font-variation-settings: &quot;FILL&quot; 1"
+                >star</span
+              >
+              <span
+                class="material-symbols-outlined text-yellow-500 text-sm"
+                style="font-variation-settings: &quot;FILL&quot; 1"
+                >star</span
+              >
+              <span
+                class="material-symbols-outlined text-yellow-500 text-sm"
+                style="font-variation-settings: &quot;FILL&quot; 1"
+                >star</span
+              >
+              <span
+                class="material-symbols-outlined text-yellow-500 text-sm"
+                style="font-variation-settings: &quot;FILL&quot; 1"
+                >star</span
+              >
+              <span
+                class="material-symbols-outlined text-yellow-500 text-sm"
+                style="font-variation-settings: &quot;FILL&quot; 1"
+                >star</span
+              >
+            </div>
+            <p class="text-on-surface mb-8 italic">
+              "Siempre tuve miedo al dentista. Aquí todo fue indoloro y el
+              equipo me fue explicando cada paso. La anestesia computarizada
+              hace una diferencia enorme."
+            </p>
+            <div class="flex items-center gap-4">
+              <div class="w-12 h-12 rounded-full bg-slate-300"></div>
+              <div>
+                <p class="font-bold">Javier López</p>
+                <p class="text-xs text-on-surface-variant">Paciente General</p>
+              </div>
+            </div>
+          </div>
+          <div class="bg-surface-container-low p-8 rounded-xl relative">
+            <span
+              class="material-symbols-outlined text-primary/20 text-6xl absolute top-6 right-6"
+              style="font-variation-settings: &quot;FILL&quot; 1"
+              >format_quote</span
+            >
+            <div class="flex gap-1 mb-6">
+              <span
+                class="material-symbols-outlined text-yellow-500 text-sm"
+                style="font-variation-settings: &quot;FILL&quot; 1"
+                >star</span
+              >
+              <span
+                class="material-symbols-outlined text-yellow-500 text-sm"
+                style="font-variation-settings: &quot;FILL&quot; 1"
+                >star</span
+              >
+              <span
+                class="material-symbols-outlined text-yellow-500 text-sm"
+                style="font-variation-settings: &quot;FILL&quot; 1"
+                >star</span
+              >
+              <span
+                class="material-symbols-outlined text-yellow-500 text-sm"
+                style="font-variation-settings: &quot;FILL&quot; 1"
+                >star</span
+              >
+              <span
+                class="material-symbols-outlined text-yellow-500 text-sm"
+                style="font-variation-settings: &quot;FILL&quot; 1"
+                >star</span
+              >
+            </div>
+            <p class="text-on-surface mb-8 italic">
+              "El blanqueamiento me lo hice en una sola sesión y quedé muy
+              contenta. Las instalaciones están impecables y la atención
+              fue excelente."
+            </p>
+            <div class="flex items-center gap-4">
+              <div class="w-12 h-12 rounded-full bg-slate-300"></div>
+              <div>
+                <p class="font-bold">Carmen Vega</p>
+                <p class="text-xs text-on-surface-variant">
+                  Paciente de Estética
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="py-24 px-6">
+      <div
+        class="max-w-7xl mx-auto relative rounded-xl overflow-hidden shadow-2xl"
+      >
+        <div class="absolute inset-0 z-0">
+          <img
+            alt="Familia sonriendo feliz"
+            class="w-full h-full object-cover"
+            src="https://lh3.googleusercontent.com/aida-public/AB6AXuCLpnLk8RLS5L5XImVBRH4zA0yOxT95zmRNwFquEq9M6eloE6umQtjxQNsq4ca6fFHNowxQlvTDtM5McI3pTlx-6zb-sW2udhyRAb5-Q2kZQ3qP4DJnfNBnYa1-IFkq6qVm1Fnrdq-OSNmUs6EWhA7cC5EGTPFZL4JINvNvUzcvfOGu4F2ASvdFgsWMjLVh2ccgDZkvmrSez44dJwy6cjVkmTq_A1ZC6AbEP7p7jNjqc-1YO_GsSxngYgGw5jRP9ODx40qi_C3Omxg"
+          />
+          <div class="absolute inset-0 bg-primary/80 mix-blend-multiply"></div>
+        </div>
+        <div
+          class="relative z-10 px-8 py-20 md:p-24 text-center max-w-3xl mx-auto"
+        >
+          <h2
+            class="font-headline text-4xl md:text-5xl font-extrabold text-white mb-8"
+          >
+            Da el Primer Paso hacia una Sonrisa que te Guste
+          </h2>
+          <p class="text-white/80 text-lg mb-12">
+            Agenda tu consulta hoy y recibe una valoración gratuita con
+            uno de nuestros especialistas.
+          </p>
+          <div class="flex flex-col md:flex-row gap-4 justify-center">
+            <button
+              class="bg-white text-primary px-10 py-5 rounded-full font-bold text-xl hover:scale-105 transition-transform shadow-lg"
+            >
+              Agendar Cita Ahora
+            </button>
+            <button
+              class="border-2 border-white/50 text-white px-10 py-5 rounded-full font-bold text-xl hover:bg-white/10 transition-all"
+            >
+              Llamar a la Clínica
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+    <footer
+      class="bg-slate-50 dark:bg-slate-950 w-full mt-24 border-t border-slate-200 dark:border-slate-800"
+    >
+      <div
+        class="grid grid-cols-1 md:grid-cols-4 gap-12 px-8 py-16 max-w-7xl mx-auto font-['Inter'] leading-relaxed text-sm"
+      >
+        <div>
+          <span
+            class="text-xl font-bold text-sky-900 dark:text-white mb-4 block"
+            >DentaLux</span
+          >
+          <p class="text-slate-500 mb-6">
+            Clínica dental con especialistas certificados en Hermosillo, Sonora.
+          </p>
+          <div class="flex gap-4">
+            <span class="material-symbols-outlined text-primary cursor-pointer"
+              >social_leaderboard</span
+            >
+            <span class="material-symbols-outlined text-primary cursor-pointer"
+              >share</span
+            >
+            <span class="material-symbols-outlined text-primary cursor-pointer"
+              >public</span
+            >
+          </div>
+        </div>
+        <div>
+          <h4 class="font-bold text-sky-900 dark:text-sky-100 mb-6">
+            Enlaces Rápidos
+          </h4>
+          <ul class="space-y-4">
+            <li>
+              <a
+                class="text-slate-500 hover:text-sky-600 transition-all"
+                href="#"
+                >Nuestros Servicios</a
+              >
+            </li>
+            <li>
+              <a
+                class="text-slate-500 hover:text-sky-600 transition-all"
+                href="#"
+                >Equipo Médico</a
+              >
+            </li>
+            <li>
+              <a
+                class="text-slate-500 hover:text-sky-600 transition-all"
+                href="#"
+                >Casos de Éxito</a
+              >
+            </li>
+            <li>
+              <a
+                class="text-slate-500 hover:text-sky-600 transition-all"
+                href="#"
+                >Blog Dental</a
+              >
+            </li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-bold text-sky-900 dark:text-sky-100 mb-6">Soporte</h4>
+          <ul class="space-y-4">
+            <li>
+              <a
+                class="text-slate-500 hover:text-sky-600 transition-all"
+                href="#"
+                >Aviso de Privacidad</a
+              >
+            </li>
+            <li>
+              <a
+                class="text-slate-500 hover:text-sky-600 transition-all"
+                href="#"
+                >Términos de Servicio</a
+              >
+            </li>
+            <li>
+              <a
+                class="text-slate-500 hover:text-sky-600 transition-all"
+                href="#"
+                >Urgencias Dentales</a
+              >
+            </li>
+            <li>
+              <a
+                class="text-slate-500 hover:text-sky-600 transition-all"
+                href="#"
+                >Portal de Pacientes</a
+              >
+            </li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-bold text-sky-900 dark:text-sky-100 mb-6">
+            Contacto
+          </h4>
+          <p class="text-slate-500 mb-2">Paseo Hidalgo 245, Hermosillo, Sonora</p>
+          <p class="text-slate-500 mb-2">+52 (662) 900 123 456</p>
+          <p class="text-slate-500">contacto@dentalux.com</p>
+        </div>
+      </div>
+      <div
+        class="max-w-7xl mx-auto px-8 py-8 border-t border-slate-200 dark:border-slate-800 flex flex-col md:flex-row justify-between items-center gap-4"
+      >
+        <p class="text-slate-500">
+          © 2024 DentaLux Excelencia Clínica. Todos los derechos reservados.
+        </p>
+        <span class="text-slate-500 text-sm">
+          Desarrollado por NORABYTE — <a href="https://norabyte.com" class="hover:text-sky-600 transition-colors">norabyte.com</a>
+        </span>
+      </div>
+    </footer>
+    <div
+      class="md:hidden fixed bottom-0 left-0 w-full flex justify-around items-center px-4 pb-6 pt-3 bg-white/80 dark:bg-slate-900/80 backdrop-blur-2xl rounded-t-[3rem] z-50 shadow-[0_-10px_40px_rgba(0,93,144,0.08)]"
+    >
+      <a
+        class="flex flex-col items-center justify-center bg-sky-100 dark:bg-sky-900/50 text-sky-800 dark:text-sky-100 rounded-full px-5 py-2"
+        href="#"
+      >
+        <span
+          class="material-symbols-outlined"
+          style="font-variation-settings: &quot;FILL&quot; 1"
+          >home</span
+        >
+        <span class="text-[11px] font-medium uppercase tracking-wider"
+          >Inicio</span
+        >
+      </a>
+      <a
+        class="flex flex-col items-center justify-center text-slate-500 dark:text-slate-400"
+        href="#"
+      >
+        <span class="material-symbols-outlined">medical_services</span>
+        <span class="text-[11px] font-medium uppercase tracking-wider"
+          >Servicios</span
+        >
+      </a>
+      <a
+        class="flex flex-col items-center justify-center text-slate-500 dark:text-slate-400"
+        href="#"
+      >
+        <span class="material-symbols-outlined">calendar_month</span>
+        <span class="text-[11px] font-medium uppercase tracking-wider"
+          >Citas</span
+        >
+      </a>
+      <a
+        class="flex flex-col items-center justify-center text-slate-500 dark:text-slate-400"
+        href="#"
+      >
+        <span class="material-symbols-outlined">chat</span>
+        <span class="text-[11px] font-medium uppercase tracking-wider"
+          >Contacto</span
+        >
+      </a>
+    </div>
+  </body>
+</html>

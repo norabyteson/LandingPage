@@ -27,44 +27,26 @@
   },
   "services": {
     "badge": "What we do",
-    "title": "What can we do for your business?",
-    "subtitle": "We develop all kinds of digital systems tailored exactly to what you need, without any technical complexity on your part.",
+    "title": "What can we build for you?",
+    "subtitle": "No jargon, no complications. Pick what best describes what you need — we'll take care of the rest.",
     "items": [
       {
-        "id": "landing",
-        "title": "Websites & Landing Pages",
-        "description": "Your first impression online. We create professional websites that showcase your business, attract customers, and generate sales — 24/7.",
-        "features": ["Professional design", "Mobile-friendly", "Ultra-fast loading", "Google optimized"]
-      },
-      {
         "id": "ecommerce",
-        "title": "Online Stores",
-        "description": "Sell your products or services online. Shopping cart, secure payments, inventory control, and an admin panel to manage everything from your computer.",
-        "features": ["Product catalog", "Secure online payments", "Inventory control", "Sales reports"]
+        "title": "Online Store",
+        "description": "Take your business online and start selling without limits. We build your complete store with a product catalog, secure payments, inventory control, and everything you need to start operating from day one.",
+        "features": ["Unlimited product catalog", "Secure online payments", "Real-time inventory control", "Easy-to-use admin panel"]
       },
       {
-        "id": "enterprise",
-        "title": "Business Management Systems",
-        "description": "Is your business still running on paper or spreadsheets? We build a custom digital system for you: payroll, inventory, customers, reports, and everything you need.",
-        "features": ["Staff management", "Inventory control", "Automated reports", "Access from anywhere"]
-      },
-      {
-        "id": "pos",
-        "title": "Point of Sale",
-        "description": "Cash register system for stores, restaurants, and businesses. Record sales, control inventory, print tickets and daily reports.",
-        "features": ["Sales recording", "Product control", "Ticket printing", "Daily reports"]
-      },
-      {
-        "id": "desktop",
-        "title": "Desktop Applications",
-        "description": "Software installed on your computer for specific tasks: employee attendance tracking, monitoring systems, access control, and more.",
-        "features": ["Staff attendance", "Access control", "Real-time monitoring", "Works offline"]
+        "id": "landing",
+        "title": "Website & Landing Page",
+        "description": "Your online presence, done right. We design professional websites that represent your brand, attract customers, and turn visitors into real business opportunities — 24 hours a day.",
+        "features": ["Professional design tailored to your brand", "Optimized for mobile and tablet", "Fast loading and high performance", "Google ranking (SEO)"]
       },
       {
         "id": "custom",
-        "title": "Custom Systems",
-        "description": "Have a very specific need? We'll build it. From internal portals and unique management systems to automating repetitive processes.",
-        "features": ["100% customized", "Integration with your systems", "Support & maintenance", "Scalable for the future"]
+        "title": "Custom System",
+        "description": "Does your business need something more specific? We'll build it from scratch. Business management systems, point of sale, desktop applications — any solution that automates and organizes how your company operates.",
+        "features": ["Business and management systems", "Point of sale (POS) for your business", "Offline desktop applications", "100% tailored to your operation"]
       }
     ]
   },
@@ -206,11 +188,8 @@
       "errorTitle": "Something went wrong",
       "errorMessage": "We couldn't send your message. Please try again or write to us directly.",
       "services": [
-        "Website or Landing Page",
         "Online Store",
-        "Business System",
-        "Point of Sale",
-        "Desktop Application",
+        "Website or Landing Page",
         "Custom System",
         "Not sure yet, I want advice"
       ]
@@ -229,11 +208,9 @@
     "legal": "Legal",
     "links": {
       "services": [
-        { "label": "Websites", "href": "#services" },
         { "label": "Online Stores", "href": "#services" },
-        { "label": "Business Systems", "href": "#services" },
-        { "label": "Point of Sale", "href": "#services" },
-        { "label": "Desktop Apps", "href": "#services" }
+        { "label": "Websites & Landing Pages", "href": "#services" },
+        { "label": "Custom Systems", "href": "#services" }
       ],
       "company": [
         { "label": "About", "href": "#about" },

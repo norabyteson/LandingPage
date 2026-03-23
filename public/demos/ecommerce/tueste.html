@@ -1,0 +1,633 @@
+<!doctype html>
+
+<html class="scroll-smooth" lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>TUESTE — Café de Especialidad | Ejemplo por NORABYTE</title>
+    <meta name="description" content="TUESTE es una marca de café de especialidad con granos de origen único, tostados en pequeños lotes y entregados a tu puerta. Vive el arte del tueste." />
+    <meta name="keywords" content="café de especialidad, tueste artesanal, granos de origen, café premium, suscripción café, barismo, café Hermosillo" />
+    <link rel="canonical" href="https://norabyte.com/demos/ecommerce/tueste" />
+    <meta property="og:title" content="TUESTE — Café de Especialidad | Ejemplo por NORABYTE" />
+    <meta property="og:description" content="Granos de origen, tostados en pequeños lotes y enviados directo a tu puerta. El arte del tueste." />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="es_MX" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Newsreader:ital,wght@0,400;0,600;0,700;1,400;1,600&amp;family=Work+Sans:wght@300;400;500;600&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "on-primary": "#ffffff",
+              "tertiary-fixed": "#f4dfcb",
+              "outline-variant": "#c4c7c7",
+              "secondary-fixed-dim": "#e2c19b",
+              surface: "#fcf9f4",
+              "on-background": "#1c1c19",
+              background: "#fcf9f4",
+              "primary-fixed": "#e4e2e1",
+              "secondary-fixed": "#ffddb6",
+              "surface-dim": "#dcdad5",
+              tertiary: "#20160a",
+              "error-container": "#ffdad6",
+              "secondary-container": "#fddab2",
+              "surface-container": "#f0ede8",
+              "surface-container-high": "#ebe8e3",
+              "tertiary-fixed-dim": "#d7c3b0",
+              "on-secondary-fixed": "#291801",
+              error: "#ba1a1a",
+              "surface-container-low": "#f6f3ee",
+              "primary-fixed-dim": "#c8c6c5",
+              "on-tertiary-container": "#a2907f",
+              "on-tertiary": "#ffffff",
+              "on-secondary-container": "#785e3e",
+              "inverse-on-surface": "#f3f0eb",
+              "on-error-container": "#93000a",
+              "surface-tint": "#5f5e5e",
+              secondary: "#735a3a",
+              "inverse-primary": "#c8c6c5",
+              "on-primary-container": "#949393",
+              "on-secondary-fixed-variant": "#594325",
+              primary: "#171818",
+              "primary-container": "#2c2c2c",
+              "surface-bright": "#fcf9f4",
+              "on-surface-variant": "#444748",
+              "on-tertiary-fixed": "#241a0e",
+              "on-primary-fixed-variant": "#474747",
+              outline: "#747878",
+              "surface-container-lowest": "#ffffff",
+              "tertiary-container": "#362a1d",
+              "on-error": "#ffffff",
+              "on-primary-fixed": "#1b1c1c",
+              "surface-variant": "#e5e2dd",
+              "on-surface": "#1c1c19",
+              "surface-container-highest": "#e5e2dd",
+              "on-secondary": "#ffffff",
+              "inverse-surface": "#31302d",
+              "on-tertiary-fixed-variant": "#524436",
+            },
+            fontFamily: {
+              headline: ["Newsreader", "serif"],
+              body: ["Work Sans", "sans-serif"],
+              label: ["Work Sans", "sans-serif"],
+            },
+            borderRadius: {
+              DEFAULT: "0px",
+              lg: "0px",
+              xl: "0px",
+              full: "9999px",
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      .material-symbols-outlined {
+        font-variation-settings:
+          "FILL" 0,
+          "wght" 300,
+          "GRAD" 0,
+          "opsz" 24;
+      }
+      .no-line-rule {
+        border: none !important;
+      }
+      .tonal-depth-shift {
+        background-color: #f6f3ee;
+      }
+      .provenance-overlay {
+        background: rgba(220, 218, 213, 0.85);
+        backdrop-filter: blur(8px);
+      }
+      ::-webkit-scrollbar {
+        width: 4px;
+        height: 4px;
+      }
+      ::-webkit-scrollbar-track {
+        background: #fcf9f4;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #735a3a;
+      }
+    </style>
+  </head>
+  <body class="bg-surface text-on-surface font-body selection:bg-secondary/30">
+    <nav
+      class="fixed top-0 w-full z-50 bg-[#fcf9f4]/80 dark:bg-[#171818]/80 backdrop-blur-xl no-line-rule transition-colors duration-500"
+    >
+      <div
+        class="flex justify-between items-center px-12 py-6 w-full max-w-screen-2xl mx-auto"
+      >
+        <a
+          class="font-headline font-bold text-2xl tracking-tighter text-[#171818] dark:text-[#fcf9f4] uppercase"
+          href="#"
+          >TUESTE</a
+        >
+        <div class="hidden md:flex items-center gap-12">
+          <a
+            class="font-headline italic text-lg tracking-tight text-[#171818] dark:text-[#fcf9f4] hover:text-[#735a3a] transition-colors"
+            href="#"
+            >La Experiencia</a
+          >
+          <a
+            class="font-headline italic text-lg tracking-tight text-[#171818] dark:text-[#fcf9f4] hover:text-[#735a3a] transition-colors"
+            href="#"
+            >Nuestras Tostadas</a
+          >
+          <a
+            class="font-headline italic text-lg tracking-tight text-[#171818] dark:text-[#fcf9f4] hover:text-[#735a3a] transition-colors"
+            href="#"
+            >Suscripciones</a
+          >
+          <a
+            class="font-headline italic text-lg tracking-tight text-[#171818] dark:text-[#fcf9f4] hover:text-[#735a3a] transition-colors"
+            href="#"
+            >Nuestros Cafés</a
+          >
+          <a
+            class="font-headline italic text-lg tracking-tight text-[#171818] dark:text-[#fcf9f4] hover:text-[#735a3a] transition-colors"
+            href="#"
+            >Tienda</a
+          >
+        </div>
+        <div class="flex items-center gap-6">
+          <button
+            class="scale-95 transition-transform duration-300 text-[#171818] dark:text-[#fcf9f4]"
+          >
+            <span class="material-symbols-outlined">shopping_bag</span>
+          </button>
+          <button class="md:hidden text-[#171818] dark:text-[#fcf9f4]">
+            <span class="material-symbols-outlined">menu</span>
+          </button>
+        </div>
+      </div>
+    </nav>
+    <main>
+      <section
+        class="relative h-screen w-full flex items-center overflow-hidden"
+      >
+        <div class="absolute inset-0 z-0">
+          <img
+            alt="Interior de cafetería minimalista de lujo con luz natural"
+            class="w-full h-full object-cover grayscale-[20%] brightness-[0.85]"
+            src="https://lh3.googleusercontent.com/aida-public/AB6AXuDg8JZXMpxoN06fwnV75N-q0YnSJz6QdnOKhMxCtTPORTNz73srzDMgFE4fwH7a_qYCjTtol6QKLZ1ayH7gliVaORXlwx1lNmCiS4eBxojbyluBzVV884fkWaHGYFrAOcAkztwU8OOoMvkQVL0wacwgJYtkWVn4rtuBEkW0m96iaI_TijZEZqGucJC6m5Hk587aROSeEgNuYxaPXxMZiiRZg5oWjzDg1c6CqFBF01YwBk8g6y4zksvj3QzE9YuqhDLLyjNDWEY"
+          />
+          <div
+            class="absolute inset-0 bg-primary/30"
+          ></div>
+        </div>
+        <div
+          class="relative z-10 px-12 md:px-24 w-full max-w-screen-2xl mx-auto"
+        >
+          <div class="max-w-3xl">
+            <span
+              class="block font-label text-on-primary tracking-[0.3em] uppercase mb-8 text-sm"
+              >FUNDADA EN MCMXCII</span
+            >
+            <h1
+              class="font-headline text-6xl md:text-8xl text-on-primary font-bold italic tracking-tighter leading-[0.9] mb-10"
+            >
+              El Arte del Tueste,<br />El Alma del Grano
+            </h1>
+            <p
+              class="font-body text-xl md:text-2xl text-on-primary/90 font-light leading-relaxed mb-12 max-w-xl"
+            >
+              Granos de origen, tostados en pequeños lotes y enviados directo a tu puerta.
+            </p>
+            <button
+              class="bg-primary text-on-primary px-12 py-5 font-label tracking-widest uppercase text-sm hover:bg-secondary transition-all duration-300 scale-100 hover:scale-105"
+            >
+              Explorar nuestra colección
+            </button>
+          </div>
+        </div>
+      </section>
+      <section class="py-32 px-12 bg-surface">
+        <div class="max-w-screen-2xl mx-auto">
+          <div class="flex flex-col md:flex-row gap-20 items-start">
+            <div class="md:w-1/3">
+              <h2
+                class="font-headline text-4xl md:text-5xl italic font-bold tracking-tight mb-8"
+              >
+                Nuestra Filosofía
+              </h2>
+              <p class="font-body text-on-surface-variant leading-loose">
+                Creemos que el café es un diálogo entre la naturaleza y el oficio.
+                Nuestra metodología está arraigada en la búsqueda del "God Shot":
+                el equilibrio perfecto de acidez, cuerpo y aroma.
+              </p>
+            </div>
+            <div class="md:w-2/3 grid grid-cols-1 md:grid-cols-3 gap-12">
+              <div class="space-y-6">
+                <span
+                  class="material-symbols-outlined text-secondary text-4xl"
+                  >travel_explore</span
+                >
+                <h3
+                  class="font-label text-lg font-semibold tracking-wider uppercase"
+                >
+                  Origen
+                </h3>
+                <p
+                  class="text-sm leading-relaxed text-on-surface-variant font-light"
+                >
+                  Relaciones de comercio directo con fincas de micro-lote en
+                  Etiopía y Colombia, garantizando excelencia ética y calidad
+                  inigualable.
+                </p>
+              </div>
+              <div class="space-y-6">
+                <span
+                  class="material-symbols-outlined text-secondary text-4xl"
+                  >local_fire_department</span
+                >
+                <h3
+                  class="font-label text-lg font-semibold tracking-wider uppercase"
+                >
+                  Tueste
+                </h3>
+                <p
+                  class="text-sm leading-relaxed text-on-surface-variant font-light"
+                >
+                  Perfiles térmicos en pequeños lotes que respetan el potencial
+                  genético de cada grano, resaltando delicadas notas florales
+                  y afrutadas.
+                </p>
+              </div>
+              <div class="space-y-6">
+                <span
+                  class="material-symbols-outlined text-secondary text-4xl"
+                  >coffee_maker</span
+                >
+                <h3
+                  class="font-label text-lg font-semibold tracking-wider uppercase"
+                >
+                  Preparación
+                </h3>
+                <p
+                  class="text-sm leading-relaxed text-on-surface-variant font-light"
+                >
+                  La ciencia se une a la intuición. Proporcionamos las métricas
+                  precisas para replicar la experiencia de cafetería en tu
+                  propio santuario.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="py-32 bg-surface-container-low overflow-hidden">
+        <div
+          class="px-12 max-w-screen-2xl mx-auto mb-16 flex justify-between items-end"
+        >
+          <div>
+            <span
+              class="font-label text-secondary tracking-widest uppercase text-xs"
+              >Selección curada</span
+            >
+            <h2
+              class="font-headline text-4xl italic font-bold tracking-tight mt-2"
+            >
+              Favoritos de Temporada
+            </h2>
+          </div>
+          <div class="flex gap-4">
+            <button
+              class="p-3 border border-outline/20 hover:border-secondary transition-colors"
+            >
+              <span class="material-symbols-outlined">west</span>
+            </button>
+            <button
+              class="p-3 border border-outline/20 hover:border-secondary transition-colors"
+            >
+              <span class="material-symbols-outlined">east</span>
+            </button>
+          </div>
+        </div>
+        <div class="flex gap-8 overflow-x-auto px-12 pb-12 snap-x no-scrollbar">
+          <div class="min-w-[400px] group snap-start">
+            <div class="relative overflow-hidden bg-white mb-6">
+              <img
+                alt="Empaque minimalista de granos de café premium sobre fondo blanco"
+                class="w-full aspect-[4/5] object-cover transition-transform duration-700 group-hover:scale-105"
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuBzkhdtJwXZDHOV6GWxyiAHZYEa76WyIi2iHMnax1enFBREmtMY4DIgweynlwKjlP2PaOoZm9BMMLNYlRN7DU21eP-IniP1bSi3fJv1E4v_OAT709XnEEpMhKV64RXD_3qdHn8bwZdHwGXib7SkiruYILMNpfyr27QgwwGwk8QjOPo0X1QL6q1BJ7_V08kx1yBsIEoz6ZacO-Bgo2qaWBqHwqt395ei85Ra0TPmW0ED43Vdx4zMW2ruJt8mqzbb9zzsY3RAvoI"
+              />
+              <div class="provenance-overlay absolute top-6 right-6 px-4 py-2">
+                <span
+                  class="font-label text-[10px] tracking-widest uppercase font-semibold"
+                  >ALTITUD: 2100M</span
+                >
+              </div>
+            </div>
+            <div class="flex justify-between items-start">
+              <div>
+                <h3 class="font-headline text-2xl italic font-bold">
+                  Etiopía Yirgacheffe
+                </h3>
+                <p class="font-body text-sm text-on-surface-variant mt-2">
+                  Jazmín &bull; Bergamota &bull; Panal de miel
+                </p>
+              </div>
+              <span class="font-label font-bold text-lg">$32.00</span>
+            </div>
+          </div>
+          <div class="min-w-[400px] group snap-start">
+            <div class="relative overflow-hidden bg-white mb-6">
+              <img
+                alt="Primer plano de granos de café tostados en bolsa de lujo"
+                class="w-full aspect-[4/5] object-cover transition-transform duration-700 group-hover:scale-105"
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuCnz4vw-yuQB6ymcbPSoenn17gNE2xQFk2qXieqif4Lsqje6bGFUk-2mCM2NzqF3MjBuWms1aK_B42pWkat241MdGmpSpKhwP-i2DG76Jcif59D6qVjoznlXkoQoZEeugaBw9Hh2KBqwAqhWqTGuBeEW-CaHCI7t8O-j2jxs39p3h2eJ3GYveamEyqK_cWABbpZv6ghuiut0R4ahJgkX5A9xBfxXIaIFrvS2Y7_eAB9tjzci8hzWXEylJr51GO4j50KdyWj0S4"
+              />
+              <div class="provenance-overlay absolute top-6 right-6 px-4 py-2">
+                <span
+                  class="font-label text-[10px] tracking-widest uppercase font-semibold"
+                  >MEZCLA DE TEMPORADA</span
+                >
+              </div>
+            </div>
+            <div class="flex justify-between items-start">
+              <div>
+                <h3 class="font-headline text-2xl italic font-bold">
+                  Editorial Nocturna
+                </h3>
+                <p class="font-body text-sm text-on-surface-variant mt-2">
+                  Chocolate oscuro &bull; Cereza negra &bull; Melaza
+                </p>
+              </div>
+              <span class="font-label font-bold text-lg">$28.00</span>
+            </div>
+          </div>
+          <div class="min-w-[400px] group snap-start">
+            <div class="relative overflow-hidden bg-white mb-6">
+              <img
+                alt="Preparación minimalista de café con método pour over"
+                class="w-full aspect-[4/5] object-cover transition-transform duration-700 group-hover:scale-105"
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuBWmdxCgMMCq5iKT6vCb2epeGD4SlJNXQuhVSpfpi4C4frycHhFxnquGuE86F5_uq-ae-SVEP8CdYOjYrPBOY4iBZXNa7Kx_Popa6pFDIei2mQEEH-5_cAkrY88cCVFNviXfz3XtlsOB5Zq-gspyHkNmCi9XzOWsNmeU81vn9MghYKwvNvN_J3s7mzuUFnvGdRG4tkKrDjaOSLxEEXEWaRQuEEMkCzYVTY0QroiB0ffRiESYjCKAXOP5WT9CVIh2E5tN6JF07I"
+              />
+              <div class="provenance-overlay absolute top-6 right-6 px-4 py-2">
+                <span
+                  class="font-label text-[10px] tracking-widest uppercase font-semibold"
+                  >AGUA SUIZA</span
+                >
+              </div>
+            </div>
+            <div class="flex justify-between items-start">
+              <div>
+                <h3 class="font-headline text-2xl italic font-bold">
+                  Caldas Descafeinado
+                </h3>
+                <p class="font-body text-sm text-on-surface-variant mt-2">
+                  Nuez &bull; Caramelo &bull; Manzana roja
+                </p>
+              </div>
+              <span class="font-label font-bold text-lg">$34.00</span>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="py-32 px-12 bg-primary text-on-primary">
+        <div
+          class="max-w-screen-2xl mx-auto flex flex-col md:flex-row items-center gap-24"
+        >
+          <div class="w-full md:w-1/2 relative">
+            <img
+              alt="Barista profesional preparando café con método v60"
+              class="w-full h-[700px] object-cover grayscale brightness-75"
+              src="https://lh3.googleusercontent.com/aida-public/AB6AXuA2e7VHb1CIhuYsWKW1AWOAPGrS5zeGorsyMHABbVfhW2B5znnJg6KF3JO2-zpa91x2niS936IpIXU-rLl_qU-qkZf9pyZNiHoipxawrQxTVXUqryKL_LFwR088o9GlqO9a2EmeLo4CHaq8OpWc5WMyNi-m3HITCA5yBM-9Mb-pEp6vkug5Q4v0oyGvjuue9rIOL0cEmjQutDo1n9HjQxfbaz2VgqmuqtizTy_iAqk4pbSHfc6ppT7nzHehMVICG7wZonb1bi4"
+            />
+            <div
+              class="absolute -bottom-8 -right-8 bg-secondary p-12 hidden md:block"
+            >
+              <span
+                class="font-headline text-4xl italic font-bold text-on-primary leading-tight"
+                >La maestría<br />está en los detalles.</span
+              >
+            </div>
+          </div>
+          <div class="w-full md:w-1/2 space-y-12">
+            <h2 class="font-headline text-5xl italic font-bold tracking-tight">
+              Maestría en Preparación
+            </h2>
+            <p
+              class="font-body text-xl text-on-primary/70 leading-relaxed font-light"
+            >
+              El viaje no termina en el tueste. Descubre el potencial completo
+              de tus granos con nuestras guías curadas para Pour Over,
+              AeroPress y técnicas de espresso.
+            </p>
+            <div class="space-y-8">
+              <div class="border-b border-white/10 pb-6 group cursor-pointer">
+                <div class="flex justify-between items-center">
+                  <span
+                    class="font-label tracking-widest uppercase text-xs text-secondary"
+                    >Fase 01</span
+                  >
+                  <span
+                    class="material-symbols-outlined transition-transform duration-300 group-hover:translate-x-2"
+                    >north_east</span
+                  >
+                </div>
+                <h4 class="font-headline text-2xl italic font-bold mt-2">
+                  La proporción dorada y la química del agua
+                </h4>
+              </div>
+              <div class="border-b border-white/10 pb-6 group cursor-pointer">
+                <div class="flex justify-between items-center">
+                  <span
+                    class="font-label tracking-widest uppercase text-xs text-secondary"
+                    >Fase 02</span
+                  >
+                  <span
+                    class="material-symbols-outlined transition-transform duration-300 group-hover:translate-x-2"
+                    >north_east</span
+                  >
+                </div>
+                <h4 class="font-headline text-2xl italic font-bold mt-2">
+                  Molido de precisión y uniformidad
+                </h4>
+              </div>
+              <div class="border-b border-white/10 pb-6 group cursor-pointer">
+                <div class="flex justify-between items-center">
+                  <span
+                    class="font-label tracking-widest uppercase text-xs text-secondary"
+                    >Fase 03</span
+                  >
+                  <span
+                    class="material-symbols-outlined transition-transform duration-300 group-hover:translate-x-2"
+                    >north_east</span
+                  >
+                </div>
+                <h4 class="font-headline text-2xl italic font-bold mt-2">
+                  La ventana de extracción
+                </h4>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="py-32 bg-surface">
+        <div class="max-w-screen-2xl mx-auto px-12 text-center mb-20">
+          <span
+            class="font-label text-secondary tracking-[0.3em] uppercase text-xs"
+            >Nuestro santuario</span
+          >
+          <h2
+            class="font-headline text-5xl md:text-6xl italic font-bold tracking-tight mt-4"
+          >
+            Visita Nuestra Tostadora
+          </h2>
+        </div>
+        <div
+          class="w-full max-w-screen-2xl mx-auto px-12 grid grid-cols-1 md:grid-cols-12 gap-8 items-stretch"
+        >
+          <div class="md:col-span-8">
+            <img
+              alt="Interior amplio y moderno de cafetería de especialidad"
+              class="w-full h-[600px] object-cover"
+              src="https://lh3.googleusercontent.com/aida-public/AB6AXuAFH3mKKOQh4-UsZtW2ZdtcB-FiYxrMbLe2e-NSnrNrhrgE4-OSuXRV_uEpKnNTpJy5YGlvF7Kzq1uwzOb_VnMQDpY4CFgXGsXIMmjvD-7ht9IqJMN_qiovraECN7FtInYKOkpp_PDEwkYKVF2w-3qCoQel_LARmsWSEuY0IExwMctDJ9o5bC1W1h2idxsmBeK8AQxqO921DxwZp7rEbY0hYufli8AjH8ZC5tG7RekD1QX_Y-tMlUnloQxT8Dmr7Br9lADnty0"
+            />
+          </div>
+          <div
+            class="md:col-span-4 bg-surface-container-low p-16 flex flex-col justify-center space-y-12"
+          >
+            <div>
+              <h3
+                class="font-label text-xs tracking-widest uppercase text-secondary mb-4"
+              >
+                Ubicación
+              </h3>
+              <p class="font-headline text-2xl italic font-bold">
+                Calle Artesanal 124,<br />Hermosillo, Sonora
+              </p>
+            </div>
+            <div>
+              <h3
+                class="font-label text-xs tracking-widest uppercase text-secondary mb-4"
+              >
+                Horario
+              </h3>
+              <ul class="font-body text-sm space-y-2 text-on-surface-variant">
+                <li
+                  class="flex justify-between border-b border-outline-variant/20 pb-2"
+                >
+                  <span>Lun - Vie</span> <span>07:00 - 18:00</span>
+                </li>
+                <li
+                  class="flex justify-between border-b border-outline-variant/20 pb-2"
+                >
+                  <span>Sáb - Dom</span> <span>08:00 - 20:00</span>
+                </li>
+              </ul>
+            </div>
+            <button
+              class="w-full border border-primary py-5 font-label tracking-widest uppercase text-xs hover:bg-primary hover:text-on-primary transition-all duration-300"
+            >
+              Cómo llegar
+            </button>
+          </div>
+        </div>
+      </section>
+    </main>
+    <footer
+      class="bg-[#f6f3ee] dark:bg-[#2c2c2c] w-full border-t-0 tonal-depth-shift"
+    >
+      <div
+        class="flex flex-col md:flex-row justify-between items-start px-12 py-20 gap-12 w-full max-w-screen-2xl mx-auto"
+      >
+        <div class="max-w-xs space-y-8">
+          <a
+            class="font-headline text-3xl font-bold italic text-[#171818] dark:text-[#fcf9f4]"
+            href="#"
+            >TUESTE</a
+          >
+          <p
+            class="font-body font-light tracking-wide leading-relaxed text-[#171818]/60 dark:text-[#fcf9f4]/60 text-sm"
+          >
+            Café de especialidad tostado con cuidado en Hermosillo, Sonora.
+          </p>
+          <p class="font-body font-light text-sm text-[#171818]/40 dark:text-[#fcf9f4]/40">
+            Desarrollado por NORABYTE
+          </p>
+        </div>
+        <div class="grid grid-cols-2 md:grid-cols-3 gap-16 md:gap-24">
+          <div class="flex flex-col gap-4">
+            <h5
+              class="font-label text-[10px] tracking-[0.2em] uppercase font-bold text-secondary"
+            >
+              Descubrir
+            </h5>
+            <a
+              class="font-body text-sm font-light tracking-wide text-[#171818]/60 dark:text-[#fcf9f4]/60 hover:text-[#735a3a] underline-offset-4 hover:underline transition-all duration-300"
+              href="#"
+              >La Experiencia</a
+            >
+            <a
+              class="font-body text-sm font-light tracking-wide text-[#171818]/60 dark:text-[#fcf9f4]/60 hover:text-[#735a3a] underline-offset-4 hover:underline transition-all duration-300"
+              href="#"
+              >Nuestras Tostadas</a
+            >
+            <a
+              class="font-body text-sm font-light tracking-wide text-[#171818]/60 dark:text-[#fcf9f4]/60 hover:text-[#735a3a] underline-offset-4 hover:underline transition-all duration-300"
+              href="#"
+              >Suscripciones</a
+            >
+          </div>
+          <div class="flex flex-col gap-4">
+            <h5
+              class="font-label text-[10px] tracking-[0.2em] uppercase font-bold text-secondary"
+            >
+              Soporte
+            </h5>
+            <a
+              class="font-body text-sm font-light tracking-wide text-[#171818]/60 dark:text-[#fcf9f4]/60 hover:text-[#735a3a] underline-offset-4 hover:underline transition-all duration-300"
+              href="#"
+              >Envíos y devoluciones</a
+            >
+            <a
+              class="font-body text-sm font-light tracking-wide text-[#171818]/60 dark:text-[#fcf9f4]/60 hover:text-[#735a3a] underline-offset-4 hover:underline transition-all duration-300"
+              href="#"
+              >Política de privacidad</a
+            >
+            <a
+              class="font-body text-sm font-light tracking-wide text-[#171818]/60 dark:text-[#fcf9f4]/60 hover:text-[#735a3a] underline-offset-4 hover:underline transition-all duration-300"
+              href="#"
+              >Nuestros Cafés</a
+            >
+          </div>
+          <div class="flex flex-col gap-4 col-span-2 md:col-span-1">
+            <h5
+              class="font-label text-[10px] tracking-[0.2em] uppercase font-bold text-secondary"
+            >
+              Conectar
+            </h5>
+            <div class="flex gap-6 mt-2">
+              <span
+                class="material-symbols-outlined text-lg text-[#171818]/60 cursor-pointer hover:text-secondary"
+                >share</span
+              >
+              <span
+                class="material-symbols-outlined text-lg text-[#171818]/60 cursor-pointer hover:text-secondary"
+                >mail</span
+              >
+              <span
+                class="material-symbols-outlined text-lg text-[#171818]/60 cursor-pointer hover:text-secondary"
+                >location_on</span
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="px-12 py-10 border-t border-outline-variant/10 text-center">
+        <span
+          class="font-body font-light tracking-wide text-[10px] text-[#171818]/40 uppercase"
+          >© 2026 TUESTE. Todos los derechos reservados. Desarrollado por NORABYTE — norabyte.com</span
+        >
+      </div>
+    </footer>
+  </body>
+</html>
