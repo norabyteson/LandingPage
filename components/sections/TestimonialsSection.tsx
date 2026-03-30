@@ -113,7 +113,7 @@ function Card({ item, index, total, scrollYProgress }: { item: TestimonialItem; 
           </div>
           <div className="flex flex-col">
             <div className="text-[var(--nb-light)] font-bold text-sm md:text-base group-hover:text-[var(--nb-primary-light)] transition-colors">{item.name}</div>
-            <div className="text-[var(--nb-light)]/50 text-xs md:text-sm">{item.role}</div>
+            <div className="text-[var(--nb-light)]/65 text-xs md:text-sm">{item.role}</div>
           </div>
         </footer>
       </div>
