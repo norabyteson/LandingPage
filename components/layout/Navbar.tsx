@@ -35,6 +35,10 @@ export default function Navbar({ dict, lang }: NavbarProps) {
   const pathname = usePathname();
   const router = useRouter();
   const { theme, toggleTheme } = useTheme();
+  const logoSrc =
+    mounted && theme === "dark"
+      ? "/norabyte_logo_transparente_blanco.webp"
+      : "/norabyte_logo_transparente.png";
 
   const navItems = [
     { label: dict.nav.services, href: `/${lang}#services`, id: "services" },
@@ -135,11 +139,7 @@ export default function Navbar({ dict, lang }: NavbarProps) {
               NORA<span className="text-[var(--nb-primary)]">BYTE</span>
             </span> */}
             <Image
-              src={
-                theme === "dark"
-                  ? "/norabyte_logo_transparente_blanco.webp"
-                  : "/norabyte_logo_transparente.png"
-              }
+              src={logoSrc}
               alt="NORABYTE"
               width={160}
               height={40}
@@ -303,11 +303,7 @@ export default function Navbar({ dict, lang }: NavbarProps) {
               {/* Header del panel */}
               <div className="flex items-center justify-between p-6 pb-5">
                 <Image
-                  src={
-                    theme === "dark"
-                      ? "/norabyte_logo_transparente_blanco.webp"
-                      : "/norabyte_logo_transparente.png"
-                  }
+                  src={logoSrc}
                   alt="NORABYTE"
                   width={160}
                   height={40}

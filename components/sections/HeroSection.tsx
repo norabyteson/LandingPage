@@ -1,11 +1,11 @@
 "use client";
 
+import Image from "next/image";
 import { useRef, useEffect, useState } from "react";
 import { motion, useScroll, useTransform, useSpring } from "framer-motion";
 import { ArrowRight, ChevronDown } from "lucide-react";
 import type { Locale } from "@/types/i18n";
 import SectionBadge from "@/components/ui/SectionBadge";
-import DashboardMockup from "@/components/ui/DashboardMockup";
 
 interface HeroSectionProps {
   dict: {
@@ -139,7 +139,22 @@ export default function HeroSection({ dict, lang }: HeroSectionProps) {
                   </div>
                 </div>
                 <div className="w-full aspect-[16/10] overflow-hidden">
-                  <DashboardMockup />
+                  <Image
+                    src={
+                      lang === "es"
+                        ? "/dashboard-assets/dashboard-es.webp?v=20260330c"
+                        : "/dashboard-assets/dashboard-en.webp?v=20260330c"
+                    }
+                    alt={
+                      lang === "es"
+                        ? "Vista previa estática del panel de NORABYTE en español"
+                        : "Static preview of the NORABYTE dashboard in English"
+                    }
+                    width={1600}
+                    height={1000}
+                    className="w-full h-full object-contain bg-[#0b0b0b]"
+                    priority
+                  />
                 </div>
               </div>
             </motion.div>

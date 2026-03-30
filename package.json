@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "capture-demos": "node scripts/capture-demos.mjs"
+    "capture-demos": "node scripts/capture-demos.mjs",
+    "capture-hero-dashboard": "node scripts/capture-hero-dashboard.mjs"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.2.2",

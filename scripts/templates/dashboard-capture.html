@@ -1,0 +1,805 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>NORABYTE Dashboard Capture</title>
+    <style>
+      :root {
+        --bg: #0d0d0d;
+        --surface: #161616;
+        --line: #262626;
+        --muted: #94a3b8;
+        --text: #f1f5f9;
+        --primary: #2563eb;
+        --success: #10b981;
+        --warning: #f59e0b;
+        --content-zoom: 1.62;
+        --sidebar-width: clamp(320px, 22%, 360px);
+        --topbar-height: clamp(74px, 8.2%, 90px);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        margin: 0;
+        min-height: 100%;
+        background: #050505;
+        font-family: "Segoe UI", "Plus Jakarta Sans", sans-serif;
+        color: var(--text);
+      }
+
+      body {
+        display: grid;
+        place-items: center;
+        padding: 20px;
+      }
+
+      .capture-frame {
+        width: 1600px;
+        height: 1000px;
+        background: var(--bg);
+        position: relative;
+        overflow: hidden;
+        border: 1px solid #111;
+      }
+
+      .dashboard {
+        width: 100%;
+        height: 100%;
+        display: flex;
+      }
+
+      .sidebar {
+        width: var(--sidebar-width);
+        flex-shrink: 0;
+        background: var(--surface);
+        border-right: 1px solid var(--line);
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        padding: clamp(16px, 2%, 22px);
+        min-height: 0;
+      }
+
+      .sidebar-main {
+        display: flex;
+        flex-direction: column;
+        min-height: auto;
+      }
+
+      .sidebar-footer {
+        padding-top: 12px;
+        margin-top: auto;
+      }
+
+      .logo {
+        font-weight: 800;
+        font-size: 30px;
+        letter-spacing: -0.03em;
+      }
+
+      .logo span {
+        color: var(--primary);
+      }
+
+      .subtitle {
+        margin: 4px 0 0;
+        font-size: 15px;
+        color: #64748b;
+      }
+
+      .menu {
+        margin-top: 20px;
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+      }
+
+      .menu-item {
+        display: flex;
+        align-items: center;
+        gap: 13px;
+        padding: 18px 18px;
+        border-radius: 13px;
+        font-size: 23px;
+        line-height: 1.15;
+        font-weight: 600;
+        color: #94a3b8;
+      }
+
+      .menu-item.active {
+        background: var(--primary);
+        color: #fff;
+      }
+
+      .dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 999px;
+        background: #475569;
+      }
+
+      .menu-item.active .dot {
+        background: #fff;
+      }
+
+      .cta {
+        width: 100%;
+        background: var(--primary);
+        color: #fff;
+        font-size: 22px;
+        font-weight: 700;
+        text-align: center;
+        padding: 14px 10px;
+        border-radius: 13px;
+      }
+
+      .profile {
+        margin-top: 12px;
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        padding: 14px 16px;
+        background: rgba(255, 255, 255, 0.04);
+        border-radius: 13px;
+      }
+
+      .avatar {
+        width: 44px;
+        height: 44px;
+        border-radius: 999px;
+        display: grid;
+        place-items: center;
+        background: var(--primary);
+        font-size: 16px;
+        font-weight: 700;
+      }
+
+      .profile p {
+        margin: 0;
+        line-height: 1.2;
+      }
+
+      .profile .name {
+        font-size: 21px;
+        font-weight: 600;
+      }
+
+      .profile .role {
+        font-size: 16px;
+        color: #64748b;
+      }
+
+      .main {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+      }
+
+      .topbar {
+        height: var(--topbar-height);
+        border-bottom: 1px solid var(--line);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 clamp(20px, 2.5%, 30px);
+        gap: 12px;
+      }
+
+      .topbar h2 {
+        margin: 0;
+        font-size: 34px;
+        letter-spacing: -0.02em;
+      }
+
+      .search {
+        margin-left: 16px;
+        background: var(--surface);
+        border: 1px solid var(--line);
+        border-radius: 12px;
+        padding: 15px 18px;
+        font-size: 19px;
+        color: #64748b;
+        max-width: min(500px, 44vw);
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      .topbar-left {
+        display: flex;
+        align-items: center;
+        min-width: 0;
+      }
+
+      .icons {
+        display: flex;
+        gap: 12px;
+      }
+
+      .icon {
+        width: 46px;
+        height: 46px;
+        display: grid;
+        place-items: center;
+        border-radius: 12px;
+        background: var(--surface);
+        border: 1px solid var(--line);
+      }
+
+      .icon svg {
+        width: 22px;
+        height: 22px;
+        stroke: #94a3b8;
+        stroke-width: 1.8;
+        fill: none;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+
+      .content {
+        flex: 1;
+        min-height: 0;
+        padding: 18px;
+        overflow: hidden;
+      }
+
+      .content-zoom {
+        width: calc(100% / var(--content-zoom));
+        height: calc(100% / var(--content-zoom));
+        display: grid;
+        grid-template-rows: auto auto minmax(0, 1fr);
+        gap: 14px;
+        transform: scale(var(--content-zoom));
+        transform-origin: top left;
+      }
+
+      .kpi-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 10px;
+      }
+
+      .card {
+        background: var(--surface);
+        border: 1px solid var(--line);
+        border-radius: 14px;
+        padding: 12px;
+      }
+
+      .kpi-title {
+        color: #94a3b8;
+        font-size: 10px;
+        font-weight: 600;
+      }
+
+      .kpi-value {
+        margin-top: 8px;
+        font-size: 24px;
+        font-weight: 700;
+        letter-spacing: -0.02em;
+      }
+
+      .kpi-trend {
+        margin-top: 4px;
+        font-size: 10px;
+        font-weight: 700;
+      }
+
+      .up {
+        color: var(--success);
+      }
+
+      .down {
+        color: #fb7185;
+      }
+
+      .middle-grid {
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+        gap: 10px;
+      }
+
+      .chart-header,
+      .insight-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .chart-title {
+        margin: 0;
+        font-size: 14px;
+      }
+
+      .chart-subtitle {
+        margin: 4px 0 0;
+        color: #64748b;
+        font-size: 10px;
+      }
+
+      .tabs {
+        display: flex;
+        background: var(--bg);
+        border: 1px solid var(--line);
+        border-radius: 9px;
+        padding: 2px;
+      }
+
+      .tab {
+        padding: 5px 9px;
+        font-size: 10px;
+        border-radius: 7px;
+        color: #64748b;
+        font-weight: 700;
+      }
+
+      .tab.active {
+        background: var(--primary);
+        color: #fff;
+      }
+
+      .amount {
+        margin-top: 10px;
+        display: flex;
+        align-items: baseline;
+        gap: 8px;
+      }
+
+      .amount strong {
+        font-size: 30px;
+        letter-spacing: -0.02em;
+      }
+
+      .amount span {
+        color: var(--success);
+        font-size: 12px;
+        font-weight: 700;
+      }
+
+      .chart-wrap {
+        margin-top: 8px;
+      }
+
+      .days {
+        margin-top: 4px;
+        border-top: 1px solid var(--line);
+        padding-top: 6px;
+        display: flex;
+        justify-content: space-between;
+        font-size: 9px;
+        color: #64748b;
+        font-weight: 700;
+      }
+
+      .insight-list {
+        margin-top: 10px;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      .spark-row {
+        display: flex;
+        justify-content: space-between;
+        font-size: 10px;
+        margin-bottom: 4px;
+      }
+
+      .goal {
+        margin-top: 4px;
+        padding: 9px;
+        border-radius: 10px;
+        border: 1px solid var(--line);
+        background: var(--bg);
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .ring {
+        width: 40px;
+        height: 40px;
+        border-radius: 999px;
+        border: 4px solid var(--primary);
+        border-top-color: transparent;
+        display: grid;
+        place-items: center;
+        font-size: 9px;
+        font-weight: 700;
+      }
+
+      .table-card {
+        overflow: hidden;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .table-card table {
+        flex: 1;
+      }
+
+      .table-head {
+        padding: 12px 14px;
+        border-bottom: 1px solid var(--line);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      .table-head h3 {
+        margin: 0;
+        font-size: 13px;
+      }
+
+      .table-link {
+        color: var(--primary);
+        font-size: 10px;
+        font-weight: 700;
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+      }
+
+      thead {
+        background: rgba(255, 255, 255, 0.04);
+        color: #94a3b8;
+        font-size: 9px;
+        letter-spacing: 0.07em;
+      }
+
+      th,
+      td {
+        text-align: left;
+        padding: 10px 14px;
+      }
+
+      tbody tr {
+        border-top: 1px solid var(--line);
+      }
+
+      td {
+        font-size: 11px;
+      }
+
+      .customer {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .badge {
+        width: 22px;
+        height: 22px;
+        border-radius: 999px;
+        display: grid;
+        place-items: center;
+        font-size: 8px;
+        font-weight: 700;
+      }
+
+      .b-blue {
+        background: rgba(37, 99, 235, 0.22);
+        color: #60a5fa;
+      }
+
+      .b-green {
+        background: rgba(16, 185, 129, 0.22);
+        color: #34d399;
+      }
+
+      .b-purple {
+        background: rgba(168, 85, 247, 0.22);
+        color: #c084fc;
+      }
+
+      .status {
+        display: inline-block;
+        border-radius: 6px;
+        padding: 3px 7px;
+        font-size: 8px;
+        font-weight: 700;
+        letter-spacing: 0.04em;
+      }
+
+      .s-processing {
+        background: rgba(245, 158, 11, 0.14);
+        color: #fbbf24;
+      }
+
+      .s-shipped {
+        background: rgba(37, 99, 235, 0.14);
+        color: #60a5fa;
+      }
+
+      .s-delivered {
+        background: rgba(16, 185, 129, 0.14);
+        color: #34d399;
+      }
+
+      .hint {
+        position: fixed;
+        left: 14px;
+        bottom: 12px;
+        color: #64748b;
+        font-size: 11px;
+        background: rgba(10, 10, 10, 0.7);
+        border: 1px solid #1d1d1d;
+        border-radius: 8px;
+        padding: 6px 9px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="capture-frame">
+      <div class="dashboard">
+      <aside class="sidebar">
+        <div class="sidebar-main">
+          <div>
+            <div class="logo">NORA<span>BYTE</span></div>
+            <p class="subtitle">Admin Console</p>
+          </div>
+
+          <nav class="menu">
+            <div class="menu-item active"><span class="dot"></span>Dashboard</div>
+            <div class="menu-item"><span class="dot"></span>Analytics</div>
+            <div class="menu-item"><span class="dot"></span>Orders</div>
+            <div class="menu-item"><span class="dot"></span>Inventory</div>
+            <div class="menu-item" style="background: rgba(255, 255, 255, 0.05); color: #e2e8f0"><span class="dot"></span>Customers</div>
+            <div class="menu-item"><span class="dot"></span>Settings</div>
+          </nav>
+        </div>
+
+        <div class="sidebar-footer">
+          <div class="cta">+ New Report</div>
+          <div class="profile">
+            <div class="avatar">N</div>
+            <div>
+              <p class="name">Nora Byte</p>
+              <p class="role">System Admin</p>
+            </div>
+          </div>
+        </div>
+      </aside>
+
+      <main class="main">
+        <header class="topbar">
+          <div class="topbar-left">
+            <h2>Dashboard Overview</h2>
+            <div class="search">Search data...</div>
+          </div>
+          <div class="icons">
+            <div class="icon" aria-label="Notificaciones">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M15 18H9"></path>
+                <path d="M18 16V11a6 6 0 0 0-12 0v5"></path>
+                <path d="M5 16h14"></path>
+                <path d="M6 16v1.5a1.5 1.5 0 0 0 1.5 1.5h9a1.5 1.5 0 0 0 1.5-1.5V16"></path>
+              </svg>
+            </div>
+            <div class="icon" aria-label="Ayuda">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <circle cx="12" cy="12" r="9"></circle>
+                <path d="M9.8 9.4a2.3 2.3 0 1 1 3.9 1.7c-.8.7-1.7 1.2-1.7 2.4"></path>
+                <path d="M12 16.8h.01"></path>
+              </svg>
+            </div>
+          </div>
+        </header>
+
+        <section class="content">
+          <div class="content-zoom">
+          <div class="kpi-grid">
+            <article class="card">
+              <div class="kpi-title">Total Revenue</div>
+              <div class="kpi-value">$128,430</div>
+              <div class="kpi-trend up">+12.5% from last month</div>
+            </article>
+            <article class="card">
+              <div class="kpi-title">Active Orders</div>
+              <div class="kpi-value">42</div>
+              <div class="kpi-trend down">-2.4% from yesterday</div>
+            </article>
+            <article class="card">
+              <div class="kpi-title">New Customers</div>
+              <div class="kpi-value">1,204</div>
+              <div class="kpi-trend up">+18.1% vs avg</div>
+            </article>
+            <article class="card">
+              <div class="kpi-title">Avg. Order Value</div>
+              <div class="kpi-value">$305.78</div>
+              <div class="kpi-trend up">+4.2% growth</div>
+            </article>
+          </div>
+
+          <div class="middle-grid">
+            <article class="card">
+              <div class="chart-header">
+                <div>
+                  <h3 class="chart-title">Weekly Sales Growth</h3>
+                  <p class="chart-subtitle">Performance tracking across current cycle</p>
+                </div>
+                <div class="tabs">
+                  <div class="tab active">Week</div>
+                  <div class="tab">Month</div>
+                </div>
+              </div>
+
+              <div class="amount">
+                <strong>$45,200.00</strong>
+                <span>+14.2%</span>
+              </div>
+
+              <div class="chart-wrap">
+                <svg viewBox="0 0 1000 200" width="100%" height="130" preserveAspectRatio="none">
+                  <defs>
+                    <linearGradient id="cg" x1="0" x2="0" y1="0" y2="1">
+                      <stop offset="0%" stop-color="#2563EB" stop-opacity="0.25"></stop>
+                      <stop offset="100%" stop-color="#2563EB" stop-opacity="0"></stop>
+                    </linearGradient>
+                  </defs>
+                  <path d="M0,150 Q100,140 200,80 T400,100 T600,40 T800,90 T1000,20 L1000,200 L0,200 Z" fill="url(#cg)"></path>
+                  <path d="M0,150 Q100,140 200,80 T400,100 T600,40 T800,90 T1000,20" fill="none" stroke="#2563EB" stroke-width="3"></path>
+                </svg>
+                <div class="days">
+                  <span>MON</span>
+                  <span>TUE</span>
+                  <span>WED</span>
+                  <span>THU</span>
+                  <span>FRI</span>
+                  <span>SAT</span>
+                  <span>SUN</span>
+                </div>
+              </div>
+            </article>
+
+            <article class="card">
+              <div class="insight-header">
+                <h3 class="chart-title">Real-time Insights</h3>
+              </div>
+
+              <div class="insight-list">
+                <div>
+                  <div class="spark-row">
+                    <span>Direct Sales</span>
+                    <strong>$24.2k</strong>
+                  </div>
+                  <svg viewBox="0 0 200 40" width="100%" height="28">
+                    <path d="M0,20 L20,15 L40,25 L60,10 L80,30 L100,15 L120,20 L140,5 L160,25 L180,10 L200,15" fill="none" stroke="#2563EB" stroke-width="2"></path>
+                  </svg>
+                </div>
+                <div>
+                  <div class="spark-row">
+                    <span>Marketplace</span>
+                    <strong>$18.9k</strong>
+                  </div>
+                  <svg viewBox="0 0 200 40" width="100%" height="28">
+                    <path d="M0,30 L20,25 L40,35 L60,20 L80,25 L100,30 L120,15 L140,20 L160,10 L180,25 L200,20" fill="none" stroke="#10B981" stroke-width="2"></path>
+                  </svg>
+                </div>
+                <div class="goal">
+                  <div class="ring">85%</div>
+                  <div>
+                    <div style="font-size: 10px; font-weight: 700">Goal Reach</div>
+                    <div style="font-size: 9px; color: #64748b">Monthly target almost met</div>
+                  </div>
+                </div>
+              </div>
+            </article>
+          </div>
+
+          <article class="card table-card">
+            <div class="table-head">
+              <h3>Active Order Tracking</h3>
+              <div class="table-link">View All Orders</div>
+            </div>
+            <table>
+              <thead>
+                <tr>
+                  <th>ORDER ID</th>
+                  <th>CUSTOMER</th>
+                  <th>PRODUCT</th>
+                  <th>AMOUNT</th>
+                  <th>STATUS</th>
+                  <th>ACTIONS</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>#ORD-7721</td>
+                  <td>
+                    <div class="customer">
+                      <span class="badge b-blue">JD</span>
+                      <span>Jane Doe</span>
+                    </div>
+                  </td>
+                  <td>Quantum GPU Module</td>
+                  <td><strong>$2,499.00</strong></td>
+                  <td><span class="status s-processing">PROCESSING</span></td>
+                  <td style="color: #64748b">···</td>
+                </tr>
+                <tr>
+                  <td>#ORD-7720</td>
+                  <td>
+                    <div class="customer">
+                      <span class="badge b-green">MS</span>
+                      <span>Michael Smith</span>
+                    </div>
+                  </td>
+                  <td>Neural Link Core</td>
+                  <td><strong>$1,200.00</strong></td>
+                  <td><span class="status s-shipped">SHIPPED</span></td>
+                  <td style="color: #64748b">···</td>
+                </tr>
+                <tr>
+                  <td>#ORD-7719</td>
+                  <td>
+                    <div class="customer">
+                      <span class="badge b-purple">AK</span>
+                      <span>Aria Khan</span>
+                    </div>
+                  </td>
+                  <td>Server Rack S3</td>
+                  <td><strong>$8,400.00</strong></td>
+                  <td><span class="status s-delivered">DELIVERED</span></td>
+                  <td style="color: #64748b">···</td>
+                </tr>
+                <tr>
+                  <td>#ORD-7718</td>
+                  <td>
+                    <div class="customer">
+                      <span class="badge b-blue">LR</span>
+                      <span>Laura Reed</span>
+                    </div>
+                  </td>
+                  <td>AI Compute Cluster</td>
+                  <td><strong>$5,320.00</strong></td>
+                  <td><span class="status s-processing">PROCESSING</span></td>
+                  <td style="color: #64748b">···</td>
+                </tr>
+                <tr>
+                  <td>#ORD-7717</td>
+                  <td>
+                    <div class="customer">
+                      <span class="badge b-green">TW</span>
+                      <span>Tom Walker</span>
+                    </div>
+                  </td>
+                  <td>Cloud Backup Node</td>
+                  <td><strong>$980.00</strong></td>
+                  <td><span class="status s-shipped">SHIPPED</span></td>
+                  <td style="color: #64748b">···</td>
+                </tr>
+                <tr>
+                  <td>#ORD-7716</td>
+                  <td>
+                    <div class="customer">
+                      <span class="badge b-purple">EV</span>
+                      <span>Emma Vega</span>
+                    </div>
+                  </td>
+                  <td>Security Gateway X1</td>
+                  <td><strong>$3,110.00</strong></td>
+                  <td><span class="status s-delivered">DELIVERED</span></td>
+                  <td style="color: #64748b">···</td>
+                </tr>
+              </tbody>
+            </table>
+          </article>
+          </div>
+        </section>
+      </main>
+      </div>
+    </div>
+
+    <div class="hint">Captura exacta recomendada: 1600x1000</div>
+  </body>
+</html>

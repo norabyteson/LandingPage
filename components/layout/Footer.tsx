@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Github, Linkedin, Twitter } from "lucide-react";
+import { Facebook } from "lucide-react";
 import type { Locale } from "@/types/i18n";
 
 interface FooterProps {
@@ -56,22 +56,15 @@ export default function Footer({ dict, lang }: FooterProps) {
 
             {/* Redes sociales */}
             <div className="flex items-center gap-3 mt-6">
-              {[
-                { icon: Github, label: "GitHub", href: "https://github.com/norabyte" },
-                { icon: Linkedin, label: "LinkedIn", href: "https://www.linkedin.com/company/norabyte" },
-                { icon: Twitter, label: "Twitter / X", href: "https://x.com/norabyte" },
-              ].map(({ icon: Icon, label, href }) => (
-                <a
-                  key={label}
-                  href={href}
-                  aria-label={label}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-9 h-9 rounded-xl glass-card flex items-center justify-center text-[var(--nb-light)]/40 hover:text-[var(--nb-primary)] hover:border-[var(--nb-primary)]/30 transition-all duration-200"
-                >
-                  <Icon size={15} aria-hidden="true" />
-                </a>
-              ))}
+              <a
+                href="https://www.facebook.com/profile.php?id=61586356240516"
+                aria-label="Facebook"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-9 h-9 rounded-xl glass-card flex items-center justify-center text-[var(--nb-light)]/40 hover:text-[var(--nb-primary)] hover:border-[var(--nb-primary)]/30 transition-all duration-200"
+              >
+                <Facebook size={15} aria-hidden="true" />
+              </a>
             </div>
           </div>
 
