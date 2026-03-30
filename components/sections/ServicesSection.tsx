@@ -122,8 +122,7 @@ function InnerCarousel({
             alt={`${altPrefix} — Demo ${activeIndex + 1}`}
             fill
             className="object-cover"
-            sizes="(max-width: 768px) 100vw, 450px"
-            unoptimized
+            sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
             draggable={false}
             onError={() => setFailedIdx((prev) => new Set(prev).add(activeIndex))}
           />
@@ -221,7 +220,7 @@ function ServiceCard({
           <h3 className="text-[var(--nb-light)] font-bold text-xl mb-3 group-hover/card:text-[var(--nb-primary-light)] transition-colors duration-200">
             {service.title}
           </h3>
-          <p className="text-[var(--nb-light)]/55 text-sm md:text-base leading-relaxed">
+          <p className="text-[var(--nb-light)]/65 text-sm md:text-base leading-relaxed">
             {service.description}
           </p>
         </div>

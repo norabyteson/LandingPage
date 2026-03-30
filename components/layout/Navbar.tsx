@@ -35,6 +35,10 @@ export default function Navbar({ dict, lang }: NavbarProps) {
   const pathname = usePathname();
   const router = useRouter();
   const { theme, toggleTheme } = useTheme();
+  const logoSrc =
+    mounted && theme === "dark"
+      ? "/norabyte_logo_transparente_blanco.webp"
+      : "/norabyte_logo_transparente.png";
 
   const navItems = [
     { label: dict.nav.services, href: `/${lang}#services`, id: "services" },
@@ -135,11 +139,7 @@ export default function Navbar({ dict, lang }: NavbarProps) {
               NORA<span className="text-[var(--nb-primary)]">BYTE</span>
             </span> */}
             <Image
-              src={
-                theme === "dark"
-                  ? "/norabyte_logo_transparente_blanco.webp"
-                  : "/norabyte_logo_transparente.png"
-              }
+              src={logoSrc}
               alt="NORABYTE"
               width={160}
               height={40}
@@ -170,7 +170,7 @@ export default function Navbar({ dict, lang }: NavbarProps) {
             <button
               onClick={toggleTheme}
               aria-label={!mounted || theme === "dark" ? "Activar modo claro" : "Activar modo oscuro"}
-              className="w-9 h-9 rounded-xl flex items-center justify-center text-[var(--nb-light)]/50 hover:text-[var(--nb-primary)] hover:bg-[var(--nb-light)]/8 transition-all duration-200"
+              className="w-9 h-9 rounded-xl flex items-center justify-center text-[var(--nb-light)]/60 hover:text-[var(--nb-primary)] hover:bg-[var(--nb-light)]/8 transition-all duration-200"
             >
               <AnimatePresence mode="wait" initial={false}>
                 {!mounted || theme === "dark" ? (
@@ -303,11 +303,7 @@ export default function Navbar({ dict, lang }: NavbarProps) {
               {/* Header del panel */}
               <div className="flex items-center justify-between p-6 pb-5">
                 <Image
-                  src={
-                    theme === "dark"
-                      ? "/norabyte_logo_transparente_blanco.webp"
-                      : "/norabyte_logo_transparente.png"
-                  }
+                  src={logoSrc}
                   alt="NORABYTE"
                   width={160}
                   height={40}

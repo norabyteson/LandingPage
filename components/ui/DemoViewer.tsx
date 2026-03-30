@@ -168,7 +168,6 @@ export default function DemoViewer({
               title={currentDemo.name}
               className="w-full h-full pt-10 border-0"
               onLoad={() => setIframeLoading(false)}
-              sandbox="allow-same-origin allow-scripts allow-forms"
             />
           </div>
 
@@ -194,7 +193,7 @@ export default function DemoViewer({
               <h2 className="text-white font-bold text-xl leading-tight mb-1">
                 {currentDemo.name}
               </h2>
-              <p className="text-white/50 text-sm leading-relaxed">
+              <p className="text-white/65 text-sm leading-relaxed">
                 {currentDemo.desc}
               </p>
             </div>
@@ -213,7 +212,7 @@ export default function DemoViewer({
                       "w-full text-left px-3 py-2.5 rounded-xl text-sm transition-all duration-200",
                       i === activeIndex
                         ? "bg-[#266DD3]/15 text-white font-semibold border border-[#266DD3]/25"
-                        : "text-white/50 hover:text-white hover:bg-white/5"
+                        : "text-white/65 hover:text-white hover:bg-white/5"
                     )}
                   >
                     <span className="text-[10px] text-white/25 mr-2 font-mono tabular-nums">
@@ -230,7 +229,7 @@ export default function DemoViewer({
               <button
                 onClick={handlePrev}
                 disabled={demos.length <= 1}
-                className="flex-1 flex items-center justify-center gap-2 py-2.5 rounded-xl border border-white/10 text-white/50 hover:text-white hover:border-white/25 transition-colors disabled:opacity-30 text-sm"
+                className="flex-1 flex items-center justify-center gap-2 py-2.5 rounded-xl border border-white/10 text-white/65 hover:text-white hover:border-white/25 transition-colors disabled:opacity-30 text-sm"
                 aria-label="Demo anterior"
               >
                 <ChevronLeft size={15} />
@@ -239,7 +238,7 @@ export default function DemoViewer({
               <button
                 onClick={handleNext}
                 disabled={demos.length <= 1}
-                className="flex-1 flex items-center justify-center gap-2 py-2.5 rounded-xl border border-white/10 text-white/50 hover:text-white hover:border-white/25 transition-colors disabled:opacity-30 text-sm"
+                className="flex-1 flex items-center justify-center gap-2 py-2.5 rounded-xl border border-white/10 text-white/65 hover:text-white hover:border-white/25 transition-colors disabled:opacity-30 text-sm"
                 aria-label="Siguiente demo"
               >
                 {isES ? "Siguiente" : "Next"}

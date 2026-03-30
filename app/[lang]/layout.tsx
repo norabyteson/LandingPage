@@ -61,7 +61,7 @@ export async function generateMetadata({ params }: LangLayoutProps): Promise<Met
       title: dict.meta.ogTitle,
       description: dict.meta.ogDescription,
       images: [`${baseUrl}/og-image.jpg`],
-      creator: "@norabyte",
+      creator: "NoraByte Sonora",
     },
     alternates: {
       canonical: `${baseUrl}/${locale}`,
@@ -109,10 +109,7 @@ export default async function LangLayout({ children, params }: LangLayoutProps) 
       email: "hola@norabyte.com",
       availableLanguage: ["Spanish", "English"],
     },
-    sameAs: [
-      "https://github.com/norabyte",
-      "https://linkedin.com/company/norabyte",
-    ],
+    sameAs: ["https://www.facebook.com/profile.php?id=61586356240516"],
   };
 
   return (

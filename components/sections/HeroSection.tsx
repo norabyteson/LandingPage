@@ -1,11 +1,11 @@
 "use client";
 
-import { useRef, useEffect, useState } from "react";
+import Image from "next/image";
+import { useRef, useEffect } from "react";
 import { motion, useScroll, useTransform, useSpring } from "framer-motion";
 import { ArrowRight, ChevronDown } from "lucide-react";
 import type { Locale } from "@/types/i18n";
 import SectionBadge from "@/components/ui/SectionBadge";
-import DashboardMockup from "@/components/ui/DashboardMockup";
 
 interface HeroSectionProps {
   dict: {
@@ -31,7 +31,6 @@ export default function HeroSection({ dict, lang }: HeroSectionProps) {
   const opacity = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
 
   // Mouse parallax logic for the 3D object
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const springConfig = { damping: 25, stiffness: 150 };
   const mouseX = useSpring(0, springConfig);
   const mouseY = useSpring(0, springConfig);
@@ -139,7 +138,22 @@ export default function HeroSection({ dict, lang }: HeroSectionProps) {
                   </div>
                 </div>
                 <div className="w-full aspect-[16/10] overflow-hidden">
-                  <DashboardMockup />
+                  <Image
+                    src={
+                      lang === "es"
+                        ? "/dashboard-assets/dashboard-es.webp"
+                        : "/dashboard-assets/dashboard-en.webp"
+                    }
+                    alt={
+                      lang === "es"
+                        ? "Vista previa estática del panel de NORABYTE en español"
+                        : "Static preview of the NORABYTE dashboard in English"
+                    }
+                    width={1600}
+                    height={1000}
+                    className="w-full h-full object-contain bg-[#0b0b0b]"
+                    priority
+                  />
                 </div>
               </div>
             </motion.div>

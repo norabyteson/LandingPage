@@ -76,7 +76,7 @@ export default function RootLayout({
         {/* Script bloqueante — asigna lang según pathname antes del primer paint */}
         <script dangerouslySetInnerHTML={{ __html: langInitScript }} />
       </head>
-      <body className="antialiased" suppressHydrationWarning>
+      <body className="relative antialiased" suppressHydrationWarning>
         <ThemeProvider>
           <ThemeVarsInjector />
           <LenisProvider>
