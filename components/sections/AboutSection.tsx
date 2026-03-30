@@ -45,7 +45,7 @@ export default function AboutSection({ dict }: AboutSectionProps) {
           alt="Abstract tech background"
           fill
           className="object-cover"
-          unoptimized
+          sizes="100vw"
         />
         <div className="absolute inset-0 bg-[#0F0D0C]/85 z-10" aria-hidden="true" />
       </div>

@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useRef, useEffect, useState } from "react";
+import { useRef, useEffect } from "react";
 import { motion, useScroll, useTransform, useSpring } from "framer-motion";
 import { ArrowRight, ChevronDown } from "lucide-react";
 import type { Locale } from "@/types/i18n";
@@ -31,7 +31,6 @@ export default function HeroSection({ dict, lang }: HeroSectionProps) {
   const opacity = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
 
   // Mouse parallax logic for the 3D object
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const springConfig = { damping: 25, stiffness: 150 };
   const mouseX = useSpring(0, springConfig);
   const mouseY = useSpring(0, springConfig);
@@ -142,8 +141,8 @@ export default function HeroSection({ dict, lang }: HeroSectionProps) {
                   <Image
                     src={
                       lang === "es"
-                        ? "/dashboard-assets/dashboard-es.webp?v=20260330c"
-                        : "/dashboard-assets/dashboard-en.webp?v=20260330c"
+                        ? "/dashboard-assets/dashboard-es.webp"
+                        : "/dashboard-assets/dashboard-en.webp"
                     }
                     alt={
                       lang === "es"

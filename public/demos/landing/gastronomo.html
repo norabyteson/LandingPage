@@ -11,9 +11,16 @@
     <meta property="og:description" content="Una experiencia gastronómica incomparable en Hermosillo, Sonora. Cocina de autor con ingredientes de temporada y maridajes excepcionales." />
     <meta property="og:type" content="website" />
     <meta property="og:locale" content="es_MX" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <script>/* Suppress Tailwind CDN dev warning */(function(){var w=console.warn;console.warn=function(){if(arguments[0]&&typeof arguments[0]==='string'&&arguments[0].indexOf('cdn.tailwindcss.com')!==-1)return;w.apply(console,arguments);};})();</script>
     <script src="../assets/vendors/tailwindcss.js"></script>
     <link
-      href="../assets/vendors/local-fonts.css"
+      href="https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;700&amp;family=Inter:wght@300;400;500;600;700&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&amp;display=swap"
       rel="stylesheet"
     />
     <script id="tailwind-config">
@@ -72,8 +79,8 @@
             },
             fontFamily: {
               headline: ["Noto Serif"],
-              body: ["Manrope"],
-              label: ["Manrope"],
+              body: ["Inter"],
+              label: ["Inter"],
             },
             borderRadius: {
               DEFAULT: "0.125rem",
@@ -85,15 +92,7 @@
         },
       };
     </script>
-    <style>
-      .material-symbols-outlined {
-        font-variation-settings:
-          "FILL" 0,
-          "wght" 300,
-          "GRAD" 0,
-          "opsz" 24;
-      }
-    </style>
+    <link rel="stylesheet" href="../assets/vendors/demo-icons.css?v=4" />
   </head>
   <body
     class="bg-surface text-on-background font-body selection:bg-secondary-container selection:text-on-secondary-container"
@@ -471,5 +470,11 @@
         </span>
       </div>
     </footer>
+  <script>
+    document.querySelectorAll(".material-symbols-outlined").forEach(function (el) {
+      var t = el.textContent;
+      if (t) el.textContent = t.replace(/\s+/g, " ").trim();
+    });
+  </script>
   </body>
 </html>

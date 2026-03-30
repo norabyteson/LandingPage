@@ -7,16 +7,30 @@ const nextConfig: NextConfig = {
         protocol: "https",
         hostname: "placehold.co",
       },
+      {
+        protocol: "https",
+        hostname: "images.unsplash.com",
+      },
     ],
-    unoptimized: process.env.NODE_ENV === "development",
     formats: ["image/avif", "image/webp"],
   },
   compress: true,
   poweredByHeader: false,
   async headers() {
     return [
+      /* HTML bajo /demos: sin caché larga (el patrónc /demos/:path* también matchea /demos/assets/…). */
       {
         source: "/demos/:path*",
+        headers: [
+          {
+            key: "Cache-Control",
+            value: "public, max-age=0, must-revalidate",
+          },
+        ],
+      },
+      /* Sobrescribe lo anterior solo para estáticos de demos (orden: esta regla gana). */
+      {
+        source: "/demos/assets/:path*",
         headers: [
           { key: "Cache-Control", value: "public, max-age=31536000, immutable" },
         ],
