@@ -10,7 +10,8 @@
     "services": "Services",
     "about": "About",
     "contact": "Contact",
-    "cta": "Get a Quote"
+    "cta": "Get a Quote",
+    "whatsapp": "WhatsApp"
   },
   "hero": {
     "badge": "Your business, digitized",
@@ -29,6 +30,12 @@
     "badge": "What we do",
     "title": "What can we build for you?",
     "subtitle": "No jargon, no complications. Pick what best describes what you need — we'll take care of the rest.",
+    "carousel": {
+      "prevAria": "Previous demo",
+      "nextAria": "Next demo",
+      "dotAria": "Demo {n}",
+      "overlayFallback": "View demo"
+    },
     "items": [
       {
         "id": "ecommerce",
@@ -49,6 +56,21 @@
         "features": ["Business and management systems", "Point of sale (POS) for your business", "Offline desktop applications", "100% tailored to your operation"]
       }
     ]
+  },
+  "demoViewer": {
+    "loading": "Loading demo...",
+    "closeAria": "Close preview",
+    "examplesHeading": "Examples in this category",
+    "prev": "Previous",
+    "next": "Next",
+    "prevAria": "Previous demo",
+    "nextAria": "Next demo",
+    "ctaBody": "Like this design? Tell us your idea and we'll build something like this for your business.",
+    "ctaButton": "I want something like this",
+    "ctaFootnote": "Response in under 24h · No commitment",
+    "dialogPreview": "Preview: {name}",
+    "openMenuAria": "Open catalog and options menu",
+    "closeMenuAria": "Close menu"
   },
   "process": {
     "badge": "How we work",
@@ -124,45 +146,25 @@
   },
   "about": {
     "badge": "Who we are",
-    "title": "Professional development from start to finish",
-    "description": "We are a team dedicated to creating digital systems that truly solve problems. We work hand-in-hand with you to deeply understand your business and build the exact solution you need, applying the highest standards of quality and performance.",
-    "values": [
-      {
-        "title": "Clarity above all",
-        "description": "We explain everything in simple terms. You'll always know what's being built and why."
-      },
-      {
-        "title": "Real commitments",
-        "description": "If we say a date and a price, we keep them. No surprises halfway through the project."
-      },
-      {
-        "title": "Results that show",
-        "description": "We don't just deliver code, we deliver systems that genuinely improve your operations."
-      },
-      {
-        "title": "With you long-term",
-        "description": "The launch is just the beginning. We support you with maintenance, improvements, and support whenever you need it."
-      }
-    ]
+    "title": "A focused team building software that fits your operation",
+    "description": "We are a team based in Hermosillo, Sonora. We build custom websites, internal tools, and online stores that stay clear, fast, and easy to maintain. We have also worked on large administrative projects: serious reporting, permissions, integrations, and day to day operations where reliability matters. We stay close to whoever makes the decisions, explain tradeoffs in plain language, and aim for software your team will actually use."
   },
-  "testimonials": {
-    "badge": "Testimonials",
-    "title": "What our clients say",
+  "valueProps": {
+    "badge": "Why NORABYTE",
+    "title": "Why work with NORABYTE?",
+    "subtitle": "",
     "items": [
       {
-        "name": "Commercial Director",
-        "role": "Retail Sector",
-        "content": "Attention to detail and constant communication were key. They delivered a sales platform that not only works perfectly, but is incredibly easy to use for our entire team."
+        "title": "Communication you can actually follow",
+        "description": "We share honest updates and a simple plan everyone can understand. If a date or scope looks risky, we say it early. That usually means fewer surprises and fewer weeks lost waiting on approvals."
       },
       {
-        "name": "Operations Manager",
-        "role": "Logistics & Transport",
-        "content": "They understood our internal processes almost immediately. The custom system they developed automated tasks that took us entire days. A massive leap in our productivity."
+        "title": "Design that fits how you work",
+        "description": "We design for your users and your real workflows, not a generic template. Clean layouts, consistent patterns, and a modern look that still feels practical when people use it every day."
       },
       {
-        "name": "Founder",
-        "role": "Tech Startup",
-        "content": "What stands out the most is their technical capability to solve complex problems straightforwardly. They built our scalable infrastructure cleanly and delivered exactly on every agreed deadline."
+        "title": "Progress you can see, results you can feel",
+        "description": "We work in stages with demos and checkpoints, so you are never guessing what is coming next. The goal is smoother operations, less manual work, and a system you can keep improving over time."
       }
     ]
   },
@@ -170,6 +172,24 @@
     "badge": "Let's talk",
     "title": "Ready to start your project?",
     "subtitle": "Tell us briefly what you need and we'll get back to you within 24 hours with a clear, no-obligation proposal.",
+    "trustTitle": "Response in under 24 hours",
+    "trustBody": "No obligation. We'll email you a clear, personalized proposal.",
+    "formHeaderTitle": "New project request",
+    "formHeaderHint": "Fields marked with * are required",
+    "sendAnother": "Send another request",
+    "contactInfoAria": "Contact information",
+    "formAriaLabel": "Project request form",
+    "whatsapp": {
+      "shortLabel": "WhatsApp",
+      "ctaLabel": "Chat on WhatsApp",
+      "href": "https://wa.me/message/EX6OZKJA35FAH1"
+    },
+    "validation": {
+      "nameMin": "At least 2 characters",
+      "emailInvalid": "Invalid email address",
+      "serviceRequired": "Select a project type",
+      "messageMin": "At least 20 characters"
+    },
     "form": {
       "name": "Your name",
       "namePlaceholder": "What's your name?",
@@ -189,14 +209,14 @@
       "errorMessage": "We couldn't send your message. Please try again or write to us directly.",
       "services": [
         "Online Store",
-        "Website or Landing Page",
+        "Website & Landing Page",
         "Custom System",
         "Not sure yet, I want advice"
       ]
     },
     "info": {
       "email": "contacto@norabyte.com",
-      "phone": "+52 (55) 0000-0000",
+      "phone": "+52 662 398 8295",
       "location": "Hermosillo, Sonora, Mexico",
       "availability": "Dedicated to turning your ideas into reality."
     }
@@ -206,6 +226,11 @@
     "services": "Services",
     "company": "Company",
     "legal": "Legal",
+    "socialAria": {
+      "facebook": "Facebook",
+      "instagram": "Instagram",
+      "whatsapp": "WhatsApp"
+    },
     "links": {
       "services": [
         { "label": "Online Stores", "href": "#services" },
@@ -214,13 +239,18 @@
       ],
       "company": [
         { "label": "About", "href": "#about" },
-        { "label": "Testimonials", "href": "#testimonials" },
+        { "label": "Why NORABYTE", "href": "#why-norabyte" },
         { "label": "Process", "href": "#process" }
       ],
       "legal": [
         { "label": "Privacy", "href": "/privacy" },
         { "label": "Terms of Use", "href": "/terms" }
       ]
+    },
+    "social": {
+      "facebook": "https://www.facebook.com/profile.php?id=61586356240516",
+      "instagram": "https://www.instagram.com/norabyte.son/",
+      "whatsapp": "https://wa.me/message/EX6OZKJA35FAH1"
     },
     "copyright": "© 2026 NORABYTE. All rights reserved."
   },

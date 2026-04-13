@@ -15,10 +15,14 @@ interface NavbarProps {
   dict: {
     nav: {
       services: string;
-      portfolio: string;
+      portfolio?: string;
       about: string;
       contact: string;
       cta: string;
+      whatsapp: string;
+    };
+    contact: {
+      whatsapp: { href: string; shortLabel: string };
     };
     language: {
       switch: string;
@@ -197,6 +201,15 @@ export default function Navbar({ dict, lang }: NavbarProps) {
               </AnimatePresence>
             </button>
 
+            <a
+              href={dict.contact.whatsapp.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hidden md:inline-flex items-center gap-2 px-3 py-2 text-sm font-semibold rounded-xl border border-emerald-500/35 text-emerald-400 hover:bg-emerald-500/10 hover:border-emerald-400/50 transition-all duration-200"
+            >
+              {dict.nav.whatsapp}
+            </a>
+
             {/* Switch de idioma Mejorado con Flags */}
             <div className="relative group">
               <button
@@ -343,6 +356,14 @@ export default function Navbar({ dict, lang }: NavbarProps) {
 
               {/* Footer del panel */}
               <div className="p-6 pt-4 space-y-3">
+                <a
+                  href={dict.contact.whatsapp.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex w-full items-center justify-center gap-2 px-4 py-3 rounded-xl border border-emerald-500/35 text-emerald-400 font-semibold text-sm hover:bg-emerald-500/10 transition-colors"
+                >
+                  {dict.nav.whatsapp}
+                </a>
                 {/* Fila: idioma + tema */}
                 <div className="flex gap-2">
                   <a

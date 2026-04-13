@@ -46,6 +46,24 @@ interface ContactSectionProps {
       badge: string;
       title: string;
       subtitle: string;
+      trustTitle: string;
+      trustBody: string;
+      formHeaderTitle: string;
+      formHeaderHint: string;
+      sendAnother: string;
+      contactInfoAria: string;
+      formAriaLabel: string;
+      whatsapp: {
+        href: string;
+        shortLabel: string;
+        ctaLabel: string;
+      };
+      validation: {
+        nameMin: string;
+        emailInvalid: string;
+        serviceRequired: string;
+        messageMin: string;
+      };
       form: {
         name: string;
         namePlaceholder: string;
@@ -125,10 +143,10 @@ export default function ContactSection({ dict }: ContactSectionProps) {
   const [status, setStatus] = useState<FormStatus>("idle");
 
   const schema = createSchema({
-    nameMin: "Al menos 2 caracteres",
-    emailInvalid: "Correo electrónico inválido",
-    serviceRequired: "Selecciona un tipo de proyecto",
-    messageMin: "Al menos 20 caracteres",
+    nameMin: contact.validation.nameMin,
+    emailInvalid: contact.validation.emailInvalid,
+    serviceRequired: contact.validation.serviceRequired,
+    messageMin: contact.validation.messageMin,
   });
 
   const {
@@ -214,7 +232,7 @@ export default function ContactSection({ dict }: ContactSectionProps) {
             viewport={{ once: true }}
             transition={{ duration: 0.4, ease: [0.25, 0.46, 0.45, 0.94] }}
             className="lg:col-span-2 flex flex-col gap-5 h-full"
-            aria-label="Información de contacto"
+            aria-label={contact.contactInfoAria}
           >
             {infoItems.map(({ icon: Icon, label, href }) => (
               <div
@@ -242,13 +260,22 @@ export default function ContactSection({ dict }: ContactSectionProps) {
               <Sparkles size={20} className="text-[var(--nb-primary-light)] flex-shrink-0 mt-1" aria-hidden="true" />
               <div>
                 <p className="text-white font-bold mb-1.5">
-                  Respuesta en menos de 24 h
+                  {contact.trustTitle}
                 </p>
                 <p className="text-white/70 text-sm leading-relaxed">
-                  Sin compromisos. Te enviamos una propuesta clara y personalizada a tu correo electrónico.
+                  {contact.trustBody}
                 </p>
               </div>
             </div>
+
+            <a
+              href={contact.whatsapp.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="rounded-2xl px-5 py-4 border border-emerald-500/35 bg-emerald-500/10 text-emerald-300 font-semibold text-center hover:bg-emerald-500/15 hover:border-emerald-400/45 transition-colors"
+            >
+              {contact.whatsapp.ctaLabel}
+            </a>
           </motion.aside>
 
           {/* ---- Formulario ---- */}
@@ -264,8 +291,8 @@ export default function ContactSection({ dict }: ContactSectionProps) {
               {/* Header del formulario */}
               <div className="px-8 py-5 flex items-center justify-between rounded-t-2xl bg-white/5 border-b border-white/10">
                 <div>
-                  <p className="text-white font-bold text-sm">Nueva solicitud de proyecto</p>
-                  <p className="text-white/60 text-xs mt-1">Todos los campos marcados con * son obligatorios</p>
+                  <p className="text-white font-bold text-sm">{contact.formHeaderTitle}</p>
+                  <p className="text-white/60 text-xs mt-1">{contact.formHeaderHint}</p>
                 </div>
                 <div className="flex gap-1.5" aria-hidden="true">
                   <div className="w-2.5 h-2.5 rounded-full bg-red-400" />
@@ -309,7 +336,7 @@ export default function ContactSection({ dict }: ContactSectionProps) {
                         onClick={() => setStatus("idle")}
                         className="text-[var(--nb-primary-light)] font-medium hover:underline text-sm mt-4"
                       >
-                        Enviar otra solicitud
+                        {contact.sendAnother}
                       </button>
                     </motion.div>
 
@@ -323,7 +350,7 @@ export default function ContactSection({ dict }: ContactSectionProps) {
                       onSubmit={handleSubmit(onSubmit)}
                       noValidate
                       className="flex flex-col gap-6 relative"
-                      aria-label="Formulario de solicitud de proyecto"
+                      aria-label={contact.formAriaLabel}
                     >
 
                       {/* Nombre + Email */}

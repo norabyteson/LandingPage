@@ -100,16 +100,22 @@ export default async function LangLayout({ children, params }: LangLayoutProps) 
     description: dict.meta.description,
     address: {
       "@type": "PostalAddress",
-      addressLocality: "Ciudad de México",
+      addressLocality: "Hermosillo",
+      addressRegion: "Sonora",
       addressCountry: "MX",
     },
     contactPoint: {
       "@type": "ContactPoint",
       contactType: "customer service",
-      email: "hola@norabyte.com",
+      email: dict.contact.info.email,
+      telephone: "+52-662-398-8295",
       availableLanguage: ["Spanish", "English"],
     },
-    sameAs: ["https://www.facebook.com/profile.php?id=61586356240516"],
+    sameAs: [
+      dict.footer.social.facebook,
+      dict.footer.social.instagram,
+      dict.footer.social.whatsapp,
+    ],
   };
 
   return (

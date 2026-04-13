@@ -18,7 +18,16 @@ const slideVariants = {
 import SectionBadge from "@/components/ui/SectionBadge";
 import AnimatedSection from "@/components/ui/AnimatedSection";
 import DemoViewer from "@/components/ui/DemoViewer";
+import type { DemoViewerCopy } from "@/components/ui/DemoViewer";
 import { cn } from "@/lib/utils";
+import type { Locale } from "@/types/i18n";
+
+const SERVICE_IDS = ["ecommerce", "landing", "custom"] as const;
+
+function serviceFormLabel(serviceId: string, formServices: string[]): string {
+  const idx = SERVICE_IDS.indexOf(serviceId as (typeof SERVICE_IDS)[number]);
+  return idx >= 0 ? formServices[idx] ?? "" : "";
+}
 
 const placeholderImagesSet: Record<string, string[]> = {
   ecommerce: [
@@ -77,9 +86,19 @@ interface ServicesSectionProps {
       subtitle: string;
       items: ServiceItem[];
       viewDemo?: string;
+      carousel: {
+        prevAria: string;
+        nextAria: string;
+        dotAria: string;
+        overlayFallback: string;
+      };
     };
+    contact: {
+      form: { services: string[] };
+    };
+    demoViewer: DemoViewerCopy;
   };
-  lang: string;
+  lang: Locale;
 }
 
 function InnerCarousel({
@@ -87,11 +106,13 @@ function InnerCarousel({
   fallbacks,
   altPrefix,
   onImageClick,
+  carousel,
 }: {
   images: string[];
   fallbacks: string[];
   altPrefix: string;
   onImageClick: (index: number) => void;
+  carousel: ServicesSectionProps["dict"]["services"]["carousel"];
 }) {
   const [[page, direction], setPage] = useState([0, 1]);
   const [failedIdx, setFailedIdx] = useState<Set<number>>(new Set());
@@ -119,7 +140,7 @@ function InnerCarousel({
         >
           <Image
             src={failedIdx.has(activeIndex) ? fallbacks[activeIndex] : images[activeIndex]}
-            alt={`${altPrefix} — Demo ${activeIndex + 1}`}
+            alt={`${altPrefix} — ${carousel.dotAria.replace("{n}", String(activeIndex + 1))}`}
             fill
             className="object-cover"
             sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
@@ -131,7 +152,7 @@ function InnerCarousel({
 
       {/* Hover overlay — CTA visual */}
       <div
-        className="absolute inset-0 z-10 flex items-center justify-center opacity-0 group-hover/carousel:opacity-100 transition-opacity duration-250 bg-black/25 pointer-events-none"
+        className="absolute inset-0 z-10 flex items-center justify-center opacity-80 md:opacity-0 md:group-hover/carousel:opacity-100 transition-opacity duration-250 bg-black/25 pointer-events-none"
         aria-hidden="true"
       >
         <div className="flex flex-col items-center gap-2">
@@ -139,24 +160,24 @@ function InnerCarousel({
             <PlayCircle size={22} className="text-white" />
           </div>
           <span className="text-white text-xs font-semibold tracking-wide bg-black/40 px-3 py-1 rounded-full">
-            {demoNames[altPrefix]?.[activeIndex] ?? "Ver demo"}
+            {demoNames[altPrefix]?.[activeIndex] ?? carousel.overlayFallback}
           </span>
         </div>
       </div>
 
       {/* Flechas — se muestran en hover, no interfieren con el click del centro */}
-      <div className="absolute inset-y-0 left-0 right-0 flex items-center justify-between px-2.5 opacity-0 group-hover/carousel:opacity-100 transition-opacity duration-250 z-20 pointer-events-none">
+      <div className="absolute inset-y-0 left-0 right-0 flex items-center justify-between px-2.5 opacity-100 md:opacity-0 md:group-hover/carousel:opacity-100 transition-opacity duration-250 z-20 pointer-events-none">
         <button
           onClick={(e) => { e.stopPropagation(); paginate(-1); }}
           className="w-8 h-8 rounded-full bg-black/65 flex items-center justify-center text-white border border-white/15 pointer-events-auto hover:bg-black/85 transition-colors cursor-pointer"
-          aria-label="Demo anterior"
+          aria-label={carousel.prevAria}
         >
           <ChevronLeft size={15} />
         </button>
         <button
           onClick={(e) => { e.stopPropagation(); paginate(1); }}
           className="w-8 h-8 rounded-full bg-black/65 flex items-center justify-center text-white border border-white/15 pointer-events-auto hover:bg-black/85 transition-colors cursor-pointer"
-          aria-label="Demo siguiente"
+          aria-label={carousel.nextAria}
         >
           <ChevronRight size={15} />
         </button>
@@ -172,7 +193,7 @@ function InnerCarousel({
               const dir = i > activeIndex ? 1 : -1;
               setPage([i, dir]);
             }}
-            aria-label={`Demo ${i + 1}`}
+            aria-label={carousel.dotAria.replace("{n}", String(i + 1))}
             style={{ pointerEvents: "auto" }}
             className={cn(
               "h-1.5 rounded-full transition-all duration-300 cursor-pointer",
@@ -191,10 +212,12 @@ function ServiceCard({
   service,
   index,
   onOpenDemo,
+  carousel,
 }: {
   service: ServiceItem;
   index: number;
   onOpenDemo: (serviceId: string, demoIndex: number) => void;
+  carousel: ServicesSectionProps["dict"]["services"]["carousel"];
 }) {
   const images    = placeholderImagesSet[service.id]  ?? placeholderImagesSet.ecommerce;
   const fallbacks = placeholderFallback[service.id]   ?? placeholderFallback.ecommerce;
@@ -212,6 +235,7 @@ function ServiceCard({
         fallbacks={fallbacks}
         altPrefix={service.id}
         onImageClick={(i) => onOpenDemo(service.id, i)}
+        carousel={carousel}
       />
 
       {/* Content */}
@@ -286,11 +310,12 @@ export default function ServicesSection({ dict, lang }: ServicesSectionProps) {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-10">
             {services.items.map((service, i) => (
-              <ServiceCard
+                           <ServiceCard
                 key={service.id}
                 service={service}
                 index={i}
                 onOpenDemo={handleOpenDemo}
+                carousel={services.carousel}
               />
             ))}
           </div>
@@ -304,6 +329,8 @@ export default function ServicesSection({ dict, lang }: ServicesSectionProps) {
             initialIndex={activeDemo.demoIndex}
             lang={lang}
             onClose={() => setActiveDemo(null)}
+            copy={dict.demoViewer}
+            serviceFormLabel={serviceFormLabel(activeDemo.serviceId, dict.contact.form.services)}
           />
         )}
       </AnimatePresence>

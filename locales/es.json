@@ -10,14 +10,15 @@
     "services": "Servicios",
     "about": "Nosotros",
     "contact": "Contacto",
-    "cta": "Cotizar Proyecto"
+    "cta": "Cotizar proyecto",
+    "whatsapp": "WhatsApp"
   },
   "hero": {
-    "badge": "Desarrollo a la medida",
-    "headline": "Sistemas robustos para la operación de tu empresa",
-    "subheadline": "Diseñamos y desarrollamos plataformas de alto rendimiento, seguras y escalables que resuelven los problemas reales de tu negocio.",
-    "ctaPrimary": "Cotizar Proyecto",
-    "ctaSecondary": "Ver Servicios",
+    "badge": "Tu negocio, digitalizado",
+    "headline": "Construimos el futuro digital de tu empresa",
+    "subheadline": "Convertimos tus ideas y procesos en sistemas digitales que funcionan, se ven increíbles y hacen crecer tu negocio.",
+    "ctaPrimary": "Cotizar proyecto",
+    "ctaSecondary": "Ver servicios",
     "stats": {
       "projects": "Proyectos",
       "clients": "Clientes",
@@ -29,67 +30,88 @@
     "badge": "Lo que hacemos",
     "title": "¿Qué podemos construir para ti?",
     "subtitle": "Sin tecnicismos ni complicaciones. Elige lo que mejor describe lo que necesitas y nosotros nos encargamos del resto.",
+    "carousel": {
+      "prevAria": "Demo anterior",
+      "nextAria": "Demo siguiente",
+      "dotAria": "Demo {n}",
+      "overlayFallback": "Ver demo"
+    },
     "items": [
       {
         "id": "ecommerce",
-        "title": "Tienda en Línea",
+        "title": "Tienda en línea",
         "description": "Lleva tu negocio al mundo digital y empieza a vender sin límites. Creamos tu tienda completa con catálogo de productos, pagos seguros, control de inventario y todo lo que necesitas para operar desde el primer día.",
         "features": ["Catálogo de productos ilimitado", "Pagos en línea seguros", "Control de inventario en tiempo real", "Panel de administración fácil de usar"]
       },
       {
         "id": "landing",
-        "title": "Sitio Web y Landing Page",
-        "description": "Tu presencia en internet, hecha bien. Diseñamos páginas web profesionales que representan tu marca, atraen clientes y convierten visitas en oportunidades de negocio, las 24 horas del día.",
-        "features": ["Diseño profesional adaptado a tu marca", "Optimizado para celular y tablet", "Carga rápida y rendimiento alto", "Posicionamiento en Google (SEO)"]
+        "title": "Sitio web y landing page",
+        "description": "Tu presencia en internet, hecha bien. Diseñamos sitios profesionales que representan tu marca, atraen clientes y convierten visitas en oportunidades de negocio las 24 horas del día.",
+        "features": ["Diseño profesional adaptado a tu marca", "Optimizado para móvil y tablet", "Carga rápida y alto rendimiento", "Posicionamiento en Google (SEO)"]
       },
       {
         "id": "custom",
-        "title": "Sistema Personalizado",
-        "description": "¿Tu negocio necesita algo más específico? Lo construimos a tu medida. Sistemas empresariales, puntos de venta, aplicaciones de escritorio y cualquier solución que automatice y ordene cómo opera tu empresa.",
-        "features": ["Sistemas empresariales y de gestión", "Punto de venta (POS) para tu negocio", "Aplicaciones de escritorio sin internet", "100% adaptado a tu operación"]
+        "title": "Sistema personalizado",
+        "description": "¿Tu negocio necesita algo más específico? Lo construimos desde cero. Sistemas de gestión, punto de venta, aplicaciones de escritorio: cualquier solución que automatice y organice cómo opera tu empresa.",
+        "features": ["Sistemas empresariales y de gestión", "Punto de venta (POS) para tu negocio", "Aplicaciones de escritorio sin conexión", "100% adaptado a tu operación"]
       }
     ]
   },
+  "demoViewer": {
+    "loading": "Cargando demo...",
+    "closeAria": "Cerrar vista previa",
+    "examplesHeading": "Ejemplos en esta categoría",
+    "prev": "Anterior",
+    "next": "Siguiente",
+    "prevAria": "Demo anterior",
+    "nextAria": "Siguiente demo",
+    "ctaBody": "¿Te gustó este diseño? Cuéntanos tu idea y construimos algo así para tu negocio.",
+    "ctaButton": "Quiero algo así",
+    "ctaFootnote": "Respuesta en menos de 24 h · Sin compromiso",
+    "dialogPreview": "Vista previa: {name}",
+    "openMenuAria": "Abrir menú de catálogos y opciones",
+    "closeMenuAria": "Cerrar menú"
+  },
   "process": {
     "badge": "Cómo trabajamos",
-    "title": "Nuestro Proceso",
-    "subtitle": "Un proceso claro, sin sorpresas, donde tú siempre sabes en qué etapa está tu proyecto.",
+    "title": "Nuestro proceso",
+    "subtitle": "Un proceso claro, sin sorpresas, donde siempre sabes en qué etapa está tu proyecto.",
     "steps": [
       {
         "number": "01",
         "title": "Análisis",
-        "description": "Nos cuentas qué necesitas y cuáles son tus objetivos. Sin compromisos, sin costos. Solo escuchamos y entendemos tu negocio.",
+        "description": "Nos cuentas qué necesitas y cuáles son tus objetivos. Sin compromisos ni costo. Solo escuchamos y entendemos tu negocio.",
         "short": "Discovery completo"
       },
       {
         "number": "02",
         "title": "Diseño UX/UI",
-        "description": "Te presentamos cómo se va a ver y funcionar tu sistema antes de empezar a construirlo. Tú apruebas cada detalle.",
+        "description": "Te mostramos cómo se verá y funcionará tu sistema antes de construirlo. Tú apruebas cada detalle.",
         "short": "Cero suposiciones"
       },
       {
         "number": "03",
         "title": "Desarrollo",
-        "description": "Construimos tu sistema en etapas cortas, mostrándote avances constantemente para que siempre estés al tanto del progreso.",
+        "description": "Construimos tu sistema en etapas cortas y te mostramos avances con frecuencia para que vayas al día.",
         "short": "Código escalable"
       },
       {
         "number": "04",
-        "title": "QA Testing",
-        "description": "Probamos todo a detalle antes de entregarlo: que funcione perfectamente, que sea fácil de usar y que no haya errores.",
+        "title": "Pruebas (QA)",
+        "description": "Probamos todo a fondo antes de entregar: que funcione bien, sea fácil de usar y sin errores.",
         "short": "Calidad asegurada"
       },
       {
         "number": "05",
         "title": "Despliegue",
-        "description": "Te entregamos el sistema funcionando al 100% y te enseñamos cómo usarlo. Tus empleados podrán operar todo sin problema.",
+        "description": "Te entregamos el sistema funcionando al 100% y te enseñamos a usarlo. Tu equipo podrá operarlo sin problema.",
         "short": "Lanzamiento impecable"
       },
       {
         "number": "06",
         "title": "Evolución",
-        "description": "No te dejamos solo. Después de la entrega seguimos disponibles para ajustes, mejoras y cualquier duda que tengas.",
-        "short": "Respaldo continuo"
+        "description": "No te dejamos solo. Después del lanzamiento seguimos disponibles para ajustes, mejoras y dudas.",
+        "short": "Soporte continuo"
       }
     ]
   },
@@ -97,72 +119,52 @@
     "badge": "Casos de éxito",
     "title": "Proyectos que hablan por sí solos",
     "subtitle": "Empresas reales que confiaron en nosotros y transformaron su operación.",
-    "viewProject": "Ver Proyecto",
+    "viewProject": "Ver proyecto",
     "items": [
       {
         "id": "ecommerce",
-        "title": "Tienda en Línea — RetailMex",
+        "title": "Tienda en línea — RetailMex",
         "category": "E-Commerce",
         "description": "Tienda en línea con más de 500 productos, integración con pagos nacionales e internacionales, control de inventario en tiempo real y panel de administración completo.",
         "tags": ["Tienda en línea", "Pagos en línea", "Inventario", "Panel admin"]
       },
       {
         "id": "logistics",
-        "title": "Sistema de Logística — LogisTech",
-        "category": "Sistema Empresarial",
-        "description": "Sistema de control de flotilla con rastreo en tiempo real, gestión de conductores, reportes automáticos de rutas y panel ejecutivo para toma de decisiones.",
+        "title": "Sistema de logística — LogisTech",
+        "category": "Sistema empresarial",
+        "description": "Sistema de control de flotilla con rastreo en tiempo real, gestión de conductores, reportes automáticos de rutas y panel ejecutivo para la toma de decisiones.",
         "tags": ["Control de flotilla", "Rastreo GPS", "Reportes", "Panel ejecutivo"]
       },
       {
         "id": "fintech",
-        "title": "Sistema de Control Financiero",
-        "category": "Aplicación Empresarial",
-        "description": "Plataforma de seguimiento de gastos e ingresos para empresas con reportes automáticos, análisis de tendencias y alertas inteligentes.",
+        "title": "Sistema de control financiero",
+        "category": "Aplicación empresarial",
+        "description": "Plataforma de seguimiento de gastos e ingresos con reportes automáticos, análisis de tendencias y alertas inteligentes.",
         "tags": ["Control financiero", "Reportes", "Análisis", "Alertas"]
       }
     ]
   },
   "about": {
     "badge": "Quiénes somos",
-    "title": "Desarrollo profesional de principio a fin",
-    "description": "Somos un equipo dedicado a crear sistemas digitales que realmente resuelven problemas. Trabajamos de la mano contigo para entender a fondo tu negocio y construir la solución exacta que necesitas, todo con los más altos estándares de calidad y rendimiento.",
-    "values": [
-      {
-        "title": "Claridad ante todo",
-        "description": "Te explicamos todo en términos simples. Siempre sabrás qué se está construyendo y por qué."
-      },
-      {
-        "title": "Compromisos reales",
-        "description": "Si decimos una fecha y un precio, los cumplimos. Sin sorpresas a la mitad del proyecto."
-      },
-      {
-        "title": "Resultados que se notan",
-        "description": "No entregamos solo código, entregamos sistemas que realmente mejoran tu operación."
-      },
-      {
-        "title": "Contigo a largo plazo",
-        "description": "El lanzamiento es solo el inicio. Te apoyamos con mantenimiento, mejoras y soporte cuando lo necesites."
-      }
-    ]
+    "title": "Un equipo enfocado en software que encaja en tu operación",
+    "description": "Somos un equipo en Hermosillo, Sonora. Armamos sitios, sistemas internos y tiendas en línea a la medida, pensando en que sean claros, rápidos y fáciles de mantener. También hemos trabajado en proyectos administrativos grandes: reportes serios, permisos, integraciones y la operación diaria donde lo importante es que todo siga funcionando. Trabajamos cerca de quien decide, hablamos con franqueza y buscamos que tu equipo use el sistema de verdad."
   },
-  "testimonials": {
-    "badge": "Testimonios",
-    "title": "Lo que dicen nuestros clientes",
+  "valueProps": {
+    "badge": "Por qué NORABYTE",
+    "title": "¿Por qué trabajar con NORABYTE?",
+    "subtitle": "",
     "items": [
       {
-        "name": "Dirección Comercial",
-        "role": "Sector Retail",
-        "content": "La atención al detalle y la comunicación constante fueron clave. Nos entregaron una plataforma de ventas que no solo funciona a la perfección, sino que es increíblemente fácil de usar para todo nuestro equipo."
+        "title": "Comunicación que sí se entiende",
+        "description": "Te contamos cómo va el proyecto y qué sigue, sin rodeos. Si algo puede retrasarse o encarecer, lo decimos a tiempo. Eso suele significar menos sorpresas y menos semanas perdidas en vueltas de aprobación."
       },
       {
-        "name": "Gerencia Operativa",
-        "role": "Logística y Transporte",
-        "content": "Entendieron nuestros procesos internos casi de inmediato. El sistema a medida que nos desarrollaron automatizó tareas que nos tomaban días enteros, un gran salto para nuestra productividad."
+        "title": "Diseño alineado a tu operación",
+        "description": "Diseñamos para tus usuarios y para cómo trabajan en la vida real, no para una plantilla genérica. Pantallas ordenadas, patrones consistentes y un estilo moderno que sigue siendo práctico cuando se usa todos los días."
       },
       {
-        "name": "Fundador",
-        "role": "Startup Tecnológica",
-        "content": "Lo que más destaco es su capacidad técnica para resolver problemas complejos sin rodeos. Desarrollaron nuestra infraestructura escalar de manera limpia y cumpliendo con todas las fechas de entrega acordadas."
+        "title": "Avances visibles, resultados concretos",
+        "description": "Trabajamos por etapas con demos y puntos de revisión, para que no adivines qué viene después. Buscamos operación más fluida, menos trabajo manual y un sistema que puedas seguir mejorando con el tiempo."
       }
     ]
   },
@@ -170,6 +172,24 @@
     "badge": "Hablemos",
     "title": "¿Listo para iniciar tu proyecto?",
     "subtitle": "Cuéntanos brevemente qué necesitas y te respondemos en menos de 24 horas con una propuesta clara y sin compromisos.",
+    "trustTitle": "Respuesta en menos de 24 h",
+    "trustBody": "Sin compromisos. Te enviamos una propuesta clara y personalizada a tu correo electrónico.",
+    "formHeaderTitle": "Nueva solicitud de proyecto",
+    "formHeaderHint": "Todos los campos marcados con * son obligatorios",
+    "sendAnother": "Enviar otra solicitud",
+    "contactInfoAria": "Información de contacto",
+    "formAriaLabel": "Formulario de solicitud de proyecto",
+    "whatsapp": {
+      "shortLabel": "WhatsApp",
+      "ctaLabel": "Escríbenos por WhatsApp",
+      "href": "https://wa.me/message/EX6OZKJA35FAH1"
+    },
+    "validation": {
+      "nameMin": "Al menos 2 caracteres",
+      "emailInvalid": "Correo electrónico inválido",
+      "serviceRequired": "Selecciona un tipo de proyecto",
+      "messageMin": "Al menos 20 caracteres"
+    },
     "form": {
       "name": "Tu nombre",
       "namePlaceholder": "¿Cómo te llamas?",
@@ -181,22 +201,22 @@
       "servicePlaceholder": "Selecciona un tipo de proyecto",
       "message": "Cuéntanos tu proyecto",
       "messagePlaceholder": "Describe brevemente qué quieres hacer, para qué sirve y cualquier detalle que nos ayude a entenderte mejor...",
-      "submit": "Enviar Solicitud",
+      "submit": "Enviar solicitud",
       "submitting": "Enviando...",
       "successTitle": "¡Listo, recibimos tu mensaje!",
-      "successMessage": "Revisaremos tu solicitud y te contactaremos en menos de 24 horas para darte una propuesta.",
+      "successMessage": "Revisaremos tu solicitud y te contactaremos en menos de 24 horas con una propuesta.",
       "errorTitle": "Algo salió mal",
       "errorMessage": "No pudimos enviar tu mensaje. Por favor intenta de nuevo o escríbenos directamente.",
       "services": [
-        "Tienda en Línea",
-        "Sitio Web o Landing Page",
-        "Sistema Personalizado",
-        "No sé aún, quiero asesoría"
+        "Tienda en línea",
+        "Sitio web y landing page",
+        "Sistema personalizado",
+        "Aún no estoy seguro, quiero asesoría"
       ]
     },
     "info": {
       "email": "contacto@norabyte.com",
-      "phone": "+52 (55) 0000-0000",
+      "phone": "+52 662 398 8295",
       "location": "Hermosillo, Sonora, México",
       "availability": "Dedicados a transformar tus ideas en realidad."
     }
@@ -206,21 +226,31 @@
     "services": "Servicios",
     "company": "Empresa",
     "legal": "Legal",
+    "socialAria": {
+      "facebook": "Facebook",
+      "instagram": "Instagram",
+      "whatsapp": "WhatsApp"
+    },
     "links": {
       "services": [
-        { "label": "Tiendas en Línea", "href": "#services" },
-        { "label": "Sitios Web y Landing Pages", "href": "#services" },
-        { "label": "Sistemas Personalizados", "href": "#services" }
+        { "label": "Tiendas en línea", "href": "#services" },
+        { "label": "Sitios web y landing pages", "href": "#services" },
+        { "label": "Sistemas personalizados", "href": "#services" }
       ],
       "company": [
         { "label": "Nosotros", "href": "#about" },
-        { "label": "Testimonios", "href": "#testimonials" },
+        { "label": "Por qué NORABYTE", "href": "#why-norabyte" },
         { "label": "Proceso", "href": "#process" }
       ],
       "legal": [
         { "label": "Privacidad", "href": "/privacy" },
-        { "label": "Términos de Uso", "href": "/terms" }
+        { "label": "Términos de uso", "href": "/terms" }
       ]
+    },
+    "social": {
+      "facebook": "https://www.facebook.com/profile.php?id=61586356240516",
+      "instagram": "https://www.instagram.com/norabyte.son/",
+      "whatsapp": "https://wa.me/message/EX6OZKJA35FAH1"
     },
     "copyright": "© 2026 NORABYTE. Todos los derechos reservados."
   },
