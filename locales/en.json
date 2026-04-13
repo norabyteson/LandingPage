@@ -68,7 +68,9 @@
     "ctaBody": "Like this design? Tell us your idea and we'll build something like this for your business.",
     "ctaButton": "I want something like this",
     "ctaFootnote": "Response in under 24h · No commitment",
-    "dialogPreview": "Preview: {name}"
+    "dialogPreview": "Preview: {name}",
+    "openMenuAria": "Open catalog and options menu",
+    "closeMenuAria": "Close menu"
   },
   "process": {
     "badge": "How we work",

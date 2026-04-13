@@ -152,7 +152,7 @@ function InnerCarousel({
 
       {/* Hover overlay — CTA visual */}
       <div
-        className="absolute inset-0 z-10 flex items-center justify-center opacity-0 group-hover/carousel:opacity-100 transition-opacity duration-250 bg-black/25 pointer-events-none"
+        className="absolute inset-0 z-10 flex items-center justify-center opacity-80 md:opacity-0 md:group-hover/carousel:opacity-100 transition-opacity duration-250 bg-black/25 pointer-events-none"
         aria-hidden="true"
       >
         <div className="flex flex-col items-center gap-2">
@@ -166,7 +166,7 @@ function InnerCarousel({
       </div>
 
       {/* Flechas — se muestran en hover, no interfieren con el click del centro */}
-      <div className="absolute inset-y-0 left-0 right-0 flex items-center justify-between px-2.5 opacity-0 group-hover/carousel:opacity-100 transition-opacity duration-250 z-20 pointer-events-none">
+      <div className="absolute inset-y-0 left-0 right-0 flex items-center justify-between px-2.5 opacity-100 md:opacity-0 md:group-hover/carousel:opacity-100 transition-opacity duration-250 z-20 pointer-events-none">
         <button
           onClick={(e) => { e.stopPropagation(); paginate(-1); }}
           className="w-8 h-8 rounded-full bg-black/65 flex items-center justify-center text-white border border-white/15 pointer-events-auto hover:bg-black/85 transition-colors cursor-pointer"
