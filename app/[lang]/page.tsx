@@ -5,7 +5,7 @@ import HeroSection from "@/components/sections/HeroSection";
 import ServicesSection from "@/components/sections/ServicesSection";
 import ProcessSection from "@/components/sections/ProcessSection";
 import AboutSection from "@/components/sections/AboutSection";
-import TestimonialsSection from "@/components/sections/TestimonialsSection";
+import ValuePropsSection from "@/components/sections/ValuePropsSection";
 import ContactSection from "@/components/sections/ContactSection";
 import PageTransition from "@/components/ui/PageTransition";
 
@@ -52,7 +52,7 @@ export default async function Page({ params }: PageProps) {
       <ProcessSection dict={dict} />
       <AboutSection dict={dict} />
 
-      <TestimonialsSection dict={dict} />
+      <ValuePropsSection dict={dict} />
       <ContactSection dict={dict} />
     </PageTransition>
   );
