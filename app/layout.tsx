@@ -1,9 +1,12 @@
 import type { Metadata, Viewport } from "next";
+import { Suspense } from "react";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/lib/theme";
 import ThemeVarsInjector from "@/components/ui/ThemeVarsInjector";
 import LenisProvider from "@/components/ui/LenisProvider";
+import GoogleAnalytics from "@/components/analytics/GoogleAnalytics";
+import GoogleAnalyticsNavigation from "@/components/analytics/GoogleAnalyticsNavigation";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -77,6 +80,10 @@ export default function RootLayout({
         <script dangerouslySetInnerHTML={{ __html: langInitScript }} />
       </head>
       <body className="relative antialiased" suppressHydrationWarning>
+        <GoogleAnalytics />
+        <Suspense fallback={null}>
+          <GoogleAnalyticsNavigation />
+        </Suspense>
         <ThemeProvider>
           <ThemeVarsInjector />
           <LenisProvider>
