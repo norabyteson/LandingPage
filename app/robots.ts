@@ -10,6 +10,10 @@ export default function robots(): MetadataRoute.Robots {
         allow: "/",
         disallow: ["/api/"],
       },
+      // Los rastreadores de AdSense, nombrados. Los cubre el comodín, pero AdSense avisa
+      // cuando no los ve y una revisión con avisos es una revisión más larga.
+      { userAgent: "Mediapartners-Google", allow: "/" },
+      { userAgent: "AdsBot-Google", allow: "/" },
     ],
     sitemap: `${baseUrl}/sitemap.xml`,
   };

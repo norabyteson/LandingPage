@@ -7,6 +7,7 @@ import ThemeVarsInjector from "@/components/ui/ThemeVarsInjector";
 import LenisProvider from "@/components/ui/LenisProvider";
 import GoogleAnalytics from "@/components/analytics/GoogleAnalytics";
 import GoogleAnalyticsNavigation from "@/components/analytics/GoogleAnalyticsNavigation";
+import { ADSENSE_CLIENT } from "@/lib/adsense";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -78,6 +79,23 @@ export default function RootLayout({
         <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
         {/* Script bloqueante — asigna lang según pathname antes del primer paint */}
         <script dangerouslySetInnerHTML={{ __html: langInitScript }} />
+
+        {/*
+          AdSense: la etiqueta de propiedad y el script, en todas las páginas.
+
+          Van los dos porque Google acepta cualquiera de los tres métodos de verificación
+          y el sitio no controla cuál elige el revisor. La meta es un byte; el script es
+          el que además sirve los anuncios cuando la cuenta esté aprobada.
+
+          `async` para no competir con el primer pintado: un script de publicidad que
+          bloquea el render cuesta más en posicionamiento de lo que rinde en ingresos.
+        */}
+        <meta name="google-adsense-account" content={ADSENSE_CLIENT} />
+        <script
+          async
+          src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${ADSENSE_CLIENT}`}
+          crossOrigin="anonymous"
+        />
       </head>
       <body className="relative antialiased" suppressHydrationWarning>
         <GoogleAnalytics />
