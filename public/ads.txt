@@ -1,1 +1,4 @@
+# Vendedores autorizados de la publicidad de norabyte.com (IAB ads.txt 1.1).
+# Cualquier otro que ofrezca este inventario lo hace sin autorización.
+# Cubre también los subdominios, carshing.norabyte.com incluido.
 google.com, pub-3906973122529608, DIRECT, f08c47fec0942fa0
