@@ -1,0 +1,8 @@
+{
+  "excludes": [
+    "public/demos/assets/vendors/**",
+    "**/*.webp",
+    "**/*.jpg",
+    "**/*.png"
+  ]
+}
