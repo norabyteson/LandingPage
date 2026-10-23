@@ -3,6 +3,7 @@ import { getDictionary, isValidLocale, defaultLocale } from "@/lib/i18n";
 import type { Locale } from "@/types/i18n";
 import HeroSection from "@/components/sections/HeroSection";
 import ServicesSection from "@/components/sections/ServicesSection";
+import ProjectsSection from "@/components/sections/ProjectsSection";
 import ProcessSection from "@/components/sections/ProcessSection";
 import AboutSection from "@/components/sections/AboutSection";
 import ValuePropsSection from "@/components/sections/ValuePropsSection";
@@ -48,6 +49,7 @@ export default async function Page({ params }: PageProps) {
     <>
       <HeroSection dict={dict} lang={locale} />
       <ServicesSection dict={dict} lang={locale} />
+      <ProjectsSection dict={dict} />
       <ProcessSection dict={dict} />
       <AboutSection dict={dict} />
       <ValuePropsSection dict={dict} />

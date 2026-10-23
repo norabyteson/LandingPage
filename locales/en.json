@@ -8,6 +8,7 @@
   },
   "nav": {
     "services": "Services",
+    "projects": "Projects",
     "about": "About",
     "contact": "Contact",
     "cta": "Get a Quote",
@@ -71,6 +72,52 @@
     "dialogPreview": "Preview: {name}",
     "openMenuAria": "Open catalog and options menu",
     "closeMenuAria": "Close menu"
+  },
+  "projects": {
+    "title": "Projects in production",
+    "subtitle": "Products and systems we designed and built end to end. Open them and try them.",
+    "newTab": "opens in a new tab",
+    "items": [
+      {
+        "id": "norhud",
+        "name": "NorHud",
+        "tag": "Local businesses",
+        "description": "A platform for local businesses: their own website, bookings, orders, point of sale and loyalty from one dashboard, with its own business directory.",
+        "points": [
+          "Online bookings and orders from the business's own page",
+          "Point of sale with receipts and end-of-day close",
+          "Mi NorHud directory so nearby customers find them"
+        ],
+        "cta": "Visit NorHud",
+        "url": "https://norhud.com/"
+      },
+      {
+        "id": "erp-obra",
+        "name": "Construction ERP",
+        "tag": "Construction",
+        "description": "Project control for builders: budgets, requisitions, purchasing, warehouse, progress billing and cash flow in one system.",
+        "points": [
+          "Physical progress against budget for each project",
+          "Requisitions with an approval workflow",
+          "Progress billing, collections and payables"
+        ],
+        "cta": "Open demo: Construction ERP",
+        "url": "https://erp-demo.norabyte.com/"
+      },
+      {
+        "id": "auxia",
+        "name": "Auxia",
+        "tag": "Government",
+        "description": "A citizen help desk that drops into any website with one line of code: help center, chat with the team, tracking numbers and accessibility.",
+        "points": [
+          "Assistant that answers from the institution's own articles",
+          "Tracking numbers without creating an account",
+          "No cookies or tracking, and open source"
+        ],
+        "cta": "Open demo: Auxia",
+        "url": "https://auxia.norabyte.com/"
+      }
+    ]
   },
   "process": {
     "badge": "How we work",

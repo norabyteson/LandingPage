@@ -17,7 +17,7 @@ interface NavbarProps {
   dict: {
     nav: {
       services: string;
-      portfolio?: string;
+      projects: string;
       about: string;
       contact: string;
       cta: string;
@@ -68,6 +68,7 @@ export default function Navbar({ dict, lang }: NavbarProps) {
 
   const navItems = [
     { label: dict.nav.services, href: `/${lang}#services`, id: "services" },
+    { label: dict.nav.projects, href: `/${lang}#projects`, id: "projects" },
     { label: dict.nav.about, href: `/${lang}#about`, id: "about" },
     { label: dict.nav.contact, href: `/${lang}#contact`, id: "contact" },
   ];

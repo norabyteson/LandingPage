@@ -8,6 +8,7 @@
   },
   "nav": {
     "services": "Servicios",
+    "projects": "Proyectos",
     "about": "Nosotros",
     "contact": "Contacto",
     "cta": "Cotizar proyecto",
@@ -71,6 +72,52 @@
     "dialogPreview": "Vista previa: {name}",
     "openMenuAria": "Abrir menú de catálogos y opciones",
     "closeMenuAria": "Cerrar menú"
+  },
+  "projects": {
+    "title": "Proyectos en producción",
+    "subtitle": "Productos y sistemas que diseñamos y desarrollamos de principio a fin. Ábrelos y pruébalos.",
+    "newTab": "se abre en una pestaña nueva",
+    "items": [
+      {
+        "id": "norhud",
+        "name": "NorHud",
+        "tag": "Negocios locales",
+        "description": "Plataforma para negocios locales: página web propia, reservas, pedidos, caja y lealtad desde un mismo panel, con su propio directorio de negocios.",
+        "points": [
+          "Reservas y pedidos en línea desde la página del negocio",
+          "Caja con tickets y cierre del día",
+          "Directorio Mi NorHud para que los encuentren cerca"
+        ],
+        "cta": "Visitar NorHud",
+        "url": "https://norhud.com/"
+      },
+      {
+        "id": "erp-obra",
+        "name": "ERP de obra",
+        "tag": "Construcción",
+        "description": "Control de proyectos para constructoras: presupuesto, requisiciones, compras, almacén, estimaciones y flujo de efectivo en un solo sistema.",
+        "points": [
+          "Avance físico contra presupuesto por proyecto",
+          "Requisiciones con flujo de autorización",
+          "Estimaciones, cobranza y cuentas por pagar"
+        ],
+        "cta": "Abrir demo: ERP de obra",
+        "url": "https://erp-demo.norabyte.com/"
+      },
+      {
+        "id": "auxia",
+        "name": "Auxia",
+        "tag": "Gobierno",
+        "description": "Ventanilla de atención ciudadana que se instala en cualquier sitio con una línea de código: centro de ayuda, chat con el equipo, folios y accesibilidad.",
+        "points": [
+          "Asistente que responde con los artículos de la institución",
+          "Folios de seguimiento sin crear cuenta",
+          "Sin cookies ni rastreo, y software libre"
+        ],
+        "cta": "Abrir demo: Auxia",
+        "url": "https://auxia.norabyte.com/"
+      }
+    ]
   },
   "process": {
     "badge": "Cómo trabajamos",
