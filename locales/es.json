@@ -74,14 +74,37 @@
     "closeMenuAria": "Cerrar menú"
   },
   "projects": {
-    "title": "Proyectos en producción",
-    "subtitle": "Productos y sistemas que diseñamos y desarrollamos de principio a fin. Ábrelos y pruébalos.",
+    "title": "Proyectos y demos",
+    "subtitle": "Productos propios en producción y sistemas de demostración que diseñamos y desarrollamos de principio a fin.",
+    "viewAll": "Ver proyectos y demos",
     "newTab": "se abre en una pestaña nueva",
+    "kinds": {
+      "project": "Proyecto",
+      "demo": "Demo"
+    },
+    "groups": {
+      "project": {
+        "title": "Proyectos",
+        "description": "Productos propios en producción. Visítalos y conoce cómo funcionan."
+      },
+      "demo": {
+        "title": "Demos",
+        "description": "Sistemas completos con datos de ejemplo. Ábrelos y pruébalos sin crear cuenta."
+      }
+    },
+    "page": {
+      "metaDescription": "Productos propios en producción y demos de sistemas desarrollados por NORABYTE: NorHud, Auxia y un ERP de obra.",
+      "back": "Volver al inicio",
+      "ctaText": "¿Necesitas un sistema así para tu negocio?",
+      "cta": "Cotizar proyecto"
+    },
     "items": [
       {
         "id": "norhud",
+        "kind": "project",
         "name": "NorHud",
         "tag": "Negocios locales",
+        "summary": "Página web, reservas, pedidos y caja para negocios locales.",
         "description": "Plataforma para negocios locales: página web propia, reservas, pedidos, caja y lealtad desde un mismo panel, con su propio directorio de negocios.",
         "points": [
           "Reservas y pedidos en línea desde la página del negocio",
@@ -92,22 +115,11 @@
         "url": "https://norhud.com/"
       },
       {
-        "id": "erp-obra",
-        "name": "ERP de obra",
-        "tag": "Construcción",
-        "description": "Control de proyectos para constructoras: presupuesto, requisiciones, compras, almacén, estimaciones y flujo de efectivo en un solo sistema.",
-        "points": [
-          "Avance físico contra presupuesto por proyecto",
-          "Requisiciones con flujo de autorización",
-          "Estimaciones, cobranza y cuentas por pagar"
-        ],
-        "cta": "Abrir demo: ERP de obra",
-        "url": "https://erp-demo.norabyte.com/"
-      },
-      {
         "id": "auxia",
+        "kind": "project",
         "name": "Auxia",
-        "tag": "Gobierno",
+        "tag": "Atención en línea",
+        "summary": "Ventanilla de atención en tu sitio web: ayuda, chat y accesibilidad.",
         "description": "Ventanilla de atención ciudadana que se instala en cualquier sitio con una línea de código: centro de ayuda, chat con el equipo, folios y accesibilidad.",
         "points": [
           "Asistente que responde con los artículos de la institución",
@@ -116,6 +128,21 @@
         ],
         "cta": "Abrir demo: Auxia",
         "url": "https://auxia.norabyte.com/"
+      },
+      {
+        "id": "erp-obra",
+        "kind": "demo",
+        "name": "ERP de obra",
+        "tag": "Construcción",
+        "summary": "Presupuesto, compras, estimaciones y flujo de efectivo para constructoras.",
+        "description": "Control de proyectos para constructoras: presupuesto, requisiciones, compras, almacén, estimaciones y flujo de efectivo en un solo sistema.",
+        "points": [
+          "Avance físico contra presupuesto por proyecto",
+          "Requisiciones con flujo de autorización",
+          "Estimaciones, cobranza y cuentas por pagar"
+        ],
+        "cta": "Abrir demo: ERP de obra",
+        "url": "https://erp-demo.norabyte.com/"
       }
     ]
   },

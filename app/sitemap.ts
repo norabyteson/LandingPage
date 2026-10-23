@@ -1,7 +1,7 @@
 import type { MetadataRoute } from "next";
 import { locales } from "@/lib/i18n";
 
-const routes = ["", "/privacy", "/terms"];
+const routes = ["", "/projects", "/privacy", "/terms"];
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://norabyte.com";

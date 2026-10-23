@@ -74,14 +74,37 @@
     "closeMenuAria": "Close menu"
   },
   "projects": {
-    "title": "Projects in production",
-    "subtitle": "Products and systems we designed and built end to end. Open them and try them.",
+    "title": "Projects and demos",
+    "subtitle": "Our own products in production and demo systems we designed and built end to end.",
+    "viewAll": "See projects and demos",
     "newTab": "opens in a new tab",
+    "kinds": {
+      "project": "Project",
+      "demo": "Demo"
+    },
+    "groups": {
+      "project": {
+        "title": "Projects",
+        "description": "Our own products in production. Visit them and see how they work."
+      },
+      "demo": {
+        "title": "Demos",
+        "description": "Complete systems with sample data. Open them and try them without signing up."
+      }
+    },
+    "page": {
+      "metaDescription": "Our own products in production and demos of systems built by NORABYTE: NorHud, Auxia and a construction ERP.",
+      "back": "Back to home",
+      "ctaText": "Need a system like this for your business?",
+      "cta": "Get a quote"
+    },
     "items": [
       {
         "id": "norhud",
+        "kind": "project",
         "name": "NorHud",
         "tag": "Local businesses",
+        "summary": "Website, bookings, orders and point of sale for local businesses.",
         "description": "A platform for local businesses: their own website, bookings, orders, point of sale and loyalty from one dashboard, with its own business directory.",
         "points": [
           "Online bookings and orders from the business's own page",
@@ -92,22 +115,11 @@
         "url": "https://norhud.com/"
       },
       {
-        "id": "erp-obra",
-        "name": "Construction ERP",
-        "tag": "Construction",
-        "description": "Project control for builders: budgets, requisitions, purchasing, warehouse, progress billing and cash flow in one system.",
-        "points": [
-          "Physical progress against budget for each project",
-          "Requisitions with an approval workflow",
-          "Progress billing, collections and payables"
-        ],
-        "cta": "Open demo: Construction ERP",
-        "url": "https://erp-demo.norabyte.com/"
-      },
-      {
         "id": "auxia",
+        "kind": "project",
         "name": "Auxia",
-        "tag": "Government",
+        "tag": "Online support",
+        "summary": "A help desk on your website: answers, chat and accessibility.",
         "description": "A citizen help desk that drops into any website with one line of code: help center, chat with the team, tracking numbers and accessibility.",
         "points": [
           "Assistant that answers from the institution's own articles",
@@ -116,6 +128,21 @@
         ],
         "cta": "Open demo: Auxia",
         "url": "https://auxia.norabyte.com/"
+      },
+      {
+        "id": "erp-obra",
+        "kind": "demo",
+        "name": "Construction ERP",
+        "tag": "Construction",
+        "summary": "Budgets, purchasing, progress billing and cash flow for builders.",
+        "description": "Project control for builders: budgets, requisitions, purchasing, warehouse, progress billing and cash flow in one system.",
+        "points": [
+          "Physical progress against budget for each project",
+          "Requisitions with an approval workflow",
+          "Progress billing, collections and payables"
+        ],
+        "cta": "Open demo: Construction ERP",
+        "url": "https://erp-demo.norabyte.com/"
       }
     ]
   },

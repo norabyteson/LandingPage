@@ -49,7 +49,7 @@ export default async function Page({ params }: PageProps) {
     <>
       <HeroSection dict={dict} lang={locale} />
       <ServicesSection dict={dict} lang={locale} />
-      <ProjectsSection dict={dict} />
+      <ProjectsSection dict={dict} lang={locale} />
       <ProcessSection dict={dict} />
       <AboutSection dict={dict} />
       <ValuePropsSection dict={dict} />
