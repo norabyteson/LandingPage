@@ -1,4 +1,25 @@
-type LenisInstance = { scrollTo(target: Element | number, opts?: { offset?: number; duration?: number }): void };
+type LenisInstance = {
+  scrollTo(target: Element | number, opts?: { offset?: number; duration?: number }): void;
+  stop(): void;
+  start(): void;
+};
+
+/**
+ * Bloquea el scroll de la página (para modales). `overflow: hidden` en <body> no basta:
+ * Lenis desplaza el documento por su cuenta, así que hay que detenerlo y además bloquear
+ * el scroll nativo de <html>. Devuelve la función que lo libera.
+ */
+export function lockPageScroll(): () => void {
+  const lenis = (window as typeof window & { __lenis?: LenisInstance }).__lenis;
+  const html = document.documentElement;
+  const prevOverflow = html.style.overflow;
+  lenis?.stop();
+  html.style.overflow = "hidden";
+  return () => {
+    html.style.overflow = prevOverflow;
+    lenis?.start();
+  };
+}
 
 function easeInOutQuart(t: number): number {
   return t < 0.5 ? 8 * t * t * t * t : 1 - Math.pow(-2 * t + 2, 4) / 2;

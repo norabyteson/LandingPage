@@ -16,6 +16,16 @@ const contactSchema = z.object({
     .max(2000, "Mensaje demasiado largo"),
 });
 
+/** Escapa texto del usuario antes de interpolarlo en el HTML de los correos (evita inyección de HTML). */
+function escapeHtml(value: string): string {
+  return value
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#39;");
+}
+
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
@@ -29,6 +39,14 @@ export async function POST(request: NextRequest) {
     }
 
     const { name, email, company, service, message } = parsed.data;
+    // Versiones seguras para el HTML; los originales quedan para cabeceras (replyTo, to, subject).
+    const safe = {
+      name: escapeHtml(name),
+      email: escapeHtml(email),
+      company: company ? escapeHtml(company) : "",
+      service: escapeHtml(service),
+      message: escapeHtml(message).replace(/\n/g, "<br/>"),
+    };
 
     const smtpHost = process.env.SMTP_HOST || "smtp.gmail.com";
     const smtpPort = Number(process.env.SMTP_PORT) || 587;
@@ -91,33 +109,33 @@ export async function POST(request: NextRequest) {
                 <tr>
                   <td style="padding-bottom:20px;">
                     <p style="margin:0 0 6px;color:rgba(240,240,240,0.45);font-size:11px;text-transform:uppercase;letter-spacing:1px;font-weight:600;">Nombre</p>
-                    <p style="margin:0;color:#F0F0F0;font-size:16px;font-weight:600;">${name}</p>
+                    <p style="margin:0;color:#F0F0F0;font-size:16px;font-weight:600;">${safe.name}</p>
                   </td>
                 </tr>
                 <tr>
                   <td style="padding-bottom:20px;">
                     <p style="margin:0 0 6px;color:rgba(240,240,240,0.45);font-size:11px;text-transform:uppercase;letter-spacing:1px;font-weight:600;">Correo electrónico</p>
-                    <a href="mailto:${email}" style="color:#4A8FE8;font-size:15px;text-decoration:none;">${email}</a>
+                    <a href="mailto:${safe.email}" style="color:#4A8FE8;font-size:15px;text-decoration:none;">${safe.email}</a>
                   </td>
                 </tr>
-                ${company ? `
+                ${safe.company ? `
                 <tr>
                   <td style="padding-bottom:20px;">
                     <p style="margin:0 0 6px;color:rgba(240,240,240,0.45);font-size:11px;text-transform:uppercase;letter-spacing:1px;font-weight:600;">Empresa</p>
-                    <p style="margin:0;color:#F0F0F0;font-size:15px;">${company}</p>
+                    <p style="margin:0;color:#F0F0F0;font-size:15px;">${safe.company}</p>
                   </td>
                 </tr>` : ""}
                 <tr>
                   <td style="padding-bottom:20px;">
                     <p style="margin:0 0 6px;color:rgba(240,240,240,0.45);font-size:11px;text-transform:uppercase;letter-spacing:1px;font-weight:600;">Servicio de interés</p>
-                    <span style="display:inline-block;background:rgba(38,109,211,0.2);color:#4A8FE8;border:1px solid rgba(38,109,211,0.3);padding:4px 12px;border-radius:999px;font-size:13px;font-weight:600;">${service}</span>
+                    <span style="display:inline-block;background:rgba(38,109,211,0.2);color:#4A8FE8;border:1px solid rgba(38,109,211,0.3);padding:4px 12px;border-radius:999px;font-size:13px;font-weight:600;">${safe.service}</span>
                   </td>
                 </tr>
                 <tr>
                   <td style="padding-bottom:8px;">
                     <p style="margin:0 0 10px;color:rgba(240,240,240,0.45);font-size:11px;text-transform:uppercase;letter-spacing:1px;font-weight:600;">Mensaje</p>
                     <div style="background:rgba(240,240,240,0.04);border:1px solid rgba(240,240,240,0.07);border-radius:10px;padding:16px;">
-                      <p style="margin:0;color:rgba(240,240,240,0.75);font-size:14px;line-height:1.7;">${message.replace(/\n/g, "<br/>")}</p>
+                      <p style="margin:0;color:rgba(240,240,240,0.75);font-size:14px;line-height:1.7;">${safe.message}</p>
                     </div>
                   </td>
                 </tr>
@@ -164,8 +182,8 @@ export async function POST(request: NextRequest) {
           </tr>
           <tr>
             <td style="padding:40px 32px;">
-              <h2 style="margin:0 0 16px;color:#F0F0F0;font-size:20px;font-weight:700;">¡Hola, ${name}!</h2>
-              <p style="margin:0 0 16px;color:rgba(240,240,240,0.65);font-size:15px;line-height:1.7;">Hemos recibido tu solicitud para <strong style="color:#4A8FE8;">${service}</strong>. Nuestro equipo la revisará y te contactará en menos de <strong style="color:#F0F0F0;">24 horas hábiles</strong>.</p>
+              <h2 style="margin:0 0 16px;color:#F0F0F0;font-size:20px;font-weight:700;">¡Hola, ${safe.name}!</h2>
+              <p style="margin:0 0 16px;color:rgba(240,240,240,0.65);font-size:15px;line-height:1.7;">Hemos recibido tu solicitud para <strong style="color:#4A8FE8;">${safe.service}</strong>. Nuestro equipo la revisará y te contactará en menos de <strong style="color:#F0F0F0;">24 horas hábiles</strong>.</p>
               <p style="margin:0 0 28px;color:rgba(240,240,240,0.65);font-size:15px;line-height:1.7;">Si tienes alguna duda urgente, puedes responder directamente a este correo.</p>
               <a href="https://norabyte.com" style="display:inline-block;background:linear-gradient(135deg,#266DD3,#4A8FE8);color:#fff;text-decoration:none;padding:12px 28px;border-radius:999px;font-weight:700;font-size:14px;">Visitar NORABYTE</a>
             </td>

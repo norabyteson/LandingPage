@@ -3,9 +3,39 @@ import type { Locale } from "@/types/i18n";
 import PageTransition from "@/components/ui/PageTransition";
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
+import type { Metadata, ResolvingMetadata } from "next";
 
 interface PageProps {
   params: Promise<{ lang: string }>;
+}
+
+const meta = {
+  es: {
+    title: "Términos de Uso",
+    description: "Condiciones de uso del sitio de NORABYTE: propiedad intelectual, prestación de servicios, responsabilidad y ley aplicable.",
+  },
+  en: {
+    title: "Terms of Use",
+    description: "Terms for using the NORABYTE website: intellectual property, provision of services, liability and governing law.",
+  },
+};
+
+/* Sin esto la página heredaba el título del inicio y un canonical a /{locale}, como si fuera un duplicado del home. */
+export async function generateMetadata({ params }: PageProps, parent: ResolvingMetadata): Promise<Metadata> {
+  const { lang } = await params;
+  const locale: Locale = isValidLocale(lang) ? lang : defaultLocale;
+  const { title, description } = meta[locale];
+  const parentOpenGraph = (await parent).openGraph ?? {};
+
+  return {
+    title,
+    description,
+    alternates: {
+      canonical: `/${locale}/terms`,
+      languages: { "es-MX": "/es/terms", "en-US": "/en/terms" },
+    },
+    openGraph: { ...parentOpenGraph, title, description, url: `/${locale}/terms` },
+  };
 }
 
 export default async function TermsPage({ params }: PageProps) {

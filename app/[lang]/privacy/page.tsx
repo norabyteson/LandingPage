@@ -3,9 +3,39 @@ import type { Locale } from "@/types/i18n";
 import PageTransition from "@/components/ui/PageTransition";
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
+import type { Metadata, ResolvingMetadata } from "next";
 
 interface PageProps {
   params: Promise<{ lang: string }>;
+}
+
+const meta = {
+  es: {
+    title: "Aviso de Privacidad",
+    description: "Cómo NORABYTE recaba, usa y protege los datos personales que nos compartes, y cómo ejercer tus derechos ARCO.",
+  },
+  en: {
+    title: "Privacy Policy",
+    description: "How NORABYTE collects, uses and protects the personal data you share with us, and how to exercise your rights.",
+  },
+};
+
+/* Sin esto la página heredaba el título del inicio y un canonical a /{locale}, como si fuera un duplicado del home. */
+export async function generateMetadata({ params }: PageProps, parent: ResolvingMetadata): Promise<Metadata> {
+  const { lang } = await params;
+  const locale: Locale = isValidLocale(lang) ? lang : defaultLocale;
+  const { title, description } = meta[locale];
+  const parentOpenGraph = (await parent).openGraph ?? {};
+
+  return {
+    title,
+    description,
+    alternates: {
+      canonical: `/${locale}/privacy`,
+      languages: { "es-MX": "/es/privacy", "en-US": "/en/privacy" },
+    },
+    openGraph: { ...parentOpenGraph, title, description, url: `/${locale}/privacy` },
+  };
 }
 
 export default async function PrivacyPage({ params }: PageProps) {

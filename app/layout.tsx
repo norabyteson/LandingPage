@@ -75,11 +75,6 @@ export default function RootLayout({
       className={`${geistSans.variable} ${geistMono.variable} light`}
     >
       <head>
-        {/* Script bloqueante — aplica tema antes del primer paint para evitar flash */}
-        <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
-        {/* Script bloqueante — asigna lang según pathname antes del primer paint */}
-        <script dangerouslySetInnerHTML={{ __html: langInitScript }} />
-
         {/*
           AdSense: la etiqueta de propiedad y el script, en todas las páginas.
 
@@ -98,6 +93,14 @@ export default function RootLayout({
         />
       </head>
       <body className="relative antialiased" suppressHydrationWarning>
+        {/*
+          Scripts bloqueantes de tema e idioma: al inicio del <body> y no en <head>, porque
+          adsbygoogle.js inserta su propio <script> al principio del <head> antes de que React
+          hidrate, y eso desalinea los nodos que React espera ahí (error de hidratación).
+          Al inicio del <body> siguen corriendo antes del primer paint.
+        */}
+        <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
+        <script dangerouslySetInnerHTML={{ __html: langInitScript }} />
         <GoogleAnalytics />
         <Suspense fallback={null}>
           <GoogleAnalyticsNavigation />

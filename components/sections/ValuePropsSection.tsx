@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { motion, useScroll, useTransform, type MotionValue } from "framer-motion";
 import { Sparkles } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -32,14 +32,15 @@ function ValueCard({
   index,
   total,
   scrollYProgress,
+  isMobile,
 }: {
   item: ValueItem;
   index: number;
   total: number;
   scrollYProgress: MotionValue<number>;
+  isMobile: boolean;
 }) {
   const angle = (index / total) * Math.PI * 2 + Math.PI / 4;
-  const isMobile = typeof window !== "undefined" ? window.innerWidth < 768 : false;
   const radiusX = isMobile ? 180 : 500;
   const radiusY = isMobile ? 250 : 350;
   const midX = Math.cos(angle) * radiusX;
@@ -103,6 +104,17 @@ export default function ValuePropsSection({ dict }: ValuePropsSectionProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const totalItems = valueProps.items.length;
 
+  // Arranca en false igual que en el servidor y se ajusta tras montar; leer window.innerWidth
+  // durante el render daba posiciones distintas en servidor y cliente (error de hidratación).
+  const [isMobile, setIsMobile] = useState(false);
+  useEffect(() => {
+    const mq = window.matchMedia("(max-width: 767px)");
+    const update = () => setIsMobile(mq.matches);
+    update();
+    mq.addEventListener("change", update);
+    return () => mq.removeEventListener("change", update);
+  }, []);
+
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start end", "end start"],
@@ -156,6 +168,7 @@ export default function ValuePropsSection({ dict }: ValuePropsSectionProps) {
                 index={i}
                 total={totalItems}
                 scrollYProgress={smoothProgress}
+                isMobile={isMobile}
               />
             ))}
           </div>

@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState, useCallback } from "react";
+import { useEffect, useState, useCallback, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   X,
@@ -10,7 +10,7 @@ import {
   Monitor,
   Menu,
 } from "lucide-react";
-import { smoothScrollTo } from "@/lib/smooth-scroll";
+import { lockPageScroll, smoothScrollTo } from "@/lib/smooth-scroll";
 import { cn } from "@/lib/utils";
 import type { Locale } from "@/types/i18n";
 
@@ -70,6 +70,28 @@ export interface DemoViewerProps {
   serviceFormLabel: string;
 }
 
+/**
+ * Mantiene Tab / Shift+Tab dentro del diálogo (aria-modal). Los botones ocultos
+ * por breakpoint (display: none) tienen offsetParent null y quedan fuera.
+ */
+function trapFocus(e: KeyboardEvent, dialog: HTMLElement | null) {
+  if (!dialog) return;
+  const focusables = Array.from(
+    dialog.querySelectorAll<HTMLElement>("button, [href], iframe, [tabindex]:not([tabindex='-1'])")
+  ).filter((el) => el.offsetParent !== null);
+  if (focusables.length === 0) return;
+  const first = focusables[0];
+  const last = focusables[focusables.length - 1];
+  const active = document.activeElement;
+  if (e.shiftKey && (active === first || active === dialog)) {
+    e.preventDefault();
+    last.focus();
+  } else if (!e.shiftKey && (active === last || !dialog.contains(active))) {
+    e.preventDefault();
+    first.focus();
+  }
+}
+
 export default function DemoViewer({
   serviceId,
   initialIndex = 0,
@@ -82,6 +104,7 @@ export default function DemoViewer({
   const [activeIndex, setActiveIndex] = useState(initialIndex);
   const [iframeLoading, setIframeLoading] = useState(true);
   const [mobileSidebarOpen, setMobileSidebarOpen] = useState(false);
+  const dialogRef = useRef<HTMLDivElement>(null);
   const isES = lang === "es";
 
   const currentDemo = demos[activeIndex];
@@ -122,14 +145,22 @@ export default function DemoViewer({
       }
       if (e.key === "ArrowLeft") handlePrev();
       if (e.key === "ArrowRight") handleNext();
+      if (e.key === "Tab") trapFocus(e, dialogRef.current);
     };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
   }, [onClose, handlePrev, handleNext, mobileSidebarOpen]);
 
+  // Bloquea el scroll de fondo y mete el foco en el diálogo; al cerrar, lo devuelve.
+  // preventScroll: tras "Quiero algo así" la página va a #contact y no debe saltar al opener.
   useEffect(() => {
-    document.body.style.overflow = "hidden";
-    return () => { document.body.style.overflow = ""; };
+    const unlockScroll = lockPageScroll();
+    const previouslyFocused = document.activeElement as HTMLElement | null;
+    dialogRef.current?.focus({ preventScroll: true });
+    return () => {
+      unlockScroll();
+      previouslyFocused?.focus?.({ preventScroll: true });
+    };
   }, []);
 
   useEffect(() => {
@@ -154,11 +185,13 @@ export default function DemoViewer({
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
         transition={{ duration: 0.2 }}
-        className="fixed inset-0 z-[1000] bg-black/80 backdrop-blur-sm flex items-stretch"
+        className="fixed inset-0 z-[1000] bg-black/80 backdrop-blur-sm flex items-stretch outline-none"
         onClick={(e) => { if (e.target === e.currentTarget) onClose(); }}
         role="dialog"
         aria-modal="true"
         aria-label={dialogLabel}
+        ref={dialogRef}
+        tabIndex={-1}
       >
         <motion.div
           key="demo-panel"
