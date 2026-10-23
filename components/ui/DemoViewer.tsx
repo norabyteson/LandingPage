@@ -32,9 +32,9 @@ const DEMOS: Record<string, Demo[]> = {
     { name: "DentaLux", desc: { es: "Clínica dental profesional", en: "Professional dental clinic" }, url: "/demos/landing/dentalux.html" },
   ],
   custom: [
-    { name: "NexusERP", desc: { es: "Sistema ERP empresarial completo", en: "Full business ERP system" }, url: "/demos/custom/nexuserp.html" },
-    { name: "FluxPOS", desc: { es: "Sistema punto de venta moderno", en: "Modern point of sale system" }, url: "/demos/custom/fluxpos.html" },
-    { name: "ArquitectOS", desc: { es: "Gestión de personal y proyectos", en: "Staff and project management" }, url: "/demos/custom/arquitectos.html" },
+    { name: "NexusERP", desc: { es: "ERP funcional: ventas con crédito, compras, inventario y cobranza", en: "Working ERP: sales on credit, purchasing, inventory and collections" }, url: "/demos/nexuserp" },
+    { name: "FluxPOS", desc: { es: "Punto de venta funcional: cobra, cancela y haz el corte", en: "Working point of sale: checkout, refunds and cash close" }, url: "/demos/fluxpos" },
+    { name: "ArquitectOS", desc: { es: "Personal y proyectos funcional: horas, ausencias y avance", en: "Working staff and project management: timesheets, leave and progress" }, url: "/demos/arquitectos" },
   ],
 };
 

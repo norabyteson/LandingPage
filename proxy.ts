@@ -9,6 +9,8 @@ export function proxy(request: NextRequest) {
     pathname.startsWith("/_next") ||
     pathname.startsWith("/api") ||
     pathname.startsWith("/static") ||
+    // Demos funcionales (app/(demos)): sin prefijo de idioma, se abren en el visor de la landing.
+    pathname.startsWith("/demos/") ||
     /\.(.*)$/.test(pathname)
   ) {
     return NextResponse.next();

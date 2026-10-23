@@ -1,0 +1,61 @@
+@import "tailwindcss";
+
+/*
+ * Estilos base de los demos funcionales. Cada demo usa la paleta de Tailwind con su propio acento
+ * (FluxPOS: índigo; ArquitectOS: azul eléctrico en modo oscuro; NexusERP: azul #0053db con grafito). No comparte tokens con la landing (app/(site)/globals.css), a propósito: cada demo tiene su marca.
+ */
+
+@theme inline {
+  --font-sans: var(--font-geist-sans), system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, monospace;
+}
+
+@layer base {
+  html,
+  body {
+    height: 100%;
+  }
+
+  body {
+    font-family: var(--font-sans);
+    background-color: var(--color-slate-100);
+    color: var(--color-slate-900);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-indigo-500);
+    outline-offset: 2px;
+  }
+
+  /* El ticket se imprime solo, sin el resto de la app. */
+  @media print {
+    body * {
+      visibility: hidden;
+    }
+    [data-print-area],
+    [data-print-area] * {
+      visibility: visible;
+    }
+    [data-print-area] {
+      position: absolute;
+      inset: 0 auto auto 0;
+      width: 80mm;
+    }
+  }
+}
+
+@keyframes demo-in {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+}
+.demo-in {
+  animation: demo-in 220ms cubic-bezier(0.2, 0, 0, 1) both;
+}
+@media (prefers-reduced-motion: reduce) {
+  .demo-in {
+    animation: none;
+  }
+}

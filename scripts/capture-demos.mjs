@@ -25,9 +25,9 @@ const DEMOS = [
   { url: "/demos/landing/gastronomo.html",    out: "landing-1.jpg",   name: "El Gastrónomo" },
   { url: "/demos/landing/aura.html",          out: "landing-2.jpg",   name: "AURA"          },
   { url: "/demos/landing/dentalux.html",      out: "landing-3.jpg",   name: "DentaLux"      },
-  { url: "/demos/custom/nexuserp.html",       out: "custom-1.jpg",    name: "NexusERP"      },
-  { url: "/demos/custom/fluxpos.html",        out: "custom-2.jpg",    name: "FluxPOS"       },
-  { url: "/demos/custom/arquitectos.html",    out: "custom-3.jpg",    name: "ArquitectOS"   },
+  { url: "/demos/nexuserp",                   out: "custom-1.jpg",    name: "NexusERP"      },
+  { url: "/demos/fluxpos",                    out: "custom-2.jpg",    name: "FluxPOS"       },
+  { url: "/demos/arquitectos",                out: "custom-3.jpg",    name: "ArquitectOS"   },
 ];
 
 async function main() {
