@@ -38,6 +38,12 @@
     },
     "items": [
       {
+        "id": "custom",
+        "title": "Sistema personalizado",
+        "description": "¿Tu negocio necesita algo más específico? Lo construimos desde cero. Sistemas de gestión, punto de venta, aplicaciones de escritorio: cualquier solución que automatice y organice cómo opera tu empresa.",
+        "features": ["Sistemas empresariales y de gestión", "Punto de venta (POS) para tu negocio", "Aplicaciones de escritorio sin conexión", "100% adaptado a tu operación"]
+      },
+      {
         "id": "ecommerce",
         "title": "Tienda en línea",
         "description": "Lleva tu negocio al mundo digital y empieza a vender sin límites. Creamos tu tienda completa con catálogo de productos, pagos seguros, control de inventario y todo lo que necesitas para operar desde el primer día.",
@@ -48,12 +54,6 @@
         "title": "Sitio web y landing page",
         "description": "Tu presencia en internet, hecha bien. Diseñamos sitios profesionales que representan tu marca, atraen clientes y convierten visitas en oportunidades de negocio las 24 horas del día.",
         "features": ["Diseño profesional adaptado a tu marca", "Optimizado para móvil y tablet", "Carga rápida y alto rendimiento", "Posicionamiento en Google (SEO)"]
-      },
-      {
-        "id": "custom",
-        "title": "Sistema personalizado",
-        "description": "¿Tu negocio necesita algo más específico? Lo construimos desde cero. Sistemas de gestión, punto de venta, aplicaciones de escritorio: cualquier solución que automatice y organice cómo opera tu empresa.",
-        "features": ["Sistemas empresariales y de gestión", "Punto de venta (POS) para tu negocio", "Aplicaciones de escritorio sin conexión", "100% adaptado a tu operación"]
       }
     ]
   },

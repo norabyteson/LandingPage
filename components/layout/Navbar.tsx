@@ -8,7 +8,9 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, Sun, Moon } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useTheme } from "@/lib/theme";
-import { smoothScrollTo } from "@/lib/smooth-scroll";
+import { lockPageScroll, smoothScrollTo } from "@/lib/smooth-scroll";
+import { buttonClasses } from "@/lib/ui";
+import { useInView } from "@/components/ui/Reveal";
 import type { Locale } from "@/types/i18n";
 
 interface NavbarProps {
@@ -32,17 +34,37 @@ interface NavbarProps {
   lang: Locale;
 }
 
+/** Logo claro u oscuro según la clase del tema, por CSS: no espera a hidratar. */
+function Logo({ className }: { className?: string }) {
+  return (
+    <>
+      <Image
+        src="/norabyte_logo_transparente.png"
+        alt="NORABYTE"
+        width={160}
+        height={40}
+        priority
+        className={cn("w-auto object-contain dark:hidden", className)}
+      />
+      <Image
+        src="/norabyte_logo_transparente_blanco.webp"
+        alt="NORABYTE"
+        width={160}
+        height={40}
+        className={cn("hidden w-auto object-contain dark:block", className)}
+      />
+    </>
+  );
+}
+
 export default function Navbar({ dict, lang }: NavbarProps) {
-  const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
   const pathname = usePathname();
   const router = useRouter();
   const { theme, toggleTheme } = useTheme();
-  const logoSrc =
-    mounted && theme === "dark"
-      ? "/norabyte_logo_transparente_blanco.webp"
-      : "/norabyte_logo_transparente.png";
+  // Marca invisible en lo alto del documento: mientras se ve, la cabecera va sin borde ni sombra.
+  const [topRef, atTop] = useInView<HTMLDivElement>({ once: false });
 
   const navItems = [
     { label: dict.nav.services, href: `/${lang}#services`, id: "services" },
@@ -50,19 +72,9 @@ export default function Navbar({ dict, lang }: NavbarProps) {
     { label: dict.nav.contact, href: `/${lang}#contact`, id: "contact" },
   ];
 
-  const handleScroll = useCallback(() => {
-    setIsScrolled(window.scrollY > 20);
-  }, []);
-
   useEffect(() => {
     setMounted(true);
   }, []);
-
-  useEffect(() => {
-    handleScroll(); // Verifica posición actual al montar (evita navbar transparente en refresh)
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, [handleScroll]);
 
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, targetId: string, href: string) => {
     e.preventDefault();
@@ -81,8 +93,8 @@ export default function Navbar({ dict, lang }: NavbarProps) {
   }, [pathname]);
 
   useEffect(() => {
-    document.body.style.overflow = isMenuOpen ? "hidden" : "";
-    return () => { document.body.style.overflow = ""; };
+    if (!isMenuOpen) return;
+    return lockPageScroll();
   }, [isMenuOpen]);
 
   const otherLang: Locale = lang === "es" ? "en" : "es";
@@ -93,42 +105,64 @@ export default function Navbar({ dict, lang }: NavbarProps) {
     router.prefetch(`/${otherLang}`);
   }, [router, otherLang]);
 
-  // Cambio de idioma rápido sin animación de recarga global
+  // scroll: false mantiene la posición al cambiar de idioma
   const handleLangSwitch = useCallback(
     (e: React.MouseEvent) => {
       e.preventDefault();
       setIsMenuOpen(false);
-      // scroll: false mantiene la posición de scroll al cambiar idioma
       router.push(langSwitchHref, { scroll: false });
     },
     [router, langSwitchHref]
   );
 
+  const isDark = mounted && theme === "dark";
+  const themeLabel = isDark ? "Activar modo claro" : "Activar modo oscuro";
+
+  /** ES | EN: el idioma actual marcado, el otro como enlace. */
+  const langSwitch = (
+    <div className="flex items-center rounded-xl border border-line p-0.5 text-xs font-semibold">
+      {(["es", "en"] as const).map((code) =>
+        code === lang ? (
+          <span
+            key={code}
+            aria-current="true"
+            aria-label={`Idioma actual: ${code.toUpperCase()}`}
+            className="rounded-[10px] bg-surface-hover px-2.5 py-1.5 text-ink"
+          >
+            {code.toUpperCase()}
+          </span>
+        ) : (
+          <a
+            key={code}
+            href={langSwitchHref}
+            onClick={handleLangSwitch}
+            hrefLang={code}
+            className="rounded-[10px] px-2.5 py-1.5 text-ink-subtle transition-colors hover:text-ink"
+          >
+            {code.toUpperCase()}
+          </a>
+        )
+      )}
+    </div>
+  );
+
   return (
     <>
-      <motion.header
-        initial={{ y: -80, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.35, ease: [0.25, 0.46, 0.45, 0.94] }}
+      <div ref={topRef} aria-hidden="true" className="pointer-events-none absolute top-0 h-px w-px" />
+
+      <header
         className={cn(
-          "fixed top-0 left-0 right-0 z-[100] outline-none",
-          "transition-[background-color,border-color,box-shadow,padding] duration-300 ease-in-out",
-          isScrolled
-            ? [
-                "py-3",
-                "backdrop-blur-xl",
-                "bg-[var(--nb-dark)]/92",
-                "shadow-[0_4px_30px_rgba(0,0,0,0.35)]",
-              ]
-            : "bg-transparent py-5"
+          "fixed inset-x-0 top-0 z-[100] border-b bg-surface/85 backdrop-blur-md",
+          "transition-[border-color,box-shadow] duration-300 ease-standard",
+          atTop
+            ? "border-transparent"
+            : "border-line/70 shadow-[0_8px_24px_-16px_rgb(var(--ui-shadow-tint)/0.25)]"
         )}
-        role="banner"
       >
         <nav
-          className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between"
+          className="mx-auto flex h-16 max-w-7xl items-center justify-between gap-4 px-4 sm:px-6 lg:px-8 md:h-[72px]"
           aria-label="Navegación principal"
         >
-          {/* Logo */}
           <Link
             href={`/${lang}`}
             onClick={() => {
@@ -136,217 +170,120 @@ export default function Navbar({ dict, lang }: NavbarProps) {
               if (lenis) lenis.scrollTo(0);
               else window.scrollTo({ top: 0, behavior: "smooth" });
             }}
-            className="flex items-center group"
+            className="flex min-h-11 items-center rounded-lg transition-opacity hover:opacity-80"
             aria-label="NORABYTE - Inicio"
           >
-            {/* <span className="font-extrabold text-xl tracking-tight text-[var(--nb-light)] transition-opacity duration-300 group-hover:opacity-85">
-              NORA<span className="text-[var(--nb-primary)]">BYTE</span>
-            </span> */}
-            <Image
-              src={logoSrc}
-              alt="NORABYTE"
-              width={160}
-              height={40}
-              className="h-12 w-auto object-contain transition-opacity duration-300 group-hover:opacity-85"
-              priority
-            />
+            <Logo className="h-9 md:h-10" />
           </Link>
 
-          {/* Nav links — Desktop */}
-          <ul className="hidden md:flex items-center gap-1" role="list">
+          <ul className="hidden items-center gap-1 md:flex" role="list">
             {navItems.map((item) => (
               <li key={item.id}>
                 <a
                   href={item.href}
                   onClick={(e) => handleNavClick(e, item.id, item.href)}
-                  className="relative px-4 py-2 text-sm font-medium text-[var(--nb-light)]/70 hover:text-[var(--nb-light)] transition-colors duration-200 rounded-full hover:bg-[var(--nb-light)]/5 group"
+                  className={buttonClasses("ghost")}
                 >
                   {item.label}
-                  <span className="absolute bottom-1 left-1/2 -translate-x-1/2 w-0 h-0.5 bg-[var(--nb-primary)] rounded-full transition-all duration-300 group-hover:w-4" />
                 </a>
               </li>
             ))}
           </ul>
 
-          {/* Acciones — Desktop */}
-          <div className="hidden md:flex items-center gap-2">
-            {/* Toggle de tema */}
+          <div className="hidden items-center gap-2 md:flex">
             <button
+              type="button"
               onClick={toggleTheme}
-              aria-label={!mounted || theme === "dark" ? "Activar modo claro" : "Activar modo oscuro"}
-              className="w-9 h-9 rounded-xl flex items-center justify-center text-[var(--nb-light)]/60 hover:text-[var(--nb-primary)] hover:bg-[var(--nb-light)]/8 transition-all duration-200"
+              aria-label={themeLabel}
+              className="flex size-10 items-center justify-center rounded-xl text-ink-muted transition-colors hover:bg-surface-hover hover:text-ink"
             >
-              <AnimatePresence mode="wait" initial={false}>
-                {!mounted || theme === "dark" ? (
-                  <motion.div
-                    key="sun"
-                    initial={{ rotate: -90, opacity: 0, scale: 0.8 }}
-                    animate={{ rotate: 0, opacity: 1, scale: 1 }}
-                    exit={{ rotate: 90, opacity: 0, scale: 0.8 }}
-                    transition={{ duration: 0.2 }}
-                  >
-                    <Sun size={17} aria-hidden="true" />
-                  </motion.div>
-                ) : (
-                  <motion.div
-                    key="moon"
-                    initial={{ rotate: 90, opacity: 0, scale: 0.8 }}
-                    animate={{ rotate: 0, opacity: 1, scale: 1 }}
-                    exit={{ rotate: -90, opacity: 0, scale: 0.8 }}
-                    transition={{ duration: 0.2 }}
-                  >
-                    <Moon size={17} aria-hidden="true" />
-                  </motion.div>
-                )}
-              </AnimatePresence>
+              {isDark ? <Sun size={18} aria-hidden="true" /> : <Moon size={18} aria-hidden="true" />}
             </button>
-
+            {langSwitch}
             <a
               href={dict.contact.whatsapp.href}
               target="_blank"
               rel="noopener noreferrer"
-              className="hidden md:inline-flex items-center gap-2 px-3 py-2 text-sm font-semibold rounded-xl border border-emerald-500/35 text-emerald-400 hover:bg-emerald-500/10 hover:border-emerald-400/50 transition-all duration-200"
+              className={buttonClasses("ghost")}
             >
               {dict.nav.whatsapp}
             </a>
-
-            {/* Switch de idioma Mejorado con Flags */}
-            <div className="relative group">
-              <button
-                className="flex items-center gap-2 px-3 py-1.5 text-xs font-semibold rounded-full border border-[var(--nb-light)]/15 text-[var(--nb-light)]/70 hover:text-[var(--nb-light)] hover:border-[var(--nb-light)]/30 hover:bg-[var(--nb-light)]/5 transition-all duration-200 cursor-pointer"
-                aria-label={`Idioma actual: ${lang.toUpperCase()}`}
-              >
-                <span className={cn(
-                  "fi text-base rounded-[2px]", 
-                  lang === "es" ? "fi-mx" : "fi-us"
-                )} />
-                <span className="tracking-widest">{lang.toUpperCase()}</span>
-              </button>
-              
-              {/* Dropdown Menu */}
-              <div className="absolute top-full right-0 mt-2 w-32 rounded-xl bg-[var(--nb-dark-surface)] border border-[var(--nb-light)]/10 shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 overflow-hidden z-50 transform origin-top-right scale-95 group-hover:scale-100">
-                <a
-                  href={langSwitchHref}
-                  onClick={handleLangSwitch}
-                  className="flex items-center gap-3 px-4 py-3 text-sm text-[var(--nb-light)]/70 hover:text-[var(--nb-light)] hover:bg-[var(--nb-primary)]/10 transition-colors w-full text-left"
-                >
-                  <span className={cn(
-                    "fi text-lg rounded-[2px]", 
-                    otherLang === "es" ? "fi-mx" : "fi-us"
-                  )} />
-                  <span className="font-medium">{dict.language.switch}</span>
-                </a>
-              </div>
-            </div>
-
-            {/* CTA */}
             <a
               href={`/${lang}#contact`}
               onClick={(e) => handleNavClick(e, "contact", `/${lang}#contact`)}
-              className="btn-primary text-sm py-2.5 px-5 ml-1"
+              className={buttonClasses("primary")}
             >
               {dict.nav.cta}
             </a>
           </div>
 
-          {/* Botón hamburguesa — Mobile */}
           <button
+            type="button"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="md:hidden relative w-10 h-10 flex items-center justify-center rounded-xl bg-[var(--nb-light)]/8 border border-[var(--nb-light)]/10 text-[var(--nb-light)]"
+            className="flex size-11 items-center justify-center rounded-xl border border-line text-ink md:hidden"
             aria-expanded={isMenuOpen}
             aria-controls="mobile-menu"
             aria-label={isMenuOpen ? "Cerrar menú" : "Abrir menú"}
           >
-            <AnimatePresence mode="wait" initial={false}>
-              {isMenuOpen ? (
-                <motion.div
-                  key="close"
-                  initial={{ rotate: -90, opacity: 0 }}
-                  animate={{ rotate: 0, opacity: 1 }}
-                  exit={{ rotate: 90, opacity: 0 }}
-                  transition={{ duration: 0.15 }}
-                >
-                  <X size={18} />
-                </motion.div>
-              ) : (
-                <motion.div
-                  key="menu"
-                  initial={{ rotate: 90, opacity: 0 }}
-                  animate={{ rotate: 0, opacity: 1 }}
-                  exit={{ rotate: -90, opacity: 0 }}
-                  transition={{ duration: 0.15 }}
-                >
-                  <Menu size={18} />
-                </motion.div>
-              )}
-            </AnimatePresence>
+            {isMenuOpen ? <X size={18} aria-hidden="true" /> : <Menu size={18} aria-hidden="true" />}
           </button>
         </nav>
-      </motion.header>
+      </header>
 
       {/* ——— Menú móvil ——— */}
       <AnimatePresence>
         {isMenuOpen && (
           <>
-            {/* Overlay */}
             <motion.div
               key="overlay"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.2 }}
-              className="fixed inset-0 z-[110] bg-black/60 backdrop-blur-sm shadow-[0_0_100px_rgba(0,0,0,0.5)]"
+              className="fixed inset-0 z-[110] bg-ink/40 backdrop-blur-[2px]"
               onClick={() => setIsMenuOpen(false)}
               aria-hidden="true"
             />
 
-            {/* Panel del menú */}
             <motion.div
               key="menu-panel"
               id="mobile-menu"
               initial={{ x: "100%" }}
               animate={{ x: 0 }}
               exit={{ x: "100%" }}
-              transition={{ type: "spring", stiffness: 420, damping: 40 }}
-              className="fixed top-0 right-0 bottom-0 z-[120] w-72 bg-[var(--nb-dark)]/95 backdrop-blur-xl border-l border-[var(--nb-primary)]/15 flex flex-col"
+              transition={{ duration: 0.32, ease: [0.2, 0, 0, 1] }}
+              className="fixed inset-y-0 right-0 z-[120] flex w-80 max-w-[85vw] flex-col border-l border-line bg-surface"
               role="dialog"
               aria-modal="true"
               aria-label="Menú de navegación"
             >
-              {/* Header del panel */}
-              <div className="flex items-center justify-between p-6 pb-5">
-                <Image
-                  src={logoSrc}
-                  alt="NORABYTE"
-                  width={160}
-                  height={40}
-                  className="h-8 w-auto object-contain"
-                />
+              <div className="flex h-16 items-center justify-between border-b border-line px-5">
+                <Logo className="h-8" />
                 <button
+                  type="button"
                   onClick={() => setIsMenuOpen(false)}
-                  className="w-8 h-8 flex items-center justify-center rounded-lg hover:bg-[var(--nb-light)]/10 text-[var(--nb-light)]/70 hover:text-[var(--nb-light)] transition-colors"
+                  className="flex size-11 items-center justify-center rounded-xl text-ink-muted hover:bg-surface-hover hover:text-ink"
                   aria-label="Cerrar menú"
+                  autoFocus
                 >
-                  <X size={16} />
+                  <X size={18} aria-hidden="true" />
                 </button>
               </div>
 
-              {/* Links */}
-              <nav className="flex-1 p-6" aria-label="Menú móvil">
+              <nav className="flex-1 px-3 py-4" aria-label="Menú móvil">
                 <ul className="space-y-1" role="list">
                   {navItems.map((item, i) => (
                     <motion.li
                       key={item.id}
-                      initial={{ opacity: 0, x: 20 }}
+                      initial={{ opacity: 0, x: 16 }}
                       animate={{ opacity: 1, x: 0 }}
-                      transition={{ delay: i * 0.06 + 0.1 }}
+                      transition={{ delay: 0.08 + i * 0.05, duration: 0.3, ease: [0.2, 0, 0, 1] }}
                     >
                       <a
                         href={item.href}
                         onClick={(e) => handleNavClick(e, item.id, item.href)}
-                        className="flex items-center gap-3 px-4 py-3 rounded-xl text-[var(--nb-light)]/70 hover:text-[var(--nb-light)] hover:bg-[var(--nb-light)]/8 transition-all duration-200 font-medium"
+                        className="flex min-h-12 items-center rounded-xl px-4 text-lg font-semibold text-ink hover:bg-surface-hover"
                       >
-                        <span className="w-1.5 h-1.5 rounded-full bg-[var(--nb-primary)] opacity-60" aria-hidden="true" />
                         {item.label}
                       </a>
                     </motion.li>
@@ -354,41 +291,30 @@ export default function Navbar({ dict, lang }: NavbarProps) {
                 </ul>
               </nav>
 
-              {/* Footer del panel */}
-              <div className="p-6 pt-4 space-y-3">
+              <div className="space-y-3 border-t border-line p-5">
+                <div className="flex items-center justify-between gap-3">
+                  {langSwitch}
+                  <button
+                    type="button"
+                    onClick={toggleTheme}
+                    aria-label={themeLabel}
+                    className="flex size-11 items-center justify-center rounded-xl border border-line text-ink-muted hover:text-ink"
+                  >
+                    {isDark ? <Sun size={18} aria-hidden="true" /> : <Moon size={18} aria-hidden="true" />}
+                  </button>
+                </div>
                 <a
                   href={dict.contact.whatsapp.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex w-full items-center justify-center gap-2 px-4 py-3 rounded-xl border border-emerald-500/35 text-emerald-400 font-semibold text-sm hover:bg-emerald-500/10 transition-colors"
+                  className={cn(buttonClasses("secondary", "lg"), "w-full")}
                 >
                   {dict.nav.whatsapp}
                 </a>
-                {/* Fila: idioma + tema */}
-                <div className="flex gap-2">
-                  <a
-                    href={langSwitchHref}
-                    onClick={handleLangSwitch}
-                    className="flex-1 flex items-center justify-center gap-3 px-4 py-2.5 rounded-xl border border-[var(--nb-light)]/15 hover:border-[var(--nb-light)]/30 hover:bg-[var(--nb-light)]/5 transition-all duration-200 cursor-pointer"
-                  >
-                    <span className={cn(
-                      "fi text-lg rounded-[2px]", 
-                      otherLang === "es" ? "fi-mx" : "fi-us"
-                    )} />
-                    <span className="text-sm font-semibold text-[var(--nb-light)]/80 uppercase tracking-widest">{dict.language.switch}</span>
-                  </a>
-                  <button
-                    onClick={toggleTheme}
-                    aria-label={!mounted || theme === "dark" ? "Modo claro" : "Modo oscuro"}
-                    className="w-12 flex items-center justify-center rounded-xl border border-[var(--nb-light)]/15 text-[var(--nb-light)]/60 hover:text-[var(--nb-primary)] hover:border-[var(--nb-primary)]/30 transition-all duration-200"
-                  >
-                    {!mounted || theme === "dark" ? <Sun size={18} /> : <Moon size={18} />}
-                  </button>
-                </div>
                 <a
                   href={`/${lang}#contact`}
-                  className="btn-primary w-full text-sm py-3"
                   onClick={(e) => handleNavClick(e, "contact", `/${lang}#contact`)}
+                  className={cn(buttonClasses("primary", "lg"), "w-full")}
                 >
                   {dict.nav.cta}
                 </a>

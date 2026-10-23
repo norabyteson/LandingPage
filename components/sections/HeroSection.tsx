@@ -1,11 +1,9 @@
-"use client";
-
 import Image from "next/image";
-import { useRef, useEffect } from "react";
-import { motion, useScroll, useTransform, useSpring } from "framer-motion";
-import { ArrowRight, ChevronDown } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import type { Locale } from "@/types/i18n";
-import SectionBadge from "@/components/ui/SectionBadge";
+import { arrowNudge, buttonClasses } from "@/lib/ui";
+import { cn } from "@/lib/utils";
+import MarkPlayed from "@/components/ui/MarkPlayed";
 
 interface HeroSectionProps {
   dict: {
@@ -20,165 +18,74 @@ interface HeroSectionProps {
   lang: Locale;
 }
 
+/**
+ * Portada: el lema a la izquierda y la captura real del panel a la derecha.
+ * Componente de servidor; la entrada es CSS (`landing-rise` / `landing-pop`), escalonada
+ * con `animation-delay`, una vez por pestaña (lib/played.ts) y se anula con «reducir movimiento».
+ */
 export default function HeroSection({ dict, lang }: HeroSectionProps) {
-  const ref = useRef<HTMLDivElement>(null);
-  const containerRef = useRef<HTMLDivElement>(null);
-  
-  // Smooth scroll logic
-  const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end start"] });
-  const bgY = useTransform(scrollYProgress, [0, 1], ["0%", "15%"]);
-  const textY = useTransform(scrollYProgress, [0, 1], ["0%", "8%"]);
-  const opacity = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
-
-  // Mouse parallax logic for the 3D object
-  const springConfig = { damping: 25, stiffness: 150 };
-  const mouseX = useSpring(0, springConfig);
-  const mouseY = useSpring(0, springConfig);
-
-  useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      if (!containerRef.current) return;
-      const { innerWidth, innerHeight } = window;
-      const x = (e.clientX / innerWidth - 0.5) * 20; // max rotation degrees
-      const y = (e.clientY / innerHeight - 0.5) * -20;
-      mouseX.set(x);
-      mouseY.set(y);
-    };
-    window.addEventListener("mousemove", handleMouseMove);
-    return () => window.removeEventListener("mousemove", handleMouseMove);
-  }, [mouseX, mouseY]);
-
   const { hero } = dict;
+  const words = hero.headline.split(" ");
+  const lead = words.slice(0, 3).join(" ");
+  const rest = words.slice(3).join(" ");
 
   return (
     <section
-      ref={ref}
       id="hero"
-      className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden"
-      style={{ position: "relative" }}
-      aria-label="Sección principal"
+      aria-labelledby="hero-title"
+      data-reveal="hero"
+      className="relative overflow-hidden bg-surface pt-28 pb-16 md:pt-32 lg:pb-24"
     >
-      {/* Fondo sólido y limpio */}
-      <motion.div
-        style={{ y: bgY }}
-        className="absolute inset-0 pointer-events-none bg-[var(--nb-dark)]"
-        aria-hidden="true"
-      />
+      <MarkPlayed name="hero" />
+      <div className="mx-auto grid max-w-7xl items-center gap-12 px-4 sm:px-6 lg:min-h-[calc(100dvh-72px)] lg:grid-cols-[minmax(0,1fr)_minmax(0,1.05fr)] lg:gap-14 lg:px-8">
+        <div className="min-w-0">
+          <p className="landing-rise text-sm font-semibold text-brand-ink">{hero.badge}</p>
 
-      {/* Contenido principal */}
-      <motion.div
-        style={{ y: textY, opacity }}
-        className="relative z-10 max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 w-full"
-      >
-        <div ref={containerRef} className="grid lg:grid-cols-2 gap-12 lg:gap-8 items-center min-h-[85vh] py-24">
-
-          {/* Columna izquierda — Texto (Sin animaciones de entrada para carga instantánea) */}
-          <div className="flex flex-col items-start z-20 relative">
-            {/* Badge Limpio */}
-            <div className="mb-6">
-               <SectionBadge>{hero.badge}</SectionBadge>
-            </div>
-
-            {/* Titular principal */}
-            <h1 className="heading-xl text-[var(--nb-light)] mb-6 drop-shadow-sm">
-              {hero.headline.split(" ").slice(0, 3).join(" ")}{" "}
-              <span className="gradient-text">
-                {hero.headline.split(" ").slice(3).join(" ")}
-              </span>
-            </h1>
-
-            {/* Subtítulo */}
-            <p className="text-[var(--nb-light)]/65 text-[1.1rem] md:text-[1.15rem] leading-relaxed max-w-lg mb-10 drop-shadow-sm">
-              {hero.subheadline}
-            </p>
-
-            {/* CTAs */}
-            <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
-              <a
-                href={`/${lang}#contact`}
-                className="btn-primary group"
-                aria-label={hero.ctaPrimary}
-              >
-                {hero.ctaPrimary}
-                <ArrowRight
-                  size={16}
-                  aria-hidden="true"
-                  className="transition-transform duration-200 group-hover:translate-x-1"
-                />
-              </a>
-              <a
-                href={`/${lang}#services`}
-                className="btn-ghost"
-                aria-label={hero.ctaSecondary}
-              >
-                {hero.ctaSecondary}
-              </a>
-            </div>
-          </div>
-
-          {/* Columna derecha — 3D Parallax */}
-          <div
-            className="relative flex items-center justify-center lg:justify-end perspective-1000 z-10 w-full mt-8 lg:mt-0"
-            style={{ perspective: "1200px" }}
-            aria-hidden="true"
+          <h1
+            id="hero-title"
+            className="landing-rise mt-5 text-[clamp(2.4rem,1.6rem+2.6vw,4rem)] leading-[1.05] font-extrabold tracking-tight text-balance text-ink [animation-delay:90ms]"
           >
-            {/* Contenedor 3D Interactivo (Responsive: escala en móvil, full en desktop) */}
-            <motion.div
-              style={{ rotateY: mouseX, rotateX: mouseY }}
-              className="relative w-full max-w-lg lg:w-[125%] lg:max-w-3xl lg:-mr-[15%] transform-style-3d shadow-[0_30px_60px_rgba(0,0,0,0.4)] rounded-2xl"
-            >
-              {/* Frame de dispositivo Limpio (Eliminado hover:scale para evitar saltos) */}
-              <div className="glass rounded-2xl overflow-hidden border border-[var(--nb-light)]/10 shadow-2xl bg-[var(--nb-dark-surface)] transition-colors duration-200">
-                <div className="flex items-center gap-1.5 px-4 py-3 border-b border-[var(--nb-light)]/5 bg-[var(--nb-dark)]/50">
-                  <div className="w-2.5 h-2.5 rounded-full bg-[#FF5F56]" />
-                  <div className="w-2.5 h-2.5 rounded-full bg-[#FFBD2E]" />
-                  <div className="w-2.5 h-2.5 rounded-full bg-[#27C93F]" />
-                  <div className="flex-1 mx-3 h-5 rounded bg-[var(--nb-light)]/5 flex items-center px-3 justify-center">
-                    <span className="text-[10px] text-[var(--nb-light)]/40 tracking-widest font-mono font-bold">NORABYTE SYSTEM</span>
-                  </div>
-                </div>
-                <div className="w-full aspect-[16/10] overflow-hidden">
-                  <Image
-                    src={
-                      lang === "es"
-                        ? "/dashboard-assets/dashboard-es.webp"
-                        : "/dashboard-assets/dashboard-en.webp"
-                    }
-                    alt={
-                      lang === "es"
-                        ? "Vista previa estática del panel de NORABYTE en español"
-                        : "Static preview of the NORABYTE dashboard in English"
-                    }
-                    width={1600}
-                    height={1000}
-                    className="w-full h-full object-contain bg-[#0b0b0b]"
-                    priority
-                  />
-                </div>
-              </div>
-            </motion.div>
+            {lead} <span className="text-brand">{rest}</span>
+          </h1>
+
+          <p className="landing-rise mt-7 max-w-[40ch] text-lg leading-relaxed text-ink-muted [animation-delay:280ms] md:text-xl">
+            {hero.subheadline}
+          </p>
+
+          <div className="landing-rise mt-9 flex flex-wrap gap-3 [animation-delay:380ms]">
+            <a href={`/${lang}#contact`} className={cn("group", buttonClasses("primary", "lg"))}>
+              {hero.ctaPrimary}
+              <ArrowRight aria-hidden="true" className={arrowNudge} />
+            </a>
+            <a href={`/${lang}#services`} className={buttonClasses("secondary", "lg")}>
+              {hero.ctaSecondary}
+            </a>
           </div>
         </div>
-      </motion.div>
 
-      {/* Flecha de scroll */}
-      <motion.div
-        style={{ opacity }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10"
-      >
-        <a
-          href={`/${lang}#services`}
-          className="flex flex-col items-center gap-1 text-[var(--nb-light)]/30 hover:text-[var(--nb-light)]/60 transition-colors cursor-pointer group"
-          aria-label="Ir a servicios"
-        >
-          <motion.div
-            animate={{ y: [0, 6, 0] }}
-            transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut" }}
-          >
-            <ChevronDown size={24} className="group-hover:text-[var(--nb-primary-light)] transition-colors" />
-          </motion.div>
-        </a>
-      </motion.div>
+        {/* Captura real del panel sobre un plano suave de marca. */}
+        <div className="relative min-w-0">
+          <div
+            aria-hidden="true"
+            className="landing-pop absolute -inset-x-4 -top-6 -bottom-8 rounded-[2.5rem] bg-brand-soft sm:-inset-x-8 lg:-right-16 lg:left-8"
+          />
+          <div className="landing-rise relative overflow-hidden rounded-2xl border border-line bg-[#0b0b0b] shadow-lift [animation-delay:240ms] [animation-duration:900ms] lg:translate-x-4">
+            <Image
+              src={lang === "es" ? "/dashboard-assets/dashboard-es.webp" : "/dashboard-assets/dashboard-en.webp"}
+              alt={
+                lang === "es"
+                  ? "Panel de un sistema hecho por NORABYTE: ventas del mes, pedidos y seguimiento de órdenes."
+                  : "Dashboard of a system built by NORABYTE: monthly sales, orders and order tracking."
+              }
+              width={1600}
+              height={1000}
+              sizes="(min-width: 1024px) 55vw, 100vw"
+              className="block aspect-[16/10] h-auto w-full object-cover object-left-top"
+              priority
+            />
+          </div>
+        </div>
+      </div>
     </section>
   );
 }

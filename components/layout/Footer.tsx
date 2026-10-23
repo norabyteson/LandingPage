@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { Facebook, Instagram } from "lucide-react";
 import type { Locale } from "@/types/i18n";
 
@@ -41,124 +42,78 @@ interface FooterProps {
 export default function Footer({ dict, lang }: FooterProps) {
   const { footer } = dict;
 
+  const columns = [
+    { title: footer.services, links: footer.links.services },
+    { title: footer.company, links: footer.links.company },
+    { title: footer.legal, links: footer.links.legal },
+  ];
+
+  const socials = [
+    { href: footer.social.facebook, label: footer.socialAria.facebook, icon: <Facebook size={17} aria-hidden="true" /> },
+    { href: footer.social.instagram, label: footer.socialAria.instagram, icon: <Instagram size={17} aria-hidden="true" /> },
+    { href: footer.social.whatsapp, label: footer.socialAria.whatsapp, icon: <WhatsAppIcon className="size-[17px]" /> },
+  ];
+
   return (
-    <footer
-      className="relative bg-[var(--nb-dark)]"
-      role="contentinfo"
-      aria-label="Pie de página"
-    >
-      <div
-        className="absolute top-0 left-1/2 -translate-x-1/2 w-1/2 h-px bg-gradient-to-r from-transparent via-[var(--nb-primary)]/40 to-transparent"
-        aria-hidden="true"
-      />
-
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-8">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12 mb-12">
-          <div className="lg:col-span-2">
-            <Link
-              href={`/${lang}`}
-              className="inline-flex items-center gap-2 mb-4 group"
-              aria-label="NORABYTE - Inicio"
-            >
-              <span className="font-extrabold text-xl tracking-tight text-[var(--nb-light)]">
-                NORA<span className="text-[var(--nb-primary)]">BYTE</span>
-              </span>
+    <footer className="border-t border-line bg-surface" aria-label="Pie de página">
+      <div className="mx-auto max-w-7xl px-4 pt-16 pb-10 sm:px-6 lg:px-8">
+        <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-[minmax(0,1.6fr)_repeat(3,minmax(0,1fr))]">
+          <div>
+            <Link href={`/${lang}`} className="inline-flex min-h-11 items-center" aria-label="NORABYTE - Inicio">
+              <Image
+                src="/norabyte_logo_transparente.png"
+                alt="NORABYTE"
+                width={160}
+                height={40}
+                className="h-9 w-auto object-contain dark:hidden"
+              />
+              <Image
+                src="/norabyte_logo_transparente_blanco.webp"
+                alt="NORABYTE"
+                width={160}
+                height={40}
+                className="hidden h-9 w-auto object-contain dark:block"
+              />
             </Link>
-            <p className="text-[var(--nb-light)]/65 text-sm leading-relaxed max-w-xs">
-              {footer.tagline}
-            </p>
+            <p className="mt-4 max-w-xs leading-relaxed text-ink-muted">{footer.tagline}</p>
 
-            <div className="flex items-center gap-3 mt-6">
-              <a
-                href={footer.social.facebook}
-                aria-label={footer.socialAria.facebook}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-9 h-9 rounded-xl glass-card flex items-center justify-center text-[var(--nb-light)]/60 hover:text-[var(--nb-primary)] hover:border-[var(--nb-primary)]/30 transition-all duration-200"
-              >
-                <Facebook size={15} aria-hidden="true" />
-              </a>
-              <a
-                href={footer.social.instagram}
-                aria-label={footer.socialAria.instagram}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-9 h-9 rounded-xl glass-card flex items-center justify-center text-[var(--nb-light)]/60 hover:text-[var(--nb-primary)] hover:border-[var(--nb-primary)]/30 transition-all duration-200"
-              >
-                <Instagram size={15} aria-hidden="true" />
-              </a>
-              <a
-                href={footer.social.whatsapp}
-                aria-label={footer.socialAria.whatsapp}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-9 h-9 rounded-xl glass-card flex items-center justify-center text-[var(--nb-light)]/60 hover:text-emerald-400 hover:border-emerald-500/35 transition-all duration-200"
-              >
-                <WhatsAppIcon className="w-[15px] h-[15px]" />
-              </a>
+            <ul className="mt-6 flex items-center gap-2" role="list">
+              {socials.map((s) => (
+                <li key={s.href}>
+                  <a
+                    href={s.href}
+                    aria-label={s.label}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex size-11 items-center justify-center rounded-xl border border-line text-ink-muted transition-colors duration-150 hover:border-brand-line hover:text-brand-ink"
+                  >
+                    {s.icon}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {columns.map((col) => (
+            <div key={col.title}>
+              <h3 className="text-sm font-bold text-ink">{col.title}</h3>
+              <ul className="mt-4 space-y-1" role="list">
+                {col.links.map((item) => (
+                  <li key={item.label}>
+                    <Link
+                      href={`/${lang}${item.href}`}
+                      className="inline-flex min-h-9 items-center text-ink-muted transition-colors duration-150 hover:text-ink"
+                    >
+                      {item.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
             </div>
-          </div>
-
-          <div>
-            <h3 className="text-[var(--nb-light)] font-semibold text-sm mb-4 tracking-wide">
-              {footer.services}
-            </h3>
-            <ul className="space-y-3" role="list">
-              {footer.links.services.map((item) => (
-                <li key={item.label}>
-                  <Link
-                    href={`/${lang}${item.href.startsWith("#") ? item.href : item.href}`}
-                    className="text-[var(--nb-light)]/60 hover:text-[var(--nb-primary-light)] text-sm transition-colors duration-200"
-                  >
-                    {item.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          <div>
-            <h3 className="text-[var(--nb-light)] font-semibold text-sm mb-4 tracking-wide">
-              {footer.company}
-            </h3>
-            <ul className="space-y-3" role="list">
-              {footer.links.company.map((item) => (
-                <li key={item.label}>
-                  <Link
-                    href={`/${lang}${item.href.startsWith("#") ? item.href : item.href}`}
-                    className="text-[var(--nb-light)]/60 hover:text-[var(--nb-primary-light)] text-sm transition-colors duration-200"
-                  >
-                    {item.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          <div>
-            <h3 className="text-[var(--nb-light)] font-semibold text-sm mb-4 tracking-wide">
-              {footer.legal}
-            </h3>
-            <ul className="space-y-3" role="list">
-              {footer.links.legal.map((item) => (
-                <li key={item.label}>
-                  <Link
-                    href={`/${lang}${item.href.startsWith("#") ? item.href : item.href}`}
-                    className="text-[var(--nb-light)]/60 hover:text-[var(--nb-primary-light)] text-sm transition-colors duration-200"
-                  >
-                    {item.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
+          ))}
         </div>
 
-        <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <p className="text-[var(--nb-light)]/65 text-xs">
-            {footer.copyright}
-          </p>
-        </div>
+        <p className="mt-14 border-t border-line pt-8 text-sm text-ink-subtle">{footer.copyright}</p>
       </div>
     </footer>
   );

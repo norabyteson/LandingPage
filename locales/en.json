@@ -38,6 +38,12 @@
     },
     "items": [
       {
+        "id": "custom",
+        "title": "Custom System",
+        "description": "Does your business need something more specific? We'll build it from scratch. Business management systems, point of sale, desktop applications — any solution that automates and organizes how your company operates.",
+        "features": ["Business and management systems", "Point of sale (POS) for your business", "Offline desktop applications", "100% tailored to your operation"]
+      },
+      {
         "id": "ecommerce",
         "title": "Online Store",
         "description": "Take your business online and start selling without limits. We build your complete store with a product catalog, secure payments, inventory control, and everything you need to start operating from day one.",
@@ -48,12 +54,6 @@
         "title": "Website & Landing Page",
         "description": "Your online presence, done right. We design professional websites that represent your brand, attract customers, and turn visitors into real business opportunities — 24 hours a day.",
         "features": ["Professional design tailored to your brand", "Optimized for mobile and tablet", "Fast loading and high performance", "Google ranking (SEO)"]
-      },
-      {
-        "id": "custom",
-        "title": "Custom System",
-        "description": "Does your business need something more specific? We'll build it from scratch. Business management systems, point of sale, desktop applications — any solution that automates and organizes how your company operates.",
-        "features": ["Business and management systems", "Point of sale (POS) for your business", "Offline desktop applications", "100% tailored to your operation"]
       }
     ]
   },

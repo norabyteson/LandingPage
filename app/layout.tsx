@@ -3,11 +3,11 @@ import { Suspense } from "react";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/lib/theme";
-import ThemeVarsInjector from "@/components/ui/ThemeVarsInjector";
 import LenisProvider from "@/components/ui/LenisProvider";
 import GoogleAnalytics from "@/components/analytics/GoogleAnalytics";
 import GoogleAnalyticsNavigation from "@/components/analytics/GoogleAnalyticsNavigation";
 import { ADSENSE_CLIENT } from "@/lib/adsense";
+import { PLAYED_STORAGE_KEY, playedCss } from "@/lib/played";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -34,8 +34,8 @@ export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
   themeColor: [
-    { media: "(prefers-color-scheme: dark)", color: "#191716" },
-    { media: "(prefers-color-scheme: light)", color: "#F0F0F0" },
+    { media: "(prefers-color-scheme: dark)", color: "#16191d" },
+    { media: "(prefers-color-scheme: light)", color: "#ffffff" },
   ],
 };
 
@@ -62,6 +62,21 @@ const langInitScript = `
   var p=location.pathname;
   var l=p.startsWith('/en')?'en':'es';
   document.documentElement.lang=l;
+}catch(e){}})();
+`.trim();
+
+/**
+ * Animaciones ya vistas en esta pestaña (lib/played.ts): antes del primer paint arma una hoja
+ * de estilos (adoptedStyleSheets, sin tocar el DOM ni la hidratación) que deja esos elementos
+ * en su estado final. `playedCss` se incrusta tal cual para no duplicar la regla.
+ */
+const playedInitScript = `
+(function(){try{
+  var k=JSON.parse(sessionStorage.getItem('${PLAYED_STORAGE_KEY}')||'[]');
+  if(!Array.isArray(k)||!k.length||!('adoptedStyleSheets' in document))return;
+  var s=new CSSStyleSheet();
+  s.replaceSync((${playedCss.toString()})(k));
+  document.adoptedStyleSheets=document.adoptedStyleSheets.concat(s);
 }catch(e){}})();
 `.trim();
 
@@ -101,12 +116,12 @@ export default function RootLayout({
         */}
         <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
         <script dangerouslySetInnerHTML={{ __html: langInitScript }} />
+        <script dangerouslySetInnerHTML={{ __html: playedInitScript }} />
         <GoogleAnalytics />
         <Suspense fallback={null}>
           <GoogleAnalyticsNavigation />
         </Suspense>
         <ThemeProvider>
-          <ThemeVarsInjector />
           <LenisProvider>
             {children}
           </LenisProvider>

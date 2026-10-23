@@ -5,22 +5,9 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { motion, AnimatePresence } from "framer-motion";
-import {
-  Mail,
-  Phone,
-  MapPin,
-  Clock,
-  CheckCircle2,
-  AlertCircle,
-  Send,
-  User,
-  Building,
-  MessageSquare,
-  ChevronDown,
-  Sparkles,
-} from "lucide-react";
-import SectionBadge from "@/components/ui/SectionBadge";
-import AnimatedSection from "@/components/ui/AnimatedSection";
+import { Mail, Phone, MapPin, CheckCircle2, AlertCircle, Send, ChevronDown, LoaderCircle } from "lucide-react";
+import Reveal from "@/components/ui/Reveal";
+import { buttonClasses } from "@/lib/ui";
 import { cn } from "@/lib/utils";
 
 const createSchema = (t: Record<string, string>) =>
@@ -95,41 +82,43 @@ interface ContactSectionProps {
 
 type FormStatus = "idle" | "submitting" | "success" | "error";
 
-/* ---- Campo con ícono ---- */
-function FieldWrapper({
+/* ---- Campo: etiqueta arriba, control, error abajo ---- */
+function Field({
+  id,
   label,
   error,
   required,
-  icon: Icon,
   children,
 }: {
+  id: string;
   label: string;
   error?: string;
   required?: boolean;
-  icon: React.ElementType;
   children: React.ReactNode;
 }) {
   return (
-    <div className="flex flex-col gap-1.5 relative">
-      <label className="flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wide text-white/60">
-        <Icon size={12} aria-hidden="true" className="text-[var(--nb-primary)]" />
+    <div className="flex flex-col gap-2">
+      <label htmlFor={id} className="text-sm font-semibold text-ink">
         {label}
         {required && (
-          <span className="text-[var(--nb-primary)] ml-0.5" aria-hidden="true">*</span>
+          <span className="ml-0.5 text-brand-ink" aria-hidden="true">
+            *
+          </span>
         )}
       </label>
       {children}
       <AnimatePresence initial={false}>
         {error && (
           <motion.p
-            initial={{ opacity: 0, height: 0, marginTop: 0 }}
-            animate={{ opacity: 1, height: "auto", marginTop: 4 }}
-            exit={{ opacity: 0, height: 0, marginTop: 0 }}
-            transition={{ duration: 0.2 }}
-            className="flex items-center gap-1.5 text-[#f87171] font-medium text-xs overflow-hidden"
+            id={`${id}-error`}
+            initial={{ opacity: 0, y: -4 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.18 }}
+            className="flex items-center gap-1.5 text-sm font-medium text-danger"
             role="alert"
           >
-            <AlertCircle size={12} aria-hidden="true" />
+            <AlertCircle size={14} aria-hidden="true" />
             {error}
           </motion.p>
         )}
@@ -137,6 +126,9 @@ function FieldWrapper({
     </div>
   );
 }
+
+const inputClass =
+  "w-full rounded-xl border border-line-strong/45 bg-surface px-4 py-3 text-base text-ink placeholder:text-ink-subtle transition-[border-color,box-shadow] duration-150 hover:border-line-strong/70 focus:outline-none focus-visible:border-brand focus-visible:ring-3 focus-visible:ring-brand/20 aria-[invalid=true]:border-danger";
 
 export default function ContactSection({ dict }: ContactSectionProps) {
   const { contact } = dict;
@@ -190,375 +182,269 @@ export default function ContactSection({ dict }: ContactSectionProps) {
   };
 
   const infoItems = [
-    { icon: Mail,  label: contact.info.email,        href: `mailto:${contact.info.email}` },
-    { icon: Phone, label: contact.info.phone,         href: `tel:${contact.info.phone.replace(/\s/g, "")}` },
-    { icon: MapPin, label: contact.info.location,     href: null },
-    { icon: Clock, label: contact.info.availability,  href: null },
+    { icon: Mail, label: contact.info.email, href: `mailto:${contact.info.email}` },
+    { icon: Phone, label: contact.info.phone, href: `tel:${contact.info.phone.replace(/\s/g, "")}` },
+    { icon: MapPin, label: contact.info.location, href: null },
   ];
 
-  // Estilo unificado y OSCURO INCONDICIONAL para resolver bugs de contraste
-  const inputClass = "w-full bg-black/20 border border-white/15 rounded-xl px-4 py-3 text-white placeholder-white/30 focus:outline-none focus:border-[var(--nb-primary)] transition-colors shadow-sm";
-
   return (
-    <section
-      id="contact"
-      className="section-padding relative overflow-hidden bg-[#161413]"
-      aria-labelledby="contact-title"
-    >
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-
-        {/* Cabecera */}
-        <div className="flex flex-col items-center text-center mb-16 gap-5">
-          <SectionBadge className="text-white/60 before:bg-white/20">{contact.badge}</SectionBadge>
-          <AnimatedSection delay={0.1}>
-            <h2 id="contact-title" className="heading-lg text-white max-w-2xl">
+    <section id="contact" aria-labelledby="contact-title" className="scroll-mt-20 bg-canvas">
+      <div className="mx-auto grid max-w-7xl gap-12 px-4 py-20 sm:px-6 lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)] lg:gap-16 lg:px-8 lg:py-28">
+        {/* ---- Información ---- */}
+        <Reveal name="contact-info">
+          <aside aria-label={contact.contactInfoAria}>
+            <h2
+              id="contact-title"
+              className="max-w-[18ch] text-4xl leading-[1.05] font-extrabold tracking-tight text-balance text-ink sm:text-5xl"
+            >
               {contact.title}
             </h2>
-          </AnimatedSection>
-          <AnimatedSection delay={0.2}>
-            <p className="text-white/60 text-lg max-w-lg leading-relaxed">
-              {contact.subtitle}
-            </p>
-          </AnimatedSection>
-        </div>
+            <p className="mt-5 max-w-[46ch] text-lg leading-relaxed text-ink-muted">{contact.subtitle}</p>
 
-        {/* Layout principal */}
-        <div className="grid grid-cols-1 lg:grid-cols-5 gap-10 items-stretch">
+            <ul className="mt-10 divide-y divide-line border-y border-line" role="list">
+              {infoItems.map(({ icon: Icon, label, href }) => (
+                <li key={label} className="flex items-center gap-4 py-4">
+                  <span className="flex size-10 shrink-0 items-center justify-center rounded-xl bg-brand-soft text-brand-ink">
+                    <Icon size={18} aria-hidden="true" />
+                  </span>
+                  {href ? (
+                    <a href={href} className="font-semibold text-ink transition-colors hover:text-brand-ink">
+                      {label}
+                    </a>
+                  ) : (
+                    <span className="font-semibold text-ink">{label}</span>
+                  )}
+                </li>
+              ))}
+            </ul>
 
-          {/* ---- Panel de información ---- */}
-          <motion.aside
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.4, ease: [0.25, 0.46, 0.45, 0.94] }}
-            className="lg:col-span-2 flex flex-col gap-5 h-full"
-            aria-label={contact.contactInfoAria}
-          >
-            {infoItems.map(({ icon: Icon, label, href }) => (
-              <div
-                key={label}
-                className="bg-[#1A1817] rounded-2xl px-5 py-4 border border-white/10 flex items-center gap-5 shadow-sm"
-              >
-                <div className="w-12 h-12 rounded-xl bg-[var(--nb-primary)]/10 flex items-center justify-center flex-shrink-0">
-                  <Icon size={20} className="text-[var(--nb-primary)]" aria-hidden="true" />
-                </div>
-                {href ? (
-                  <a
-                    href={href}
-                    className="text-white font-medium hover:text-[var(--nb-primary-light)] transition-colors duration-200"
-                  >
-                    {label}
-                  </a>
-                ) : (
-                  <span className="text-white font-medium">{label}</span>
-                )}
-              </div>
-            ))}
-
-            {/* Trust badge */}
-            <div className="rounded-2xl p-6 border border-[var(--nb-primary)]/20 flex gap-4 bg-[var(--nb-primary)]/5 mt-auto">
-              <Sparkles size={20} className="text-[var(--nb-primary-light)] flex-shrink-0 mt-1" aria-hidden="true" />
-              <div>
-                <p className="text-white font-bold mb-1.5">
-                  {contact.trustTitle}
-                </p>
-                <p className="text-white/70 text-sm leading-relaxed">
-                  {contact.trustBody}
-                </p>
-              </div>
+            <div className="mt-8 border-l-4 border-brand pl-4">
+              <p className="font-bold text-ink">{contact.trustTitle}</p>
+              <p className="mt-1 max-w-[44ch] text-ink-muted">{contact.trustBody}</p>
             </div>
 
             <a
               href={contact.whatsapp.href}
               target="_blank"
               rel="noopener noreferrer"
-              className="rounded-2xl px-5 py-4 border border-emerald-500/35 bg-emerald-500/10 text-emerald-300 font-semibold text-center hover:bg-emerald-500/15 hover:border-emerald-400/45 transition-colors"
+              className={cn(buttonClasses("secondary", "lg"), "mt-8")}
             >
               {contact.whatsapp.ctaLabel}
             </a>
-          </motion.aside>
+          </aside>
+        </Reveal>
 
-          {/* ---- Formulario ---- */}
-          <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.4, delay: 0.08, ease: [0.25, 0.46, 0.45, 0.94] }}
-            className="lg:col-span-3"
-          >
-            <div className="bg-[#1A1817] rounded-2xl border border-white/10 shadow-lg relative">
-
-              {/* Header del formulario */}
-              <div className="px-8 py-5 flex items-center justify-between rounded-t-2xl bg-white/5 border-b border-white/10">
-                <div>
-                  <p className="text-white font-bold text-sm">{contact.formHeaderTitle}</p>
-                  <p className="text-white/60 text-xs mt-1">{contact.formHeaderHint}</p>
-                </div>
-                <div className="flex gap-1.5" aria-hidden="true">
-                  <div className="w-2.5 h-2.5 rounded-full bg-red-400" />
-                  <div className="w-2.5 h-2.5 rounded-full bg-yellow-400" />
-                  <div className="w-2.5 h-2.5 rounded-full bg-green-400" />
-                </div>
-              </div>
-
-              {/* Cuerpo del formulario */}
-              <div className="p-8">
-                <AnimatePresence mode="wait">
-                  {/* ---- Estado éxito ---- */}
-                  {status === "success" ? (
-                    <motion.div
-                      key="success"
-                      initial={{ opacity: 0, scale: 0.95 }}
-                      animate={{ opacity: 1, scale: 1 }}
-                      exit={{ opacity: 0, scale: 0.95 }}
-                      transition={{ duration: 0.3 }}
-                      className="flex flex-col items-center justify-center text-center gap-6 py-12"
-                      role="status"
-                      aria-live="polite"
-                    >
-                      <motion.div
-                        initial={{ scale: 0, rotate: -20 }}
-                        animate={{ scale: 1, rotate: 0 }}
-                        transition={{ type: "spring", stiffness: 200, damping: 14, delay: 0.1 }}
-                        className="w-20 h-20 rounded-full bg-green-500/10 border-2 border-green-500/30 flex items-center justify-center"
-                      >
-                        <CheckCircle2 size={36} className="text-green-400" aria-hidden="true" />
-                      </motion.div>
-                      <div>
-                        <h3 className="text-white font-bold text-2xl mb-3">
-                          {contact.form.successTitle}
-                        </h3>
-                        <p className="text-white/70 text-base max-w-sm mx-auto">
-                          {contact.form.successMessage}
-                        </p>
-                      </div>
-                      <button
-                        onClick={() => setStatus("idle")}
-                        className="text-[var(--nb-primary-light)] font-medium hover:underline text-sm mt-4"
-                      >
-                        {contact.sendAnother}
-                      </button>
-                    </motion.div>
-
-                  ) : (
-                    /* ---- Formulario ---- */
-                    <motion.form
-                      key="form"
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      exit={{ opacity: 0 }}
-                      onSubmit={handleSubmit(onSubmit)}
-                      noValidate
-                      className="flex flex-col gap-6 relative"
-                      aria-label={contact.formAriaLabel}
-                    >
-
-                      {/* Nombre + Email */}
-                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                        <FieldWrapper
-                          label={contact.form.name}
-                          error={errors.name?.message}
-                          icon={User}
-                          required
-                        >
-                          <input
-                            {...register("name")}
-                            type="text"
-                            placeholder={contact.form.namePlaceholder}
-                            autoComplete="name"
-                            className={cn(inputClass, errors.name && "border-red-500 focus:border-red-500")}
-                            aria-invalid={!!errors.name}
-                          />
-                        </FieldWrapper>
-
-                        <FieldWrapper
-                          label={contact.form.email}
-                          error={errors.email?.message}
-                          icon={Mail}
-                          required
-                        >
-                          <input
-                            {...register("email")}
-                            type="email"
-                            placeholder={contact.form.emailPlaceholder}
-                            autoComplete="email"
-                            className={cn(inputClass, errors.email && "border-red-500 focus:border-red-500")}
-                            aria-invalid={!!errors.email}
-                          />
-                        </FieldWrapper>
-                      </div>
-
-                      {/* Empresa + Servicio */}
-                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                        <FieldWrapper
-                          label={contact.form.company}
-                          error={errors.company?.message}
-                          icon={Building}
-                        >
-                          <input
-                            {...register("company")}
-                            type="text"
-                            placeholder={contact.form.companyPlaceholder}
-                            autoComplete="organization"
-                            className={cn(inputClass, errors.company && "border-red-500 focus:border-red-500")}
-                          />
-                        </FieldWrapper>
-
-                        <FieldWrapper
-                          label={contact.form.service}
-                          error={errors.service?.message}
-                          icon={ChevronDown}
-                          required
-                        >
-                          <div className="relative z-50">
-                            {/* Input Oculto para validación RHF */}
-                            <input type="hidden" {...register("service")} />
-                            
-                            <button
-                              type="button"
-                              onClick={(e) => {
-                                e.preventDefault();
-                                setDropdownOpen(!dropdownOpen);
-                              }}
-                              className={cn(
-                                inputClass,
-                                "flex items-center justify-between text-left",
-                                !selectedService && "text-white/40",
-                                errors.service && "border-red-500 focus:border-red-500",
-                                dropdownOpen && "border-[var(--nb-primary)] ring-2 ring-[var(--nb-primary)]/20"
-                              )}
-                              aria-haspopup="listbox"
-                              aria-expanded={dropdownOpen}
-                            >
-                              <span className="truncate">
-                                {selectedService || contact.form.servicePlaceholder}
-                              </span>
-                              <ChevronDown
-                                size={16}
-                                className={cn(
-                                  "text-white/60 transition-transform duration-200",
-                                  dropdownOpen && "rotate-180 text-[var(--nb-primary-light)]"
-                                )}
-                                aria-hidden="true"
-                              />
-                            </button>
-
-                            <AnimatePresence>
-                              {dropdownOpen && (
-                                <motion.ul
-                                  initial={{ opacity: 0, y: -10, scale: 0.98 }}
-                                  animate={{ opacity: 1, y: 0, scale: 1 }}
-                                  exit={{ opacity: 0, y: -10, scale: 0.98 }}
-                                  transition={{ duration: 0.15 }}
-                                  className="absolute top-full left-0 w-full mt-2 bg-[#232120] border border-white/10 rounded-xl shadow-[0_15px_50px_-10px_rgba(0,0,0,0.8)] z-[200] overflow-hidden"
-                                  role="listbox"
-                                >
-                                  {contact.form.services.map((svc) => (
-                                    <li key={svc} role="option" aria-selected={selectedService === svc}>
-                                      <button
-                                        type="button"
-                                        className={cn(
-                                          "w-full text-left px-5 py-3.5 text-sm md:text-base focus:outline-none transition-colors",
-                                          selectedService === svc
-                                            ? "bg-[var(--nb-primary)]/20 text-[var(--nb-primary-light)] font-semibold"
-                                            : "text-white/80 hover:bg-white/5 hover:text-white"
-                                        )}
-                                        onClick={() => {
-                                          setValue("service", svc, { shouldValidate: true });
-                                          setDropdownOpen(false);
-                                        }}
-                                      >
-                                        {svc}
-                                      </button>
-                                    </li>
-                                  ))}
-                                </motion.ul>
-                              )}
-                            </AnimatePresence>
-                          </div>
-                        </FieldWrapper>
-                      </div>
-
-                      {/* Mensaje */}
-                      <FieldWrapper
-                        label={contact.form.message}
-                        error={errors.message?.message}
-                        icon={MessageSquare}
-                        required
-                      >
-                        <textarea
-                          {...register("message")}
-                          rows={4}
-                          placeholder={contact.form.messagePlaceholder}
-                          className={cn(inputClass, "resize-none leading-relaxed", errors.message && "border-red-500 focus:border-red-500")}
-                          aria-invalid={!!errors.message}
-                        />
-                      </FieldWrapper>
-
-                      {/* Error global */}
-                      <AnimatePresence initial={false}>
-                        {status === "error" && (
-                          <motion.div
-                            initial={{ opacity: 0, height: 0 }}
-                            animate={{ opacity: 1, height: "auto" }}
-                            exit={{ opacity: 0, height: 0 }}
-                            className="flex items-center gap-3 px-5 py-4 rounded-xl bg-red-500/10 border border-red-500/20 text-red-400 text-sm font-medium overflow-hidden"
-                            role="alert"
-                            aria-live="assertive"
-                          >
-                            <AlertCircle size={18} aria-hidden="true" className="flex-shrink-0" />
-                            {contact.form.errorMessage}
-                          </motion.div>
-                        )}
-                      </AnimatePresence>
-
-                      {/* Botón de envío */}
-                      <button
-                        type="submit"
-                        disabled={status === "submitting"}
-                        className={cn(
-                          "btn-primary w-full py-4 mt-2 text-base font-semibold shadow-lg shadow-[var(--nb-primary)]/20 rounded-xl",
-                          status === "submitting" && "opacity-70 cursor-not-allowed"
-                        )}
-                        aria-disabled={status === "submitting"}
-                      >
-                        {status === "submitting" ? (
-                          <>
-                            <svg
-                              className="animate-spin h-5 w-5 mr-2 inline"
-                              viewBox="0 0 24 24"
-                              fill="none"
-                              aria-hidden="true"
-                            >
-                              <circle
-                                className="opacity-25"
-                                cx="12" cy="12" r="10"
-                                stroke="currentColor"
-                                strokeWidth="4"
-                              />
-                              <path
-                                className="opacity-75"
-                                fill="currentColor"
-                                d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"
-                              />
-                            </svg>
-                            {contact.form.submitting}
-                          </>
-                        ) : (
-                          <>
-                            <Send size={18} aria-hidden="true" className="mr-2 inline" />
-                            {contact.form.submit}
-                          </>
-                        )}
-                      </button>
-
-                    </motion.form>
-                  )}
-                </AnimatePresence>
-              </div>
+        {/* ---- Formulario ---- */}
+        <Reveal name="contact-form" delay={120}>
+          <div className="rounded-3xl border border-line bg-surface p-6 shadow-card sm:p-8 lg:p-10">
+            <div className="border-b border-line pb-5">
+              <p className="text-lg font-bold text-ink">{contact.formHeaderTitle}</p>
+              <p className="mt-1 text-sm text-ink-muted">{contact.formHeaderHint}</p>
             </div>
-          </motion.div>
-        </div>
+
+            <AnimatePresence mode="wait">
+              {status === "success" ? (
+                <motion.div
+                  key="success"
+                  initial={{ opacity: 0, y: 8 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.3, ease: [0.2, 0, 0, 1] }}
+                  className="flex flex-col items-center gap-5 py-14 text-center"
+                  role="status"
+                  aria-live="polite"
+                >
+                  <motion.span
+                    initial={{ scale: 0.6, opacity: 0 }}
+                    animate={{ scale: 1, opacity: 1 }}
+                    transition={{ type: "spring", stiffness: 260, damping: 18, delay: 0.1 }}
+                    className="flex size-16 items-center justify-center rounded-full bg-brand-soft text-success"
+                  >
+                    <CheckCircle2 size={32} aria-hidden="true" />
+                  </motion.span>
+                  <div>
+                    <h3 className="text-2xl font-bold text-ink">{contact.form.successTitle}</h3>
+                    <p className="mx-auto mt-2 max-w-sm text-ink-muted">{contact.form.successMessage}</p>
+                  </div>
+                  <button
+                    type="button"
+                    onClick={() => setStatus("idle")}
+                    className={buttonClasses("secondary")}
+                  >
+                    {contact.sendAnother}
+                  </button>
+                </motion.div>
+              ) : (
+                <motion.form
+                  key="form"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  onSubmit={handleSubmit(onSubmit)}
+                  noValidate
+                  className="mt-7 flex flex-col gap-6"
+                  aria-label={contact.formAriaLabel}
+                >
+                  <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
+                    <Field id="contact-name" label={contact.form.name} error={errors.name?.message} required>
+                      <input
+                        {...register("name")}
+                        id="contact-name"
+                        type="text"
+                        placeholder={contact.form.namePlaceholder}
+                        autoComplete="name"
+                        className={inputClass}
+                        aria-invalid={!!errors.name}
+                        aria-describedby={errors.name ? "contact-name-error" : undefined}
+                      />
+                    </Field>
+
+                    <Field id="contact-email" label={contact.form.email} error={errors.email?.message} required>
+                      <input
+                        {...register("email")}
+                        id="contact-email"
+                        type="email"
+                        placeholder={contact.form.emailPlaceholder}
+                        autoComplete="email"
+                        className={inputClass}
+                        aria-invalid={!!errors.email}
+                        aria-describedby={errors.email ? "contact-email-error" : undefined}
+                      />
+                    </Field>
+                  </div>
+
+                  <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
+                    <Field id="contact-company" label={contact.form.company} error={errors.company?.message}>
+                      <input
+                        {...register("company")}
+                        id="contact-company"
+                        type="text"
+                        placeholder={contact.form.companyPlaceholder}
+                        autoComplete="organization"
+                        className={inputClass}
+                      />
+                    </Field>
+
+                    <Field id="contact-service" label={contact.form.service} error={errors.service?.message} required>
+                      <div className="relative">
+                        {/* Input oculto para la validación de react-hook-form */}
+                        <input type="hidden" {...register("service")} />
+                        <button
+                          id="contact-service"
+                          type="button"
+                          onClick={() => setDropdownOpen((open) => !open)}
+                          onKeyDown={(e) => {
+                            if (e.key === "Escape") setDropdownOpen(false);
+                          }}
+                          className={cn(
+                            inputClass,
+                            "flex items-center justify-between gap-2 text-left",
+                            !selectedService && "text-ink-subtle",
+                            errors.service && "border-danger",
+                            dropdownOpen && "border-brand ring-3 ring-brand/20"
+                          )}
+                          aria-haspopup="listbox"
+                          aria-expanded={dropdownOpen}
+                          aria-describedby={errors.service ? "contact-service-error" : undefined}
+                        >
+                          <span className="truncate">{selectedService || contact.form.servicePlaceholder}</span>
+                          <ChevronDown
+                            size={16}
+                            aria-hidden="true"
+                            className={cn(
+                              "shrink-0 text-ink-subtle transition-transform duration-200",
+                              dropdownOpen && "rotate-180"
+                            )}
+                          />
+                        </button>
+
+                        <AnimatePresence>
+                          {dropdownOpen && (
+                            <motion.ul
+                              initial={{ opacity: 0, y: -6 }}
+                              animate={{ opacity: 1, y: 0 }}
+                              exit={{ opacity: 0, y: -6 }}
+                              transition={{ duration: 0.15, ease: [0.2, 0, 0, 1] }}
+                              className="absolute top-full left-0 z-20 mt-2 w-full overflow-hidden rounded-xl border border-line bg-surface p-1 shadow-lift"
+                              role="listbox"
+                              aria-label={contact.form.service}
+                            >
+                              {contact.form.services.map((svc) => (
+                                <li key={svc} role="option" aria-selected={selectedService === svc}>
+                                  <button
+                                    type="button"
+                                    className={cn(
+                                      "w-full rounded-lg px-4 py-3 text-left text-base transition-colors",
+                                      selectedService === svc
+                                        ? "bg-brand-soft font-semibold text-brand-ink"
+                                        : "text-ink hover:bg-surface-hover"
+                                    )}
+                                    onClick={() => {
+                                      setValue("service", svc, { shouldValidate: true });
+                                      setDropdownOpen(false);
+                                    }}
+                                  >
+                                    {svc}
+                                  </button>
+                                </li>
+                              ))}
+                            </motion.ul>
+                          )}
+                        </AnimatePresence>
+                      </div>
+                    </Field>
+                  </div>
+
+                  <Field id="contact-message" label={contact.form.message} error={errors.message?.message} required>
+                    <textarea
+                      {...register("message")}
+                      id="contact-message"
+                      rows={5}
+                      placeholder={contact.form.messagePlaceholder}
+                      className={cn(inputClass, "resize-none leading-relaxed")}
+                      aria-invalid={!!errors.message}
+                      aria-describedby={errors.message ? "contact-message-error" : undefined}
+                    />
+                  </Field>
+
+                  <AnimatePresence initial={false}>
+                    {status === "error" && (
+                      <motion.div
+                        initial={{ opacity: 0, y: -4 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0 }}
+                        className="flex items-start gap-3 rounded-xl border border-danger/30 bg-danger/5 px-4 py-3 text-sm font-medium text-danger"
+                        role="alert"
+                        aria-live="assertive"
+                      >
+                        <AlertCircle size={18} aria-hidden="true" className="mt-0.5 shrink-0" />
+                        {contact.form.errorMessage}
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+
+                  <button
+                    type="submit"
+                    disabled={status === "submitting"}
+                    className={cn(buttonClasses("primary", "lg"), "w-full")}
+                  >
+                    {status === "submitting" ? (
+                      <>
+                        <LoaderCircle aria-hidden="true" className="animate-spin" />
+                        {contact.form.submitting}
+                      </>
+                    ) : (
+                      <>
+                        <Send aria-hidden="true" />
+                        {contact.form.submit}
+                      </>
+                    )}
+                  </button>
+                </motion.form>
+              )}
+            </AnimatePresence>
+          </div>
+        </Reveal>
       </div>
     </section>
   );

@@ -5,6 +5,7 @@ import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import LangUpdater from "@/components/layout/LangUpdater";
 import SmoothScroll from "@/components/ui/SmoothScroll";
+import ScrollToTopButton from "@/components/ui/ScrollToTopButton";
 
 interface LangLayoutProps {
   children: React.ReactNode;
@@ -133,7 +134,7 @@ export default async function LangLayout({ children, params }: LangLayoutProps) 
       {/* Skip to content — accesibilidad */}
       <a
         href="#main-content"
-        className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:bg-[var(--nb-primary)] focus:text-white focus:rounded-lg focus:font-medium"
+        className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[130] focus:rounded-xl focus:bg-brand focus:px-4 focus:py-3 focus:font-semibold focus:text-on-brand"
       >
         {locale === "es" ? "Ir al contenido principal" : "Skip to main content"}
       </a>
@@ -145,6 +146,7 @@ export default async function LangLayout({ children, params }: LangLayoutProps) 
       </main>
 
       <Footer dict={dict} lang={locale} />
+      <ScrollToTopButton label={locale === "es" ? "Volver arriba" : "Back to top"} />
     </>
   );
 }

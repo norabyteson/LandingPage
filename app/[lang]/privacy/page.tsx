@@ -1,8 +1,6 @@
-import { getDictionary, isValidLocale, defaultLocale } from "@/lib/i18n";
+import { isValidLocale, defaultLocale } from "@/lib/i18n";
 import type { Locale } from "@/types/i18n";
-import PageTransition from "@/components/ui/PageTransition";
-import Link from "next/link";
-import { ArrowLeft } from "lucide-react";
+import LegalPage from "@/components/layout/LegalPage";
 import type { Metadata, ResolvingMetadata } from "next";
 
 interface PageProps {
@@ -110,48 +108,13 @@ export default async function PrivacyPage({ params }: PageProps) {
   const t = content[locale];
 
   return (
-    <PageTransition>
-      <div className="min-h-screen bg-[var(--nb-dark)] pt-32 pb-20 relative px-4 sm:px-6 lg:px-8">
-        {/* Background elements */}
-        <div className="absolute top-0 left-0 w-full h-[500px] bg-gradient-to-b from-[var(--nb-primary)]/10 to-transparent pointer-events-none" />
-        <div className="absolute top-0 right-0 w-1/3 h-[500px] bg-[var(--nb-primary)]/5 blur-[120px] rounded-full pointer-events-none" />
-
-        <div className="max-w-3xl mx-auto relative z-10">
-          <Link
-            href={`/${locale}`}
-            className="inline-flex items-center gap-2 text-[var(--nb-light)]/60 hover:text-[var(--nb-primary)] transition-colors mb-10 group text-sm font-medium"
-          >
-            <ArrowLeft size={16} className="transform group-hover:-translate-x-1 transition-transform" />
-            {t.back}
-          </Link>
-
-          <div className="mb-12">
-            <h1 className="text-4xl md:text-5xl font-bold text-[var(--nb-light)] tracking-tight mb-4">
-              {t.title}
-            </h1>
-            <p className="text-[var(--nb-light)]/50 text-sm">
-              {t.lastUpdated}
-            </p>
-          </div>
-
-          <div className="space-y-10">
-            {t.sections.map((section, idx) => (
-              <section key={idx} className="glass-card p-8 rounded-2xl border border-[var(--nb-light)]/5">
-                <h2 className="text-xl font-semibold text-[var(--nb-light)] mb-4">
-                  {section.title}
-                </h2>
-                <p className="text-[var(--nb-light)]/70 leading-relaxed text-sm md:text-base">
-                  {section.body}
-                </p>
-              </section>
-            ))}
-          </div>
-          
-          <div className="mt-16 text-[var(--nb-light)]/40 text-sm text-center">
-            © {new Date().getFullYear()} NORABYTE.
-          </div>
-        </div>
-      </div>
-    </PageTransition>
+    <LegalPage
+      pageKey="privacy"
+      backHref={`/${locale}`}
+      backLabel={t.back}
+      title={t.title}
+      lastUpdated={t.lastUpdated}
+      sections={t.sections}
+    />
   );
 }

@@ -1,8 +1,4 @@
-"use client";
-
-import Image from "next/image";
-import SectionBadge from "@/components/ui/SectionBadge";
-import AnimatedSection from "@/components/ui/AnimatedSection";
+import Reveal from "@/components/ui/Reveal";
 
 interface AboutSectionProps {
   dict: {
@@ -14,40 +10,27 @@ interface AboutSectionProps {
   };
 }
 
+/** Quiénes somos: una frase grande y el texto debajo, con aire. Sin imagen de relleno. */
 export default function AboutSection({ dict }: AboutSectionProps) {
   const { about } = dict;
 
   return (
-    <section
-      id="about"
-      className="relative overflow-hidden section-padding text-white"
-      aria-labelledby="about-title"
-    >
-      <div className="absolute inset-0 z-0">
-        <Image
-          src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2000"
-          alt="Abstract tech background"
-          fill
-          className="object-cover"
-          sizes="100vw"
-        />
-        <div className="absolute inset-0 bg-[#0F0D0C]/85 z-10" aria-hidden="true" />
-      </div>
-
-      <div className="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-col items-center text-center mb-16 gap-5 max-w-4xl mx-auto">
-          <SectionBadge className="text-white/70 before:bg-[var(--nb-primary)]/40">{about.badge}</SectionBadge>
-          <AnimatedSection delay={0.1}>
-            <h2 id="about-title" className="heading-lg text-white">
-              {about.title}
-            </h2>
-          </AnimatedSection>
-          <AnimatedSection delay={0.2}>
-            <p className="text-white/70 text-lg md:text-xl leading-relaxed mt-4">
-              {about.description}
-            </p>
-          </AnimatedSection>
-        </div>
+    <section id="about" aria-labelledby="about-title" className="scroll-mt-20 bg-canvas">
+      <div className="mx-auto max-w-5xl px-4 py-24 sm:px-6 lg:px-8 lg:py-32">
+        <Reveal name="about-title">
+          <p className="text-sm font-semibold text-brand-ink">{about.badge}</p>
+          <h2
+            id="about-title"
+            className="mt-4 max-w-[22ch] text-4xl leading-[1.08] font-extrabold tracking-tight text-balance text-ink sm:text-5xl"
+          >
+            {about.title}
+          </h2>
+        </Reveal>
+        <Reveal name="about-text" delay={120}>
+          <p className="mt-8 max-w-[62ch] border-l-4 border-brand pl-6 text-xl leading-relaxed text-ink-muted">
+            {about.description}
+          </p>
+        </Reveal>
       </div>
     </section>
   );

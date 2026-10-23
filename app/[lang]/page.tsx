@@ -7,7 +7,6 @@ import ProcessSection from "@/components/sections/ProcessSection";
 import AboutSection from "@/components/sections/AboutSection";
 import ValuePropsSection from "@/components/sections/ValuePropsSection";
 import ContactSection from "@/components/sections/ContactSection";
-import PageTransition from "@/components/ui/PageTransition";
 
 interface PageProps {
   params: Promise<{ lang: string }>;
@@ -46,14 +45,13 @@ export default async function Page({ params }: PageProps) {
   const dict = await getDictionary(locale);
 
   return (
-    <PageTransition>
+    <>
       <HeroSection dict={dict} lang={locale} />
       <ServicesSection dict={dict} lang={locale} />
       <ProcessSection dict={dict} />
       <AboutSection dict={dict} />
-
       <ValuePropsSection dict={dict} />
       <ContactSection dict={dict} />
-    </PageTransition>
+    </>
   );
 }
